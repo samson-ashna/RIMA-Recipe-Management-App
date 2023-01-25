@@ -1,2 +1,9 @@
 # Planning Document
-### Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+## Iteration 0
+### [insert stories]
+## Iteration 1
+### [insert stories]
+## Iteration 2
+### [insert stores]
+## Iteration 3
+### [insert stories]
