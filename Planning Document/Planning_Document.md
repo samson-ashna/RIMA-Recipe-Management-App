@@ -13,7 +13,7 @@
 * **Meal Planning: As a home cook I want to be able to plan my meals for the week. Priority: High. Cost: 2 days**
 
 ## Iteration 2
-* **Search Recipes: As a cook, I want to be able to search recipes from the database by name, ingredients and category. Priority: High. Cost:6 days**  
+* **Search Recipes: As a cook, I want to be able to search recipes from the database by name, ingredients and category. Priority: High. Cost: 6 days**  
 * **Manipulate Food Ingredient Inventory: I want to be able to view a list of all the food ingredients available at home, add/remove from the list and modify information on quantity, cost and expiration date. Priority: Medium. Cost: 4 days**
 * **Favourite Recipe list: As a user, I would like to be able to add my favourite recipes to a list for easier access. Priority: Medium. Cost: 3 days**
 * **Meal Planning:  As a cook, I would like to view recipe suggestions based on my favourite recipe list, available food ingredients, preferences/restrictions.  Priority: Medium. Cost: 5 days**
