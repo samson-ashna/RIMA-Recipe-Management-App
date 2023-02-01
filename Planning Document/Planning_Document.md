@@ -10,7 +10,7 @@
     * Create User Profile:  Ask the user to enter username, allergies or dietary restrictions/preferences .  Priority: High. Cost: 1 day 
     * View User Profile: As a user I want to be able to view my user profile information (username, dietary restrictions/preferences). Priority: High. Cost: 1 day  
     * Edit User Profile:  As an app user, I want to be able to modify my user information.  Priority: High. Cost: 1 day  
-* Meal Planning: As a home cook I want to be able to plan my meals for the week. Priority: High. Cost: 2 days
+* **Meal Planning: As a home cook I want to be able to plan my meals for the week. Priority: High. Cost: 2 days**
 
 ## Iteration 2
 * **Search Recipes: As a cook, I want to be able to search recipes from the database by name, ingredients and category. Priority: High. Cost:6 days**  
