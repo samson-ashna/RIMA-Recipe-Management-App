@@ -1,9 +1,0 @@
-# Planning Document
-## Iteration 0
-[insert stories]
-## Iteration 1
-[insert stories]
-## Iteration 2
-[insert stores]
-## Iteration 3
-[insert stories]
