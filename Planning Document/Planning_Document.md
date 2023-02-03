@@ -1,6 +1,7 @@
 # Planning Document
 ## Iteration 1
 * **View Recipes:  As a cook, I want to be able to view a list of the recipes available in the app that I can save to my own personal recipe collection. Priority: High. Cost: 4 days**
+    * Save Recipe to personal recipe collection: As a cook, I want to be able to add recipes available in the app to my own personal collection of recipes. Priority: High. Cost: 1 days  
     * Display Recipe Information: Display the recipes available in the app with detailed instructions, along with the ingredient list. Priority: High. Cost: 4 days 
 * **Manipulate Local Recipe Collection: As the app user, I want to be able to modify the information available in my recipe collection.  Priority: High. Cost: 7 days**
     * Add Recipes to Personal Recipe Collection:  As a cook, I want to be able to save recipes from the app to my own recipe collection. Priority: High. Cost: 3 days  
@@ -10,7 +11,6 @@
     * Create User Profile:  Ask the user to enter username, allergies or dietary restrictions/preferences .  Priority: High. Cost: 1 day 
     * View User Profile: As a user I want to be able to view my user profile information (username, dietary restrictions/preferences). Priority: High. Cost: 1 day  
     * Edit User Profile:  As an app user, I want to be able to modify my user information.  Priority: High. Cost: 1 day  
-* **Meal Planning: As a home cook I want to be able to plan my meals for the week. Priority: High. Cost: 2 days**
 
 ## Iteration 2
 * **Search Recipes: As a cook, I want to be able to search recipes from the database by name, ingredients and category. Priority: High. Cost: 6 days**  
