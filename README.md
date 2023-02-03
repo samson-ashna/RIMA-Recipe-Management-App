@@ -1,6 +1,6 @@
 # Recipe and Ingredient Management App (RIMA)
 
-## Group Members
+## Team 1 Group Members
 Sheida Khodabakhshian Khansari, Natalie Dean, Ashna Samson, Zhenghao Wang, Shaun Bautista
 
 ## Description
