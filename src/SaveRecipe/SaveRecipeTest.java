@@ -1,6 +1,6 @@
-package persistence;
+package SaveRecipe;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,13 +28,13 @@ public class SaveRecipeTest {
     }
     
     @Test
-    void testGetRecipes() {
+    void testGetRecipe() {
 
         Recipes temp = new Recipes("Boiled Egg", 6, 0);
         SaveRecipe test = new SaveRecipe();
         test.save(temp);
 
-        assertEquals(test, recipes);
+        assertEquals(test.getRecipe("Boiled Egg").getName(), recipes.getRecipe("Boiled Egg").getName());
 
     }
 

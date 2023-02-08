@@ -1,4 +1,4 @@
-package persistence;
+package SaveRecipe;
 
 public class Recipes {
 
@@ -14,15 +14,15 @@ public class Recipes {
 
     }
 
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 
-    protected int getProtein() {
+    public int getProtein() {
         return this.protein;
     }
 
-    protected int getCarbs() {
+    public int getCarbs() {
         return this.carbs;
     }
     
