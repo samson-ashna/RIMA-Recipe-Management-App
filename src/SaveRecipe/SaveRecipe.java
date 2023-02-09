@@ -10,9 +10,15 @@ public class SaveRecipe {
      * Default constructor
      */
     public SaveRecipe() {
-
         myRecipes = new ArrayList<>();
+    }
 
+    /**
+     * Copy constructor
+     * @param s is a SaveRecipe object
+     */
+    public SaveRecipe(SaveRecipe myRecipes) {
+        this.myRecipes = myRecipes.getRecipes();
     }
 
     /**
@@ -20,9 +26,7 @@ public class SaveRecipe {
      * @param recipe is the user's recipe they want to add
      */
     public void save(Recipes recipe) {
-
         myRecipes.add(recipe);
-
     }
 
     /**
@@ -30,9 +34,7 @@ public class SaveRecipe {
      * @return it returns ArrayList myRecipes
      */
     public ArrayList<Recipes> getRecipes() {
-
         return myRecipes;
-
     }
 
     public Recipes getRecipe(String name) {
@@ -40,9 +42,7 @@ public class SaveRecipe {
         for(Recipes e : myRecipes) {
 
             if(e.getName().equals(name)) {
-
                 return e;
-
             }
 
         }
@@ -51,15 +51,17 @@ public class SaveRecipe {
 
     }
 
+    public int getSize() {
+        return myRecipes.size();
+    }
+
     @Override
     public String toString() {
 
-        String temp = "Recipe: ";
+        String temp = "Recipes: | ";
 
         for(Recipes e : myRecipes) {
-
-            temp += e.getName() + " Protein: " + e.getProtein() + " Carbohydrates: " + e.getCarbs();
-
+            temp += e.getName() + " Protein: " + e.getProtein() + " Carbohydrates: " + e.getCarbs() + " | ";
         }
         
         return temp;
