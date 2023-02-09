@@ -16,7 +16,6 @@ import operations.SaveRecipe;
 public class SaveRecipeTest {
     
     SaveRecipe recipes;
-    User user1;
 
     @BeforeEach
     void init() {
@@ -24,9 +23,8 @@ public class SaveRecipeTest {
         String[] name = {"Boiled Egg", "Fish Cakes", "Macaroni & Cheese"};
         int[] protein = {6, 4, 3};
         int[] carbs = {0, 6, 8};
-        user1 = new User("User1");
 
-        recipes = new SaveRecipe(user1);
+        recipes = new SaveRecipe();
 
         for(int i = 0; i < name.length; i++) {
 
@@ -41,7 +39,7 @@ public class SaveRecipeTest {
     void testGetRecipe() {
 
         Recipes temp = new Recipes("Boiled Egg", 6, 0);
-        SaveRecipe test = new SaveRecipe(user1);
+        SaveRecipe test = new SaveRecipe();
         test.save(temp);
 
         assertEquals(test.getRecipe("Boiled Egg").getName(), recipes.getRecipe("Boiled Egg").getName());
@@ -79,7 +77,7 @@ public class SaveRecipeTest {
         Recipes temp = new Recipes("Boiled Potato", 3, 6);
         temp.setInstructions("1. Boil water 2. Insert potatoes into boiling water");
         temp.setIngredients(ingredients);
-        SaveRecipe test = new SaveRecipe(user1);
+        SaveRecipe test = new SaveRecipe();
         
         test.save(temp);
 

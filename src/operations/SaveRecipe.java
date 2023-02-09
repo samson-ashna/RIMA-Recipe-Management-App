@@ -12,8 +12,8 @@ public class SaveRecipe {
     /**
      * Default constructor
      */
-    public SaveRecipe(User user) {
-        myRecipes = user.getRecipeCollection();
+    public SaveRecipe() {
+    	myRecipes = new ArrayList<>();
     }
 
     /**

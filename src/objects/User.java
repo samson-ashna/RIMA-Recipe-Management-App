@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class User {
 	protected String name;
 	private String password;
-	protected ArrayList<Recipes> myRecipes;
+	protected ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
 	public User(String name) {
 		this.name = name;
 	}
@@ -28,5 +28,4 @@ public class User {
 	public ArrayList<Recipes> getRecipeCollection(){
 		return myRecipes;
 	}
-	
 }
