@@ -7,8 +7,8 @@ Original Allocated Time vs Actual Time Spent
 **View Recipes**
 
 - Detailed Story 1
-    - Original: 1 Day
-    - Actual: 1 Day
+  - Original: 1 Day
+  - Actual: 1 Day
 
 - Detailed Story 2
   - Original: 1 Day
