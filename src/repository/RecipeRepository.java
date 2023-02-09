@@ -8,7 +8,7 @@ public class RecipeRepository {
 	ArrayList<Recipes> dbRecipes;
 	public ArrayList<Recipes> getRecipes(){
 		dbRecipes = new ArrayList<Recipes>();
-		Recipes recipe = new Recipes("Baked Potato",9,368);
+		Recipes recipe = new Recipes("Baked Potato",9,39);
 		ArrayList<String> ingredients = new ArrayList<String>();
 		ingredients.add("1 large russet potato");
 		ingredients.add("salt");
