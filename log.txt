@@ -6,10 +6,10 @@ Original Allocated Time vs Actual Time Spent
 
 **View Recipes**
 
-- Detailed Story 1
+- Detailed Story 1 (Shaun)
   - Original: 1 Day
   - Actual: 1 Day
 
-- Detailed Story 2
+- Detailed Story 2 (Shaun)
   - Original: 1 Day
   - Actual : 1 Day
