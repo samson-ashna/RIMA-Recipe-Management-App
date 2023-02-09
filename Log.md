@@ -7,6 +7,6 @@
 Detailed Story 1
 * Original: 1 Day
 * Actual: 1 Day
-Detailed Soty 2
+Detailed Story 2
 * Original: 1 Day
 * Actual : 1 Day
