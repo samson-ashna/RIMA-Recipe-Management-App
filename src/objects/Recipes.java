@@ -1,4 +1,4 @@
-package SaveRecipe;
+package objects;
 
 import java.util.ArrayList;
 

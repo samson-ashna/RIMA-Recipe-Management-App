@@ -1,6 +1,9 @@
-package SaveRecipe;
+package operations;
 
 import java.util.*;
+
+import objects.Recipes;
+import objects.User;
 
 public class SaveRecipe {
     
@@ -9,8 +12,8 @@ public class SaveRecipe {
     /**
      * Default constructor
      */
-    public SaveRecipe() {
-        myRecipes = new ArrayList<>();
+    public SaveRecipe(User user) {
+        myRecipes = user.getRecipeCollection();
     }
 
     /**
