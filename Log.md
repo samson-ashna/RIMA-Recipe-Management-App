@@ -6,10 +6,10 @@
 
 **View Recipes**
 
-Detailed Story 1
-* Original: 1 Day
-* Actual: 1 Day
+* Detailed Story 1
+    * Original: 1 Day
+    * Actual: 1 Day
 
-Detailed Story 2
-* Original: 1 Day
-* Actual : 1 Day
+* Detailed Story 2
+  * Original: 1 Day
+  * Actual : 1 Day
