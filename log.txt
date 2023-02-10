@@ -1,15 +1,24 @@
 Meeting Minutes
 Plan Changes
-
 Big Design Decisions
-
 Concerns
-
 Original Allocated Time vs Actual Time Spent
-**View Recipes**
-- Detailed Story 1 (Shaun)
-  - Original: 1 Day
-  - Actual: 1 Day
-- Detailed Story 2 (Shaun)
-  - Original: 1 Day
-  - Actual : 1 Day
+First Meeting: Discussed system architecture and assigned tasks(30 minutes). 
+**View List of Recipes**	
+	- Detailed Story 1 (Shaun)
+	  - Original: 1 Day
+	  - Actual: 1 Day
+	-Stub Recipe Database(Sheida)
+	-Recipe list UI (Sheida)
+	-View Recipe UI (Sheida)
+		
+**Manipulation of Recipe Collection**
+	- Detailed Story 3 (Shaun)
+	  - Original: 1 Day
+	  - Actual : 1 Day
+  	-SaveRecipes UI (Sheida)
+  	
+**User Account**
+	-Stub User Database(Sheida)
+	-Login UI(Sheida)
+
