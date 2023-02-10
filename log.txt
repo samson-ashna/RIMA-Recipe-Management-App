@@ -1,9 +1,22 @@
+---------------------------------------------
 Meeting Minutes
+- First Meeting: Discussed system architecture and assigned tasks(30 minutes). 
+---------------------------------------------
+
+---------------------------------------------
 Plan Changes
+---------------------------------------------
+
+---------------------------------------------
 Big Design Decisions
+---------------------------------------------
+
+---------------------------------------------
 Concerns
+---------------------------------------------
+
+---------------------------------------------
 Original Allocated Time vs Actual Time Spent
-First Meeting: Discussed system architecture and assigned tasks(30 minutes). 
 **View List of Recipes**	
 	- Detailed Story 1 (Shaun)
 	  - Original: 1 Day
@@ -21,4 +34,4 @@ First Meeting: Discussed system architecture and assigned tasks(30 minutes).
 **User Account**
 	-Stub User Database(Sheida)
 	-Login UI(Sheida)
-
+---------------------------------------------
