@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import objects.User;
 
 public class UsersRepository {
-	ArrayList<User> users = new ArrayList<User>();
+	static ArrayList<User> users = new ArrayList<User>();
 	public void addUser(User user) {
 		users.add(user);
 	}
-	public ArrayList<User> getUsers(){
+	public static ArrayList<User> getUsers(){
 		return users;
 	}
 }
