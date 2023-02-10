@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class SaveRecipesView extends JFrame {
 
 	private JPanel contentPane;

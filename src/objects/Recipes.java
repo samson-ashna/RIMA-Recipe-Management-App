@@ -8,7 +8,13 @@ public class Recipes {
     protected int protein;
     protected int carbs;
     String instructions;
-    ArrayList<String> ingredients;
+    @Override
+	public String toString() {
+		return "Name=" + name +"\n"+ "Protein(g) =" + protein + "\n"+"Carbs(g)=" + carbs + "\n"+
+				getIngredients() +"\n"+instructions;
+	}
+
+	ArrayList<String> ingredients;
 
     public Recipes(String name, int protein, int carbs) {
 
@@ -56,8 +62,7 @@ public class Recipes {
 
     public String getIngredients() {
 
-        
-        return "Ingredients: " + ingredients;
+        return "Ingredients: " +ingredients;
 
     }
     
