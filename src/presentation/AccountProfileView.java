@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
-@SuppressWarnings("serial")
-public class Login extends JFrame {
+public class AccountProfileView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -28,7 +27,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					AccountProfileView frame = new AccountProfileView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,8 +39,8 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
-		setTitle("Login");
+	public AccountProfileView() {
+		setTitle("Create User Profile");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 720, 892);
 		contentPane = new JPanel();
@@ -65,7 +64,7 @@ public class Login extends JFrame {
 		lblPassword.setBounds(268, 384, 285, 51);
 		contentPane.add(lblPassword);
 		
-		JButton btnNewButton = new JButton("Login");
+		JButton btnNewButton = new JButton("Create Profile");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

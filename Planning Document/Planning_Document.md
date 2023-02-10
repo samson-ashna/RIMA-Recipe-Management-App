@@ -4,7 +4,7 @@
     * Save Recipe to personal recipe collection: As a cook, I want to be able to add recipes available in the app to my own personal collection of recipes. Priority: High. Cost: 1 days  
     * Display Recipe Information: Display the recipes available in the app with detailed instructions, along with the ingredient list. Priority: High. Cost: 4 days 
 * **Manipulate Local Recipe Collection: As the app user, I want to be able to modify the information available in my recipe collection.  Priority: High. Cost: 7 days**
-    * Add Recipes to Personal Recipe Collection:  As a cook, I want to be able to add recipes to my own recipe collection. Priority: High. Cost: 3 days  
+    * Add Recipes to Personal Recipe Collection:  As a cook, I want to be able to save recipes from the app to my own recipe collection. Priority: High. Cost: 3 days  
     * Remove Recipes from Personal Recipe Collection:  As a cook, I want to be able to remove recipes from my own recipe collection. Priority: low. Cost: 2 days  
     * Edit Recipes:  As a cook, I want to be able to modify the instructions and ingredients of any recipe available in my personal collection of recipes. Priority: High. Cost: 2 days
 * **User Profile:  As an app user I want to be able to add and view my user information, and dietary restrictions/preferences.  Priority: High. Cost: 3 days**
