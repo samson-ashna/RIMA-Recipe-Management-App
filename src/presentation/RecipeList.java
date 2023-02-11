@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import objects.Recipes;
-import repository.RecipeRepository;
+import persistence.RecipesDAOImpl;
 
 import javax.swing.JList;
 import java.awt.Color;
@@ -38,7 +38,8 @@ public class RecipeList extends JFrame {
 	}
 	public void addRecipes() {
 		DefaultListModel<String> model = new DefaultListModel<String>();
-		ArrayList<Recipes> recipes = RecipeRepository.getRecipes();
+		RecipesDAOImpl db = new RecipesDAOImpl();
+		ArrayList<Recipes> recipes = db.getAll();
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
 		}

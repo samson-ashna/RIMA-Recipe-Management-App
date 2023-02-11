@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import objects.Recipes;
-import repository.RecipeRepository;
+import persistence.RecipesDAOImpl;
 
 import javax.swing.BoxLayout;
 import java.awt.TextArea;
@@ -44,7 +44,9 @@ public class ViewRecipe extends JDialog {
 			textArea.setFont(new Font("Dialog", Font.PLAIN, 23));
 			textArea.setEditable(false);
 			contentPanel.add(textArea);
-			for (Recipes r: RecipeRepository.getRecipes()) {
+			RecipesDAOImpl db = new RecipesDAOImpl();
+			textArea.setText(db.get(name).toString());
+			for (Recipes r: db.getAll()) {
 				if(r.getName().equals(name)) {
 					textArea.setText(r.toString());
 				}

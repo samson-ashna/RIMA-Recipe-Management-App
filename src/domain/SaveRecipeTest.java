@@ -1,4 +1,4 @@
-package tests;
+package domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
-import operations.SaveRecipe;
 
 public class SaveRecipeTest {
     

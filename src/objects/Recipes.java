@@ -17,7 +17,7 @@ public class Recipes {
 	ArrayList<String> ingredients;
 
     public Recipes(String name, int protein, int carbs) {
-
+    	
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
