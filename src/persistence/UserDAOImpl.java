@@ -28,13 +28,13 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void add(User u) {
 		
-		db.addUser(u);
+		db.getUsers().add(u);
 	}
 
 	@Override
 	public void remove(User u) {
 	
-		db.removeUser(u);
+		db.getUsers().remove(u);
 	}
 
 	@Override
@@ -46,5 +46,27 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
+
+	@Override
+	public void addRecipeToCollection(User u, Recipes r) {
+		for (User user: db.getUsers()) {
+			if(user.equals(u)) {
+				user.addRecipeToCollection(r);
+			}
+		}
+		
+	}
+
+	@Override
+	public void removeRecipeFromCollection(User u, Recipes r) {
+		for (User user: db.getUsers()) {
+			if(user.equals(u)) {
+				user.removeRecipeFromCollection(r);
+			}
+		}
+		
+	}
+
+		
 
 }

@@ -99,9 +99,9 @@ public class SaveRecipesView extends JFrame {
 		textField_4.setBounds(327, 207, 216, 36);
 		contentPane.add(textField_4);
 		
-		JButton btnNewButton = new JButton("Enter");
+		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(233, 628, 207, 59);
+		btnNewButton.setBounds(226, 628, 207, 59);
 		contentPane.add(btnNewButton);
 	}
 

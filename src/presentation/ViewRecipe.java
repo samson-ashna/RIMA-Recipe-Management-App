@@ -12,11 +12,12 @@ import persistence.RecipesDAOImpl;
 import javax.swing.BoxLayout;
 import java.awt.TextArea;
 import java.awt.Font;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class ViewRecipe extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel contentPanel= new JPanel();
 
 
 	public void NewScreen(String name) {
@@ -57,6 +58,11 @@ public class ViewRecipe extends JDialog {
 			buttonPane.setBounds(0, 503, 666, 33);
 			getContentPane().add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		}
+		{
+			JButton btnNewButton = new JButton("Save To My Collection");
+			btnNewButton.setBounds(676, 503, 160, 23);
+			getContentPane().add(btnNewButton);
 		}
 	}
 

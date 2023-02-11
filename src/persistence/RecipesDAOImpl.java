@@ -1,7 +1,6 @@
 package persistence;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import objects.Recipes;
 
@@ -27,12 +26,12 @@ public class RecipesDAOImpl implements DAO<Recipes> {
 	
 	@Override
 	public void add(Recipes r) {
-		db.add(r);
+		recipesDB.add(r);
 		
 	}
 	
 	@Override
 	public void remove(Recipes r) {
-		db.remove(r);
+		recipesDB.remove(r);
 	}
 }

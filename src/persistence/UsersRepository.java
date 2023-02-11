@@ -5,14 +5,10 @@ import java.util.ArrayList;
 import objects.User;
 
 public class UsersRepository {
-	private ArrayList<User> users = new ArrayList<User>();
-	public void addUser(User user) {
-		users.add(user);
-	}
+	protected ArrayList<User> users = new ArrayList<User>();
 	public ArrayList<User> getUsers(){
+		User sara = new User("Sara","1234");
+		users.add(sara);
 		return users;
-	}
-	public void removeUser(User u) {
-		users.remove(u);
 	}
 }

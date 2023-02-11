@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -20,6 +24,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private JButton btnNewButton_2;
 
 	/**
 	 * Launch the application.
@@ -73,11 +78,27 @@ public class Login extends JFrame {
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setForeground(new Color(64, 0, 64));
-		btnNewButton.setBounds(168, 222, 76, 26);
+		btnNewButton.setBounds(114, 222, 76, 26);
 		contentPane.add(btnNewButton);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(66, 178, 281, 33);
 		contentPane.add(passwordField);
+		
+		btnNewButton_2 = new JButton("Back");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main mainPage = new Main();
+				mainPage.frame.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
+			}
+		});
+		btnNewButton_2.setForeground(new Color(64, 0, 64));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton_2.setBackground(Color.WHITE);
+		btnNewButton_2.setBounds(221, 222, 76, 26);
+		contentPane.add(btnNewButton_2);
 	}
 }

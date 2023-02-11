@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import objects.Recipes;
 
 public class RecipeRepository {
-	private ArrayList<Recipes> dbRecipes;
+	protected ArrayList<Recipes> dbRecipes;
 	public ArrayList<Recipes> getRecipes(){
 		dbRecipes=new ArrayList<Recipes>();
-	
+		//From https://www.allrecipes.com/recipe/85337/microwave-baked-potato/
 		Recipes recipe1 = new Recipes("Baked Potato",9,39);
 		ArrayList<String> ingredients1 = new ArrayList<String>();
 		ingredients1.add("1 large russet potato");
@@ -27,6 +27,7 @@ public class RecipeRepository {
 				+ "Microwave until melted, about 1 more minute."
 				+ "Top with sour cream, and serve.");
 		dbRecipes.add(recipe1);
+		//From https://tasty.co/recipe/3-ingredient-teriyaki-chicken
 		Recipes recipe2 = new Recipes("Teriyaki Chicken",48,20);
 		ArrayList<String> ingredients2 = new ArrayList<String>();
 		ingredients2.add("2 lb chicken thighs sliced into chunks");
@@ -39,10 +40,5 @@ public class RecipeRepository {
 		dbRecipes.add(recipe2);
 		return dbRecipes;
 	}
-	public void add(Recipes r) {
-		dbRecipes.add(r);
-	}
-	public void remove(Recipes r) {
-		dbRecipes.remove(r);
-	}
+	
 }

@@ -28,4 +28,7 @@ public class User {
 	public ArrayList<Recipes> getRecipeCollection(){
 		return myRecipes;
 	}
+	public void removeRecipeFromCollection(Recipes recipe) {
+		myRecipes.remove(recipe);
+	}
 }

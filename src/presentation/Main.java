@@ -12,7 +12,7 @@ import java.awt.Color;
 
 public class Main {
 
-	private JFrame frame;
+	protected JFrame frame;
 
 	/**
 	 * Launch the application.
