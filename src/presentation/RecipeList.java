@@ -10,12 +10,12 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import objects.Recipes;
+import persistence.DAO;
 import persistence.RecipesDAOImpl;
 
 import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 
 import java.awt.Font;
 import java.awt.Window;
@@ -47,7 +47,7 @@ public class RecipeList extends JFrame {
 	}
 	public void addRecipes() {
 		DefaultListModel<String> model = new DefaultListModel<String>();
-		RecipesDAOImpl db = new RecipesDAOImpl();
+		DAO<Recipes> db = new RecipesDAOImpl();
 		ArrayList<Recipes> recipes = db.getAll();
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());

@@ -7,10 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import objects.User;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class HomePage extends JFrame {
 
 	private JPanel contentPane;
@@ -46,6 +50,11 @@ public class HomePage extends JFrame {
 		btnNewButton.setBounds(158, 71, 117, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserRecipeCollection collection = new UserRecipeCollection();
+				collection.show();
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
 			}
 		});
 		contentPane.setLayout(null);
@@ -61,7 +70,7 @@ public class HomePage extends JFrame {
 				win.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(149, 119, 136, 42);
+		btnNewButton_1.setBounds(131, 119, 174, 42);
 		contentPane.add(btnNewButton_1);
 	}
 

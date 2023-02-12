@@ -6,14 +6,16 @@ import java.util.List;
 import objects.Recipes;
 import objects.User;
 
-public class UserDAOImpl implements UserDAO {
-	UsersRepository db = new UsersRepository();
+public class UserDAOImpl implements UsersDAO {
+
+	private static ArrayList<User> users = new ArrayList<User>();
 	@Override
-	public User get(String name) {
+	public User get(String name){
+		
 		User user = null;
-		for (User u: db.getUsers()) {
+		for (User u: users) {
 			if(u.getName().equals(name)) {
-				user = u;
+				user =u;
 			}
 		}
 		return user;
@@ -22,35 +24,35 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public ArrayList<User> getAll() {
 		
-		return db.getUsers();
+		return users;
 	}
 
 	@Override
 	public void add(User u) {
 		
-		db.getUsers().add(u);
+		users.add(u);
 	}
 
 	@Override
 	public void remove(User u) {
 	
-		db.getUsers().remove(u);
+		users.remove(u);
 	}
 
 	@Override
-	public List<Recipes> getRecipeCollection(User u){
-		for (User user: db.getUsers()) {
-			if(user.equals(u)) {
-				return u.getRecipeCollection();
+	public List<Recipes> getRecipes(User u) {
+		for(User user:users) {
+			if (user.equals(u)) {
+				return user.getRecipeCollection();
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void addRecipeToCollection(User u, Recipes r) {
-		for (User user: db.getUsers()) {
-			if(user.equals(u)) {
+	public void addRecipes(User u, Recipes r) {
+		for(User user:users) {
+			if (user.equals(u)) {
 				user.addRecipeToCollection(r);
 			}
 		}
@@ -58,15 +60,16 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void removeRecipeFromCollection(User u, Recipes r) {
-		for (User user: db.getUsers()) {
-			if(user.equals(u)) {
+	public void removeRecipes(User u, Recipes r) {
+		for(User user:users) {
+			if (user.equals(u)) {
 				user.removeRecipeFromCollection(r);
 			}
 		}
 		
 	}
 
-		
-
 }
+
+
+

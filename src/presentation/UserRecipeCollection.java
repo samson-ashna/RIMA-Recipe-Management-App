@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import objects.User;
+
 @SuppressWarnings("serial")
-public class UserHomePage extends JFrame {
+public class UserRecipeCollection extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +20,7 @@ public class UserHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserHomePage frame = new UserHomePage();
+					UserRecipeCollection frame = new UserRecipeCollection();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +32,7 @@ public class UserHomePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserHomePage() {
+	public UserRecipeCollection() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

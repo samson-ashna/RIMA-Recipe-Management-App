@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import objects.Recipes;
+import persistence.DAO;
 import persistence.RecipesDAOImpl;
 
 import javax.swing.BoxLayout;
@@ -45,7 +46,7 @@ public class ViewRecipe extends JDialog {
 			textArea.setFont(new Font("Dialog", Font.PLAIN, 23));
 			textArea.setEditable(false);
 			contentPanel.add(textArea);
-			RecipesDAOImpl db = new RecipesDAOImpl();
+			DAO<Recipes> db = new RecipesDAOImpl();
 			textArea.setText(db.get(name).toString());
 			for (Recipes r: db.getAll()) {
 				if(r.getName().equals(name)) {
@@ -55,13 +56,13 @@ public class ViewRecipe extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 503, 666, 33);
+			buttonPane.setBounds(0, 503, 612, 33);
 			getContentPane().add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		}
 		{
 			JButton btnNewButton = new JButton("Save To My Collection");
-			btnNewButton.setBounds(676, 503, 160, 23);
+			btnNewButton.setBounds(639, 503, 197, 23);
 			getContentPane().add(btnNewButton);
 		}
 	}

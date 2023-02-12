@@ -5,18 +5,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.SaveRecipe;
+import objects.Recipes;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class SaveRecipesView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 
@@ -54,6 +63,8 @@ public class SaveRecipesView extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
+		
+		
 		JLabel lblNewLabel = new JLabel("Recipe Name");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(112, 58, 157, 59);
@@ -64,20 +75,11 @@ public class SaveRecipesView extends JFrame {
 		lblIngredients.setBounds(112, 249, 157, 59);
 		contentPane.add(lblIngredients);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(327, 413, 216, 178);
-		contentPane.add(textField_1);
 		
 		JLabel lblInstruction = new JLabel("Instruction");
 		lblInstruction.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblInstruction.setBounds(112, 409, 157, 59);
 		contentPane.add(lblInstruction);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(327, 267, 216, 121);
-		contentPane.add(textField_2);
 		
 		JLabel lblProteing = new JLabel("Protein (g)");
 		lblProteing.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -89,6 +91,7 @@ public class SaveRecipesView extends JFrame {
 		textField_3.setBounds(327, 139, 216, 36);
 		contentPane.add(textField_3);
 		
+		
 		JLabel lblCarbscal = new JLabel("Carbs(g)");
 		lblCarbscal.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCarbscal.setBounds(112, 196, 157, 59);
@@ -99,10 +102,74 @@ public class SaveRecipesView extends JFrame {
 		textField_4.setBounds(327, 207, 216, 36);
 		contentPane.add(textField_4);
 		
+		
+		
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton.setBounds(226, 628, 207, 59);
 		contentPane.add(btnNewButton);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(327, 270, 216, 120);
+		contentPane.add(textArea);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setLineWrap(true);
+		textArea_1.setBounds(327, 430, 221, 171);
+		contentPane.add(textArea_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setForeground(new Color(255, 0, 0));
+		lblNewLabel_1.setBounds(120, 241, 301, 14);
+		contentPane.add(lblNewLabel_1);
+		lblNewLabel_1.setVisible(false);
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setForeground(new Color(255, 0, 0));
+		lblNewLabel_2.setBounds(120, 169, 185, 14);
+		contentPane.add(lblNewLabel_2);
+		lblNewLabel_2.setVisible(false);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean incorrectValues = false;
+				String name = textField.getText();
+				int protein=0;
+				try
+				{
+				    protein = Integer.parseInt(textField_3.getText());
+				    lblNewLabel_2.setVisible(false);
+				}
+				catch (NumberFormatException e1)
+				{
+					incorrectValues = true;
+					lblNewLabel_2.setText("Must be an integer!");
+					lblNewLabel_2.setVisible(true);
+				}
+				int carbs=0;
+				try
+				{
+				    carbs = Integer.parseInt(textField_4.getText());
+				    lblNewLabel_1.setVisible(false);
+				}
+				catch (NumberFormatException e21)
+				{
+					incorrectValues = true;
+					lblNewLabel_1.setText("Must be an integer!");
+					lblNewLabel_1.setVisible(true);
+					
+				}
+				if(!incorrectValues) {
+					ArrayList<String> ingredients = new ArrayList<String>();
+					ingredients=new ArrayList<> (Arrays.asList(textArea.getText().split("\n")));
+					String instructions = textArea_1.getText();
+					Recipes newRecipe;
+					newRecipe = new Recipes(name, protein, carbs);
+					newRecipe.setIngredients(ingredients);
+					newRecipe.setInstructions(instructions);
+					SaveRecipe saveRecipe = new SaveRecipe();
+					saveRecipe.save(newRecipe);
+				}
+				
+			}
+		});
 	}
-
 }
