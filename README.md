@@ -3,7 +3,7 @@
 ## Team 1 Group Members
 - Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
 - Natalie Dean (**NatalieRDean**, 217880022)
-- Ashna Samson ([insert username here], 216196446)
+- Ashna Samson (**samson-ashna**, 216196446)
 - Zhenghao Wang (**218623264**, 218623264)
 - Shaun Bautista (**ShaunB1**, 218750935)
 
