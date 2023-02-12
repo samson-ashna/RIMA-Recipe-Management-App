@@ -1,11 +1,11 @@
 # Recipe and Ingredient Management App (RIMA)
 
 ## Team 1 Group Members
-- Sheida Khodabakhshian Khansari (SheidaK, 215534340)
-- Natalie Dean (NatalieRDean, 217880022)
+- Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
+- Natalie Dean (**NatalieRDean**, 217880022)
 - Ashna Samson ([insert username here], 216196446)
-- Zhenghao Wang (218623264, 218623264)
-- Shaun Bautista (ShaunB1, 218750935)
+- Zhenghao Wang (**218623264**, 218623264)
+- Shaun Bautista (**ShaunB1**, 218750935)
 
 ## Description
 The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenient way to create or follow recipes. RIMA will come with preloaded recipes and the users can additionally add their recipes to the database. RIMA combines the numerous functionalities of similar apps, while also improving upon these features according to user feedback. Its key functionalities include the ability to search for recipes according to the user’s ingredient of choice, or the user can search for the recipe and it will provide the required ingredients.
