@@ -138,7 +138,7 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		addRecipeButton.setBounds(155, 211, 65, 18);
+		addRecipeButton.setBounds(100, 211, 120, 18);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
