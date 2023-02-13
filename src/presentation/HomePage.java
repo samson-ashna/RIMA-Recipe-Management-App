@@ -51,7 +51,7 @@ public class HomePage extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
-				collection.show();
+				collection.setVisible(true);
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
@@ -64,7 +64,7 @@ public class HomePage extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
-				listRecipes.show();
+				listRecipes.setVisible(true);
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();

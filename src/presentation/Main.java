@@ -51,7 +51,7 @@ public class Main {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
-				login.show();
+				login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
@@ -63,7 +63,7 @@ public class Main {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
-				listRecipes.show();
+				listRecipes.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
@@ -80,7 +80,7 @@ public class Main {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignUpPage signUp = new SignUpPage();
-				signUp.show();
+				signUp.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
