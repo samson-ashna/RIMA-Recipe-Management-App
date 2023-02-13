@@ -30,8 +30,9 @@ public class UserRecipeCollection extends JFrame {
 	//List section object
 	private JList<String> list;
 	
-	//Back button object
-	private final JButton btnNewButton = new JButton("Back");
+	//Button objects
+	private final JButton backButton = new JButton("Back");
+	private final JButton addRecipeButton = new JButton("Add Custom Recipe");
 
 	/**
 	 * Launch the application.
@@ -112,14 +113,14 @@ public class UserRecipeCollection extends JFrame {
 		contentPane.add(list);
 		
 		//Set up the font and bounds of the back button.
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnNewButton.setBounds(225, 211, 65, 18);
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		backButton.setBounds(225, 211, 65, 18);
 		
 		//add the back button to the content pane.
-		contentPane.add(btnNewButton);
+		contentPane.add(backButton);
 		
 		//Set up what to do when the back button is pressed.
-		btnNewButton.addActionListener(new ActionListener() {
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
 				HomePage homePage = new HomePage();
@@ -132,6 +133,24 @@ public class UserRecipeCollection extends JFrame {
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
 				
+			}
+		});
+		
+		//Set up the font and bounds of the add button.
+		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		addRecipeButton.setBounds(155, 211, 65, 18);
+				
+		//add the add button to the content pane.
+		contentPane.add(addRecipeButton);
+				
+		//Set up what to do when the add button is pressed.
+		addRecipeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create a SaveRecipesView window
+				SaveRecipesView addRecipePage = new SaveRecipesView();
+						
+				//Make the SaveRecipesView window visible.
+				addRecipePage.setVisible(true);						
 			}
 		});
 	}

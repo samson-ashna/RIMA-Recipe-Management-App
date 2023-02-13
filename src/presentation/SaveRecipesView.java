@@ -10,8 +10,10 @@ import domain.SaveRecipe;
 import objects.Recipes;
 
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class SaveRecipesView extends JFrame {
 	 */
 	public SaveRecipesView() {
 		setTitle("Save Recipe");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 675, 762);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -167,6 +169,10 @@ public class SaveRecipesView extends JFrame {
 					newRecipe.setInstructions(instructions);
 					SaveRecipe saveRecipe = new SaveRecipe();
 					saveRecipe.save(newRecipe);
+					
+					//Close the window after saving the recipe.
+					Window win = SwingUtilities.getWindowAncestor(contentPane);
+					win.dispose();
 				}
 				
 			}
