@@ -6,8 +6,10 @@ public class User {
 	protected String name;
 	private String password;
 	protected ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
+	public boolean loggedIn;
 	public User(String name) {
 		this.name = name;
+		this.loggedIn = false;
 	}
 	public User(String name,String password) {
 		this.name=name;
