@@ -1,6 +1,7 @@
 package presentation;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Window;
 
 import javax.swing.JFrame;
@@ -47,7 +48,7 @@ public class HomePage extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnNewButton = new JButton("My Collection");
-		btnNewButton.setBounds(158, 71, 117, 23);
+		btnNewButton.setBounds(167, 50, 117, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
@@ -70,8 +71,36 @@ public class HomePage extends JFrame {
 				win.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(131, 119, 174, 42);
+		btnNewButton_1.setBounds(138, 100, 174, 42);
 		contentPane.add(btnNewButton_1);
+		
+		//Create new button for View Profile.
+		JButton viewProfileButton = new JButton("View Profile");
+		
+		//Set up the bounds of the back button.
+		//viewProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		viewProfileButton.setBounds(167, 175, 117, 23);
+				
+		//Add the back button to the content pane.
+		contentPane.add(viewProfileButton);
+				
+		//Set up what to do when the back button is pressed.
+		viewProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create a Profile window
+				
+						
+				//Make the Profile window visible and the HomePage window invisible.
+				//homePage.setVisible(true);
+				//contentPane.setVisible(false);
+						
+				//Close the UserRecipeCollection Window.
+				//Window win = SwingUtilities.getWindowAncestor(contentPane);
+				//win.dispose();				
+			}
+		});
+		
+		
 	}
 
 }
