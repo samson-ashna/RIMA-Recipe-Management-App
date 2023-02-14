@@ -9,15 +9,9 @@ public class userSignUp
 
     public static void main(String[] args)
     {
-        // Asks user to input username
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a username:");
-        String usernameInput = scanner.nextLine();
-        Username username = new Username(usernameInput);
+        UserProfile felix = new UserProfile();
+        //felix.SignUp();
+        //felix.addAllergen();
 
-        // Asks user to input password
-        System.out.println("Please enter a password:");
-        String passwordInput = scanner.nextLine();
-        Password password = new Password(passwordInput);
     }
 }
