@@ -1,4 +1,4 @@
-package eecs2311;
+package userLogin;
 
 import java.util.Scanner;
 
