@@ -1,6 +1,7 @@
 package userLogin;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class UserProfile
@@ -14,7 +15,9 @@ public class UserProfile
     // Recipes
     ArrayList<Recipes> recipes = new ArrayList<Recipes>();
     // Allergies
-    ArrayList<Allergies> allergens = new ArrayList<Allergies>();
+    //ArrayList<Allergies> allergens = new ArrayList<Allergies>();
+    //Hashtable<Integer, Integer> allergens = new Hashtable<Integer, Integer>();
+    Allergies allergens;
 
     public UserProfile()
     {
@@ -80,18 +83,24 @@ public class UserProfile
     public void addAllergen()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter your food allergen:");
+        System.out.println("Select your food allergies:");
+        System.out.println("1. Eggs");
+        System.out.println("2. Milk");
+        System.out.println("3. Peanuts");
+        System.out.println("4. Seafood");
         String allergenInput = scanner.nextLine();
-        Allergies allergen = new Allergies(allergenInput);
-        if (!this.allergens.contains(allergen))
+        this.allergens = new Allergies(allergenInput);
+        /*if (!this.allergens.contains(allergen))
         {
             this.allergens.add(allergen);
-        }
+        }*/
+
     }
 
-    public ArrayList<Allergies> allergies()
+    public String allergies()
     {
-        return this.allergens;
+        //System.out.println("1.Eggs 2.Milk 3.Peanuts, 4.Seafood");
+        return this.allergens.toString();
     }
 }
 
@@ -130,7 +139,7 @@ class Recipes
 
 }
 
-class Allergies
+/*class Allergies
 {
     //ArrayList<String> allergies = new ArrayList<String>();
     String allergen;
@@ -149,4 +158,4 @@ class Allergies
     {
         return this.allergen;
     }
-}
+}*/
