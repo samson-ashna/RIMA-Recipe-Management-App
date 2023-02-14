@@ -88,15 +88,15 @@ public class HomePage extends JFrame {
 		viewProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a Profile window
-				
+				ViewProfile viewProfile = new ViewProfile();
 						
 				//Make the Profile window visible and the HomePage window invisible.
-				//homePage.setVisible(true);
-				//contentPane.setVisible(false);
+				viewProfile.setVisible(true);
+				contentPane.setVisible(false);
 						
 				//Close the UserRecipeCollection Window.
-				//Window win = SwingUtilities.getWindowAncestor(contentPane);
-				//win.dispose();				
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();				
 			}
 		});
 		
