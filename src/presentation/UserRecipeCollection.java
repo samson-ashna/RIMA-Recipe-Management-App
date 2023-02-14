@@ -131,8 +131,7 @@ public class UserRecipeCollection extends JFrame {
 				
 				//Close the UserRecipeCollection Window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
-				
+				win.dispose();				
 			}
 		});
 		
