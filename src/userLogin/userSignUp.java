@@ -11,8 +11,8 @@ public class userSignUp
     {
         UserProfile felix = new UserProfile();
         //felix.SignUp();
-        //felix.addAllergen();
-        //System.out.println(felix.allergies());
+        felix.addAllergen();
+        System.out.println(felix.allergies());
 
     }
 }
