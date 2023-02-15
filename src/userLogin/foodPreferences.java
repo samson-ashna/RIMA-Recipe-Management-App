@@ -1,6 +1,6 @@
 package userLogin;
 
-import java.util.*;
+import java.util.Hashtable;
 
 public class foodPreferences
 {

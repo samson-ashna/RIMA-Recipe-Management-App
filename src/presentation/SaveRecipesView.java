@@ -1,14 +1,27 @@
 package presentation;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import domain.*;
-import objects.*;
-import persistence.*;
-import java.awt.event.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import java.awt.Font;
+import java.awt.Window;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+import domain.SaveRecipe;
+import domain.UserActivity;
+import objects.Recipes;
 
 @SuppressWarnings("serial")
 public class SaveRecipesView extends JFrame {

@@ -1,6 +1,7 @@
 package userLogin;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserProfile
 {

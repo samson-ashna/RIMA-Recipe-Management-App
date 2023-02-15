@@ -5,6 +5,13 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "C:\\Users\\shaun\\OneDrive\\Desktop\\eecs2311-rima\\lib\\junit-platform-console-standalone-1.9.2.jar"
+    ],
+    "java.completion.filteredTypes": [
+        "com.sun.*",
+        "sun.*",
+        "jdk.*",
+        "org.graalvm.*",
+        "io.micrometer.shaded.*"
     ]
 
 }

@@ -1,6 +1,5 @@
 package userLogin;
 
-import java.util.*;
 import objects.User;
 
 public class userSignUp

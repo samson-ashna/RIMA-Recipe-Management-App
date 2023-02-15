@@ -1,16 +1,25 @@
 package presentation;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import domain.SaveRecipe;
-import domain.UserActivity;
+import java.awt.Font;
+import java.awt.Window;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Container;
+import java.awt.BorderLayout;
 
-import java.awt.event.*;
-import objects.*;
-import persistence.*;
+import domain.UserActivity;
+import objects.User;
 
 @SuppressWarnings("serial")
 public class ViewProfile extends JFrame {

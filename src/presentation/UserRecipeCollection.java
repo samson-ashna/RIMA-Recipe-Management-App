@@ -1,12 +1,25 @@
 package presentation;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import objects.*;
-import persistence.*;
+import java.util.ArrayList;
+
+import java.awt.Font;
+import java.awt.Window;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+import objects.Recipes;
+import persistence.UserDAOImpl;
+import persistence.UsersDAO;
 
 @SuppressWarnings("serial")
 public class UserRecipeCollection extends JFrame {
