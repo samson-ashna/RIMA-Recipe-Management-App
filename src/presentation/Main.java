@@ -3,7 +3,6 @@ package presentation;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import domain.UserActivity;
 
 import java.awt.Font;
 

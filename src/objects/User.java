@@ -5,11 +5,10 @@ import java.util.*;
 public class User {
 	protected String name;
 	private String password;
-	protected static ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
-	public boolean loggedIn;
+	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
+	public boolean loggedIn = false;
 	public User(String name) {
 		this.name = name;
-		this.loggedIn = false;
 	}
 	public User(String name,String password) {
 		this.name=name;
@@ -28,12 +27,12 @@ public class User {
 		this.name = name;
 	}
 	public void addRecipeToCollection(Recipes recipe) {
-		myRecipes.add(recipe);
+		this.myRecipes.add(recipe);
 	}
 	public ArrayList<Recipes> getRecipeCollection(){
-		return myRecipes;
+		return this.myRecipes;
 	}
 	public void removeRecipeFromCollection(Recipes recipe) {
-		myRecipes.remove(recipe);
+		this.myRecipes.remove(recipe);
 	}
 }
