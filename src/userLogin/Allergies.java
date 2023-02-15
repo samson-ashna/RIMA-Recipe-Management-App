@@ -8,11 +8,11 @@ public class Allergies
 
     public Allergies(String prompt)
     {
-        allergies = new Hashtable<String, Integer>();
-        allergies.put("Eggs", 0); // Eggs
-        allergies.put("Milk", 0); // Milk
-        allergies.put("Peanuts", 0); // Peanuts
-        allergies.put("Seafood", 0); // Seafood
+        this.allergies = new Hashtable<String, Integer>();
+        this.allergies.put("Eggs", 0);
+        this.allergies.put("Milk", 0);
+        this.allergies.put("Peanuts", 0);
+        this.allergies.put("Seafood", 0);
 
         /*if (this.allergies.containsKey(prompt))
         {
@@ -20,19 +20,19 @@ public class Allergies
         }*/
         if (prompt.contains("1"))
         {
-            allergies.replace("Eggs", 1);
+            this.allergies.replace("Eggs", 1);
         }
         if (prompt.contains("2"))
         {
-            allergies.replace("Milk", 1);
+            this.allergies.replace("Milk", 1);
         }
         if (prompt.contains("3"))
         {
-            allergies.replace("Peanuts", 1);
+            this.allergies.replace("Peanuts", 1);
         }
         if (prompt.contains("4"))
         {
-            allergies.replace("Seafood", 1);
+            this.allergies.replace("Seafood", 1);
         }
     }
 
@@ -44,19 +44,19 @@ public class Allergies
         String seafood = "Seafood";
         String output = "";
 
-        if (allergies.get("Eggs") == 1)
+        if (this.allergies.get("Eggs") == 1)
         {
             output += eggs + " ";
         }
-        if (allergies.get("Milk") == 1)
+        if (this.allergies.get("Milk") == 1)
         {
             output += milk + " ";
         }
-        if (allergies.get("Peanuts") == 1)
+        if (this.allergies.get("Peanuts") == 1)
         {
             output += peanuts + " ";
         }
-        if (allergies.get("Seafood") == 1)
+        if (this.allergies.get("Seafood") == 1)
         {
             output += seafood + " ";
         }

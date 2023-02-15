@@ -42,6 +42,11 @@ public class UserProfile
         this.recipes.remove(recipe);
     }
 
+    /*public String recipes()
+    {
+        return this.recipes;
+    }*/
+
     public void changeUsername(Username username)
     {
         this.username = username;

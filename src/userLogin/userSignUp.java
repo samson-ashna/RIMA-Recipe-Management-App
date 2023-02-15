@@ -1,5 +1,7 @@
 package userLogin;
 
+import java.util.HashMap;
+
 public class userSignUp
 {
     // New user profile
@@ -9,7 +11,8 @@ public class userSignUp
     {
         UserProfile felix = new UserProfile();
         //felix.SignUp();
-        felix.addAllergen();
-        System.out.println(felix.allergies());
+        //felix.addAllergen();
+        //System.out.println(felix.allergies());
+
     }
 }
