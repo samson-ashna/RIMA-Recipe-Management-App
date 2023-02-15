@@ -7,6 +7,12 @@ public class User {
 	private String password;
 	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
 	public boolean loggedIn = false;
+	public Allergies allergens;
+
+	public User()
+	{
+
+	}
 	public User(String name) {
 		this.name = name;
 	}
@@ -34,5 +40,10 @@ public class User {
 	}
 	public void removeRecipeFromCollection(Recipes recipe) {
 		this.myRecipes.remove(recipe);
+	}
+	public ArrayList<String> addAllergen()
+	{
+		this.allergens = new objects.Allergies();
+		return this.allergens.getRecipes();
 	}
 }

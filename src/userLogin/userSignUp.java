@@ -1,6 +1,7 @@
 package userLogin;
 
 import java.util.*;
+import objects.User;
 
 public class userSignUp
 {
@@ -9,10 +10,10 @@ public class userSignUp
 
     public static void main(String[] args)
     {
-        UserProfile felix = new UserProfile();
+        //UserProfile felix = new UserProfile();
         //felix.SignUp();
-        felix.addAllergen();
-        System.out.println(felix.allergies());
+        User shaun = new User();
+        System.out.println(shaun.addAllergen());
 
     }
 }
