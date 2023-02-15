@@ -1,8 +1,9 @@
-package domain;
+package test;
 
 import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.jupiter.api.*;
+import domain.*;
 import objects.*;
 
 public class SaveRecipeTest {
