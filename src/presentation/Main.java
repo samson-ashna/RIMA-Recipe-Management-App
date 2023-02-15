@@ -41,6 +41,7 @@ public class Main {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("RIMA - Welcome!");
 		frame.setSize(450, 300);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

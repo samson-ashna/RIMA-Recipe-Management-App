@@ -58,7 +58,7 @@ public class RecipeList extends JFrame {
 	 * Create the frame.
 	 */
 	public RecipeList() {
-		setTitle("Recipes List");
+		setTitle("RIMA - Recipes List");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(319, 270);
 		setLocationRelativeTo(null);

@@ -35,6 +35,7 @@ public class ViewRecipe extends JDialog {
 	 * Create the dialog.
 	 */
 	public ViewRecipe(String name) {
+		setTitle("RIMA - View Recipe");
 		setSize(862, 574);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);

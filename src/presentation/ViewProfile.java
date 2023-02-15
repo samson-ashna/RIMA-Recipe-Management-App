@@ -76,7 +76,7 @@ public class ViewProfile extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewProfile() {
-		
+		setTitle("RIMA - User Profile");
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.

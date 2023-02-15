@@ -78,7 +78,7 @@ public class EditProfileView extends JFrame {
 	 * Create the frame.
 	 */
 	public EditProfileView() {
-		
+		setTitle("RIMA - Edit Profile");
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.

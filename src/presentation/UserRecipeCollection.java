@@ -74,7 +74,7 @@ public class UserRecipeCollection extends JFrame {
 	 * Create the frame.
 	 */
 	public UserRecipeCollection() {
-		
+		setTitle("RIMA - User Recipes");
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.

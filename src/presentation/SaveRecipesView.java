@@ -51,7 +51,7 @@ public class SaveRecipesView extends JFrame {
 	 * Create the frame.
 	 */
 	public SaveRecipesView() {
-		setTitle("Save Recipe");
+		setTitle("RIMA - Save Recipe");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(675, 762);
 		setLocationRelativeTo(null);

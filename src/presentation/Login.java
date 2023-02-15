@@ -46,7 +46,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("Login");
+		setTitle("RIMA - Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(429, 336);
 		setLocationRelativeTo(null);

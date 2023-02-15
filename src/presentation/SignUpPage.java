@@ -65,7 +65,7 @@ public class SignUpPage extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUpPage() {
-		setTitle("Register Account");
+		setTitle("RIMA - Register Account");
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
