@@ -4,6 +4,10 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import domain.SaveRecipe;
+import domain.UserActivity;
+
 import java.awt.event.*;
 import objects.*;
 import persistence.*;
@@ -16,14 +20,11 @@ public class ViewProfile extends JFrame {
 	private JPanel infoPane;
 	private JPanel buttonPane;
 	
-	//Objects for displaying user info.
-	private UserDAOImpl userDAO;
-	private User currentUser;
-	private JLabel userInfo;
-	
-	//Button objects
+	//Component objects.
 	private final JButton backButton = new JButton("Back");
 	private final JButton editProfileButton = new JButton("Edit Profile");
+	private JLabel displName = new JLabel();
+	private JLabel allergyInfo =  new JLabel();;
 
 	/**
 	 * Launch the application.
@@ -45,12 +46,14 @@ public class ViewProfile extends JFrame {
 
 	//Adds the current user's info to the user info label.
 	public void displayUserInfo() {
-		//Get current user.
-		userDAO = new UserDAOImpl();
-		currentUser = userDAO.getCurrentUser();
+		User currentUser = UserActivity.getCurrentUser();		
 		
-		//Add user info to label.
-		userInfo.setText("temp");
+		if(currentUser != null) {
+			displName.setText(currentUser.getName());
+			allergyInfo.setText("<html>Allergies<br>");
+		}else {
+			displName.setText("Error: User not logged in.");
+		}
 		
 	}
 	
@@ -72,15 +75,21 @@ public class ViewProfile extends JFrame {
 		infoPane = new JPanel(); 
 		//Set the info pane's layout manager to the vertical box layout.
 		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
+		//Make an invisible border for the info pane.
+		infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				
+		//Add user info to labels.
+		displayUserInfo();	
 		
-		//Create new label for displaying user info.
-		userInfo = new JLabel();
-		//Set an invisible border for the label.
-		userInfo.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//Add user info to the label.
-		displayUserInfo();		
-		//Add the label to the info pane.
-		infoPane.add(userInfo);
+		//Align labels.
+		displName.setAlignmentX(CENTER_ALIGNMENT);
+		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);
+		
+		
+		//Add labels to the info pane.
+		infoPane.add(displName);
+		infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
+		infoPane.add(allergyInfo);
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel(); 		
@@ -89,12 +98,15 @@ public class ViewProfile extends JFrame {
 		//Set the button pane's layout manager to the horizontal box layout.
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
 		
-		//Set up the font of the edit profile button.
+		//Set up the button fonts.
 		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		//Right align buttons.		
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		//Add buttons to button pane.		
 		buttonPane.add(Box.createHorizontalGlue());
-		//Add the edit profile button to the button pane.
-		buttonPane.add(editProfileButton);		
+		buttonPane.add(editProfileButton);	
+		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+		buttonPane.add(backButton);
 		
 		//Set up what to do when the back button is pressed.
 		editProfileButton.addActionListener(new ActionListener() {
@@ -110,14 +122,7 @@ public class ViewProfile extends JFrame {
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				
 			}
-		});	
-		
-		//Set up the font of the back button.
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		//Add space between buttons.
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		//Add the back button to the button pane.
-		buttonPane.add(backButton);		
+		});				
 				
 		//Set up what to do when the back button is pressed.
 		backButton.addActionListener(new ActionListener() {
