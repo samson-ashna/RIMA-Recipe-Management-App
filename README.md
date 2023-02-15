@@ -21,6 +21,6 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 - [x] Edit Recipes:  As a cook, I want to be able to modify the instructions and ingredients of any recipe available in my personal collection of recipes. Priority: High. Cost: 2 days
 
 **User Profile:  As an app user I want to be able to add and view my user information, and dietary restrictions/preferences.  Priority: High. Cost: 3 days**
-- [ ] Create User Profile:  Ask the user to enter username, allergies or dietary restrictions/preferences .  Priority: High. Cost: 1 day
-- [ ] View User Profile: As a user I want to be able to view my user profile information (username, dietary restrictions/preferences). Priority: High. Cost: 1 day 
-- [ ] Edit User Profile:  As an app user, I want to be able to modify my user information.  Priority: High. Cost: 1 day
+- [x] Create User Profile:  Ask the user to enter username, allergies or dietary restrictions/preferences .  Priority: High. Cost: 1 day
+- [x] View User Profile: As a user I want to be able to view my user profile information (username, dietary restrictions/preferences). Priority: High. Cost: 1 day 
+- [x] Edit User Profile:  As an app user, I want to be able to modify my user information.  Priority: High. Cost: 1 day
