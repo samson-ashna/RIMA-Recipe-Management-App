@@ -1,6 +1,6 @@
 package persistence;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public interface DAO<T> {
 	T get(String name);

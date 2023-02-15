@@ -1,6 +1,6 @@
 package objects;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class User {
 	protected String name;

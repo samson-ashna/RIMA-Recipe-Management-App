@@ -1,7 +1,8 @@
 package persistence;
 
-import java.util.*;
-import objects.*;
+import java.util.ArrayList;
+
+import objects.Recipes;
 
 public class RecipesDAOImpl implements DAO<Recipes> {
 	private static ArrayList<Recipes> dbRecipes;
