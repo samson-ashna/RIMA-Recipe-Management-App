@@ -1,8 +1,6 @@
 package userLogin;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserProfile
 {

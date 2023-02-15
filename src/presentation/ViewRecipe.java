@@ -1,23 +1,12 @@
 package presentation;
 
-import java.awt.FlowLayout;
-
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import domain.SaveRecipe;
-import domain.UserActivity;
-import objects.Recipes;
-import persistence.DAO;
-import persistence.RecipesDAOImpl;
-
-import javax.swing.BoxLayout;
-import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Font;
-import javax.swing.JButton;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import domain.*;
+import objects.*;
+import persistence.*;
+import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class ViewRecipe extends JDialog {

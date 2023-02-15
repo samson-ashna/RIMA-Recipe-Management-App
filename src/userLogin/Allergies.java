@@ -1,6 +1,6 @@
 package userLogin;
 
-import java.util.Hashtable;
+import java.util.*;
 
 public class Allergies
 {
