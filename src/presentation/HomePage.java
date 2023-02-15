@@ -15,6 +15,8 @@ import objects.User;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
@@ -90,6 +92,13 @@ public class HomePage extends JFrame {
 		JButton btnNewButton_2 = new JButton("Log Out");
 		btnNewButton_2.setBounds(337, 11, 89, 23);
 		contentPane.add(btnNewButton_2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(140, 15, 153, 14);
+		contentPane.add(lblNewLabel);
+		lblNewLabel.setText("Welcome "+ UserActivity.getCurrentUser().getName());
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity.getCurrentUser().loggedIn = false;

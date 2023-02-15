@@ -21,6 +21,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import domain.UserActivity;
+import objects.User;
+import persistence.UserDAOImpl;
+import persistence.UsersDAO;
+
+import javax.swing.SwingConstants;
+import javax.swing.JCheckBoxMenuItem;
+
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {
 
@@ -69,7 +77,7 @@ public class SignUpPage extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
-		setSize(429, 336);
+		setSize(478, 384);
 		setLocationRelativeTo(null);		
 		
 		//Get content pane.
@@ -77,6 +85,7 @@ public class SignUpPage extends JFrame {
 		
 		//Create a new text pane.
 		textPane = new JPanel(); 
+		textPane.setBounds(0, 0, 462, 275);
 		//Set an invisible border for the text pane.
 		textPane.setBorder(new EmptyBorder(5, 5, 5, 5));	
 		//Set the text pane's layout manager to the vertical box layout.
@@ -124,6 +133,7 @@ public class SignUpPage extends JFrame {
 		
 		//Create a new button pane.
 		buttonPane = new JPanel(); 
+		buttonPane.setBounds(0, 300, 462, 45);
 		//Set an invisible border for the text pane.
 		buttonPane.setBorder(new EmptyBorder(10, 10, 10, 10));	
 		//Set the text pane's layout manager to the vertical box layout.
@@ -139,10 +149,20 @@ public class SignUpPage extends JFrame {
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
 		buttonPane.add(cancelButton);
 		buttonPane.add(Box.createHorizontalGlue());
+		getContentPane().setLayout(null);
 		
 		//Add text and button panes to the content pane.
 		contentPane.add(textPane);
-		contentPane.add(buttonPane, BorderLayout.PAGE_END);
+		
+		JCheckBoxMenuItem chckbxmntmNewCheckItem = new JCheckBoxMenuItem("");
+		textPane.add(chckbxmntmNewCheckItem);
+		contentPane.add(buttonPane);
+		
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(new Color(255, 0, 0));
+		label.setBounds(81, 269, 322, 31);
+		getContentPane().add(label);
 		
 		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
@@ -158,7 +178,32 @@ public class SignUpPage extends JFrame {
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				
 			}
-		});		
+		});	
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create a HomePage window
+				String name = enterName.getText();
+				String password = enterPass.getText();
+				
+				if(!UserActivity.checkUserName(name)) {
+					if(!enterPassAgain.getText().equals(password)) {
+						label.setText("Passwords do not match!");
+					}else {
+						User newUser = new User(name, password);
+						UsersDAO userDAO = new UserDAOImpl();
+						userDAO.add(newUser);
+						newUser.loggedIn = true;
+						HomePage homePage = new HomePage();
+						homePage.setVisible(true);
+						contentPane.setVisible(false);
+						Window win = SwingUtilities.getWindowAncestor(contentPane);
+						win.dispose();
+					}
+				}else {
+					label.setText("User name already exits.Select another!");
+					label.setVisible(true);
+				}		
+			}
+		});	
 	}
-
 }
