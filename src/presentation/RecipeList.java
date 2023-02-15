@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import domain.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
 import persistence.RecipesDAOImpl;
@@ -82,8 +83,11 @@ public class RecipeList extends JFrame {
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main mainPage = new Main();
-				mainPage.frame.setVisible(true);
+				if(UserActivity.getCurrentUser() == null) {
+					Main.frame.setVisible(true);
+				}else {
+					HomePage.contentPane.setVisible(true);
+				}
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();

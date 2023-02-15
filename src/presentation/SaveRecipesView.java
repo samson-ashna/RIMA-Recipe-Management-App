@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.SaveRecipe;
+import domain.UserActivity;
 import objects.Recipes;
+import objects.User;
+import persistence.UserDAOImpl;
+import persistence.UsersDAO;
 
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -129,6 +133,21 @@ public class SaveRecipesView extends JFrame {
 		lblNewLabel_2.setForeground(new Color(255, 0, 0));
 		lblNewLabel_2.setBounds(120, 169, 185, 14);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.setBounds(542, 11, 89, 23);
+		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserRecipeCollection collection = new UserRecipeCollection();
+				collection.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
+			}
+		});
+		
+		
 		lblNewLabel_2.setVisible(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,10 +186,12 @@ public class SaveRecipesView extends JFrame {
 					newRecipe = new Recipes(name, protein, carbs);
 					newRecipe.setIngredients(ingredients);
 					newRecipe.setInstructions(instructions);
-					SaveRecipe saveRecipe = new SaveRecipe();
+					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(newRecipe);
 					
-					//Close the window after saving the recipe.
+					UserRecipeCollection back = new UserRecipeCollection();
+					back.setVisible(true);
+					contentPane.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPane);
 					win.dispose();
 				}

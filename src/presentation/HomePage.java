@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import domain.UserActivity;
 import objects.User;
 
 import javax.swing.JButton;
@@ -18,7 +19,7 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
 
-	private JPanel contentPane;
+	static JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -67,8 +68,8 @@ public class HomePage extends JFrame {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
 				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
+//				Window win = SwingUtilities.getWindowAncestor(contentPane);
+//				win.dispose();
 			}
 		});
 		btnNewButton_1.setBounds(138, 100, 174, 42);
@@ -83,6 +84,20 @@ public class HomePage extends JFrame {
 				
 		//Add the back button to the content pane.
 		contentPane.add(viewProfileButton);
+		
+		JButton btnNewButton_2 = new JButton("Log Out");
+		btnNewButton_2.setBounds(337, 11, 89, 23);
+		contentPane.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserActivity.getCurrentUser().loggedIn = false;
+				Main mainPage = new Main();
+				mainPage.frame.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
+			}
+		});
 				
 		//Set up what to do when the back button is pressed.
 		viewProfileButton.addActionListener(new ActionListener() {
@@ -102,5 +117,4 @@ public class HomePage extends JFrame {
 		
 		
 	}
-
 }

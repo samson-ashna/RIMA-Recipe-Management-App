@@ -9,6 +9,11 @@ import objects.User;
 public class UserDAOImpl implements UsersDAO {
 
 	private static ArrayList<User> users = new ArrayList<User>();
+	public UserDAOImpl() {
+		User user = new User("user1","123");
+		users.add(user);
+	}
+	
 	@Override
 	public User get(String name){
 		
@@ -40,7 +45,7 @@ public class UserDAOImpl implements UsersDAO {
 	}
 
 	@Override
-	public List<Recipes> getRecipes(User u) {
+	public ArrayList<Recipes> getRecipes(User u) {
 		for(User user:users) {
 			if (user.equals(u)) {
 				return user.getRecipeCollection();

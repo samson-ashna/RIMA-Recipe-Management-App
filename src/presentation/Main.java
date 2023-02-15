@@ -7,11 +7,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+
+import domain.UserActivity;
+
 import java.awt.Font;
 
 public class Main {
 
-	protected JFrame frame;
+	protected static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -64,8 +67,8 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
-				frame.setVisible(false);
-				frame.dispose();
+//				frame.setVisible(false);
+//				frame.dispose();
 			}
 		});
 		

@@ -20,6 +20,7 @@ import objects.Recipes;
 import objects.User;
 import persistence.DAO;
 import persistence.UserDAOImpl;
+import persistence.UsersDAO;
 
 @SuppressWarnings("serial")
 public class UserRecipeCollection extends JFrame {
@@ -33,6 +34,7 @@ public class UserRecipeCollection extends JFrame {
 	//Button objects
 	private final JButton backButton = new JButton("Back");
 	private final JButton addRecipeButton = new JButton("Add Custom Recipe");
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -57,10 +59,10 @@ public class UserRecipeCollection extends JFrame {
 		//Create a new list model for the user's recipes.
 		DefaultListModel<String> model = new DefaultListModel<String>();		
 		//get a new instance of the user database.
-		DAO<User> db = new UserDAOImpl();		
+		UsersDAO db = new UserDAOImpl();		
 		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); //= db.getRecipes(/*get current user*/);
-		
+		recipes = db.getRecipes(db.getCurrentUser());
 		//Add all the user's recipes to the list model.
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
@@ -78,7 +80,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.
-		setBounds(100, 100, 319, 270);		
+		setBounds(100, 100, 375, 303);		
 		//Create a new content pane.
 		contentPane = new JPanel(); 		
 		//Set an invisible border for the content pane.
@@ -94,7 +96,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
 		//Set the bounds of the list section
-		list.setBounds(10, 11, 280, 195);
+		list.setBounds(10, 11, 343, 222);
 		
 		//Add the current user's saved recipes to the list section to display them.
 		addUserRecipes();
@@ -104,7 +106,7 @@ public class UserRecipeCollection extends JFrame {
 			//Get the selected list item
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
-			ViewRecipe newWindow = new ViewRecipe(name);
+			ViewRecipeCollection newWindow = new ViewRecipeCollection(name);
 			//Set up the ViewRecipe window and make it visible.
 			newWindow.NewScreen(name);
 		});
@@ -114,7 +116,7 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the back button.
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setBounds(225, 211, 65, 18);
+		backButton.setBounds(272, 244, 65, 18);
 		
 		//add the back button to the content pane.
 		contentPane.add(backButton);
@@ -137,10 +139,15 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		addRecipeButton.setBounds(100, 211, 120, 18);
+		addRecipeButton.setBounds(20, 244, 120, 18);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
+		
+		btnNewButton = new JButton("Remove Recipe");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnNewButton.setBounds(150, 244, 112, 18);
+		contentPane.add(btnNewButton);
 				
 		//Set up what to do when the add button is pressed.
 		addRecipeButton.addActionListener(new ActionListener() {
@@ -149,7 +156,11 @@ public class UserRecipeCollection extends JFrame {
 				SaveRecipesView addRecipePage = new SaveRecipesView();
 						
 				//Make the SaveRecipesView window visible.
-				addRecipePage.setVisible(true);						
+				addRecipePage.setVisible(true);	
+				contentPane.setVisible(false);
+				
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
 			}
 		});
 	}

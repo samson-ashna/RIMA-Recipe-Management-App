@@ -3,18 +3,26 @@ package domain;
 import java.util.*;
 
 import objects.Recipes;
+import objects.User;
 import persistence.RecipesDAOImpl;
+import persistence.UserDAOImpl;
+import persistence.UsersDAO;
 
 public class SaveRecipe {
     
     protected ArrayList<Recipes> myRecipes;
-
+    UsersDAO usersinfo = new UserDAOImpl();
     /**
      * Default constructor
      */
     public SaveRecipe() {
     	myRecipes = new ArrayList<>();
     }
+    public SaveRecipe(User currentUser) {
+		
+		myRecipes = usersinfo.getRecipes(currentUser);
+
+	}
 
     /**
      * Copy constructor
