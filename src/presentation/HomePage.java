@@ -41,8 +41,10 @@ public class HomePage extends JFrame {
 	 * Create the frame.
 	 */
 	public HomePage() {
+		setTitle("RIMA - Home");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

@@ -76,11 +76,13 @@ public class UserRecipeCollection extends JFrame {
 	 * Create the frame.
 	 */
 	public UserRecipeCollection() {
-		
+		setTitle("RIMA - User Recipes");
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.
 		setBounds(100, 100, 375, 303);		
+
+		setLocationRelativeTo(null);
 		//Create a new content pane.
 		contentPane = new JPanel(); 		
 		//Set an invisible border for the content pane.
