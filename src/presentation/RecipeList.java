@@ -1,27 +1,14 @@
 package presentation;
 
-import java.awt.EventQueue;
-import java.util.ArrayList;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-
-import domain.UserActivity;
-import objects.Recipes;
-import persistence.DAO;
-import persistence.RecipesDAOImpl;
-
-import javax.swing.JList;
-import java.awt.Color;
-import javax.swing.JButton;
-
-import java.awt.Font;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import domain.*;
+import objects.*;
+import persistence.*;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class RecipeList extends JFrame {

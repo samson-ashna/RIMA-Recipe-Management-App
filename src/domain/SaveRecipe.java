@@ -1,12 +1,8 @@
 package domain;
 
 import java.util.*;
-
-import objects.Recipes;
-import objects.User;
-import persistence.RecipesDAOImpl;
-import persistence.UserDAOImpl;
-import persistence.UsersDAO;
+import objects.*;
+import persistence.*;
 
 public class SaveRecipe {
     

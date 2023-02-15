@@ -5,7 +5,7 @@ import javax.swing.*;
 import domain.*;
 import persistence.*;
 import java.awt.event.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame {

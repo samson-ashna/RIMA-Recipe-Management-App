@@ -1,10 +1,7 @@
 package persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import objects.Recipes;
-import objects.User;
+import java.util.*;
+import objects.*;
 
 public class UserDAOImpl implements UsersDAO {
 
