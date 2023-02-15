@@ -1,20 +1,11 @@
 package presentation;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Window;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.*;
 import domain.UserActivity;
-import objects.User;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import objects.*;
+import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
