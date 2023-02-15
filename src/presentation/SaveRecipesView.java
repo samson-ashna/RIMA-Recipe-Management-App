@@ -53,7 +53,8 @@ public class SaveRecipesView extends JFrame {
 	public SaveRecipesView() {
 		setTitle("Save Recipe");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 675, 762);
+		setSize(675, 762);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

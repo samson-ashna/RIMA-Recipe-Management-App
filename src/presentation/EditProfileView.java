@@ -27,12 +27,12 @@ import persistence.DAO;
 import persistence.UserDAOImpl;
 
 @SuppressWarnings("serial")
-public class ViewProfile extends JFrame {
+public class EditProfileView extends JFrame {
 
 	//Container and Panel objects.
 	private Container contentPane;
-	private JPanel infoPane;
-	private JPanel buttonPane;
+	private JPanel editButtonsPane;
+	private JPanel cancelButtonPane;
 	
 	//Objects for displaying user info.
 	private UserDAOImpl userDAO;
@@ -40,8 +40,10 @@ public class ViewProfile extends JFrame {
 	private JLabel userInfo;
 	
 	//Button objects
-	private final JButton backButton = new JButton("Back");
-	private final JButton editProfileButton = new JButton("Edit Profile");
+	private final JButton cancelButton = new JButton("Cancel");
+	private final JButton editAllergiesButton = new JButton("Edit Allergies");
+	private final JButton editNameButton = new JButton("Change Username");
+	private final JButton editPassButton = new JButton("Change Password");
 
 	/**
 	 * Launch the application.
@@ -51,7 +53,7 @@ public class ViewProfile extends JFrame {
 			public void run() {
 				try {
 					//Create a new frame.
-					ViewProfile frame = new ViewProfile();
+					EditProfileView frame = new EditProfileView();
 					//Make the frame visible.
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,76 +77,59 @@ public class ViewProfile extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ViewProfile() {
+	public EditProfileView() {
 		
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
-		//Set the size and pop up location of the window.
+		//Set the bounds of the window.
 		setSize(319, 270);	
 		setLocationRelativeTo(null);
 		
 		//Get content pane.
 		contentPane = getContentPane();		
 		
-		//Create a new info pane.
-		infoPane = new JPanel(); 
-		//Set the info pane's layout manager to the vertical box layout.
-		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
+		//Create a new edit buttons pane.
+		editButtonsPane = new JPanel(); 
+		//Set an invisible border for the edit buttons pane.
+		editButtonsPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
+		//Set the edit buttons pane's layout manager to the vertical box layout.
+		editButtonsPane.setLayout(new BoxLayout(editButtonsPane, BoxLayout.PAGE_AXIS));
 		
-		//Create new label for displaying user info.
-		userInfo = new JLabel();
-		//Set an invisible border for the label.
-		userInfo.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//Add user info to the label.
-		displayUserInfo();		
-		//Add the label to the info pane.
-		infoPane.add(userInfo);
+		editAllergiesButton.setAlignmentX(CENTER_ALIGNMENT);
+		editNameButton.setAlignmentX(CENTER_ALIGNMENT);
+		editPassButton.setAlignmentX(CENTER_ALIGNMENT);
+		
+		//Add the edit buttons to the edit buttons pane.
+		editButtonsPane.add(Box.createVerticalGlue());
+		editButtonsPane.add(editAllergiesButton);
+		editButtonsPane.add(Box.createRigidArea(new Dimension(0, 10)));
+		editButtonsPane.add(editNameButton);
+		editButtonsPane.add(Box.createRigidArea(new Dimension(0, 10)));
+		editButtonsPane.add(editPassButton);		
+		editButtonsPane.add(Box.createVerticalGlue());
 				
-		//Create a new pane for buttons.
-		buttonPane = new JPanel(); 		
+		//Create a new pane for the cancel button.
+		cancelButtonPane = new JPanel(); 		
 		//Set an invisible border for the button pane.
-		buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		cancelButtonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
-		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+		cancelButtonPane.setLayout(new BoxLayout(cancelButtonPane, BoxLayout.LINE_AXIS));
 		
 		//Set up the font of the edit profile button.
-		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		//Right align buttons.		
-		buttonPane.add(Box.createHorizontalGlue());
+		cancelButtonPane.add(Box.createHorizontalGlue());
 		//Add the edit profile button to the button pane.
-		buttonPane.add(editProfileButton);		
+		cancelButtonPane.add(cancelButton);		
 		
-		//Set up what to do when the back button is pressed.
-		editProfileButton.addActionListener(new ActionListener() {
+		//Set up what to do when the cancel button is pressed.
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
-				EditProfileView editProfileView = new EditProfileView();
+				ViewProfile viewProfile = new ViewProfile();
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				editProfileView.setVisible(true);
-				contentPane.setVisible(false);
-						
-				//Close the UserRecipeCollection Window.
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();				
-			}
-		});	
-		
-		//Set up the font of the back button.
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		//Add space between buttons.
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		//Add the back button to the button pane.
-		buttonPane.add(backButton);		
-				
-		//Set up what to do when the back button is pressed.
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Create a HomePage window
-				HomePage homePage = new HomePage();
-						
-				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				homePage.setVisible(true);
+				viewProfile.setVisible(true);
 				contentPane.setVisible(false);
 						
 				//Close the UserRecipeCollection Window.
@@ -154,8 +139,8 @@ public class ViewProfile extends JFrame {
 		});
 		
 		//Add the button and info panes to the content pane.
-		contentPane.add(infoPane);
-		contentPane.add(buttonPane, BorderLayout.PAGE_END);
+		contentPane.add(editButtonsPane);
+		contentPane.add(cancelButtonPane, BorderLayout.PAGE_END);
 
 	}
 }

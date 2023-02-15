@@ -77,8 +77,9 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
-		//Set the bounds of the window.
-		setBounds(100, 100, 319, 270);		
+		//Set the size and pop up location of the window.
+		setSize(319, 270);
+		setLocationRelativeTo(null);
 		//Create a new content pane.
 		contentPane = new JPanel(); 		
 		//Set an invisible border for the content pane.
