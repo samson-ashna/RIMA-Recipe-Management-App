@@ -1,10 +1,7 @@
 package persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import objects.Recipes;
-import objects.User;
+import java.util.*;
+import objects.*;
 
 public interface UsersDAO extends DAO<User> {
 	ArrayList<Recipes> getRecipes(User u);

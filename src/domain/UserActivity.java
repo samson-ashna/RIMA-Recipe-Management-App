@@ -1,8 +1,7 @@
 package domain;
 
-import objects.User;
-import persistence.UserDAOImpl;
-import persistence.UsersDAO;
+import objects.*;
+import persistence.*;
 
 public class UserActivity {
 	static User currentUser;

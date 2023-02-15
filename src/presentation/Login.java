@@ -1,28 +1,11 @@
 package presentation;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import domain.UserActivity;
-import persistence.UserDAOImpl;
-import persistence.UsersDAO;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
-import java.awt.Font;
-import java.awt.Window;
-
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import javax.swing.*;
+import domain.*;
+import persistence.*;
+import java.awt.event.*;
+import javax.swing.border.*;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame {
