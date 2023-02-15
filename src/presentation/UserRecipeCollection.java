@@ -66,7 +66,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.
-		setBounds(100, 100, 375, 303);		
+		setBounds(100, 100, 401, 310);		
 
 		setLocationRelativeTo(null);
 		//Create a new content pane.
@@ -84,7 +84,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
 		//Set the bounds of the list section
-		list.setBounds(10, 11, 343, 222);
+		list.setBounds(10, 11, 365, 222);
 		
 		//Add the current user's saved recipes to the list section to display them.
 		addUserRecipes();
@@ -104,7 +104,7 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the back button.
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setBounds(272, 244, 65, 18);
+		backButton.setBounds(294, 244, 81, 18);
 		
 		//add the back button to the content pane.
 		contentPane.add(backButton);
@@ -127,14 +127,18 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		addRecipeButton.setBounds(20, 244, 120, 18);
+		addRecipeButton.setBounds(20, 244, 130, 18);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
 		
 		btnNewButton = new JButton("Remove Recipe");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnNewButton.setBounds(150, 244, 112, 18);
+		btnNewButton.setBounds(161, 244, 123, 18);
 		contentPane.add(btnNewButton);
 				
 		//Set up what to do when the add button is pressed.
