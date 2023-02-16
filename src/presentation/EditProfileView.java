@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,6 +19,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
@@ -46,12 +48,13 @@ public class EditProfileView extends JFrame {
 	private final JLabel editNameLabel = new JLabel("Username");
 	private final JLabel editPass = new JLabel("Change Password");
 	private final JLabel confirmPass = new JLabel("Confirm Password");
+	private final JLabel errorLabel = new JLabel();
 	
 	//Text area objects
-	private JTextField nameField = new JTextField();
+	private JTextField nameField = new JTextField("");
 	private JList allergyList = new JList();
-	private JPasswordField enterPass = new JPasswordField();
-	private JPasswordField enterPassAgain = new JPasswordField();
+	private JPasswordField enterPass = new JPasswordField("");
+	private JPasswordField enterPassAgain = new JPasswordField("");
 
 	/**
 	 * Launch the application.
@@ -101,6 +104,7 @@ public class EditProfileView extends JFrame {
 		confirmPass.setAlignmentX(CENTER_ALIGNMENT);
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
+		errorLabel.setAlignmentX(CENTER_ALIGNMENT);
 		
 		//Set text field sizes.
 		nameField.setSize(281, 26);
@@ -116,7 +120,11 @@ public class EditProfileView extends JFrame {
 			nameField.setText(currentUser.getName());
 		}
 		
-		//Add the edit buttons to the edit buttons pane.
+		//Set up error label font and colour.
+		errorLabel.setForeground(new Color(255, 0, 0));
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		//Add the edit components to the edit options pane.
 		editOptionsPane.add(Box.createVerticalGlue());
 		editOptionsPane.add(editNameLabel);
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -132,7 +140,9 @@ public class EditProfileView extends JFrame {
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		editOptionsPane.add(confirmPass);	
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
-		editOptionsPane.add(enterPassAgain);		
+		editOptionsPane.add(enterPassAgain);
+		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
+		editOptionsPane.add(errorLabel);
 		editOptionsPane.add(Box.createVerticalGlue());
 				
 		//Create a new pane for the cancel button.
@@ -173,27 +183,45 @@ public class EditProfileView extends JFrame {
 		//Set up what to do when the save changes button is pressed.
 				saveButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//Get the current user.
 						currentUser = UserActivity.getCurrentUser();
+						String newPass = new String(enterPass.getPassword());
+						String confirmPass = new String(enterPassAgain.getPassword());
+						errorLabel.setText("");
+		
 						
-						if(currentUser != null) {
-							currentUser.setName(nameField.getText());
+						//Check that the user is logged in and that either the name field has changed or the password field has text.
+						if(currentUser != null
+							&& !(nameField.getText().equals(currentUser.getName()) && newPass.equals(""))) {
 							
-							if(enterPass.getPassword()== enterPassAgain.getPassword()) {
-								currentUser.setPassword(enterPass.getPassword().toString());
+							//If the new username exists and isn't the current user's, do nothing and inform the user that the username exists.
+							if (UserActivity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
+								errorLabel.setText("Username already exists!");
+								return;
+							//If the password fields don't match, do nothing and inform the user.
+							}else if (!newPass.equals(confirmPass)) {
+								errorLabel.setText("Password confirmation does not match!");
+								return;
+							//If the password isn't new and a new username wasn't entered do nothing.
+							}else if(UserActivity.checkPassword(currentUser.getName(), newPass) && nameField.getText().equals(currentUser.getName())) {
+								return;
+							//Otherwise, update the user's name and password.
+							}else {
+								currentUser.setName(nameField.getText());
+								currentUser.setPassword(newPass);
 							}
-						}
-						
-						
-						//Create a HomePage window
-						ViewProfile viewProfile = new ViewProfile();
-								
-						//Make the HomePage window visible and the UserRecipeCollection window invisible.
-						viewProfile.setVisible(true);
-						contentPane.setVisible(false);
-								
-						//Close the UserRecipeCollection Window.
-						Window win = SwingUtilities.getWindowAncestor(contentPane);
-						win.dispose();				
+							
+							//Create a HomePage window
+							ViewProfile viewProfile = new ViewProfile();
+									
+							//Make the HomePage window visible and the UserRecipeCollection window invisible.
+							viewProfile.setVisible(true);
+							contentPane.setVisible(false);
+									
+							//Close the UserRecipeCollection Window.
+							Window win = SwingUtilities.getWindowAncestor(contentPane);
+							win.dispose();
+						}			
 					}
 				});
 		
