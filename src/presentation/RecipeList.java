@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import domain.UserActivity;
+import businessLogic.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
 import persistence.RecipesDAOImpl;

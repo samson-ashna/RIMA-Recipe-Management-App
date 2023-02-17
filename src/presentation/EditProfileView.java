@@ -15,8 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import domain.UserActivity;
-
+import businessLogic.UserActivity;
 import objects.User;
 
 import persistence.UserDAOImpl;

@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import domain.UserActivity;
+import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
 import persistence.UserDAOImpl;

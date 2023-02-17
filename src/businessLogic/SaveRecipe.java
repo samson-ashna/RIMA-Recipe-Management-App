@@ -1,4 +1,4 @@
-package domain;
+package businessLogic;
 
 import java.util.ArrayList;
 

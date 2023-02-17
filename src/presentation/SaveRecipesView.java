@@ -19,8 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import domain.SaveRecipe;
-import domain.UserActivity;
+import businessLogic.SaveRecipe;
+import businessLogic.UserActivity;
 import objects.Recipes;
 
 @SuppressWarnings("serial")

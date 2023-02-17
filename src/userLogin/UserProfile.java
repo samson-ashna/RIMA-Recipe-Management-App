@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class UserProfile
 {
-    // Usernames
+    // User names
     Username username;
     ArrayList<Username> previousUserNames = new ArrayList<Username>();
     // Passwords

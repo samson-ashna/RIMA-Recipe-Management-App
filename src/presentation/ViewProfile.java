@@ -3,12 +3,13 @@ package presentation;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.UserActivity;
 
 import java.awt.Font;
 import java.awt.Window;
@@ -17,17 +18,9 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
-import java.awt.BorderLayout;
-
-import domain.UserActivity;
-import objects.Allergies;
 import objects.User;
-import javax.swing.JTextArea;
-import javax.swing.JList;
-import java.awt.Color;
 import java.awt.Component;
 
 @SuppressWarnings("serial")

@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import domain.UserActivity;
+import businessLogic.UserActivity;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 

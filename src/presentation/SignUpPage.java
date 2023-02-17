@@ -6,13 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
-
-import domain.UserActivity;
-import objects.Allergies;
 import objects.User;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
@@ -20,17 +15,18 @@ import persistence.UsersDAO;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.UserActivity;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {

@@ -1,9 +1,12 @@
-package test;
+package businessLogic;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.*;
 import org.junit.jupiter.api.*;
-import domain.*;
+
+import businessLogic.*;
 import objects.*;
 
 public class SaveRecipeTest {
@@ -86,22 +89,11 @@ public class SaveRecipeTest {
 
         }
 
-        System.out.println(test);
-        System.out.println(temp.getInstructions());
-        System.out.println(temp.getIngredients());
-        System.out.println(recipes);
+//        System.out.println(test);
+//        System.out.println(temp.getInstructions());
+//        System.out.println(temp.getIngredients());
+//        System.out.println(recipes);
         assertFalse(condition);
-
     }
-
-    // @Test
-    // void testSave() {
-
-    // }
-
-    // @Test
-    // void testToString() {
-
-    // }
 }
 

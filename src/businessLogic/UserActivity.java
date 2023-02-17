@@ -1,4 +1,4 @@
-package domain;
+package businessLogic;
 
 import objects.User;
 import persistence.UserDAOImpl;
