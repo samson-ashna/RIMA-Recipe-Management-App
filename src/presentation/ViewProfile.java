@@ -63,12 +63,11 @@ public class ViewProfile extends JFrame {
 		});
 	}
 
-	//Adds the current user's info to the user info label.
+	//Adds the current user's info (user name and allergies) to the user info label.
 	public void displayUserInfo() {
 		User currentUser = UserActivity.getCurrentUser();		
 		if(currentUser != null) {
 			displName.setText(currentUser.getName());
-			
 			Hashtable<String,Integer> userAllergies = currentUser.getUserAllergies().getAllergies();
 			ArrayList<String> allergyNames = currentUser.getUserAllergies().getAllergyNames();
 			String allergies="";

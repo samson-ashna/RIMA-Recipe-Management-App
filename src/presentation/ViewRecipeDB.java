@@ -23,6 +23,7 @@ import persistence.RecipesDAOImpl;
 @SuppressWarnings("serial")
 public class ViewRecipeDB extends JDialog {
 
+	//Panel object
 	private final JPanel contentPanel= new JPanel();
 
 
@@ -41,6 +42,7 @@ public class ViewRecipeDB extends JDialog {
 	 */
 	public ViewRecipeDB(String name) {
 		setTitle("RIMA - View Recipe");
+		//Set the size and pop up location of the window.
 		setSize(862, 574);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -48,11 +50,14 @@ public class ViewRecipeDB extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
-		DAO<Recipes> db = new RecipesDAOImpl();
+
+		//Create a text area where the information on the recipe with the specified name will be displayed
 		TextArea textArea = new TextArea();
 		textArea.setFont(new Font("Dialog", Font.PLAIN, 23));
 		textArea.setEditable(false);
 		contentPanel.add(textArea);
+		//Recipe database is accessed through the data access object and the recipe information is displayed in the text area.
+		DAO<Recipes> db = new RecipesDAOImpl();
 		textArea.setText(db.get(name).toString());
 		for (Recipes r: db.getAll()) {
 			if(r.getName().equals(name)) {
@@ -64,14 +69,11 @@ public class ViewRecipeDB extends JDialog {
 		buttonPane.setBounds(0, 503, 478, 33);
 		getContentPane().add(buttonPane);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JButton btnNewButton = new JButton("Save To My Collection");
-		btnNewButton.setBounds(493, 503, 171, 23);
-		getContentPane().add(btnNewButton);
-		JButton btnNewButton_1 = new JButton("Return to list");
-		btnNewButton_1.setBounds(686, 503, 150, 23);
-		getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		//Creates a new button. When clicked, the user is redirected back to the list of recipes. 
+		JButton btnBack = new JButton("Return to list");
+		btnBack.setBounds(686, 503, 150, 23);
+		getContentPane().add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList lst = new RecipeList();
 				lst.setVisible(true);
@@ -80,15 +82,19 @@ public class ViewRecipeDB extends JDialog {
 				win.dispose();
 			}
 		});
-				
-		btnNewButton.addActionListener(new ActionListener() {
+		/*Create a new button. When clicked, the recipe is saved to the user's personal collection where it can be viewed and edited.
+		If there is no logged in user, a message is displayed in the button*/
+		JButton btnSave = new JButton("Save To My Collection");
+		btnSave.setBounds(493, 503, 171, 23);
+		getContentPane().add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() != null) {
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(db.get(name));
-					btnNewButton.setText("Saved to Collection");
+					btnSave.setText("Saved to Collection");
 				}else {
-					btnNewButton.setText("Log in to save recipe!");
+					btnSave.setText("Log in to save recipe!");
 				}
 			}
 		});

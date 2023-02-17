@@ -20,7 +20,7 @@ import javax.swing.JEditorPane;
 
 @SuppressWarnings("serial")
 public class EditRecipeView extends JDialog {
-
+	//panel object
 	private JPanel contentPane= new JPanel();
 	public void NewScreen(Recipes r) {
 		try {
@@ -37,86 +37,102 @@ public class EditRecipeView extends JDialog {
 	 */
 	public EditRecipeView(Recipes recipe) {
 		setTitle("RIMA - Edit Recipe");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//set the application to exit when closed.
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		//Set the size and pop up location of the window.
 		setSize(675, 762);
 		setLocationRelativeTo(null);
+		//Get content pane.
 		contentPane = new JPanel();
+		//Make an invisible border for the content pane.
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Recipe Name");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(112, 58, 157, 59);
-		contentPane.add(lblNewLabel);
+		//Create label for recipe name 
+		JLabel nameRecipe = new JLabel("Recipe Name");
+		nameRecipe.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		nameRecipe.setBounds(112, 58, 157, 59);
+		contentPane.add(nameRecipe);
 		
+		//Create label for ingredient 
 		JLabel lblIngredients = new JLabel("Ingredients");
 		lblIngredients.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblIngredients.setBounds(112, 249, 157, 59);
 		contentPane.add(lblIngredients);
 		
-		
+		//Create label for recipe instruction
 		JLabel lblInstruction = new JLabel("Instruction");
 		lblInstruction.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblInstruction.setBounds(112, 409, 157, 59);
 		contentPane.add(lblInstruction);
 		
-		JLabel lblProteing = new JLabel("Protein (g)");
-		lblProteing.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblProteing.setBounds(112, 124, 157, 59);
-		contentPane.add(lblProteing);
+		//Create label for protein information.
+		JLabel proteinInfo = new JLabel("Protein (g)");
+		proteinInfo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		proteinInfo.setBounds(112, 124, 157, 59);
+		contentPane.add(proteinInfo);
 		
-		JLabel lblCarbscal = new JLabel("Carbs(g)");
-		lblCarbscal.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblCarbscal.setBounds(112, 196, 157, 59);
-		contentPane.add(lblCarbscal);
-
+		//Create label for carbohydrates information
+		JLabel carbsInfo = new JLabel("Carbs(g)");
+		carbsInfo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		carbsInfo.setBounds(112, 196, 157, 59);
+		contentPane.add(carbsInfo);
 		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(226, 628, 207, 59);
-		contentPane.add(btnNewButton);
+		//Create "save" button.
+		JButton save = new JButton("Save");
+		save.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		save.setBounds(226, 628, 207, 59);
+		contentPane.add(save);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setForeground(new Color(255, 0, 0));
-		lblNewLabel_1.setBounds(120, 241, 301, 14);
-		contentPane.add(lblNewLabel_1);
-		lblNewLabel_1.setVisible(false);
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setForeground(new Color(255, 0, 0));
-		lblNewLabel_2.setBounds(120, 169, 185, 14);
-		contentPane.add(lblNewLabel_2);
+		//Creates labels for showing error to user when they enter strings as values of protein and carbs attribute.
+		JLabel error2 = new JLabel("");
+		error2.setForeground(new Color(255, 0, 0));
+		error2.setBounds(120, 241, 301, 14);
+		contentPane.add(error2);
 		
-		JButton btnNewButton_1 = new JButton("Back");
-		btnNewButton_1.setBounds(542, 11, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JLabel error1 = new JLabel("");
+		error1.setForeground(new Color(255, 0, 0));
+		error1.setBounds(120, 169, 185, 14);
+		contentPane.add(error1);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(283, 77, 248, 30);
-		contentPane.add(editorPane);
-		editorPane.setText(recipe.getName());
+		//Creates a back button. Returns to the user recipe collection page.
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(542, 11, 89, 23);
+		contentPane.add(backButton);
 		
-		JEditorPane editorPane_1 = new JEditorPane();
-		editorPane_1.setBounds(283, 141, 248, 30);
-		contentPane.add(editorPane_1);
-		editorPane_1.setText(Integer.toString(recipe.getProtein()));
+		//Creates editor panes where user can enter recipe info;name, protein, carbs, ingredient and instructions.
+		JEditorPane editorPaneName = new JEditorPane();
+		editorPaneName.setBounds(283, 77, 248, 30);
+		contentPane.add(editorPaneName);
+		editorPaneName.setText(recipe.getName());
 		
-		JEditorPane editorPane_2 = new JEditorPane();
-		editorPane_2.setBounds(283, 214, 248, 30);
-		contentPane.add(editorPane_2);
-		editorPane_2.setText(Integer.toString(recipe.getCarbs()));
+		JEditorPane editorPaneProtein = new JEditorPane();
+		editorPaneProtein.setBounds(283, 141, 248, 30);
+		contentPane.add(editorPaneProtein);
+		editorPaneProtein.setText(Integer.toString(recipe.getProtein()));
 		
-		JEditorPane editorPane_3 = new JEditorPane();
-		editorPane_3.setBounds(283, 266, 248, 140);
-		contentPane.add(editorPane_3);
-		editorPane_3.setText(recipe.getIngredients());
+		JEditorPane editorPaneCarbs = new JEditorPane();
+		editorPaneCarbs.setBounds(283, 214, 248, 30);
+		contentPane.add(editorPaneCarbs);
+		editorPaneCarbs.setText(Integer.toString(recipe.getCarbs()));
 		
-		JEditorPane editorPane_4 = new JEditorPane();
-		editorPane_4.setBounds(283, 430, 248, 162);
-		contentPane.add(editorPane_4);
-		editorPane_4.setText(recipe.getInstructions());
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JEditorPane editorIngredient = new JEditorPane();
+		editorIngredient.setBounds(283, 266, 248, 140);
+		contentPane.add(editorIngredient);
+		editorIngredient.setText(recipe.getIngredients());
+		
+		JEditorPane editorInstruction = new JEditorPane();
+		editorInstruction.setBounds(283, 430, 248, 162);
+		contentPane.add(editorInstruction);
+		editorInstruction.setText(recipe.getInstructions());
+		//label to let the user know to separate ingredient items by new line
+		JLabel lblNewLabel = new JLabel("Separate by new line");
+		lblNewLabel.setBounds(112, 294, 126, 14);
+		contentPane.add(lblNewLabel);
+		
+		//Sets up what happens when back button is pressed. 
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
 				collection.setVisible(true);
@@ -126,41 +142,44 @@ public class EditRecipeView extends JDialog {
 			}
 		});
 		
-		
-		lblNewLabel_2.setVisible(false);
-		btnNewButton.addActionListener(new ActionListener() {
+		//Sets up what happens when save button is pressed.
+		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//incorrectValues is set to true if user enters strings as values for protein and carbs fields.
 				boolean incorrectValues = false;
-				String name = editorPane.getText();
+				//read recipe name
+				String name = editorPaneName.getText();
+				//read values entered for protein and carbs fields
 				int protein=0;
 				try
 				{
-				    protein = Integer.parseInt(editorPane_1.getText());
-				    lblNewLabel_2.setVisible(false);
+				    protein = Integer.parseInt(editorPaneProtein.getText());
 				}
 				catch (NumberFormatException e1)
 				{
 					incorrectValues = true;
-					lblNewLabel_2.setText("Must be an integer!");
-					lblNewLabel_2.setVisible(true);
+					error1.setText("Must be an integer!");
 				}
 				int carbs=0;
 				try
 				{
-				    carbs = Integer.parseInt(editorPane_2.getText());
-				    lblNewLabel_1.setVisible(false);
+				    carbs = Integer.parseInt(editorPaneCarbs.getText());
+				    error2.setVisible(false);
 				}
 				catch (NumberFormatException e21)
 				{
 					incorrectValues = true;
-					lblNewLabel_1.setText("Must be an integer!");
-					lblNewLabel_1.setVisible(true);
+					error2.setText("Must be an integer!");
 					
 				}
+				/*if user has not entered strings for protein and carbs, ingredient list 
+				and instruction is read and recipe is modified.
+				*/
 				if(!incorrectValues) {
 					ArrayList<String> ingredients = new ArrayList<String>();
-					ingredients=new ArrayList<> (Arrays.asList(editorPane_3.getText().split("\n")));
-					String instructions = editorPane_4.getText();
+					ingredients=new ArrayList<> (Arrays.asList(editorIngredient.getText().split("\n")));
+					String instructions = editorInstruction.getText();
+					
 					recipe.setName(name);
 					recipe.setProtein(protein);
 					recipe.setCarbs(carbs);
@@ -177,6 +196,5 @@ public class EditRecipeView extends JDialog {
 			}
 		});
 	}
-
 }
 

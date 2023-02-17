@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import domain.UserActivity;
 import objects.Recipes;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
@@ -59,8 +60,8 @@ public class UserRecipeCollection extends JFrame {
 		//get a new instance of the user database.
 		UsersDAO db = new UserDAOImpl();		
 		//save a reference of the user's recipes.
-		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); //= db.getRecipes(/*get current user*/);
-		recipes = db.getRecipes(db.getCurrentUser());
+		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
+		recipes = db.getRecipes(UserActivity.getCurrentUser());
 		//Add all the user's recipes to the list model.
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());

@@ -162,6 +162,7 @@ public class SignUpPage extends JFrame {
 		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		eggAllergy.setBounds(190, 266, 96, 31);
 		
+		//Set up the content panes for allergy check boxes.
 		getContentPane().add(eggAllergy);
 		milkAllergy.setBounds(190, 308, 96, 25);
 		
@@ -203,6 +204,7 @@ public class SignUpPage extends JFrame {
 						UsersDAO userDAO = new UserDAOImpl();
 						userDAO.add(newUser);
 						newUser.loggedIn = true;
+						//Add the selected allergies by the user to their allergy information. 
 						if(eggAllergy.isSelected()){
 							newUser.allergens.getAllergies().replace("Eggs", 1);
 						}

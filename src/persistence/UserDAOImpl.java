@@ -77,17 +77,6 @@ public class UserDAOImpl implements UsersDAO {
 		}
 		
 	}
-	
-	//Returns the current user logged into the application
-	public User getCurrentUser() {
-		for(User user : users) {
-			if(user.loggedIn) {
-				return user;
-			}
-		}
-		return null;
-	}
-
 }
 
 

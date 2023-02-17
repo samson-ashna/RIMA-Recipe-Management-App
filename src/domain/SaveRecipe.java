@@ -36,7 +36,6 @@ public class SaveRecipe {
      * @param recipe is the user's recipe they want to add
      */
     public void save(Recipes recipe) {
-        //myRecipes.add(recipe);
         usersinfo.addRecipes(UserActivity.getCurrentUser(),recipe);
     }
 

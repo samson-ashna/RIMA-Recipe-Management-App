@@ -45,28 +45,30 @@ public class ViewRecipeUserCollection extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
+		//Create a text area where the information on the recipe with the specified name will be displayed
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		contentPanel.add(textArea);
+		
+		User currentUser = UserActivity.getCurrentUser();
+		
+		/*The user database is accessed through a data access object and the details of 
+		 * the recipe in the user's personal collection that has the specified name is displayed.*/ 
 		UsersDAO db = new UserDAOImpl();
-		User currentUser = UserActivity.getCurrentUser();	
 		Recipes r = db.getRecipe(currentUser,name);
 		textArea.setText(r.toString());
-//		for (Recipes r: db.getRecipes(currentUser)) {
-//			if(r.getName().equals(name)) {
-//				textArea.setText(r.toString());
-//			}
-//		}
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setBounds(0, 503, 507, 33);
 		getContentPane().add(buttonPane);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("Edit");
-		btnNewButton_1.setBounds(632, 503, 63, 23);
-		getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		/*Creates a new button. When clicked, the user is redirected to 
+		the Edit Recipe page where they can modify the recipe's information. */
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setBounds(632, 503, 63, 23);
+		getContentPane().add(btnEdit);
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					EditRecipeView editview= new EditRecipeView(r);
 					editview.setVisible(true);
@@ -75,11 +77,11 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 		});
-		
-		JButton btnNewButton_2 = new JButton("Remove");
-		btnNewButton_2.setBounds(519, 503, 103, 23);
-		getContentPane().add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		// Creates a new button. When clicked, the recipe is removed from the user's personal collection.
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.setBounds(519, 503, 103, 23);
+		getContentPane().add(btnRemove);
+		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					db.removeRecipes(currentUser, r);
 					UserRecipeCollection collection = new UserRecipeCollection();
@@ -89,10 +91,11 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 		});
-		JButton btnNewButton = new JButton("Return to List");
-		btnNewButton.setBounds(705, 503, 131, 23);
-		getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		// Creates a new button. When clicked user is redirected back to the list of recipes.
+		JButton btnReturn = new JButton("Return to List");
+		btnReturn.setBounds(705, 503, 131, 23);
+		getContentPane().add(btnReturn);
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					UserRecipeCollection collection = new UserRecipeCollection();
 					collection.setVisible(true);
