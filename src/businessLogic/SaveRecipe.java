@@ -9,7 +9,7 @@ import persistence.UsersDAO;
 
 public class SaveRecipe {
     
-    protected ArrayList<Recipes> myRecipes;
+    public ArrayList<Recipes> myRecipes;
     /* The database containing user information is accessed through the data access
 	object, UsersDAO*/
     UsersDAO usersinfo = new UserDAOImpl();
@@ -38,7 +38,8 @@ public class SaveRecipe {
      * @param recipe is the user's recipe they want to add
      */
     public void save(Recipes recipe) {
-        usersinfo.addRecipes(UserActivity.getCurrentUser(),recipe);
+        myRecipes.add(recipe);
+        usersinfo.addRecipes(UserActivity.getCurrentUser(), recipe);
     }
 
     /**

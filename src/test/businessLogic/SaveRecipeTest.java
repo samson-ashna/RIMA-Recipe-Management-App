@@ -1,13 +1,16 @@
-package businessLogic;
+package test.businessLogic;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.*;
-import org.junit.jupiter.api.*;
+import java.util.ArrayList;
 
-import businessLogic.*;
-import objects.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import businessLogic.SaveRecipe;
+import objects.Recipes;
 
 public class SaveRecipeTest {
     
@@ -35,8 +38,13 @@ public class SaveRecipeTest {
     void testGetRecipe() {
 
         Recipes temp = new Recipes("Boiled Egg", 6, 0);
+        ArrayList<String> ingredients = new ArrayList<>();
+        temp.setIngredients(ingredients);
+
         SaveRecipe test = new SaveRecipe();
         test.save(temp);
+
+        System.out.println(test.getRecipes());
 
         assertEquals(test.getRecipe("Boiled Egg").getName(), recipes.getRecipe("Boiled Egg").getName());
 

@@ -12,6 +12,7 @@
         "jdk.*",
         "org.graalvm.*",
         "io.micrometer.shaded.*"
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 
 }

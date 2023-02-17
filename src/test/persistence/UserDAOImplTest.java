@@ -1,4 +1,4 @@
-package persistence;
+package test.persistence;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
 import objects.User;
+import persistence.UserDAOImpl;
 
 class UserDAOImplTest {
 	

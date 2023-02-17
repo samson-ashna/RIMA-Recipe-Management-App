@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class Recipes {
 
-	protected String name;
-	protected int protein;
-	protected int carbs;
+	public String name;
+	public int protein;
+	public int carbs;
 	String instructions;
 
-	ArrayList<String> ingredients;
+	public ArrayList<String> ingredients;
 	/**
 	 * Constructor that initialize the Recipes object with name, protein and carbs. 
 	 * @param name is a string that represents the recipe's name;
@@ -94,6 +94,8 @@ public class Recipes {
 
 	public void setIngredients(ArrayList<String> s) {
 
+		System.out.println(s);
+
 		ingredients = new ArrayList<>();
 
 		for (int i = 0; i < s.size(); i++) {
@@ -119,7 +121,9 @@ public class Recipes {
 	 */
 
 	public String getIngredients() {
+		
 		String ingredientsText = "";
+		
 		for (String item : ingredients) {
 			ingredientsText += item + "\n";
 		}
