@@ -138,10 +138,6 @@ class Password
     }
 }
 
-class Recipes
-{
-
-}
 
 /*class Allergies
 {

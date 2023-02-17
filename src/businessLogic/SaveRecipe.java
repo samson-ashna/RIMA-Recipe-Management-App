@@ -48,7 +48,7 @@ public class SaveRecipe {
      */
     public void save(Recipes recipe) {
         myRecipes.add(recipe);
-        usersinfo.addRecipes(UserActivity.getCurrentUser(), recipe);
+        
     }
 
     /**
