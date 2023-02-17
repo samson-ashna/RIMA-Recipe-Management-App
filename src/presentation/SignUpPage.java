@@ -162,7 +162,6 @@ public class SignUpPage extends JFrame {
 		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		eggAllergy.setBounds(190, 266, 96, 31);
 		
-		//Set up the content panes for allergy check boxes.
 		getContentPane().add(eggAllergy);
 		milkAllergy.setBounds(190, 308, 96, 25);
 		
@@ -194,12 +193,14 @@ public class SignUpPage extends JFrame {
 				//Create a HomePage window
 				String name = enterName.getText();
 				String password = enterPass.getText();
+				//Message to show so the field is not left empty
 				if(name.length()==0) {
 					label.setText("Need to enter a username!");
 				}else if (!UserActivity.checkUserName(name)) {
 					if(!enterPassAgain.getText().equals(password)) {
 						label.setText("Passwords do not match!");
 					}else {
+						//create a new login for a new user if no username or password matches in the system
 						User newUser = new User(name, password);
 						UsersDAO userDAO = new UserDAOImpl();
 						userDAO.add(newUser);
@@ -224,7 +225,8 @@ public class SignUpPage extends JFrame {
 						win.dispose();
 					}
 				}else {
-					label.setText("User name already exits.Select another!");
+					//other username accounts can be chosen if user knows the required username and password
+					label.setText("User name already exists. Select another!");
 					label.setVisible(true);
 				}		
 			}
