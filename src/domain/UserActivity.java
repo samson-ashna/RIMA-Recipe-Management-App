@@ -4,6 +4,7 @@ import objects.User;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 
+//created a class to keep track of the user's activity regarding their username and password
 public class UserActivity {
 	static User currentUser;
 	static UsersDAO usersinfo = new UserDAOImpl();
@@ -14,10 +15,13 @@ public class UserActivity {
 		}
 		return userExists;
 	}
+	
+	//this method checks whether the password matches the user's login username saved in the database
 	public static boolean checkPassword(String userName,String password) {
 		return usersinfo.get(userName).checkPassword(password);
 	}
 	
+	//the current logged in user gets their information from the database
 	public static User getCurrentUser() {
 		for(User user : usersinfo.getAll()) {
 			if(user.loggedIn) {
