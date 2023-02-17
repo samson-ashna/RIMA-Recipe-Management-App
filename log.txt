@@ -30,6 +30,17 @@ Original Allocated Time vs Actual Time Spent
 	  - Original: 1 Day
 	  - Actual : 1 Day
   	-SaveRecipes UI, implementation of edit and remove functionalities (Sheida)
+	
+**Created JUnit5 test classes for domain and objects folder**
+	-created a few tester files
+	  - Original: 1 Day
+	  - Actual : 1 Day
+	-added comments
+	-Implemented Dietary Restrictions Class
+	 - Original: 1 day
+	 - Actual : 2 days
+	-User Login
+	-(Ashna)
   	
 **User Account**
 	-Stub User Database, implementation of data access object(Sheida)
