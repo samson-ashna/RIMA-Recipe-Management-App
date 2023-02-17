@@ -1,5 +1,5 @@
 # Recipe and Ingredient Management App (RIMA)
-**To Run: src/presentation/main.java**
+**To Run: src/presentation/Main.java**
 ## Team 1 Group Members
 - Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
 - Natalie Dean (**NatalieRDean**, 217880022)
