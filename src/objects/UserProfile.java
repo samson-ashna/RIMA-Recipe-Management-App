@@ -14,8 +14,6 @@ public class UserProfile
     // Recipes
     ArrayList<Recipes> recipes = new ArrayList<Recipes>();
     // Allergies
-    //ArrayList<Allergies> allergens = new ArrayList<Allergies>();
-    //Hashtable<Integer, Integer> allergens = new Hashtable<Integer, Integer>();
     Allergies allergens;
 
     public UserProfile()
@@ -137,25 +135,3 @@ class Password
         return this.password;
     }
 }
-
-
-/*class Allergies
-{
-    //ArrayList<String> allergies = new ArrayList<String>();
-    String allergen;
-
-    public Allergies()
-    {
-
-    }
-
-    public Allergies(String allergen)
-    {
-        this.allergen = allergen;
-    }
-
-    public String toString()
-    {
-        return this.allergen;
-    }
-}*/
