@@ -25,7 +25,7 @@ class UserDAOImplTest {
 	@BeforeAll
 	static void init() {
 		usersDB = new UserDAOImpl();
-		user = new User("Tom");
+		user = new User("Tom", "123");
 		usersDB.add(user);
 		expected.add(user);
 		recipe = new Recipes("cookie",23,34);
@@ -49,7 +49,7 @@ class UserDAOImplTest {
 	}
 	@Test
 	void testAdd() {
-		User user2 = new User("Jake");
+		User user2 = new User("Jake", "123");
 		usersDB.add(user2);
 		expected.add(user2);
 		assertTrue(usersDB.getAll().contains(user2));

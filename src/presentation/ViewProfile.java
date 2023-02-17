@@ -23,6 +23,9 @@ import java.awt.Container;
 import objects.User;
 import java.awt.Component;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class ViewProfile extends JFrame {
 
@@ -57,7 +60,9 @@ public class ViewProfile extends JFrame {
 		});
 	}
 
-	//Adds the current user's info (user name and allergies) to the user info label.
+	/**
+	 * Adds the current user's info (user name and allergies) to the user info label.
+	 */
 	public void displayUserInfo() {
 		User currentUser = UserActivity.getCurrentUser();		
 		if(currentUser != null) {

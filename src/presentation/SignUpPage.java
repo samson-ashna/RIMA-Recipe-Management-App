@@ -28,6 +28,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {
 

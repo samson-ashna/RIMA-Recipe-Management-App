@@ -5,11 +5,16 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Set;
 
+/**
+ * 
+ */
 public class Allergies
 {
     Hashtable<String, Integer> allergies;
 
-    // lists the options of allergies into a hashtable
+    /**
+     * Lists the options of allergies into a hashtable
+     */
     public Allergies()
     {
         this.allergies = new Hashtable<String, Integer>();
@@ -19,7 +24,10 @@ public class Allergies
         this.allergies.put("Seafood", 0);
     }
     
-    // places and updates the hashtable keys where the allergies are contained
+    /**
+     * Places and updates the hashtable keys where the allergies are contained
+     * @param prompt
+     */
     public Allergies(String prompt)
     {
         this.allergies = new Hashtable<String, Integer>();
@@ -50,6 +58,10 @@ public class Allergies
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public ArrayList<String> getAllergyNames()
     {
         Set<String> keys = this.allergies.keySet();
@@ -60,11 +72,18 @@ public class Allergies
         }
         return array;
     }
+
+    /**
+     * 
+     * @return
+     */
     public Hashtable<String, Integer> getAllergies(){
     	return this.allergies;
     }
 
-    //the specific allergy is displayed as an output to the user
+    /**
+     * The specific allergy is displayed as an output to the user
+     */
     public String toString()
     {
         String eggs = "Eggs";
@@ -92,4 +111,5 @@ public class Allergies
 
         return output.substring(0, output.length() - 1);
     }
+    
 }

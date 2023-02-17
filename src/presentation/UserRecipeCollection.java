@@ -22,6 +22,9 @@ import objects.Recipes;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class UserRecipeCollection extends JFrame {
 
@@ -53,7 +56,9 @@ public class UserRecipeCollection extends JFrame {
 		});
 	}
 	
-	//Adds the current user's saved recipes to the list section to display them.
+	/**
+	 * Adds the current user's saved recipes to the list section to display them.
+	 */
 	public void addUserRecipes() {
 		//Create a new list model for the user's recipes.
 		DefaultListModel<String> model = new DefaultListModel<String>();		

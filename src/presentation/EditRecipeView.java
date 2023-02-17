@@ -18,6 +18,9 @@ import javax.swing.border.EmptyBorder;
 import objects.Recipes;
 import javax.swing.JEditorPane;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class EditRecipeView extends JDialog {
 	//panel object

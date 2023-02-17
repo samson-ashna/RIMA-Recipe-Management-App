@@ -23,6 +23,9 @@ import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class SaveRecipesView extends JFrame {
 	//Panel object

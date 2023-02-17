@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 import objects.Recipes;
 
+/**
+ * 
+ */
 public class RecipesDAOImpl implements DAO<Recipes> {
 	
 	private static ArrayList<Recipes> dbRecipes;
 	
+	/**
+	 * 
+	 */
 	public RecipesDAOImpl() {
 		//stub implementation of the recipes database
 		dbRecipes=new ArrayList<Recipes>();
@@ -42,10 +48,10 @@ public class RecipesDAOImpl implements DAO<Recipes> {
 				+ "Stir until the sauce has reduced and evenly glazes the chicken.");
 		dbRecipes.add(recipe2);
 	}
+
 	/**
 	 * Returns the Recipe object in the database with the name n.
 	 */
-
 	@Override
 	public Recipes get(String n) {
 		Recipes recipe = null;
@@ -56,29 +62,30 @@ public class RecipesDAOImpl implements DAO<Recipes> {
 		}
 		return recipe;
 	}
+
 	/**
 	 * Return an array list containing all Recipe objects in the database.
 	 */
-	
 	@Override
 	public ArrayList<Recipes> getAll() {
 		return dbRecipes;
 	}
+
 	/**
 	 * Adds Recipes r to the database
 	 */
-	
 	@Override
 	public void add(Recipes r) {
 		dbRecipes.add(r);
 		
 	}
+
 	/**
 	 * Removes Recipes r from the database
 	 */
-	
 	@Override
 	public void remove(Recipes r) {
 		dbRecipes.remove(r);
 	}
+	
 }

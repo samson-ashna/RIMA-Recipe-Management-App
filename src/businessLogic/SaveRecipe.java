@@ -7,18 +7,27 @@ import objects.User;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 
+/**
+ * 
+ */
 public class SaveRecipe {
     
     public ArrayList<Recipes> myRecipes;
     /* The database containing user information is accessed through the data access
 	object, UsersDAO*/
     UsersDAO usersinfo = new UserDAOImpl();
+    
     /**
      * Default constructor
      */
     public SaveRecipe() {
     	myRecipes = new ArrayList<>();
     }
+
+    /**
+     * 
+     * @param currentUser
+     */
     public SaveRecipe(User currentUser) {
 		
 		myRecipes = usersinfo.getRecipes(currentUser);
@@ -50,6 +59,11 @@ public class SaveRecipe {
         return myRecipes;
     }
 
+    /**
+     * 
+     * @param name
+     * @return
+     */
     public Recipes getRecipe(String name) {
 
         for(Recipes e : myRecipes) {
@@ -64,10 +78,17 @@ public class SaveRecipe {
 
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getSize() {
         return myRecipes.size();
     }
 
+    /**
+     * 
+     */
     @Override
     public String toString() {
 

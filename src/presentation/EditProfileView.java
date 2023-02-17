@@ -20,6 +20,9 @@ import objects.User;
 
 import persistence.UserDAOImpl;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class EditProfileView extends JFrame {
 
@@ -67,7 +70,9 @@ public class EditProfileView extends JFrame {
 		});
 	}
 	
-	//Set up allergy check list.
+	/**
+	 * Set up allergy check list.
+	 */
 	public void allergiesSetUp() {
 		currentUser = UserActivity.getCurrentUser();
 		if(currentUser != null) {

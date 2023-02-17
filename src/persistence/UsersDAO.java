@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import objects.Recipes;
 import objects.User;
 
+/**
+ * 
+ */
 public interface UsersDAO extends DAO<User> {
 	ArrayList<Recipes> getRecipes(User u);
 	void addRecipes(User u,Recipes r);

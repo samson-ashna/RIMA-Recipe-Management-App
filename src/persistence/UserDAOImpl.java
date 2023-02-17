@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import objects.Recipes;
 import objects.User;
 
+/**
+ * 
+ */
 public class UserDAOImpl implements UsersDAO {
 
 	private static ArrayList<User> users = new ArrayList<User>();
@@ -37,7 +40,6 @@ public class UserDAOImpl implements UsersDAO {
 	/**
 	 * Adds User u to the database.
 	 */
-
 	@Override
 	public void add(User u) {
 
@@ -56,7 +58,6 @@ public class UserDAOImpl implements UsersDAO {
 	/**
 	 * Return an array list of Recipes objects in the user's collection
 	 */
-
 	@Override
 	public ArrayList<Recipes> getRecipes(User u) {
 		for (User user : users) {

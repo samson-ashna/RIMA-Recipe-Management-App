@@ -22,6 +22,9 @@ import objects.Recipes;
 import persistence.DAO;
 import persistence.RecipesDAOImpl;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class RecipeList extends JFrame {
 
@@ -47,7 +50,9 @@ public class RecipeList extends JFrame {
 			}
 		});
 	}
-	//Adds the recipes in the app's database to the list section to display them
+	/**
+	 * Adds the recipes in the app's database to the list section to display them
+	 */
 	public void addRecipes() {
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		DAO<Recipes> db = new RecipesDAOImpl();

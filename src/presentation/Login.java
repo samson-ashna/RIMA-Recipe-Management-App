@@ -21,6 +21,9 @@ import businessLogic.UserActivity;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class Login extends JFrame {
 	

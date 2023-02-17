@@ -20,13 +20,19 @@ import objects.Recipes;
 import persistence.DAO;
 import persistence.RecipesDAOImpl;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class ViewRecipeDB extends JDialog {
 
 	//Panel object
 	private final JPanel contentPanel= new JPanel();
 
-
+	/**
+	 * 
+	 * @param name
+	 */
 	public void NewScreen(String name) {
 		try {
 			ViewRecipeDB dialog = new ViewRecipeDB(name);

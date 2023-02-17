@@ -19,12 +19,18 @@ import persistence.UsersDAO;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+/**
+ * 
+ */
 @SuppressWarnings("serial")
 public class ViewRecipeUserCollection extends JDialog {
 
 	private final JPanel contentPanel= new JPanel();
 
-
+	/**
+	 * 
+	 * @param name
+	 */
 	public void NewScreen(String name) {
 		try {
 			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name);
