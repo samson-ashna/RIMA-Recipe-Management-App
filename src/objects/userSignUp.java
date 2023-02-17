@@ -1,6 +1,4 @@
-package userLogin;
-
-import objects.User;
+package objects;
 
 public class userSignUp
 {
