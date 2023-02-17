@@ -6,10 +6,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
 
 import domain.UserActivity;
+import objects.Allergies;
 import objects.User;
 import persistence.UserDAOImpl;
 import persistence.UsersDAO;
@@ -20,12 +23,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {
@@ -45,8 +50,10 @@ public class SignUpPage extends JFrame {
 	private JTextField enterPassAgain = new JPasswordField();
 	private final JButton registerButton = new JButton("Register");
 	private final JButton cancelButton = new JButton("Cancel");
-	
-	
+	private final JCheckBoxMenuItem eggAllergy = new JCheckBoxMenuItem("Eggs");
+	private final JCheckBoxMenuItem milkAllergy = new JCheckBoxMenuItem("Milk");
+	private final JCheckBoxMenuItem peanutAllergy = new JCheckBoxMenuItem("Peanuts");
+	private final JCheckBoxMenuItem seafoodAllergy = new JCheckBoxMenuItem("Seafood");
 	
 
 	/**
@@ -75,7 +82,7 @@ public class SignUpPage extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
-		setSize(478, 384);
+		setSize(473, 524);
 		setLocationRelativeTo(null);		
 		
 		//Get content pane.
@@ -111,8 +118,7 @@ public class SignUpPage extends JFrame {
 		enterName.setAlignmentX(CENTER_ALIGNMENT);
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
-		
-		//Add labels and text fields to text pane.
+
 		textPane.add(Box.createVerticalGlue());
 		textPane.add(nameLabel);
 		textPane.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -131,36 +137,41 @@ public class SignUpPage extends JFrame {
 		
 		//Create a new button pane.
 		buttonPane = new JPanel(); 
-		buttonPane.setBounds(0, 300, 462, 45);
+		buttonPane.setBounds(10, 516, 462, 45);
 		//Set an invisible border for the text pane.
 		buttonPane.setBorder(new EmptyBorder(10, 10, 10, 10));	
 		//Set the text pane's layout manager to the vertical box layout.
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		
-		//Set up button fonts.
-		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		//Add buttons to button pane.		
-		buttonPane.add(Box.createHorizontalGlue());
-		buttonPane.add(registerButton);
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		buttonPane.add(cancelButton);
-		buttonPane.add(Box.createHorizontalGlue());
 		getContentPane().setLayout(null);
 		
 		//Add text and button panes to the content pane.
 		contentPane.add(textPane);
 		
-		JCheckBoxMenuItem chckbxmntmNewCheckItem = new JCheckBoxMenuItem("");
-		textPane.add(chckbxmntmNewCheckItem);
-		contentPane.add(buttonPane);
-		
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(new Color(255, 0, 0));
-		label.setBounds(81, 269, 322, 31);
+		label.setBounds(78, 411, 322, 25);
 		getContentPane().add(label);
+		registerButton.setBounds(100, 435, 114, 25);
+		getContentPane().add(registerButton);
+		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		cancelButton.setBounds(247, 435, 114, 25);
+		getContentPane().add(cancelButton);
+		
+		//Set up button fonts.
+		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		eggAllergy.setBounds(190, 266, 96, 31);
+		
+		getContentPane().add(eggAllergy);
+		milkAllergy.setBounds(190, 308, 96, 25);
+		
+		getContentPane().add(milkAllergy);
+		peanutAllergy.setBounds(190, 344, 96, 25);
+		
+		getContentPane().add(peanutAllergy);
+		seafoodAllergy.setBounds(190, 380, 96, 31);
+		
+		getContentPane().add(seafoodAllergy);
 		
 		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
@@ -182,8 +193,9 @@ public class SignUpPage extends JFrame {
 				//Create a HomePage window
 				String name = enterName.getText();
 				String password = enterPass.getText();
-				
-				if(!UserActivity.checkUserName(name)) {
+				if(name.length()==0) {
+					label.setText("Need to enter a username!");
+				}else if (!UserActivity.checkUserName(name)) {
 					if(!enterPassAgain.getText().equals(password)) {
 						label.setText("Passwords do not match!");
 					}else {
@@ -191,6 +203,18 @@ public class SignUpPage extends JFrame {
 						UsersDAO userDAO = new UserDAOImpl();
 						userDAO.add(newUser);
 						newUser.loggedIn = true;
+						if(eggAllergy.isSelected()){
+							newUser.allergens.getAllergies().replace("Eggs", 1);
+						}
+						if(milkAllergy.isSelected()){
+							newUser.allergens.getAllergies().replace("Milk", 1);
+						}
+						if(peanutAllergy.isSelected()){
+							newUser.allergens.getAllergies().replace("Peanuts", 1);
+						}
+						if(seafoodAllergy.isSelected()){
+							newUser.allergens.getAllergies().replace("Seafood", 1);
+						}
 						HomePage homePage = new HomePage();
 						homePage.setVisible(true);
 						contentPane.setVisible(false);

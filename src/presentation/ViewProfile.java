@@ -3,6 +3,7 @@ package presentation;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,12 +15,20 @@ import java.awt.Window;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
 import java.awt.BorderLayout;
 
 import domain.UserActivity;
+import objects.Allergies;
 import objects.User;
+import javax.swing.JTextArea;
+import javax.swing.JList;
+import java.awt.Color;
+import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class ViewProfile extends JFrame {
@@ -33,7 +42,8 @@ public class ViewProfile extends JFrame {
 	private final JButton backButton = new JButton("Back");
 	private final JButton editProfileButton = new JButton("Edit Profile");
 	private JLabel displName = new JLabel();
-	private JLabel allergyInfo =  new JLabel();;
+	private JLabel allergyInfo =  new JLabel();
+
 
 	/**
 	 * Launch the application.
@@ -56,15 +66,24 @@ public class ViewProfile extends JFrame {
 	//Adds the current user's info to the user info label.
 	public void displayUserInfo() {
 		User currentUser = UserActivity.getCurrentUser();		
-		
 		if(currentUser != null) {
 			displName.setText(currentUser.getName());
-			allergyInfo.setText("<html>Allergies<br>");
+			
+			Hashtable<String,Integer> userAllergies = currentUser.getUserAllergies().getAllergies();
+			ArrayList<String> allergyNames = currentUser.getUserAllergies().getAllergyNames();
+			String allergies="";
+			for(String allergy : allergyNames) {
+				if(userAllergies.get(allergy).intValue() == 1) {
+					allergies+=allergy+",";
+				}
+			}
+			allergyInfo.setText("<html>Allergies<br>"+"\n"+allergies);
 		}else {
 			displName.setText("Error: User not logged in.");
 		}
 		
 	}
+	
 	
 	/**
 	 * Create the frame.
@@ -76,12 +95,12 @@ public class ViewProfile extends JFrame {
 		//Set the size and pop up location of the window.
 		setSize(319, 270);	
 		setLocationRelativeTo(null);
-		
 		//Get content pane.
 		contentPane = getContentPane();		
 		
 		//Create a new info pane.
 		infoPane = new JPanel(); 
+		infoPane.setBounds(0, 0, 305, 202);
 		//Set the info pane's layout manager to the vertical box layout.
 		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
@@ -102,6 +121,7 @@ public class ViewProfile extends JFrame {
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel(); 		
+		buttonPane.setBounds(0, 202, 305, 31);
 		//Set an invisible border for the button pane.
 		buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
@@ -116,7 +136,7 @@ public class ViewProfile extends JFrame {
 		buttonPane.add(editProfileButton);	
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
 		buttonPane.add(backButton);
-		
+				
 		//Set up what to do when the back button is pressed.
 		editProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,10 +168,11 @@ public class ViewProfile extends JFrame {
 				win.dispose();				
 			}
 		});
+		getContentPane().setLayout(null);
 		
 		//Add the button and info panes to the content pane.
 		contentPane.add(infoPane);
-		contentPane.add(buttonPane, BorderLayout.PAGE_END);
+		contentPane.add(buttonPane);
 
 	}
 }
