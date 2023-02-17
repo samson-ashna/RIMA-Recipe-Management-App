@@ -1,6 +1,7 @@
 ---------------------------------------------
 Meeting Minutes
-- First Meeting: Discussed system architecture and assigned tasks(30 minutes). 
+- First Meeting: Discussed system architecture and assigned tasks(30 minutes).
+- Second Meeting: Continued working on the GUI (120 minutes) 
 ---------------------------------------------
 
 ---------------------------------------------
@@ -18,14 +19,14 @@ Concerns
 ---------------------------------------------
 Original Allocated Time vs Actual Time Spent
 **View List of Recipes**	
-	- Detailed Story 1 (Shaun)
+	- Save Recipe to personal recipe collection (Shaun)
 	  - Original: 1 Day
 	  - Actual: 1 Day
 	-Stub Recipe Database, implementation of data access object(Sheida)
-	-Recipe list and view recipes UI (Sheida)
+	-Recipe list and view recipes implementation(Sheida,Natalie)
 		
 **Manipulation of Recipe Collection**
-	- Detailed Story 3 (Shaun)
+	- Edit Recipes (Shaun)
 	  - Original: 1 Day
 	  - Actual : 1 Day
   	-SaveRecipes UI, implementation of edit and remove functionalities (Sheida)
@@ -33,4 +34,9 @@ Original Allocated Time vs Actual Time Spent
 **User Account**
 	-Stub User Database, implementation of data access object(Sheida)
 	-Login UI(Sheida)
+	-Allergy information (Felix)
+	-Allergy information UI(Natalie)
+	-Sign up and log in UI (Natalie)
+	-food preferences survey (Ashna)
+	-unit test cases(Ashna)
 ---------------------------------------------
