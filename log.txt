@@ -19,14 +19,14 @@ Concerns
 ---------------------------------------------
 Original Allocated Time vs Actual Time Spent
 **View List of Recipes**	
-	- Detailed Story 1 (Shaun)
+	- Save Recipe to personal recipe collection (Shaun)
 	  - Original: 1 Day
 	  - Actual: 1 Day
 	-Stub Recipe Database, implementation of data access object(Sheida)
 	-Recipe list and view recipes UI (Sheida)
 		
 **Manipulation of Recipe Collection**
-	- Detailed Story 3 (Shaun)
+	- Add Recipes to Personal Recipe Collection (Shaun)
 	  - Original: 1 Day
 	  - Actual : 1 Day
   	-SaveRecipes UI, implementation of edit and remove functionalities (Sheida)
