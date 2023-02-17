@@ -4,79 +4,82 @@ import java.util.ArrayList;
 
 public class Recipes {
 
-    protected String name;
-    protected int protein;
-    protected int carbs;
-    String instructions;
-    @Override
-	public String toString() {
-		return "Name=" + name +"\n"+ "Protein(g) =" + protein + "\n"+"Carbs(g)=" + carbs + "\n"+
-				"Ingredients: "+getIngredients() +"\n"+"Instruction: "+instructions;
-	}
+	protected String name;
+	protected int protein;
+	protected int carbs;
+	String instructions;
 
 	ArrayList<String> ingredients;
 
-    public Recipes(String name, int protein, int carbs) {
-    	
-        this.name = name;
-        this.protein = protein;
-        this.carbs = carbs;
+	public Recipes(String name, int protein, int carbs) {
 
-    }
+		this.name = name;
+		this.protein = protein;
+		this.carbs = carbs;
 
-    public String getName() {
-        return this.name;
-    }
-    public void setName(String name) {
-    	this.name = name;
-    }
+	}
 
-    public int getProtein() {
-        return this.protein;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public int getCarbs() {
-        return this.carbs;
-    }
-    public void setProtein(int protein) {
-    	this.protein = protein;
-    }
-    public void setCarbs(int carbs) {
-    	this.carbs=carbs;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setInstructions(String s) {
+	public int getProtein() {
+		return this.protein;
+	}
 
-        instructions =  s;
+	public int getCarbs() {
+		return this.carbs;
+	}
 
-    }
+	public void setProtein(int protein) {
+		this.protein = protein;
+	}
 
-    public void setIngredients(ArrayList<String> s) {
+	public void setCarbs(int carbs) {
+		this.carbs = carbs;
+	}
 
-        ingredients = new ArrayList<>();
+	public void setInstructions(String s) {
 
-        for(int i = 0; i < s.size(); i++) {
+		instructions = s;
 
-            ingredients.add(s.get(i));
+	}
 
-        }
+	public void setIngredients(ArrayList<String> s) {
 
-    }
+		ingredients = new ArrayList<>();
 
-    public String getInstructions() {
+		for (int i = 0; i < s.size(); i++) {
 
-        return instructions;
+			ingredients.add(s.get(i));
 
-    }
+		}
 
-    public String getIngredients() {
-    	String ingredientsText="";
-    	for (String item:ingredients) {
-    		ingredientsText +=item+"\n";
-    	}
+	}
 
-        return ingredientsText;
+	public String getInstructions() {
 
-    }
-    
+		return instructions;
+
+	}
+
+	public String getIngredients() {
+		String ingredientsText = "";
+		for (String item : ingredients) {
+			ingredientsText += item + "\n";
+		}
+
+		return ingredientsText;
+
+	}
+
+	@Override
+	public String toString() {
+		return "Name=" + name + "\n\n" + "Protein(g) =" + protein + "\n\n" + "Carbs(g)=" + carbs + "\n\n" + "Ingredients: "+"\n"
+				+ getIngredients() + "\n" + "Instruction: " + instructions;
+	}
 }

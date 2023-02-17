@@ -74,7 +74,7 @@ public class RecipeList extends JFrame {
 		addRecipes();
 		list.getSelectionModel().addListSelectionListener(e-> {
 			String name = (String) list.getSelectedValue();
-			ViewRecipe newWindow = new ViewRecipe(name);
+			ViewRecipeDB newWindow = new ViewRecipeDB(name);
 			newWindow.NewScreen(name);
 			contentPane.setVisible(false);
 			Window win = SwingUtilities.getWindowAncestor(contentPane);

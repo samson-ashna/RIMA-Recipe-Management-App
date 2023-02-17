@@ -20,14 +20,14 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
-public class ViewRecipeCollection extends JDialog {
+public class ViewRecipeUserCollection extends JDialog {
 
 	private final JPanel contentPanel= new JPanel();
 
 
 	public void NewScreen(String name) {
 		try {
-			ViewRecipeCollection dialog = new ViewRecipeCollection(name);
+			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class ViewRecipeCollection extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewRecipeCollection(String name) {
+	public ViewRecipeUserCollection(String name) {
 		setBounds(100, 100, 862, 574);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 836, 503);

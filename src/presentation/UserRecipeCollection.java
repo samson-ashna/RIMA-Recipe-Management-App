@@ -107,7 +107,7 @@ public class UserRecipeCollection extends JFrame {
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
 			
-			ViewRecipeCollection newWindow = new ViewRecipeCollection(name);
+			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name);
 			//Set up the ViewRecipe window and make it visible.
 			newWindow.NewScreen(name);
 			contentPane.setVisible(false);

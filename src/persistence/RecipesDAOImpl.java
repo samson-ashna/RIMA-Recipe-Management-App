@@ -33,7 +33,7 @@ public class RecipesDAOImpl implements DAO<Recipes> {
 		ArrayList<String> ingredients2 = new ArrayList<String>();
 		ingredients2.add("2 lb chicken thighs sliced into chunks");
 		ingredients2.add("1 cup soy sauce(240 ml)");
-		ingredients2.add("1/2 cup brown sugar(110 g");
+		ingredients2.add("1/2 cup brown sugar(110 g)");
 		recipe2.setIngredients(ingredients2);
 		recipe2.setInstructions("Sear the chicken thighs evenly in a pan, then flip.\r\n"
 				+ "Add the soy sauce and brown sugar, stirring and bringing to a boil.\r\n"

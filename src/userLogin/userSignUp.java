@@ -12,7 +12,6 @@ public class userSignUp
         //UserProfile felix = new UserProfile();
         //felix.SignUp();
         User shaun = new User();
-        System.out.println(shaun.addAllergen());
-
+        System.out.println(shaun.getUserAllergies().getAllergyNames());
     }
 }
