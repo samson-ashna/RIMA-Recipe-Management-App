@@ -31,3 +31,6 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 - [x] Create User Profile:  Ask the user to enter username, allergies or dietary restrictions/preferences .  Priority: High. Cost: 1 day
 - [x] View User Profile: As a user I want to be able to view my user profile information (username, dietary restrictions/preferences). Priority: High. Cost: 1 day 
 - [x] Edit User Profile:  As an app user, I want to be able to modify my user information.  Priority: High. Cost: 1 day
+- [x] Create a Dietary Restrictions Survey: Ask the user to go through a series of questions to customize likes, dislikes, and other preferences for the user's profile and recommended recipe search results. Priority: High. Cost: 2 days
+- [x] User LogIn: Create a User Login to come back to the app with saved progress each time. Priority: High. Cost: 2 days
+- [x] User SignUp: Create a User Sign Up Page to create new user accounts to save recipies and find new recipies. Priority: High. Cost: 2 days
