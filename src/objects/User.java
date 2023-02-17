@@ -20,13 +20,6 @@ public class User {
 	/**
 	 * Overloaded constructor
 	 * @param name represents a user name
-	 */
-	public User(String name) {
-		this.name = name;
-	}
-	/**
-	 * Overloaded constructor
-	 * @param name represents a user name
 	 * @param password represents the user's password
 	 */
 	public User(String name,String password) {

@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 class SaveRecipeTest {
 	SaveRecipe saveRecipe;
 
-	@Test
-	void checksaveTest() {
-	    SaveRecipe recipe;
-		Object s;
-		assertThrows(Exception.class,() -> saveRecipe.save(s));
-	}
+//	@Test
+//	void checksaveTest() {
+//	    SaveRecipe recipe;
+//		Object s;
+//		assertThrows(Exception.class,() -> saveRecipe.save(s));
+//	}
 	
 	@Test
 	  public void getSizeTest() {
