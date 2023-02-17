@@ -2,11 +2,11 @@ package objects;
 
 import java.util.Hashtable;
 
-public class foodPreferences
+public class FoodPreferences
 {
     Hashtable<String, Integer> foodPreferences;
 
-    public foodPreferences(String prompt)
+    public FoodPreferences(String prompt)
     {
         this.foodPreferences = new Hashtable<String, Integer>();
         this.foodPreferences.put("Gluten Free", 0);
