@@ -49,10 +49,11 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBounds(162, 73, 89, 23);
-		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		//Creates a log in button. When clicked user is redirected to log in page.
+		JButton btnLogIn = new JButton("Login");
+		btnLogIn.setBounds(162, 73, 89, 23);
+		frame.getContentPane().add(btnLogIn);
+		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
 				login.setVisible(true);
@@ -60,28 +61,29 @@ public class Main {
 				frame.dispose();
 			}
 		});
-		
-		JButton btnNewButton_1 = new JButton("Continue as Guest");
-		btnNewButton_1.setBounds(134, 165, 156, 35);
-		frame.getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		//Creates a new button. When clicked user is redirected to the page where they can view recipes in the app's database.
+		JButton btnGuest = new JButton("Continue as Guest");
+		btnGuest.setBounds(134, 165, 156, 35);
+		frame.getContentPane().add(btnGuest);
+		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
-//				frame.setVisible(false);
-//				frame.dispose();
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
-		
+		//label for welcome message.
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel.setBounds(162, 24, 122, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton_2 = new JButton("Create User Profile");
-		btnNewButton_2.setBounds(134, 116, 156, 27);
-		frame.getContentPane().add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		//Creates a new button. When clicked user is redirected to sign up page.
+		JButton btnSignUp = new JButton("Create User Profile");
+		btnSignUp.setBounds(134, 116, 156, 27);
+		frame.getContentPane().add(btnSignUp);
+		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignUpPage signUp = new SignUpPage();
 				signUp.setVisible(true);

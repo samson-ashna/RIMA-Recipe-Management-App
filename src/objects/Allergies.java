@@ -8,6 +8,7 @@ public class Allergies
 {
     Hashtable<String, Integer> allergies;
 
+    // lists the options of allergies into a hashtable
     public Allergies()
     {
         this.allergies = new Hashtable<String, Integer>();
@@ -16,7 +17,8 @@ public class Allergies
         this.allergies.put("Peanuts", 0);
         this.allergies.put("Seafood", 0);
     }
-
+    
+    // places and updates the hashtable keys where the allergies are contained
     public Allergies(String prompt)
     {
         this.allergies = new Hashtable<String, Integer>();
@@ -47,7 +49,7 @@ public class Allergies
         }
     }
 
-    public ArrayList<String> getRecipes()
+    public ArrayList<String> getAllergyNames()
     {
         Set<String> keys = this.allergies.keySet();
         ArrayList<String> array = new ArrayList<String>();
@@ -57,7 +59,11 @@ public class Allergies
         }
         return array;
     }
+    public Hashtable<String, Integer> getAllergies(){
+    	return this.allergies;
+    }
 
+    //the specific allergy is displayed as an output to the user
     public String toString()
     {
         String eggs = "Eggs";

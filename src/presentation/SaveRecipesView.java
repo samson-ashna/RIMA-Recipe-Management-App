@@ -25,11 +25,12 @@ import objects.Recipes;
 
 @SuppressWarnings("serial")
 public class SaveRecipesView extends JFrame {
-
+	//Panel object
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	//text field objects
+	private JTextField userName;
+	private JTextField proteinInfo;
+	private JTextField carbsInfo;
 
 	/**
 	 * Launch the application.
@@ -52,26 +53,22 @@ public class SaveRecipesView extends JFrame {
 	 */
 	public SaveRecipesView() {
 		setTitle("RIMA - Save Recipe");
+		//Set the application to exit when closed
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//Set the size and pop up location of the window.
 		setSize(675, 762);
 		setLocationRelativeTo(null);
+		//creates a new content pane
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(327, 71, 216, 41);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		
-		
-		JLabel lblNewLabel = new JLabel("Recipe Name");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(112, 58, 157, 59);
-		contentPane.add(lblNewLabel);
+			
+		//Creates labels for recipe name, ingredients, instruction, protein and carbs information
+		JLabel lblName = new JLabel("Recipe Name");
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblName.setBounds(112, 58, 157, 59);
+		contentPane.add(lblName);
 		
 		JLabel lblIngredients = new JLabel("Ingredients");
 		lblIngredients.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -84,53 +81,52 @@ public class SaveRecipesView extends JFrame {
 		lblInstruction.setBounds(112, 409, 157, 59);
 		contentPane.add(lblInstruction);
 		
-		JLabel lblProteing = new JLabel("Protein (g)");
-		lblProteing.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblProteing.setBounds(112, 124, 157, 59);
-		contentPane.add(lblProteing);
+		JLabel lblProtein = new JLabel("Protein (g)");
+		lblProtein.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblProtein.setBounds(112, 124, 157, 59);
+		contentPane.add(lblProtein);
+		JLabel lblCarbs = new JLabel("Carbs(g)");
+		lblCarbs.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCarbs.setBounds(112, 196, 157, 59);
+		contentPane.add(lblCarbs);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(327, 139, 216, 36);
-		contentPane.add(textField_3);
+		//Creates text fields where user can enter the new recipe's name, protein, carbs, ingredients, and instruction.
+		userName = new JTextField();
+		userName.setBounds(327, 71, 216, 41);
+		contentPane.add(userName);
+		userName.setColumns(10);
 		
+		proteinInfo = new JTextField();
+		proteinInfo.setColumns(10);
+		proteinInfo.setBounds(327, 139, 216, 36);
+		contentPane.add(proteinInfo);
 		
-		JLabel lblCarbscal = new JLabel("Carbs(g)");
-		lblCarbscal.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblCarbscal.setBounds(112, 196, 157, 59);
-		contentPane.add(lblCarbscal);
+		carbsInfo = new JTextField();
+		carbsInfo.setColumns(10);
+		carbsInfo.setBounds(327, 207, 216, 36);
+		contentPane.add(carbsInfo);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(327, 207, 216, 36);
-		contentPane.add(textField_4);
+		JTextArea ingredientInfo = new JTextArea();
+		ingredientInfo.setBounds(327, 270, 216, 120);
+		contentPane.add(ingredientInfo);
 		
+		JTextArea instructionInfo = new JTextArea();
+		instructionInfo.setLineWrap(true);
+		instructionInfo.setBounds(327, 430, 221, 171);
+		contentPane.add(instructionInfo);
+			
+		//Creates label for error messages for when user enters string instead of integers for protein and carbs fields.		
+		JLabel lblError1 = new JLabel("");
+		lblError1.setForeground(new Color(255, 0, 0));
+		lblError1.setBounds(120, 241, 301, 14);
+		contentPane.add(lblError1);
 		
+		JLabel lblError2 = new JLabel("");
+		lblError2.setForeground(new Color(255, 0, 0));
+		lblError2.setBounds(120, 169, 185, 14);
+		contentPane.add(lblError2);
 		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(226, 628, 207, 59);
-		contentPane.add(btnNewButton);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(327, 270, 216, 120);
-		contentPane.add(textArea);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setLineWrap(true);
-		textArea_1.setBounds(327, 430, 221, 171);
-		contentPane.add(textArea_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setForeground(new Color(255, 0, 0));
-		lblNewLabel_1.setBounds(120, 241, 301, 14);
-		contentPane.add(lblNewLabel_1);
-		lblNewLabel_1.setVisible(false);
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setForeground(new Color(255, 0, 0));
-		lblNewLabel_2.setBounds(120, 169, 185, 14);
-		contentPane.add(lblNewLabel_2);
-		
+		//Creates a back button. When clicked, user is redirected to their recipe colleciton
 		JButton btnNewButton_1 = new JButton("Back");
 		btnNewButton_1.setBounds(542, 11, 89, 23);
 		contentPane.add(btnNewButton_1);
@@ -144,48 +140,50 @@ public class SaveRecipesView extends JFrame {
 			}
 		});
 		
-		
-		lblNewLabel_2.setVisible(false);
-		btnNewButton.addActionListener(new ActionListener() {
+		//Creates a save button.When clicked, a new recipe object is created and added to the user's personal collection of recipes.
+		JButton save = new JButton("Save");
+		save.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		save.setBounds(226, 628, 207, 59);
+		contentPane.add(save);
+		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean incorrectValues = false;
-				String name = textField.getText();
+				String name = userName.getText();
 				int protein=0;
 				try
 				{
-				    protein = Integer.parseInt(textField_3.getText());
-				    lblNewLabel_2.setVisible(false);
+				    protein = Integer.parseInt(proteinInfo.getText());
 				}
 				catch (NumberFormatException e1)
 				{
 					incorrectValues = true;
-					lblNewLabel_2.setText("Must be an integer!");
-					lblNewLabel_2.setVisible(true);
+					lblError2.setText("Must be an integer!");
 				}
 				int carbs=0;
 				try
 				{
-				    carbs = Integer.parseInt(textField_4.getText());
-				    lblNewLabel_1.setVisible(false);
+				    carbs = Integer.parseInt(carbsInfo.getText());
 				}
 				catch (NumberFormatException e21)
 				{
 					incorrectValues = true;
-					lblNewLabel_1.setText("Must be an integer!");
-					lblNewLabel_1.setVisible(true);
+					lblError1.setText("Must be an integer!");
 					
 				}
+				/*if user has not entered strings for protein and carbs, ingredient list 
+				and instruction is read and a new recipe is created and saved to the user's personal collection.
+				*/
 				if(!incorrectValues) {
 					ArrayList<String> ingredients = new ArrayList<String>();
-					ingredients=new ArrayList<> (Arrays.asList(textArea.getText().split("\n")));
-					String instructions = textArea_1.getText();
+					ingredients=new ArrayList<> (Arrays.asList(ingredientInfo.getText().split("\n")));
+					String instructions = instructionInfo.getText();
 					Recipes newRecipe;
 					newRecipe = new Recipes(name, protein, carbs);
 					newRecipe.setIngredients(ingredients);
 					newRecipe.setInstructions(instructions);
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(newRecipe);
-					
+					//User is then redirected back to their recipe collection page.
 					UserRecipeCollection back = new UserRecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);

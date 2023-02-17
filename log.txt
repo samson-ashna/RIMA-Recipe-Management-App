@@ -21,17 +21,16 @@ Original Allocated Time vs Actual Time Spent
 	- Detailed Story 1 (Shaun)
 	  - Original: 1 Day
 	  - Actual: 1 Day
-	-Stub Recipe Database(Sheida)
-	-Recipe list UI (Sheida)
-	-View Recipe UI (Sheida)
+	-Stub Recipe Database, implementation of data access object(Sheida)
+	-Recipe list and view recipes UI (Sheida)
 		
 **Manipulation of Recipe Collection**
 	- Detailed Story 3 (Shaun)
 	  - Original: 1 Day
 	  - Actual : 1 Day
-  	-SaveRecipes UI (Sheida)
+  	-SaveRecipes UI, implementation of edit and remove functionalities (Sheida)
   	
 **User Account**
-	-Stub User Database(Sheida)
+	-Stub User Database, implementation of data access object(Sheida)
 	-Login UI(Sheida)
 ---------------------------------------------
