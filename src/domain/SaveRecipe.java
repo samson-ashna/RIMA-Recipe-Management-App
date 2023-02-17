@@ -10,6 +10,8 @@ import persistence.UsersDAO;
 public class SaveRecipe {
     
     protected ArrayList<Recipes> myRecipes;
+    /* The database containing user information is accessed through the data access
+	object, UsersDAO*/
     UsersDAO usersinfo = new UserDAOImpl();
     /**
      * Default constructor

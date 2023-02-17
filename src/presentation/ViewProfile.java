@@ -43,6 +43,7 @@ public class ViewProfile extends JFrame {
 	private final JButton editProfileButton = new JButton("Edit Profile");
 	private JLabel displName = new JLabel();
 	private JLabel allergyInfo =  new JLabel();
+	private final JButton btnNewButton = new JButton("Survey");
 
 
 	/**
@@ -92,7 +93,7 @@ public class ViewProfile extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
-		setSize(319, 270);	
+		setSize(376, 310);	
 		setLocationRelativeTo(null);
 		//Get content pane.
 		contentPane = getContentPane();		
@@ -120,58 +121,63 @@ public class ViewProfile extends JFrame {
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel(); 		
-		buttonPane.setBounds(0, 202, 305, 31);
+		buttonPane.setBounds(0, 202, 240, 31);
 		//Set an invisible border for the button pane.
 		buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		
-		//Set up the button fonts.
-		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
-		//Add buttons to button pane.		
-		buttonPane.add(Box.createHorizontalGlue());
-		buttonPane.add(editProfileButton);	
-		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-		buttonPane.add(backButton);
-				
-		//Set up what to do when the back button is pressed.
-		editProfileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Create a HomePage window
-				EditProfileView editProfileView = new EditProfileView();
-						
-				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				editProfileView.setVisible(true);
-				contentPane.setVisible(false);
-						
-				//Close the UserRecipeCollection Window.
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();				
-			}
-		});				
-				
-		//Set up what to do when the back button is pressed.
-		backButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Create a HomePage window
-				HomePage homePage = new HomePage();
-						
-				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				homePage.setVisible(true);
-				contentPane.setVisible(false);
-						
-				//Close the UserRecipeCollection Window.
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();				
-			}
-		});
 		getContentPane().setLayout(null);
 		
 		//Add the button and info panes to the content pane.
 		contentPane.add(infoPane);
 		contentPane.add(buttonPane);
+		
+		getContentPane().add(btnNewButton);
+		editProfileButton.setBounds(185, 240, 92, 21);
+		getContentPane().add(editProfileButton);
+		
+		//Set up the button fonts.
+		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		//Add buttons to button pane.		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		horizontalGlue.setBounds(0, 244, 89, 12);
+		getContentPane().add(horizontalGlue);
+		backButton.setBounds(287, 240, 65, 21);
+		getContentPane().add(backButton);
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		//Set up what to do when the back button is pressed.
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//Create a HomePage window
+		HomePage homePage = new HomePage();
+				
+		//Make the HomePage window visible and the UserRecipeCollection window invisible.
+		homePage.setVisible(true);
+		contentPane.setVisible(false);
+				
+		//Close the UserRecipeCollection Window.
+		Window win = SwingUtilities.getWindowAncestor(contentPane);
+		win.dispose();				
+			}
+		});
+		
+		//Set up what to do when the back button is pressed.
+		editProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//Create a HomePage window
+		EditProfileView editProfileView = new EditProfileView();
+				
+		//Make the HomePage window visible and the UserRecipeCollection window invisible.
+		editProfileView.setVisible(true);
+		contentPane.setVisible(false);
+				
+		//Close the UserRecipeCollection Window.
+		Window win = SwingUtilities.getWindowAncestor(contentPane);
+		win.dispose();				
+			}
+		});				
 
 	}
 }

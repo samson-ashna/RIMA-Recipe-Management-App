@@ -7,7 +7,9 @@ import persistence.UsersDAO;
 //created a class to keep track of the user's activity regarding their username and password
 public class UserActivity {
 	static User currentUser;
+	//User database is accessed through the data access object, UsersDAO.
 	static UsersDAO usersinfo = new UserDAOImpl();
+	//this method checks whether the user with the name userName exists in the users database.
 	public static boolean checkUserName(String userName) {
 		boolean userExists = false;
 		if(usersinfo.get(userName)!=null) {

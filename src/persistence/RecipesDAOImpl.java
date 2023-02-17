@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import objects.Recipes;
 
 public class RecipesDAOImpl implements DAO<Recipes> {
+	
 	private static ArrayList<Recipes> dbRecipes;
 	
 	public RecipesDAOImpl() {
+		//stub implementation of the recipes database
 		dbRecipes=new ArrayList<Recipes>();
 		//From https://www.allrecipes.com/recipe/85337/microwave-baked-potato/
 		Recipes recipe1 = new Recipes("Baked Potato",9,39);
@@ -40,28 +42,40 @@ public class RecipesDAOImpl implements DAO<Recipes> {
 				+ "Stir until the sauce has reduced and evenly glazes the chicken.");
 		dbRecipes.add(recipe2);
 	}
+	/**
+	 * Returns the Recipe object in the database with the name n.
+	 */
 
 	@Override
-	public Recipes get(String name) {
+	public Recipes get(String n) {
 		Recipes recipe = null;
 		for (Recipes r: dbRecipes) {
-			if(r.getName().equals(name)) {
+			if(r.getName().equals(n)) {
 				recipe = r;
 			}
 		}
 		return recipe;
 	}
+	/**
+	 * Return an array list containing all Recipe objects in the database.
+	 */
 	
 	@Override
 	public ArrayList<Recipes> getAll() {
 		return dbRecipes;
 	}
+	/**
+	 * Adds Recipes r to the database
+	 */
 	
 	@Override
 	public void add(Recipes r) {
 		dbRecipes.add(r);
 		
 	}
+	/**
+	 * Removes Recipes r from the database
+	 */
 	
 	@Override
 	public void remove(Recipes r) {
