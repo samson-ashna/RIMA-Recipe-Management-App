@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,7 +18,6 @@ import persistence.UserDAOImpl;
 import persistence.UsersDAO;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class ViewRecipeCollection extends JDialog {
@@ -68,6 +66,15 @@ public class ViewRecipeCollection extends JDialog {
 		JButton btnNewButton_1 = new JButton("Edit");
 		btnNewButton_1.setBounds(632, 503, 63, 23);
 		getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					EditRecipeView editview= new EditRecipeView(r);
+					editview.setVisible(true);
+					contentPanel.setVisible(false);
+					Window win = SwingUtilities.getWindowAncestor(contentPanel);
+					win.dispose();
+				}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Remove");
 		btnNewButton_2.setBounds(519, 503, 103, 23);
