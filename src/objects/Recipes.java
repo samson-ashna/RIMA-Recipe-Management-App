@@ -11,7 +11,7 @@ public class Recipes {
     @Override
 	public String toString() {
 		return "Name=" + name +"\n"+ "Protein(g) =" + protein + "\n"+"Carbs(g)=" + carbs + "\n"+
-				getIngredients() +"\n"+instructions;
+				"Ingredients: "+getIngredients() +"\n"+"Instruction: "+instructions;
 	}
 
 	ArrayList<String> ingredients;
@@ -27,6 +27,9 @@ public class Recipes {
     public String getName() {
         return this.name;
     }
+    public void setName(String name) {
+    	this.name = name;
+    }
 
     public int getProtein() {
         return this.protein;
@@ -35,10 +38,16 @@ public class Recipes {
     public int getCarbs() {
         return this.carbs;
     }
+    public void setProtein(int protein) {
+    	this.protein = protein;
+    }
+    public void setCarbs(int carbs) {
+    	this.carbs=carbs;
+    }
 
     public void setInstructions(String s) {
 
-        instructions = "Instructions: " + s;
+        instructions =  s;
 
     }
 
@@ -61,8 +70,12 @@ public class Recipes {
     }
 
     public String getIngredients() {
+    	String ingredientsText="";
+    	for (String item:ingredients) {
+    		ingredientsText +=item+"\n";
+    	}
 
-        return "Ingredients: " +ingredients;
+        return ingredientsText;
 
     }
     
