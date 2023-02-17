@@ -19,6 +19,7 @@ public class User {
 	public User(String name,String password) {
 		this.name=name;
 		this.password=password;
+		this.allergens = new objects.Allergies();
 	}
 	public String getName() {
 		return this.name;
@@ -41,9 +42,8 @@ public class User {
 	public void removeRecipeFromCollection(Recipes recipe) {
 		this.myRecipes.remove(recipe);
 	}
-	public ArrayList<String> addAllergen()
+	public Allergies getUserAllergies()
 	{
-		this.allergens = new objects.Allergies();
-		return this.allergens.getRecipes();
+		return this.allergens;
 	}
 }

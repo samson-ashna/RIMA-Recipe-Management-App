@@ -48,7 +48,7 @@ public class Allergies
         }
     }
 
-    public ArrayList<String> getRecipes()
+    public ArrayList<String> getAllergyNames()
     {
         Set<String> keys = this.allergies.keySet();
         ArrayList<String> array = new ArrayList<String>();
@@ -57,6 +57,10 @@ public class Allergies
             array.add(key);
         }
         return array;
+    }
+    
+    public Hashtable<String, Integer> getAllergies(){
+    	return this.allergies;
     }
 
     public String toString()

@@ -8,19 +8,11 @@ import java.awt.Window;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import domain.UserActivity;
@@ -39,7 +31,9 @@ public class EditProfileView extends JFrame {
 	
 	//Objects for displaying user info.
 	private UserDAOImpl userDAO;
-	private User currentUser;	
+	private User currentUser;
+	private Hashtable<String,Integer> userAllergies;
+	private ArrayList<String> allergyNames;
 	
 	//Label and Button objects
 	private final JButton cancelButton = new JButton("Cancel");
@@ -52,7 +46,7 @@ public class EditProfileView extends JFrame {
 	
 	//Text area objects
 	private JTextField nameField = new JTextField("");
-	private JList allergyList = new JList();
+	private ArrayList<JCheckBox> allergyBoxes = new ArrayList<JCheckBox>();
 	private JPasswordField enterPass = new JPasswordField("");
 	private JPasswordField enterPassAgain = new JPasswordField("");
 
@@ -74,6 +68,28 @@ public class EditProfileView extends JFrame {
 		});
 	}
 	
+	//Set up allergy check list.
+	public void allergiesSetUp() {
+		currentUser = UserActivity.getCurrentUser();
+		if(currentUser != null) {
+			userAllergies = currentUser.getUserAllergies().getAllergies();
+			allergyNames = currentUser.getUserAllergies().getAllergyNames();
+			
+			for(String allergy : allergyNames) {
+				allergyBoxes.add(new JCheckBox(allergy));
+			}
+			
+			for(JCheckBox box : allergyBoxes) {
+				box.setAlignmentX(CENTER_ALIGNMENT);
+				for(String userAllergy : allergyNames) {
+					if(box.getText().equals(userAllergy) && userAllergies.get(userAllergy).intValue() == 1){
+						box.setSelected(true);
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -82,22 +98,21 @@ public class EditProfileView extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.
-		setSize(350, 350);	
+		setSize(350, 450);	
 		setLocationRelativeTo(null);
 		
 		//Get content pane.
 		contentPane = getContentPane();		
 		
-		//Create a new edit buttons pane.
+		//Create a new edit options pane.
 		editOptionsPane = new JPanel(); 
-		//Set an invisible border for the edit buttons pane.
+		//Set an invisible border for the edit options pane.
 		editOptionsPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
-		//Set the edit buttons pane's layout manager to the vertical box layout.
+		//Set the edit options pane's layout manager to the vertical box layout.
 		editOptionsPane.setLayout(new BoxLayout(editOptionsPane, BoxLayout.PAGE_AXIS));
 		
 		//Centre align components.
 		editAllergiesLabel.setAlignmentX(CENTER_ALIGNMENT);
-		allergyList.setAlignmentX(CENTER_ALIGNMENT);
 		editNameLabel.setAlignmentX(CENTER_ALIGNMENT);
 		nameField.setAlignmentX(CENTER_ALIGNMENT);
 		editPass.setAlignmentX(CENTER_ALIGNMENT);
@@ -115,7 +130,7 @@ public class EditProfileView extends JFrame {
 		enterPassAgain.setMaximumSize(nameField.getSize());
 		
 		//Add current username to name field.
-		currentUser = UserActivity.getCurrentUser();		
+		currentUser = UserActivity.getCurrentUser();
 		if(currentUser != null) {
 			nameField.setText(currentUser.getName());
 		}
@@ -123,6 +138,9 @@ public class EditProfileView extends JFrame {
 		//Set up error label font and colour.
 		errorLabel.setForeground(new Color(255, 0, 0));
 		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		//Set up allergy check list.
+		allergiesSetUp();
 		
 		//Add the edit components to the edit options pane.
 		editOptionsPane.add(Box.createVerticalGlue());
@@ -132,7 +150,9 @@ public class EditProfileView extends JFrame {
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
 		editOptionsPane.add(editAllergiesLabel);
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
-		editOptionsPane.add(allergyList);
+		for(JCheckBox box : allergyBoxes) {
+			editOptionsPane.add(box);
+		}		
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
 		editOptionsPane.add(editPass);	
 		editOptionsPane.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -183,44 +203,76 @@ public class EditProfileView extends JFrame {
 		//Set up what to do when the save changes button is pressed.
 				saveButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						//Get the current user.
 						currentUser = UserActivity.getCurrentUser();
+						
+						//Flag for whether a change has been made.
+						boolean change = false;
+						
+						//Save text in password fields.
 						String newPass = new String(enterPass.getPassword());
 						String confirmPass = new String(enterPassAgain.getPassword());
-						errorLabel.setText("");
-		
 						
-						//Check that the user is logged in and that either the name field has changed or the password field has text.
-						if(currentUser != null
-							&& !(nameField.getText().equals(currentUser.getName()) && newPass.equals(""))) {
+						//Reset error label.
+						errorLabel.setText("");
+						
+						//Determine whether check boxes have changed.
+						boolean allergyChange = false;
+						for(JCheckBox box : allergyBoxes) {
+							if((userAllergies.get(box.getText()).intValue() == 1 && !box.isSelected()) || (userAllergies.get(box.getText()).intValue() == 0 && box.isSelected())){
+									allergyChange = true;
+							}
+						}
+						
+						//Check that the user is logged in.
+						if(currentUser != null) {
+							
+							userAllergies = currentUser.getUserAllergies().getAllergies();
+							allergyNames = currentUser.getUserAllergies().getAllergyNames();
 							
 							//If the new username exists and isn't the current user's, do nothing and inform the user that the username exists.
 							if (UserActivity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
 								errorLabel.setText("Username already exists!");
-								return;
-							//If the password fields don't match, do nothing and inform the user.
-							}else if (!newPass.equals(confirmPass)) {
-								errorLabel.setText("Password confirmation does not match!");
-								return;
-							//If the password isn't new and a new username wasn't entered do nothing.
-							}else if(UserActivity.checkPassword(currentUser.getName(), newPass) && nameField.getText().equals(currentUser.getName())) {
-								return;
-							//Otherwise, update the user's name and password.
-							}else {
+							//Otherwise update the user's name
+							}else if(!UserActivity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
 								currentUser.setName(nameField.getText());
+								change = true;
+							}
+								
+							//If the password fields don't match, do nothing and inform the user.
+							if (!newPass.equals(confirmPass)) {
+								errorLabel.setText("Password confirmation does not match!");
+							//If the password is new, isn't blank, and the passwords match, update the user's password.
+							}else if(!UserActivity.checkPassword(currentUser.getName(), newPass) && !newPass.equals("") && newPass.equals(confirmPass)) {
 								currentUser.setPassword(newPass);
+								change = true;
 							}
 							
-							//Create a HomePage window
-							ViewProfile viewProfile = new ViewProfile();
+							//If the allergies have changed, update the user's allergies.
+							if(allergyChange) {
+								for(JCheckBox box : allergyBoxes) {
+									if(box.isSelected()){
+										userAllergies.replace(box.getText(), 1);
+									}else if(!box.isSelected()) {
+										userAllergies.replace(box.getText(), 0);
+									}
+								}
+								change = true;
+							}
+							
+							if(change) {
+								//Create a HomePage window
+								ViewProfile viewProfile = new ViewProfile();
 									
-							//Make the HomePage window visible and the UserRecipeCollection window invisible.
-							viewProfile.setVisible(true);
-							contentPane.setVisible(false);
+								//Make the HomePage window visible and the UserRecipeCollection window invisible.
+								viewProfile.setVisible(true);
+								contentPane.setVisible(false);
 									
-							//Close the UserRecipeCollection Window.
-							Window win = SwingUtilities.getWindowAncestor(contentPane);
-							win.dispose();
+								//Close the UserRecipeCollection Window.
+								Window win = SwingUtilities.getWindowAncestor(contentPane);
+								win.dispose();
+							}
 						}			
 					}
 				});
