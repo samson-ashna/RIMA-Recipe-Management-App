@@ -45,7 +45,7 @@ Original Allocated Time vs Actual Time Spent
 **User Account** (original: 3 days, actual:3 days)
 	-Stub User Database, implementation of data access object(Sheida)
 	-Login UI(Sheida)
-	-Allergy information (Felix)
+	-Allergy information (Felix, userProfile, userSignUp)
 	-Allergy information UI(Natalie)
 	-Sign up and log in UI (Natalie)
 	-food preferences survey (Ashna)
