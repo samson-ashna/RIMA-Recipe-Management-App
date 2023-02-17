@@ -13,5 +13,6 @@ public class userSignUp
         //felix.SignUp();
         User shaun = new User();
         System.out.println(shaun.getUserAllergies().getAllergyNames());
+
     }
 }

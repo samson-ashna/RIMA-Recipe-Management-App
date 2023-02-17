@@ -58,7 +58,6 @@ public class Allergies
         }
         return array;
     }
-   
     public Hashtable<String, Integer> getAllergies(){
     	return this.allergies;
     }
