@@ -26,7 +26,7 @@ Original Allocated Time vs Actual Time Spent
 	-Recipe list and view recipes UI (Sheida)
 		
 **Manipulation of Recipe Collection**
-	- Add Recipes to Personal Recipe Collection (Shaun)
+	- Edit Recipes (Shaun)
 	  - Original: 1 Day
 	  - Actual : 1 Day
   	-SaveRecipes UI, implementation of edit and remove functionalities (Sheida)
