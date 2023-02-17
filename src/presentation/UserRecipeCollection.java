@@ -33,7 +33,6 @@ public class UserRecipeCollection extends JFrame {
 	//Button objects
 	private final JButton backButton = new JButton("Back");
 	private final JButton addRecipeButton = new JButton("Add Custom Recipe");
-	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -107,9 +106,13 @@ public class UserRecipeCollection extends JFrame {
 			//Get the selected list item
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
+			
 			ViewRecipeCollection newWindow = new ViewRecipeCollection(name);
 			//Set up the ViewRecipe window and make it visible.
 			newWindow.NewScreen(name);
+			contentPane.setVisible(false);
+			Window win = SwingUtilities.getWindowAncestor(contentPane);
+			win.dispose();
 		});
 		
 		//Add the list section to the content pane.
@@ -140,19 +143,10 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		addRecipeButton.setBounds(20, 244, 130, 18);
+		addRecipeButton.setBounds(154, 244, 130, 18);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
-		
-		btnNewButton = new JButton("Remove Recipe");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnNewButton.setBounds(161, 244, 123, 18);
-		contentPane.add(btnNewButton);
 				
 		//Set up what to do when the add button is pressed.
 		addRecipeButton.addActionListener(new ActionListener() {

@@ -48,6 +48,15 @@ public class UserDAOImpl implements UsersDAO {
 		}
 		return null;
 	}
+	@Override
+	public Recipes getRecipe(User u,String name) {
+		for (Recipes r: getRecipes(u)) {
+			if(r.getName().equals(name)) {
+				return r;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public void addRecipes(User u, Recipes r) {

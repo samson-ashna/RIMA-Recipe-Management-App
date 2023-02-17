@@ -76,6 +76,9 @@ public class RecipeList extends JFrame {
 			String name = (String) list.getSelectedValue();
 			ViewRecipe newWindow = new ViewRecipe(name);
 			newWindow.NewScreen(name);
+			contentPane.setVisible(false);
+			Window win = SwingUtilities.getWindowAncestor(contentPane);
+			win.dispose();
 		});
 		contentPane.add(list);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));

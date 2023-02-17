@@ -68,8 +68,8 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
-//				frame.setVisible(false);
-//				frame.dispose();
+				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		

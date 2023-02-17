@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import domain.SaveRecipe;
@@ -68,14 +69,29 @@ public class ViewRecipe extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 503, 612, 33);
+			buttonPane.setBounds(0, 503, 478, 33);
 			getContentPane().add(buttonPane);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		}
 		{
 			JButton btnNewButton = new JButton("Save To My Collection");
-			btnNewButton.setBounds(639, 503, 197, 23);
+			btnNewButton.setBounds(493, 503, 171, 23);
 			getContentPane().add(btnNewButton);
+			{
+				JButton btnNewButton_1 = new JButton("Return to list");
+				btnNewButton_1.setBounds(686, 503, 150, 23);
+				getContentPane().add(btnNewButton_1);
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RecipeList lst = new RecipeList();
+						lst.setVisible(true);
+						contentPanel.setVisible(false);
+						Window win = SwingUtilities.getWindowAncestor(contentPanel);
+						win.dispose();
+					}
+				});
+				
+			}
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(UserActivity.getCurrentUser() != null) {
@@ -83,7 +99,7 @@ public class ViewRecipe extends JDialog {
 						saveRecipe.save(db.get(name));
 						btnNewButton.setText("Saved to Collection");
 					}else {
-						btnNewButton.setText("Not signed in!");
+						btnNewButton.setText("Log in to save recipe!");
 					}
 				}
 			});
