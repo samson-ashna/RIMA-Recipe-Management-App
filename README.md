@@ -19,11 +19,9 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
   - Create method to save recipes (0.5 days)
   - Create junit test for method (0.5 days)
 - [x] Display Recipe Information: Display the recipes available in the app with detailed instructions, along with the ingredient list. Priority: High. Cost: 4 days
-  - 
 
 **Manipulate Local Recipe Collection: As the app user, I want to be able to modify the information available in my recipe collection.  Priority: High. Cost: 7 days**
 - [x] Add Recipes to Personal Recipe Collection:  As a cook, I want to be able to add recipes to my own recipe collection. Priority: High. Cost: 3 days
-  - 
 - [x] Remove Recipes from Personal Recipe Collection:  As a cook, I want to be able to remove recipes from my own recipe collection. Priority: low. Cost: 2 days
 - [x] Edit Recipes:  As a cook, I want to be able to modify the instructions and ingredients of any recipe available in my personal collection of recipes. Priority: High. Cost: 2 days
 
