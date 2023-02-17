@@ -18,14 +18,14 @@ Concerns
 
 ---------------------------------------------
 Original Allocated Time vs Actual Time Spent
-**View List of Recipes**	
+**View List of Recipes**	(original: 4 days, actual:3 days)
 	- Save Recipe to personal recipe collection (Shaun)
 	  - Original: 1 Day
 	  - Actual: 1 Day
 	-Stub Recipe Database, implementation of data access object(Sheida)
 	-Recipe list and view recipes implementation(Sheida,Natalie)
 		
-**Manipulation of Recipe Collection**
+**Manipulation of Recipe Collection**(original: 7 days, actual:5 days)
 	- Edit Recipes (Shaun)
 	  - Original: 1 Day
 	  - Actual : 1 Day
@@ -42,7 +42,7 @@ Original Allocated Time vs Actual Time Spent
 	-User Login
 	-(Ashna)
   	
-**User Account**
+**User Account** (original: 3 days, actual:3 days)
 	-Stub User Database, implementation of data access object(Sheida)
 	-Login UI(Sheida)
 	-Allergy information (Felix)
