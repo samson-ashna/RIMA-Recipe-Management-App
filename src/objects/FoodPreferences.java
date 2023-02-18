@@ -2,10 +2,17 @@ package objects;
 
 import java.util.Hashtable;
 
+/**
+ * 
+ */
 public class FoodPreferences
 {
     Hashtable<String, Integer> foodPreferences;
 
+    /**
+     * 
+     * @param prompt
+     */
     public FoodPreferences(String prompt)
     {
         this.foodPreferences = new Hashtable<String, Integer>();

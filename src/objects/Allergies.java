@@ -36,10 +36,6 @@ public class Allergies
         this.allergies.put("Peanuts", 0);
         this.allergies.put("Seafood", 0);
 
-        /*if (this.allergies.containsKey(prompt))
-        {
-            allergies.replace(prompt, 1);
-        }*/
         if (prompt.contains("1"))
         {
             this.allergies.replace("Eggs", 1);

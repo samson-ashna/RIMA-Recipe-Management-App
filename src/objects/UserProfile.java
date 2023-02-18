@@ -3,6 +3,9 @@ package objects;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 
+ */
 public class UserProfile
 {
     // User names
@@ -16,11 +19,16 @@ public class UserProfile
     // Allergies
     Allergies allergens;
 
-    public UserProfile()
-    {
+    /**
+     * 
+     */
+    public UserProfile() {}
 
-    }
-
+    /**
+     * 
+     * @param username
+     * @param password
+     */
     public UserProfile(Username username, Password password)
     {
         this.username = username;
@@ -29,43 +37,65 @@ public class UserProfile
         previousPasswords.add(password);
     }
 
+    /**
+     * 
+     * @param recipe
+     */
     public void addRecipe(Recipes recipe)
     {
         this.recipes.add(recipe);
     }
 
+    /**
+     * 
+     * @param recipe
+     */
     public void removeRecipe(Recipes recipe)
     {
         this.recipes.remove(recipe);
     }
 
-    /*public String recipes()
-    {
-        return this.recipes;
-    }*/
-
+    /**
+     * 
+     * @param username
+     */
     public void changeUsername(Username username)
     {
         this.username = username;
         previousUserNames.add(username);
     }
 
+    /**
+     * 
+     * @param password
+     */
     public void changePassword(Password password)
     {
         this.password = password;
         previousPasswords.add(password);
     }
 
+    /**
+     * 
+     * @return
+     */
     public String username()
     {
         return this.username.toString();
     }
 
+    /**
+     * 
+     * @return
+     */
     public String password()
     {
         return this.password.toString();
     }
 
+    /**
+     * 
+     */
     public void SignUp()
     {
         // Asks user to input username
@@ -82,6 +112,9 @@ public class UserProfile
         this.password = password;
     }
 
+    /**
+     * 
+     */
     public void addAllergen()
     {
         Scanner scanner = new Scanner(System.in);
@@ -92,20 +125,23 @@ public class UserProfile
         System.out.println("4. Seafood");
         String allergenInput = scanner.nextLine();
         this.allergens = new Allergies(allergenInput);
-        /*if (!this.allergens.contains(allergen))
-        {
-            this.allergens.add(allergen);
-        }*/
 
     }
 
+    /**
+     * 
+     * @return
+     */
     public String allergies()
     {
-        //System.out.println("1.Eggs 2.Milk 3.Peanuts, 4.Seafood");
+
         return this.allergens.toString();
     }
 }
 
+/**
+ * 
+ */
 class Username
 {
     String username;
