@@ -33,7 +33,7 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 - [x] User LogIn: Create a User Login to come back to the app with saved progress each time. Priority: High. Cost: 2 days
 - [x] User SignUp: Create a User Sign Up Page to create new user accounts to save recipies and find new recipies. Priority: High. Cost: 2 days
 
-##Iteration 2 Developer Tasks
+## Iteration 2 Developer Tasks
 **Search Recipes:  As a cook, I want to be able to search recipes from the database by name, ingredients, and category.  Priority: High. Cost: 6 days**
 
 **Manipulate Food Ingredients Inventory:  As a cook, I want to be able to view the list of all available food ingredients, add and remove from the list, and modify information on the quantity, cost, and expiration date.  Priority: Medium. Cost: 4 days**
