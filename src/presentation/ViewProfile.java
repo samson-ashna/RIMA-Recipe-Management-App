@@ -21,6 +21,8 @@ import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
 import objects.User;
+
+import java.awt.BorderLayout;
 import java.awt.Component;
 
 /**
@@ -31,6 +33,7 @@ public class ViewProfile extends JFrame {
 
 	//Container and Panel objects.
 	private Container contentPane;
+	private Container editProfileContentPane;
 	private JPanel infoPane;
 	private JPanel buttonPane;
 	
@@ -91,14 +94,13 @@ public class ViewProfile extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
-		setSize(376, 310);	
+		setSize(450, 450);	
 		setLocationRelativeTo(null);
 		//Get content pane.
 		contentPane = getContentPane();		
 		
 		//Create a new info pane.
-		infoPane = new JPanel(); 
-		infoPane.setBounds(0, 0, 305, 202);
+		infoPane = new JPanel();
 		//Set the info pane's layout manager to the vertical box layout.
 		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
@@ -109,8 +111,7 @@ public class ViewProfile extends JFrame {
 		
 		//Align labels.
 		displName.setAlignmentX(CENTER_ALIGNMENT);
-		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);
-		
+		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);		
 		
 		//Add labels to the info pane.
 		infoPane.add(displName);
@@ -118,32 +119,30 @@ public class ViewProfile extends JFrame {
 		infoPane.add(allergyInfo);
 				
 		//Create a new pane for buttons.
-		buttonPane = new JPanel(); 		
-		buttonPane.setBounds(0, 202, 240, 31);
+		buttonPane = new JPanel();
 		//Set an invisible border for the button pane.
 		buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		getContentPane().setLayout(null);
 		
 		//Add the button and info panes to the content pane.
 		contentPane.add(infoPane);
 		contentPane.add(buttonPane);
 		
-		getContentPane().add(btnNewButton);
-		editProfileButton.setBounds(185, 240, 92, 21);
-		getContentPane().add(editProfileButton);
-		
 		//Set up the button fonts.
 		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
-		//Add buttons to button pane.		
-		Component horizontalGlue = Box.createHorizontalGlue();
-		horizontalGlue.setBounds(0, 244, 89, 12);
-		getContentPane().add(horizontalGlue);
-		backButton.setBounds(287, 240, 65, 21);
-		getContentPane().add(backButton);
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		//Add buttons to button pane.
+		buttonPane.add(Box.createHorizontalGlue());
+		buttonPane.add(backButton);
+		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
+		buttonPane.add(editProfileButton);
+		
+		
+		//Add info and button panes to content pane.
+		contentPane.add(infoPane);
+		contentPane.add(buttonPane, BorderLayout.PAGE_END);
 		
 		//Set up what to do when the back button is pressed.
 		backButton.addActionListener(new ActionListener() {
@@ -164,18 +163,28 @@ public class ViewProfile extends JFrame {
 		//Set up what to do when the back button is pressed.
 		editProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//Create a HomePage window
-		EditProfileView editProfileView = new EditProfileView();
 				
-		//Make the HomePage window visible and the UserRecipeCollection window invisible.
-		editProfileView.setVisible(true);
-		contentPane.setVisible(false);
+				showEditProfileView();
 				
-		//Close the UserRecipeCollection Window.
-		Window win = SwingUtilities.getWindowAncestor(contentPane);
-		win.dispose();				
+				//Make the HomePage window visible and the UserRecipeCollection window invisible.
+				//editProfileView.setVisible(true);
+				//contentPane.setVisible(false);
+				
+				//Close the UserRecipeCollection Window.
+				//Window win = SwingUtilities.getWindowAncestor(contentPane);
+				//win.dispose();				
 			}
 		});				
 
+	}
+
+	private void showEditProfileView() {
+		
+		EditProfileView editProfileView = new EditProfileView();
+		
+		editProfileContentPane = editProfileView.getContentPane();
+		
+		setContentPane(editProfileContentPane);
+		validate();
 	}
 }
