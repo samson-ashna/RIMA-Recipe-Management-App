@@ -9,10 +9,15 @@ import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
 
+/**
+ * 
+ */
 public class UsersDB extends DBSetup implements UsersDAO  {
 	private static ArrayList<User> dbUsers = new ArrayList<User>();;
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public User get(String name) {
 		dbUsers =getAll();
@@ -25,6 +30,9 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		return user;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public ArrayList<User> getAll() {
 		try {
