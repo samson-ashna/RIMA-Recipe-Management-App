@@ -151,7 +151,11 @@ public class IngredientsListView extends JFrame {
 		//Set up what to do when the back button is pressed.
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				//Create an EditIngredientView window
+				EditIngredientView editView = new EditIngredientView();
+						
+				//Make the HomePage window visible and the UserRecipeCollection window invisible.
+				editView.setVisible(true);
 								
 			}
 		});
