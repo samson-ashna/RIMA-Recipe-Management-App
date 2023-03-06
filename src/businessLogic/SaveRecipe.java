@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import objects.Recipes;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
 /**
@@ -15,8 +16,9 @@ public class SaveRecipe {
     public ArrayList<Recipes> myRecipes;
     /* The database containing user information is accessed through the data access
 	object, UsersDAO*/
-    UsersDAO usersinfo = new UserDAOImpl();
-    
+    //UsersDAO usersinfo = new UsersStubDB();
+    DatabaseAccess access = new DatabaseAccess();
+    UsersDAO usersinfo = access.usersDB();
     /**
      * Default constructor
      */
@@ -47,7 +49,8 @@ public class SaveRecipe {
      * @param recipe is the user's recipe they want to add
      */
     public void save(Recipes recipe) {
-        myRecipes.add(recipe);
+       // myRecipes.add(recipe);
+       usersinfo.addRecipes(UserActivity.getCurrentUser(),recipe);
         
     }
 

@@ -17,8 +17,9 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 import objects.User;
-
-import persistence.UserDAOImpl;
+import persistence.UsersDAO;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
 
 /**
  * 
@@ -32,7 +33,7 @@ public class EditProfileView extends JFrame {
 	private JPanel buttonPane;
 	
 	//Objects for displaying user info.
-	private UserDAOImpl userDAO;
+	private UsersStubDB userDAO;
 	private User currentUser;
 	private Hashtable<String,Integer> userAllergies;
 	private ArrayList<String> allergyNames;
@@ -207,7 +208,8 @@ public class EditProfileView extends JFrame {
 		//Set up what to do when the save changes button is pressed.
 				saveButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						DatabaseAccess access = new DatabaseAccess();
+						UsersDAO db = access.usersDB();
 						//Get the current user.
 						currentUser = UserActivity.getCurrentUser();
 						
@@ -228,29 +230,32 @@ public class EditProfileView extends JFrame {
 									allergyChange = true;
 							}
 						}
-						
+						UserActivity activity = new UserActivity();
 						//Check that the user is logged in.
 						if(currentUser != null) {
-							
+							String currentName = currentUser.getName();
 							userAllergies = currentUser.getUserAllergies().getAllergies();
 							allergyNames = currentUser.getUserAllergies().getAllergyNames();
 							
 							//If the new username exists and isn't the current user's, do nothing and inform the user that the username exists.
-							if (UserActivity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
+							if (activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
 								errorLabel.setText("Username already exists!");
 							//Otherwise update the user's name
-							}else if(!UserActivity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
+							}else if(!activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
 								currentUser.setName(nameField.getText());
 								change = true;
+								
+								db.edit(currentName,nameField.getText(),null);
 							}
 								
 							//If the password fields don't match, do nothing and inform the user.
 							if (!newPass.equals(confirmPass)) {
 								errorLabel.setText("Password confirmation does not match!");
 							//If the password is new, isn't blank, and the passwords match, update the user's password.
-							}else if(!UserActivity.checkPassword(currentUser.getName(), newPass) && !newPass.equals("") && newPass.equals(confirmPass)) {
+							}else if(!activity.checkPassword(currentUser.getName(), newPass) && !newPass.equals("") && newPass.equals(confirmPass)) {
 								currentUser.setPassword(newPass);
 								change = true;
+								db.edit(currentUser.getName(),null,newPass);
 							}
 							
 							//If the allergies have changed, update the user's allergies.
@@ -266,6 +271,7 @@ public class EditProfileView extends JFrame {
 							}
 							
 							if(change) {
+								
 								//Create a HomePage window
 								ViewProfile viewProfile = new ViewProfile();
 									

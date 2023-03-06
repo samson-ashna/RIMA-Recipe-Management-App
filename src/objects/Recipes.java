@@ -7,12 +7,16 @@ import java.util.ArrayList;
  */
 public class Recipes {
 
-	public String name;
-	public int protein;
-	public int carbs;
-	String instructions;
-	public ArrayList<String> ingredients;
-
+	private String name;
+	private int protein;
+	private int carbs;
+	private String instructions;
+	private String ingredients;
+	public static int id=1;
+	private int recipeID;
+	private String user;
+	
+	public Recipes() {}
 	/**
 	 * Constructor that initialize the Recipes object with name, protein and carbs. 
 	 * @param name is a string that represents the recipe's name;
@@ -24,9 +28,25 @@ public class Recipes {
 		this.name = name;
 		this.protein = protein;
 		this.carbs = carbs;
-
+		//this.recipeID = id;
+		id +=1;
 	}
-
+	/**
+	 * This method returns the id of the recipe
+	 * @return integer representing the id of recipe
+	 */
+	public void setID(int newID) {
+		this.recipeID=newID;
+	}
+	public int getRecipeID() {
+		return this.recipeID;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
+	public String getUser() {
+		return this.user;
+	}
 	/**
 	 * This method returns the name of the recipe
 	 * @return name of recipe
@@ -87,13 +107,9 @@ public class Recipes {
 	 * This method adds ingredients to the ingredient list of the recipe
 	 * @param s is a list that contains ingredient items
 	 */
-	public void setIngredients(ArrayList<String> s) {
+	public void setIngredients(String s) {
 
-		ingredients = new ArrayList<>();
-
-		for (int i = 0; i < s.size(); i++) {
-			ingredients.add(s.get(i));
-		}
+		this.ingredients = s;
 
 	}
 
@@ -111,13 +127,7 @@ public class Recipes {
 	 */
 	public String getIngredients() {
 		
-		String ingredientsText = "";
-		
-		for (String item : ingredients) {
-			ingredientsText += item + "\n";
-		}
-
-		return ingredientsText;
+		return ingredients;
 
 	}
 

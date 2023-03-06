@@ -1,7 +1,10 @@
 package businessLogic;
 
+import objects.Recipes;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
+import persistence.DAO;
 import persistence.UsersDAO;
 
 /**
@@ -10,16 +13,19 @@ import persistence.UsersDAO;
 public class UserActivity {
 	
 	public static User currentUser;
+	public static int RecipeIDs=2;
 
 	//User database is accessed through the data access object, UsersDAO.
-	static UsersDAO usersinfo = new UserDAOImpl();
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO usersinfo = access.usersDB();
+	//static UsersDAO usersinfo = new UsersStubDB();
 
 	/**
 	 * This method checks whether the user with the name userName exists in the users database.
 	 * @param userName
 	 * @return
 	 */
-	public static boolean checkUserName(String userName) {
+	public boolean checkUserName(String userName) {
 		boolean userExists = false;
 		if(usersinfo.get(userName)!=null) {
 			userExists = true;
@@ -33,7 +39,7 @@ public class UserActivity {
 	 * @param password
 	 * @return
 	 */
-	public static boolean checkPassword(String userName,String password) {
+	public boolean checkPassword(String userName,String password) {
 		return usersinfo.get(userName).checkPassword(password);
 	}
 	
@@ -42,11 +48,15 @@ public class UserActivity {
 	 * @return
 	 */
 	public static User getCurrentUser() {
-		for(User user : usersinfo.getAll()) {
-			if(user.loggedIn) {
-				return user;
-			}
-		}
-		return null;
+		return currentUser;
+//		for(User user : usersinfo.getAll()) {
+//			if(user.loggedIn) {
+//				return user;
+//			}
+//		}
+//		return null;
+	}
+	public static void setCurrentUser(User u) {
+		currentUser =u;
 	}
 }

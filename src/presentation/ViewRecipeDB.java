@@ -18,7 +18,9 @@ import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
-import persistence.RecipesDAOImpl;
+import persistence.RecipesStubDB;
+import persistence.UsersDAO;
+import persistence.DatabaseAccess;
 
 /**
  * 
@@ -63,7 +65,9 @@ public class ViewRecipeDB extends JDialog {
 		textArea.setEditable(false);
 		contentPanel.add(textArea);
 		//Recipe database is accessed through the data access object and the recipe information is displayed in the text area.
-		DAO<Recipes> db = new RecipesDAOImpl();
+		DatabaseAccess access = new DatabaseAccess();
+		DAO<Recipes> db = access.recipesDB();
+		//DAO<Recipes> db = new RecipesStubDB();
 		textArea.setText(db.get(name).toString());
 		for (Recipes r: db.getAll()) {
 			if(r.getName().equals(name)) {
@@ -96,6 +100,8 @@ public class ViewRecipeDB extends JDialog {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() != null) {
+//					UsersDAO dbUser = access.usersDB(0);
+//					dbUser.addRecipes(UserActivity.getCurrentUser(),db.get(name));
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(db.get(name));
 					btnSave.setText("Saved to Collection");

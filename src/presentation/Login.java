@@ -18,7 +18,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
-import persistence.UserDAOImpl;
+import objects.Recipes;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
+import persistence.DAO;
 import persistence.UsersDAO;
 
 /**
@@ -100,16 +103,20 @@ public class Login extends JFrame {
 		contentPane.add(logInButton);
 		logInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserActivity activity = new UserActivity();
 				String username = textField.getText();
 				String password = passwordField.getText();
 				//checks to see if user name already exists.
-				if(UserActivity.checkUserName(username)) {
+				if(activity.checkUserName(username)) {
 					//checks to see if password matches user name.
-					if(!UserActivity.checkPassword(username, password)) {
+					if(!activity.checkPassword(username, password)) {
 						lblError.setText("Incorrect Password!");
 					}else {
-						UsersDAO userDAO = new UserDAOImpl();
-						userDAO.get(username).loggedIn = true;
+						DatabaseAccess access = new DatabaseAccess();
+						UsersDAO db = access.usersDB();
+						//UsersDAO userDAO = new UsersStubDB();
+						UserActivity.setCurrentUser(db.get(username));
+						db.get(username).loggedIn = true;
 						HomePage homePage = new HomePage();
 						homePage.setVisible(true);
 						contentPane.setVisible(false);

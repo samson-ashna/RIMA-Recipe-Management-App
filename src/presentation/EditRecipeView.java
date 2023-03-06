@@ -179,16 +179,14 @@ public class EditRecipeView extends JDialog {
 				and instruction is read and recipe is modified.
 				*/
 				if(!incorrectValues) {
-					ArrayList<String> ingredients = new ArrayList<String>();
-					ingredients=new ArrayList<> (Arrays.asList(editorIngredient.getText().split("\n")));
-					String instructions = editorInstruction.getText();
 					
+					String ingredients=editorIngredient.getText();
+					String instructions = editorInstruction.getText();
 					recipe.setName(name);
 					recipe.setProtein(protein);
 					recipe.setCarbs(carbs);
 					recipe.setIngredients(ingredients);
-					recipe.setInstructions(instructions);
-										
+					recipe.setInstructions(instructions);		
 					UserRecipeCollection back = new UserRecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);

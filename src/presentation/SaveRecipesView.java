@@ -177,10 +177,10 @@ public class SaveRecipesView extends JFrame {
 				and instruction is read and a new recipe is created and saved to the user's personal collection.
 				*/
 				if(!incorrectValues) {
-					ArrayList<String> ingredients = new ArrayList<String>();
-					ingredients=new ArrayList<> (Arrays.asList(ingredientInfo.getText().split("\n")));
+		
+					String ingredients=ingredientInfo.getText();
 					String instructions = instructionInfo.getText();
-					Recipes newRecipe;
+					Recipes newRecipe = null;
 					newRecipe = new Recipes(name, protein, carbs);
 					newRecipe.setIngredients(ingredients);
 					newRecipe.setInstructions(instructions);

@@ -13,4 +13,5 @@ public interface UsersDAO extends DAO<User> {
 	void addRecipes(User u,Recipes r);
 	void removeRecipes(User u, Recipes r);
 	Recipes getRecipe(User u, String name);
+	void edit(String oldName, String name, String Password); 
 }

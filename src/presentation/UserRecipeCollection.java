@@ -19,7 +19,9 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
+import persistence.DAO;
 import persistence.UsersDAO;
 
 /**
@@ -63,13 +65,19 @@ public class UserRecipeCollection extends JFrame {
 		//Create a new list model for the user's recipes.
 		DefaultListModel<String> model = new DefaultListModel<String>();		
 		//get a new instance of the user database.
-		UsersDAO db = new UserDAOImpl();		
+		DatabaseAccess access = new DatabaseAccess();
+		UsersDAO db = access.usersDB();
+		//UsersDAO db = new UsersStubDB();		
 		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
+		//System.out.println(UserActivity.getCurrentUser().getName());
+		
 		recipes = db.getRecipes(UserActivity.getCurrentUser());
+		//System.out.println("user colleciton accessed"+UserActivity.getCurrentUser().getName());
 		//Add all the user's recipes to the list model.
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
+			//System.out.println("in db"+r.getName());
 		}
 		
 		//Set the model for the list section to be the one that was 

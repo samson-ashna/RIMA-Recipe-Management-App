@@ -14,7 +14,9 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
+import persistence.DAO;
 import persistence.UsersDAO;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -60,7 +62,9 @@ public class ViewRecipeUserCollection extends JDialog {
 		
 		/*The user database is accessed through a data access object and the details of 
 		 * the recipe in the user's personal collection that has the specified name is displayed.*/ 
-		UsersDAO db = new UserDAOImpl();
+		DatabaseAccess access = new DatabaseAccess();
+		UsersDAO db = access.usersDB();
+		//UsersDAO db = new UsersStubDB();
 		Recipes r = db.getRecipe(currentUser,name);
 		textArea.setText(r.toString());
 		

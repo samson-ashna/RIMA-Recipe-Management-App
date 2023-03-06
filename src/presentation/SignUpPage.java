@@ -8,8 +8,12 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
+
+import objects.Recipes;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
+import persistence.DatabaseAccess;
+import persistence.DAO;
 import persistence.UsersDAO;
 
 import javax.swing.SwingConstants;
@@ -189,20 +193,24 @@ public class SignUpPage extends JFrame {
 		});	
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserActivity activity = new UserActivity();
 				//Create a HomePage window
 				String name = enterName.getText();
 				String password = enterPass.getText();
 				//Message to show so the field is not left empty
 				if(name.length()==0) {
 					label.setText("Need to enter a username!");
-				}else if (!UserActivity.checkUserName(name)) {
-					if(!enterPassAgain.getText().equals(password)) {
-						label.setText("Passwords do not match!");
+				}else if (!activity.checkUserName(name)) {
+					if(!enterPassAgain.getText().equals(password) || password.isEmpty()) {
+						label.setText("Passwords do not match or you have not entered password!");
 					}else {
 						//create a new login for a new user if no username or password matches in the system
 						User newUser = new User(name, password);
-						UsersDAO userDAO = new UserDAOImpl();
-						userDAO.add(newUser);
+						DatabaseAccess access = new DatabaseAccess();
+						UsersDAO db = access.usersDB();
+						//UsersDAO userDAO = new UsersStubDB();
+						db.add(newUser);
+						UserActivity.setCurrentUser(newUser);
 						newUser.loggedIn = true;
 						//Add the selected allergies by the user to their allergy information. 
 						if(eggAllergy.isSelected()){

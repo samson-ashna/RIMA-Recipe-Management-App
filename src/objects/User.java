@@ -1,6 +1,7 @@
 package objects;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * This class represents a User object. 
@@ -11,13 +12,18 @@ public class User {
 	private String password;
 	//personal collection of the user's recipes,unlike database recipes, these recipes can be modified.
 	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
+	private Hashtable<String, String> recipelst=new Hashtable<String, String>();
+	//private ArrayList<String> recipelst = new ArrayList<String>();
+	String lst;
 	public boolean loggedIn = false;
 	public Allergies allergens;
+	public static int id=1;
+	private int userID;
 	
 	/**
 	 *Default constructor 
 	 */
-	public User(){}
+	//public User(){}
 	
 	/**
 	 * Overloaded constructor
@@ -28,7 +34,16 @@ public class User {
 		this.name=name;
 		this.password=password;
 		this.allergens = new objects.Allergies();
+		this.userID = id;
+		id++;
 	}
+	public static  int getID() {
+		return id;
+	}
+	public int getUserID() {
+		return this.userID;
+	}
+	
 
 	/**
 	 * Returns user name.
@@ -44,6 +59,9 @@ public class User {
 	 */
 	public void setPassword(String newPassword) {
 		this.password = newPassword;
+	}
+	public String getPassword() {
+		return this.password;
 	}
 
 	/**
@@ -62,6 +80,12 @@ public class User {
 	public void setName(String newName) {
 		this.name = newName;
 	}
+	public void setRecipeCollection(Hashtable<String, String> recipes) {
+		this.recipelst = recipes;
+	}
+	public void setRecipeCollection(String s) {
+		this.lst =s;
+	}
 
 	/**
 	 * Adds Recipe recipe to the user's recipe collection
@@ -69,6 +93,9 @@ public class User {
 	 */
 	public void addRecipeToCollection(Recipes recipe) {
 		this.myRecipes.add(recipe);
+	}
+	public void addRecipeToCollection(String id, String recipe) {
+		this.recipelst.put(id,recipe);
 	}
 
 	/**
@@ -78,6 +105,9 @@ public class User {
 	public ArrayList<Recipes> getRecipeCollection(){
 		return this.myRecipes;
 	}
+	public Hashtable<String, String> getRecipeCollection1(){
+		return this.recipelst;
+	}
 
 	/**
 	 * Removes Recipes recipe from the user's recipe collection
@@ -85,6 +115,9 @@ public class User {
 	 */
 	public void removeRecipeFromCollection(Recipes recipe) {
 		this.myRecipes.remove(recipe);
+	}
+	public void removeRecipeFromCollection(String recipe) {
+		this.recipelst.remove(recipe);
 	}
 	
 	/**

@@ -8,7 +8,7 @@ import objects.User;
 /**
  * 
  */
-public class UserDAOImpl implements UsersDAO {
+public class UsersStubDB implements UsersDAO {
 
 	private static ArrayList<User> users = new ArrayList<User>();
 
@@ -107,5 +107,11 @@ public class UserDAOImpl implements UsersDAO {
 			}
 		}
 
+	}
+
+	@Override
+	public void edit(String oldName, String name, String Password) {
+		// TODO Auto-generated method stub
+		
 	}
 }

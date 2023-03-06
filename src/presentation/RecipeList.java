@@ -20,7 +20,8 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
-import persistence.RecipesDAOImpl;
+import persistence.RecipesStubDB;
+import persistence.DatabaseAccess;
 
 /**
  * 
@@ -55,7 +56,9 @@ public class RecipeList extends JFrame {
 	 */
 	public void addRecipes() {
 		DefaultListModel<String> model = new DefaultListModel<String>();
-		DAO<Recipes> db = new RecipesDAOImpl();
+		DatabaseAccess access = new DatabaseAccess();
+		DAO<Recipes> db = access.recipesDB();
+		//DAO<Recipes> db = new RecipesStubDB();
 		ArrayList<Recipes> recipes = db.getAll();
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
