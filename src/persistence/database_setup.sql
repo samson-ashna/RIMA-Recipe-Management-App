@@ -24,26 +24,14 @@ the microwave, and cut in half lengthwise. Season with salt and pepper and mash 
 and Cheddar cheese. Microwave until melted, about 1 more minute. Top with sour cream, and serve.',12,368,39,9,3,39),
 (2,'Teriyaki Chicken','2 lb chicken thighs sliced into chunks, 1 cup soy sauce(240 ml),1/2 cup brown sugar(110 g)',"Sear the chicken thighs evenly in a pan, then flip. Add the
  soy sauce and brown sugar, stirring and bringing to a boil. Stir until the sauce has reduced and evenly glazes the chicken.",27,366,20,48,0,17);
-SELECT * FROM recipes;
 CREATE TABLE `users` (
     `name` varchar(255) NOT NULL,
     `password` varchar(255) DEFAULT NULL,
     `myRecipes` json DEFAULT NULL ,
     PRIMARY KEY(`name`)
 );
-SELECT * FROM users;
 CREATE TABLE `id` (
 	`recipeID` int DEFAULT 2
 );
 INSERT INTO id (recipeID) VALUE (2);
-SELECT * FROM recipes WHERE `user`= 'ALL';
-INSERT INTO users (name,password,myRecipes) VALUES ('AppDeveloper2','12','{"1":"1"}');
-UPDATE users SET myRecipes=JSON_REMOVE(myRecipes,'$."1"') WHERE `name`='AppDeveloper'; 
-
-UPDATE users SET myRecipes=JSON_REMOVE(myRecipes,'$."4"') WHERE `name`='user1'; 
-update users set myRecipes= json_set(`myRecipes`, '$."1"', 5) WHERE `name`='user1';
-UPDATE users SET myRecipes= JSON_INSERT(`myRecipes`, '$."4"',"pasta") WHERE `name`='user1';
-
-UPDATE users SET myRecipes= JSON_REMOVE(myRecipes, '$."4"') WHERE `name`='user1';
-SELECT * from id;
 
