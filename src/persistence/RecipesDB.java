@@ -6,15 +6,8 @@ import businessLogic.UserActivity;
 import objects.Recipes;
 import java.sql.*;
 
-public class RecipesDB implements DAO<Recipes> {
+public class RecipesDB extends DBSetup implements DAO<Recipes> {
 	private ArrayList<Recipes> dbRecipes= new ArrayList<Recipes>();;
-	static String url = "jdbc:mysql://localhost:3306/rimaDB";
-	static String user = "root";
-	static String password = "";//change password
-	static String query;
-	static Connection con;
-	static Statement statement;
-	static ResultSet result;
 	
 	public void setRecipeIDs() {
 		try {

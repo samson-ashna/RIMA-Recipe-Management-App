@@ -1,30 +1,17 @@
 package persistence;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Set;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
 
-public class UsersDB implements UsersDAO {
+public class UsersDB extends DBSetup implements UsersDAO  {
 	private static ArrayList<User> dbUsers = new ArrayList<User>();;
-	String url = "jdbc:mysql://localhost:3306/rimaDB";
-	String user = "root";
-	String password = "";//change password
-	static String query;
-	static Connection con;
-	static Statement statement;
-	static ResultSet result;
-	static int id;
+
 
 	@Override
 	public User get(String name) {
