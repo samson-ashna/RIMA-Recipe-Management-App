@@ -27,7 +27,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.UsersStubDB;
 
 @SuppressWarnings("serial")
 public class IngredientsListView extends JFrame {
