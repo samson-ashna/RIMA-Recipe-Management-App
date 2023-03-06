@@ -142,6 +142,7 @@ public class UsersDB implements UsersDAO {
 		
 		allRecipes = db.getAllRecipes();
 		for(Recipes r: allRecipes) {
+			//if(u.getRecipeCollection1().containsKey(Integer.toString(r.getRecipeID()))) {
 			if(u.getName().equals(r.getUser())) {
 				userRecipes.add(r);
 			}
