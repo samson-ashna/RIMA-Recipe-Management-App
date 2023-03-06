@@ -27,8 +27,12 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
 	
+	//Current HomePage instance for passing to instance of next frame in ActionListener to make next frame's back button work.
+	private final HomePage homePage = this;
+	
 	//Panel objects.
 	private Container contentPane;
+	private Container ingredientsListPane;
 	private JPanel logoutPane;
 	private JPanel optionsPane;
 	
@@ -169,20 +173,21 @@ public class HomePage extends JFrame {
 		});
 		
 		//Set ingredients button to redirect to the user's personal ingredient collection when pushed.
-		/*userRecipesButton.addActionListener(new ActionListener() {
+		ingredientsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IngredientCollection ingredientView = new IngredientCollection();
-				ingredientView.setVisible(true);
-				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
+				IngredientsListView ingredientView = new IngredientsListView(homePage, contentPane);
+				
+				//Save the home page window's content pane.
+				ingredientsListPane = ingredientView.getContentPane();
+				
+				//Set the content pane to be the home page window's content pane.
+				setContentPane(ingredientsListPane);
+				validate();
 			}
-		});*/
+		});
 		
 		//Add components to content pane.
 		contentPane.add(logoutPane, BorderLayout.PAGE_START);
 		contentPane.add(optionsPane);
-		
-		
 	}
 }
