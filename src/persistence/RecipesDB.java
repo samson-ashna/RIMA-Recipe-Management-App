@@ -116,7 +116,8 @@ public class RecipesDB implements DAO<Recipes> {
 			t.setID(UserActivity.RecipeIDs-1);
 			con = DriverManager.getConnection (url , user , password );
 			statement = con.createStatement();
-			query = "INSERT INTO recipes(food_id, name,carbs,protein) VALUES ("+UserActivity.RecipeIDs+",\'"+t.getName()+"\'"+",\'"+t.getCarbs()+"\',"+"\'"+t.getProtein()+"\');";
+			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein) VALUES"
+					+ " ("+UserActivity.RecipeIDs+",\'"+t.getName()+"\'"+",\'"+t.getIngredients()+"\',"+"\'"+t.getInstructions()+"\',"+"\'"+t.getCarbs()+"\',\'"+t.getProtein()+"\');";
 			statement.execute(query);
 			query = "UPDATE id SET recipeID = recipeID + 1";
 			statement.execute(query);
