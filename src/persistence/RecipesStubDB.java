@@ -83,5 +83,15 @@ public class RecipesStubDB implements DAO<Recipes> {
 		dbRecipes.remove(r);
 		
 	}
+
+	@Override
+	public void edit(Recipes t) {
+		// TODO Auto-generated method stub
+		for(Recipes r:dbRecipes) {
+			if(r.equals(t)) {
+				r=t;
+			}
+		}
+	}
 	
 }

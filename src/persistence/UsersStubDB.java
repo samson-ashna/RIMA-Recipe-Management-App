@@ -114,4 +114,10 @@ public class UsersStubDB implements UsersDAO {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void edit(User t) {
+		
+		
+	}
 }

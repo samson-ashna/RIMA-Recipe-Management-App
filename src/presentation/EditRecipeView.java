@@ -16,6 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import objects.Recipes;
+import persistence.DAO;
+import persistence.DatabaseAccess;
+import persistence.RecipesDB;
+
 import javax.swing.JEditorPane;
 
 /**
@@ -186,7 +190,18 @@ public class EditRecipeView extends JDialog {
 					recipe.setProtein(protein);
 					recipe.setCarbs(carbs);
 					recipe.setIngredients(ingredients);
-					recipe.setInstructions(instructions);		
+					recipe.setInstructions(instructions);
+					DatabaseAccess access = new DatabaseAccess();
+					//RecipesDB db = new RecipesDB();
+					DAO<Recipes> db = access.recipesDB();
+					db.edit(recipe);
+					
+//					for (Recipes r: db.getAllRecipes()) {
+//						System.out.println(r.getRecipeID()+"id"+recipe.getRecipeID());
+//						if(r.getRecipeID()==recipe.getRecipeID()) {			
+//							db.edit(recipe);
+//						}
+//					}
 					UserRecipeCollection back = new UserRecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);

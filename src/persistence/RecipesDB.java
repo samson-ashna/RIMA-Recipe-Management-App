@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
+import objects.User;
+
 import java.sql.*;
 
 public class RecipesDB implements DAO<Recipes> {
@@ -132,13 +134,47 @@ public class RecipesDB implements DAO<Recipes> {
 		try {
 			con = DriverManager.getConnection (url , user , password );
 			statement = con.createStatement();
-			query = "DELETE FROM recipes WHERE `name`=\'"+t.getName()+"\';";
+			query = "DELETE FROM recipes WHERE `food_id`=\'"+t.getRecipeID()+"\';";
 			statement.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public void edit(Recipes t){
+		RecipesDB db = new RecipesDB();
+		//DAO<Recipes> db = new RecipesStubDB();
+		for (Recipes r: db.getAllRecipes()) {
+			if(r.getRecipeID()==t.getRecipeID()) {			
+				try {
+					con = DriverManager.getConnection (url , user , password );
+					statement = con.createStatement();
+					query = "UPDATE recipes SET name=\'"+t.getName()+"\'"+","
+							+ "ingredients=\'"+t.getIngredients()+"\',"
+									+ " instruction=\'"+t.getInstructions()+"\',"
+											+ "protein=\'"+t.getProtein()+"\',"
+													+ " carbs=\'"+t.getCarbs()+"\' "
+															+ "WHERE food_id="+"\'"+t.getRecipeID()+"\';";
+							
+					statement.execute(query);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		UsersDB dbUser = new UsersDB();
+		for(User u: dbUser.getAll()) {
+			if(dbUser.getRecipe(u, t.getName()).getRecipeID()==t.getRecipeID()){
+				query = "UPDATE users SET myRecipes= JSON_SET(myRecipes, '$.\""+(t.getRecipeID())+"\"',\""+ t.getName()+"\") WHERE `name`='"+u.getName()+"\';";
+				try {
+					statement.execute(query);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		
 		
 	}
-
 }

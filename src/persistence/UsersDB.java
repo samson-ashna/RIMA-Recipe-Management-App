@@ -105,6 +105,7 @@ public class UsersDB implements UsersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	@Override
 	public void edit(String oldName, String name, String newPass) {
@@ -190,6 +191,8 @@ public class UsersDB implements UsersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		RecipesDB db = new RecipesDB();
+		db.remove(r);
 	}
 
 	@Override
@@ -202,5 +205,11 @@ public class UsersDB implements UsersDAO {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void edit(User t) {
+		// TODO Auto-generated method stub
+		
 	}
 }
