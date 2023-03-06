@@ -103,7 +103,8 @@ public class RecipeList extends JFrame {
 				if(UserActivity.getCurrentUser() == null) {
 					Main.frame.setVisible(true);
 				}else {
-					HomePage.contentPane.setVisible(true);
+					HomePage homePage = new HomePage();
+					homePage.setVisible(true);
 				}
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
