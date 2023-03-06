@@ -1,5 +1,7 @@
 package presentation;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +12,9 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Window;
 import java.awt.Font;
@@ -22,9 +27,21 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class HomePage extends JFrame {
 	
-	//Panel object
-	static JPanel contentPane;
-
+	//Panel objects.
+	private Container contentPane;
+	private JPanel logoutPane;
+	private JPanel optionsPane;
+	
+	//Button objects.
+	JButton logoutButton = new JButton("Log Out");	
+	JButton userRecipesButton = new JButton("My Collection");
+	JButton ingredientsButton = new JButton("My Ingredients");
+	JButton newRecipesButton = new JButton("Find New Recipes");
+	JButton viewProfileButton = new JButton("View Profile");
+	
+	//Label objects.
+	JLabel welcomeLabel = new JLabel("");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -49,16 +66,59 @@ public class HomePage extends JFrame {
 		//Set application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Set size and pop up location of the window.
-		setSize(450, 300);
+		setSize(450, 330);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		//Creates a new button. When clicked, user is redirected to their personal recipe collection
-		JButton btnNewButton = new JButton("My Collection");
-		btnNewButton.setBounds(167, 50, 117, 23);
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		//Get and store the content pane.
+		contentPane = getContentPane();	
+		
+		//Create a new pane for the logout button.
+		logoutPane = new JPanel(); 
+		//Set an invisible border for the options pane.
+		logoutPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
+		//Set the options pane's layout manager to the horizontal box layout.
+		logoutPane.setLayout(new BoxLayout(logoutPane, BoxLayout.LINE_AXIS));
+		
+		//Create a new options pane.
+		optionsPane = new JPanel(); 
+		//Set an invisible border for the options pane.
+		optionsPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
+		//Set the options pane's layout manager to the vertical box layout.
+		optionsPane.setLayout(new BoxLayout(optionsPane, BoxLayout.PAGE_AXIS));		
+		
+		//Set up welcome label font and text.		
+		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		welcomeLabel.setText("Welcome "+ UserActivity.getCurrentUser().getName());
+		
+		//Centre align components for optionsPane.
+		welcomeLabel.setAlignmentX(CENTER_ALIGNMENT);
+		userRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
+		ingredientsButton.setAlignmentX(CENTER_ALIGNMENT);
+		newRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
+		viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
+		
+		
+		//Add logout button to the logout pane.
+		logoutPane.add(Box.createHorizontalGlue());
+		logoutPane.add(logoutButton);
+		
+		//Add other components to optionPane.
+		optionsPane.add(Box.createVerticalGlue());
+		optionsPane.add(welcomeLabel);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));		
+		optionsPane.add(userRecipesButton);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		optionsPane.add(ingredientsButton);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		optionsPane.add(newRecipesButton);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		optionsPane.add(viewProfileButton);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));
+		optionsPane.add(Box.createVerticalGlue());
+				
+		
+		//Set user recipes button to redirect to the user's personal recipe collection when pushed.
+		userRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
 				collection.setVisible(true);
@@ -67,34 +127,21 @@ public class HomePage extends JFrame {
 				win.dispose();
 			}
 		});
-		contentPane.add(btnNewButton);
 		
-		//Create s new button. When clicked, the user is redirected to the app's recipe databse.
-		JButton btnNewButton_1 = new JButton("Find New Recipes");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		//Set new recipes button to redirect to the app's recipe databse when pushed.
+		newRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
 				contentPane.setVisible(false);
+				//Close the UserRecipeCollection Window.
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(138, 100, 174, 42);
-		contentPane.add(btnNewButton_1);
 		
-		//Create new button for View Profile.
-		JButton viewProfileButton = new JButton("View Profile");
-		
-		//Set up the bounds of the back button.
-		viewProfileButton.setBounds(167, 175, 117, 23);
-				
-		//Add the back button to the content pane.
-		contentPane.add(viewProfileButton);
-		
-		//Creates a "log out" button. When clicked user is redirected to the main window of the application.
-		JButton btnNewButton_2 = new JButton("Log Out");
-		btnNewButton_2.setBounds(337, 11, 89, 23);
-		contentPane.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		//Set "log out" button to redirect to the main window of the application when pushed.
+		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity.getCurrentUser().loggedIn = false;
 				Main mainPage = new Main();
@@ -103,17 +150,9 @@ public class HomePage extends JFrame {
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
 			}
-		});
-		//Label for displaying user name
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel.setBounds(140, 15, 153, 14);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setText("Welcome "+ UserActivity.getCurrentUser().getName());
-		
+		});				
 				
-		//Set up what to do when the back button is pressed.
+		//Set view profile button to redirect to the user's profile when pushed.
 		viewProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a Profile window
@@ -123,11 +162,26 @@ public class HomePage extends JFrame {
 				viewProfile.setVisible(true);
 				contentPane.setVisible(false);
 						
-				//Close the UserRecipeCollection Window.
+				//Close the old window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				
 			}
 		});
+		
+		//Set ingredients button to redirect to the user's personal ingredient collection when pushed.
+		/*userRecipesButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IngredientCollection ingredientView = new IngredientCollection();
+				ingredientView.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
+			}
+		});*/
+		
+		//Add components to content pane.
+		contentPane.add(logoutPane, BorderLayout.PAGE_START);
+		contentPane.add(optionsPane);
 		
 		
 	}
