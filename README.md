@@ -1,4 +1,6 @@
 # Recipe and Ingredient Management App (RIMA)
+**Run database_setup in MySQL workbench
+**Add sql root password in src/presentation/RecipesDB.java and src/presentation/UsersDB.java
 **To Run: src/presentation/Main.java**
 ## Team 1 Group Members
 - Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
