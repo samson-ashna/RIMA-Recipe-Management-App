@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import businessLogic.UserActivity;
+import objects.Ingredient;
 import objects.Recipes;
 import objects.User;
 
@@ -79,7 +80,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			// create statement
 			statement = con.createStatement();
 				
-			query = "INSERT INTO users(name, password,myRecipes) VALUES (\'"+t.getName()+"\', \'"+t.getPassword()+"\',\'"+t.getRecipeCollection1()+"\');";
+			query = "INSERT INTO users(name, password, myRecipes, myIngredients) VALUES (\'"+t.getName()+"\', \'"+t.getPassword()+"\',\'"+t.getRecipeCollection1()+"\', \'"+t.ingredientsToJSON()+"\');";
 
 			statement.execute(query);
 		} catch (SQLException e) {
@@ -202,6 +203,44 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		return null;
 	}
 
+	/*@Override
+	public ArrayList<Ingredient> getIngredients(User u) {
+		ArrayList<User> users = getAll();
+		
+		for(User user : users) {
+			//Return user ingredients if user exists in the database.
+			if(user.getName().equals(u.getName())) {
+				return user.getIngredients();
+			}
+		}
+		//If user doesn't exist in the database, return null.
+		return null;
+	}
+
+	@Override
+	public void addIngredient(User u, Ingredient i) {
+		u.addIngredientToCollection(i);
+		query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '$.\""+(UserActivity.RecipeIDs)+"\"',\""+ r.getName()+"\") WHERE `name`='"+u.getName()+"\';";
+		//query = "UPDATE users SET myRecipes=JSON_SET(myRecipes,\'{\" "+Integer.toString(UserActivity.RecipeIDs-1)+"\":"+Integer.toString(UserActivity.RecipeIDs-1)+"}\') WHERE `name`=\'"+u.getName()+"\';";
+		try {
+			statement.execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void removeIngredient(User u, Ingredient i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Recipes getIngredient(User u, String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+	
 	@Override
 	public void edit(User t) {
 		// TODO Auto-generated method stub

@@ -46,6 +46,7 @@ public class IngredientsListView extends JFrame {
 	private final JButton backButton = new JButton("Back");
 	private final JButton removeButton = new JButton("Remove");
 	private final JButton addButton = new JButton("Add Ingredient");
+	private final JButton[] buttons = {backButton, removeButton, addButton};
 	private JList<String> ingredientsList = new JList<String>();
 
 
@@ -152,10 +153,15 @@ public class IngredientsListView extends JFrame {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView();
+				EditIngredientView editView = new EditIngredientView(buttons);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);
+				
+				//Disable buttons.
+				backButton.setEnabled(false);
+				addButton.setEnabled(false);
+				removeButton.setEnabled(false);
 								
 			}
 		});

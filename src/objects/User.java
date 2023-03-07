@@ -1,7 +1,11 @@
 package objects;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
+
+import com.mysql.cj.xdevapi.JsonArray;
+import com.mysql.cj.xdevapi.JsonValue;
 
 /**
  * This class represents a User object. 
@@ -10,10 +14,14 @@ public class User {
 	
 	protected String name;
 	private String password;
+	
 	//personal collection of the user's recipes,unlike database recipes, these recipes can be modified.
 	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
 	private Hashtable<String, String> recipelst=new Hashtable<String, String>();
 	//private ArrayList<String> recipelst = new ArrayList<String>();
+	
+	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+	
 	String lst;
 	public boolean loggedIn = false;
 	public Allergies allergens;
@@ -119,6 +127,50 @@ public class User {
 	public void removeRecipeFromCollection(String recipe) {
 		this.recipelst.remove(recipe);
 	}
+	
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
+	public ArrayList<Ingredient> getIngredients() {
+		return this.ingredients;
+	}
+	
+	//Adds Ingredient ingredient to the user's ingredient collection
+	public void addIngredientToCollection(Ingredient ingredient) {
+		this.ingredients.add(ingredient);
+	}
+	
+	//Removes Ingredient ingredient from the user's ingredient collection
+	public void removeIngredientFromCollection(Ingredient ingredient) {
+		this.ingredients.remove(ingredient);
+	}
+	
+	public String ingredientsToJSON() {
+		//For testing purposes.
+		//ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
+		
+		//String for converted ingredients arraylist.
+		String jsonString = "";
+		
+		jsonString = jsonString + "[";
+		for (int i = 0; i < this.ingredients.size(); i++) {
+		    Ingredient ingredient = this.ingredients.get(i);
+		    jsonString = jsonString + "{" + "\"name\": " + "\"" + ingredient.getName() + "\", "
+		    		+ "\"cost\": " + "\"" + ingredient.getCost() + "\", "
+		    		+ "\"expiration\": " + "\"" + ingredient.getExpiration().toString() + "\", " //Temporary
+		    		+ "\"protein\": " + "\"" + ingredient.getProtein() + "\", "
+		    		+ "\"carbs\": " + "\"" + ingredient.getCarbs() + "\", "
+		    		+ "\"User\": " + "\"" + ingredient.getUser() + "\"" + "}";
+		    if (i < this.ingredients.size() - 1) {
+		    	jsonString = jsonString + ",";
+		    }
+		}
+		jsonString = jsonString + "]";
+		
+		return jsonString;
+	}
+	
 	
 	/**
 	 * Returns an instance of the class Allergies which contains information on the user's food allergies. 

@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,9 +25,16 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
+import objects.User;
+import persistence.DatabaseAccess;
+import persistence.UsersDAO;
 
 @SuppressWarnings("serial")
 public class EditIngredientView extends JFrame{
+	
+	//Ingredients list buttons for re-enabling upon return.
+	private JButton[] listButtons;
+	
 	//Pane objects
 	private Container contentPane;
 	
@@ -56,6 +64,9 @@ public class EditIngredientView extends JFrame{
 	//Button Objects
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton saveButton  = new JButton("Save");
+	
+	//Current user
+	private User currentUser;
 
 	/**
 	 * Launch the application.
@@ -76,7 +87,10 @@ public class EditIngredientView extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public EditIngredientView() {
+	public EditIngredientView(JButton[] buttons) {
+		//Save previous frame's buttons to re-enable them.
+		listButtons = buttons;
+		
 		//Set frame title.
 		setTitle("RIMA - Edit Ingredient");
 		//Set the application to exit when closed.
@@ -152,63 +166,92 @@ public class EditIngredientView extends JFrame{
 				//Close the UserRecipeCollection Window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();	
-			}
-		});
-		/*
-		//Creates a save button.When clicked, a new recipe object is created and added to the user's personal collection of recipes.
-		JButton save = new JButton("Save");
-		save.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		save.setBounds(226, 628, 207, 59);
-		contentPane.add(save);
-		save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean incorrectValues = false;
-				String name = userName.getText();
-				int protein=0;
-				try
-				{
-				    protein = Integer.parseInt(proteinInfo.getText());
-				}
-				catch (NumberFormatException e1)
-				{
-					incorrectValues = true;
-					lblError2.setText("Must be an integer!");
-				}
-				int carbs=0;
-				try
-				{
-				    carbs = Integer.parseInt(carbsInfo.getText());
-				}
-				catch (NumberFormatException e21)
-				{
-					incorrectValues = true;
-					lblError1.setText("Must be an integer!");
-					
-				}
-				/*if user has not entered strings for protein and carbs, ingredient list 
-				and instruction is read and a new recipe is created and saved to the user's personal collection.
-				*/
-				/*if(!incorrectValues) {
-		
-					String ingredients=ingredientInfo.getText();
-					String instructions = instructionInfo.getText();
-					Recipes newRecipe = null;
-					newRecipe = new Recipes(name, protein, carbs);
-					newRecipe.setIngredients(ingredients);
-					newRecipe.setInstructions(instructions);
-					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
-					saveRecipe.save(newRecipe);
-					//User is then redirected back to their recipe collection page.
-					UserRecipeCollection back = new UserRecipeCollection();
-					back.setVisible(true);
-					contentPane.setVisible(false);
-					Window win = SwingUtilities.getWindowAncestor(contentPane);
-					win.dispose();
-				}
 				
+				reenableButtons();
 			}
 		});
-		*/
+
+		//Sets up save button to add ingredient to list or edit it when pressed and close window.
+		/*saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DatabaseAccess access = new DatabaseAccess();
+				UsersDAO db = access.usersDB();
+				//Get the current user.
+				currentUser = UserActivity.getCurrentUser();
+				
+				//Flag for whether a change has been made.
+				boolean change = false;
+				
+				//Save text in password fields.
+				String newPass = new String(enterPass.getPassword());
+				String confirmPass = new String(enterPassAgain.getPassword());
+				
+				//Reset error label.
+				errorLabel.setText("");
+				
+				//Determine whether check boxes have changed.
+				boolean allergyChange = false;
+				for(JCheckBox box : allergyBoxes) {
+					if((userAllergies.get(box.getText()).intValue() == 1 && !box.isSelected()) || (userAllergies.get(box.getText()).intValue() == 0 && box.isSelected())){
+							allergyChange = true;
+					}
+				}
+				UserActivity activity = new UserActivity();
+				//Check that the user is logged in.
+				if(currentUser != null) {
+					String currentName = currentUser.getName();
+					userAllergies = currentUser.getUserAllergies().getAllergies();
+					allergyNames = currentUser.getUserAllergies().getAllergyNames();
+					
+					//If the new username exists and isn't the current user's, do nothing and inform the user that the username exists.
+					if (activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
+						errorLabel.setText("Username already exists!");
+					//Otherwise update the user's name
+					}else if(!activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
+						currentUser.setName(nameField.getText());
+						change = true;
+						
+						db.edit(currentName,nameField.getText(),null);
+					}
+						
+					//If the password fields don't match, do nothing and inform the user.
+					if (!newPass.equals(confirmPass)) {
+						errorLabel.setText("Password confirmation does not match!");
+					//If the password is new, isn't blank, and the passwords match, update the user's password.
+					}else if(!activity.checkPassword(currentUser.getName(), newPass) && !newPass.equals("") && newPass.equals(confirmPass)) {
+						currentUser.setPassword(newPass);
+						change = true;
+						db.edit(currentUser.getName(),null,newPass);
+					}
+					
+					//If the allergies have changed, update the user's allergies.
+					if(allergyChange) {
+						for(JCheckBox box : allergyBoxes) {
+							if(box.isSelected()){
+								userAllergies.replace(box.getText(), 1);
+							}else if(!box.isSelected()) {
+								userAllergies.replace(box.getText(), 0);
+							}
+						}
+						change = true;
+					}
+					
+					if(change) {
+						
+						//Create a HomePage window
+						ViewProfile viewProfile = new ViewProfile();
+							
+						//Make the HomePage window visible and the UserRecipeCollection window invisible.
+						viewProfile.setVisible(true);
+						contentPane.setVisible(false);
+							
+						//Close the UserRecipeCollection Window.
+						Window win = SwingUtilities.getWindowAncestor(contentPane);
+						win.dispose();
+					}
+				}
+			}
+		});		*/
 	}
 	
 	private void textFieldsSetup() {
@@ -220,5 +263,23 @@ public class EditIngredientView extends JFrame{
 		proteinField.setMaximumSize(proteinField.getSize());
 		carbsField.setSize(281, 26);
 		carbsField.setMaximumSize(carbsField.getSize());
+		
+		currentUser = UserActivity.getCurrentUser();
+		
+		//Ensure user is logged in.
+		if(currentUser != null) {
+			
+		//If no user logged in, close window.
+		} else {
+			//Close the UserRecipeCollection Window.
+			Window win = SwingUtilities.getWindowAncestor(contentPane);
+			win.dispose();
+		}
+	}
+	
+	private void reenableButtons() {
+		for(JButton button:listButtons) {
+			button.setEnabled(true);
+		}
 	}
 }

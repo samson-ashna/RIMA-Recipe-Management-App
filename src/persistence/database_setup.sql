@@ -28,6 +28,7 @@ CREATE TABLE `users` (
     `name` varchar(255) NOT NULL,
     `password` varchar(255) DEFAULT NULL,
     `myRecipes` json DEFAULT NULL ,
+    `myIngredients` json DEFAULT NULL ,
     PRIMARY KEY(`name`)
 );
 CREATE TABLE `id` (
