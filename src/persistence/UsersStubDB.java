@@ -2,6 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 
+import objects.Ingredient;
 import objects.Recipes;
 import objects.User;
 
@@ -119,5 +120,29 @@ public class UsersStubDB implements UsersDAO {
 	public void edit(User t) {
 		
 		
+	}
+
+	@Override
+	public ArrayList<Ingredient> getIngredients(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addIngredient(User u, Ingredient i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeIngredient(User u, Ingredient i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Ingredient getIngredient(User u, String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

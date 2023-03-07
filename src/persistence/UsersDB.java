@@ -2,7 +2,9 @@ package persistence;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 
 import businessLogic.UserActivity;
@@ -203,14 +205,44 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		return null;
 	}
 
-	/*@Override
+	@Override
 	public ArrayList<Ingredient> getIngredients(User u) {
 		ArrayList<User> users = getAll();
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		String ingredientsString;
 		
 		for(User user : users) {
 			//Return user ingredients if user exists in the database.
 			if(user.getName().equals(u.getName())) {
-				return user.getIngredients();
+				
+				query = "SELECT myIngredients FROM users WHERE `name`='"+u.getName()+"\';";
+				
+				try {
+					result = statement.executeQuery(query);
+					while(result.next()) {
+						
+						//Parse result set into ingredient's attributes.
+						String name = result.getString(1);
+						double cost = Double.parseDouble(result.getString(2));
+						Date expiration = null;
+						try {
+							expiration = DateFormat.getDateInstance().parse(result.getString(3));
+						} catch (Exception e) {
+							
+						}
+						int protein = Integer.parseInt(result.getString(4));
+						int carbs = Integer.parseInt(result.getString(5));
+						String userName = result.getString(6);
+						
+						//Create a new Ingredient object from the attributes and add it to the ingredients arraylist.
+						ingredients.add(new Ingredient(name, cost, expiration, protein, carbs, userName));
+						
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				return ingredients;
 			}
 		}
 		//If user doesn't exist in the database, return null.
@@ -219,14 +251,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 
 	@Override
 	public void addIngredient(User u, Ingredient i) {
-		u.addIngredientToCollection(i);
-		query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '$.\""+(UserActivity.RecipeIDs)+"\"',\""+ r.getName()+"\") WHERE `name`='"+u.getName()+"\';";
-		//query = "UPDATE users SET myRecipes=JSON_SET(myRecipes,\'{\" "+Integer.toString(UserActivity.RecipeIDs-1)+"\":"+Integer.toString(UserActivity.RecipeIDs-1)+"}\') WHERE `name`=\'"+u.getName()+"\';";
-		try {
-			statement.execute(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -236,10 +261,10 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	}
 
 	@Override
-	public Recipes getIngredient(User u, String name) {
+	public Ingredient getIngredient(User u, String name) {
 		// TODO Auto-generated method stub
 		return null;
-	}*/
+	}
 	
 	@Override
 	public void edit(User t) {
