@@ -15,6 +15,7 @@ public class User {
 	//personal collection of the user's recipes,unlike database recipes, these recipes can be modified.
 	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
 	private Hashtable<String, String> recipelst=new Hashtable<String, String>();
+	private ArrayList<Recipes> myFavourites = new ArrayList<Recipes>();
 	//private ArrayList<String> recipelst = new ArrayList<String>();
 	
 	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
@@ -176,6 +177,16 @@ public class User {
 	public Allergies getUserAllergies()
 	{
 		return this.allergens;
+	}
+
+	public void setFavourite(Recipes recipes)
+	{
+		this.myFavourites.add(recipes);
+	}
+
+	public ArrayList<Recipes> getFavourites()
+	{
+		return this.myFavourites;
 	}
 
 }
