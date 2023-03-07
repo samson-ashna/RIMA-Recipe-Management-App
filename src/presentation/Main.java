@@ -36,7 +36,7 @@ public class Main {
 	public Main() {
 
 		// Background Image
-		icon = new ImageIcon(this.getClass().getResource("/res/main_menu2.jpg"));
+		icon = new ImageIcon(this.getClass().getResource("/res/menu.jpg"));
         label = new JLabel(icon);
         label.setSize(1280, 720);
 

@@ -7,6 +7,7 @@ import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,6 +37,14 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JButton backButton;
 
+	protected static JFrame frame;
+    private ImageIcon icon;
+	private ImageIcon logo;
+    private JLabel label;
+	
+    private JButton start;
+    private JButton end;
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,44 +65,49 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("RIMA - Login");
-		//Set the application to exit when closed
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Set the size and pop up location of the window.
-		setSize(429, 336);
-		setLocationRelativeTo(null);
+		
+		// Background Image
+		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
+		label = new JLabel(icon);
+		label.setSize(1280, 720);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//label for user name
+		// label for user name
 		JLabel lbluserName = new JLabel("User Name");
 		lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lbluserName.setBounds(169, 39, 76, 51);
 		contentPane.add(lbluserName);
+		
 		//Creates a test field where user can enter user name
 		textField = new JTextField();
 		textField.setBounds(67, 93, 281, 26);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
 		//label for password
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblPassword.setBounds(169, 114, 76, 51);
 		contentPane.add(lblPassword);
+		
 		//Creates a text field where user can enter password
 		passwordField = new JPasswordField();
 		passwordField.setBounds(67, 165, 281, 33);
 		contentPane.add(passwordField);
+		
 		//Creates label for displaying error messages.
 		JLabel lblError = new JLabel("");
 		lblError.setForeground(new Color(255, 0, 0));
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
 		lblError.setBounds(112, 209, 185, 14);
 		contentPane.add(lblError);
+		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
 		JButton logInButton = new JButton("Login");
 		logInButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -145,6 +159,23 @@ public class Login extends JFrame {
 				win.dispose();
 			}
 		});
+
+		// Setup
+		label.add(lbluserName);
+		label.add(textField);
+		label.add(lblPassword);
+		label.add(passwordField);
+		label.add(logInButton);
+		label.add(backButton);
+		label.add(lblError);
+
+		frame = new JFrame("RIMA - Login");
+		frame.add(label);
+		frame.setSize(1280, 720);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 		
 	}
 }
