@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,45 +16,31 @@ import javax.swing.JLabel;
 public class Main {
 
 	protected static JFrame frame;
+    private ImageIcon icon;
+    private JLabel label;
+    private JButton start;
+    private JButton end;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new Main();
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public Main() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("RIMA - Welcome!");
-		frame.setSize(450, 300);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		//Creates a log in button. When clicked user is redirected to log in page.
+		// Background Image
+		icon = new ImageIcon(this.getClass().getResource("/res/main_menu.jpg"));
+        label = new JLabel(icon);
+        label.setSize(1280, 720);
+
+		// Login
 		JButton btnLogIn = new JButton("Login");
 		btnLogIn.setBounds(162, 73, 89, 23);
-		frame.getContentPane().add(btnLogIn);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
@@ -62,10 +49,10 @@ public class Main {
 				frame.dispose();
 			}
 		});
-		//Creates a new button. When clicked user is redirected to the page where they can view recipes in the app's database.
+
+		// Guest Login
 		JButton btnGuest = new JButton("Continue as Guest");
 		btnGuest.setBounds(134, 165, 156, 35);
-		frame.getContentPane().add(btnGuest);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
@@ -74,16 +61,16 @@ public class Main {
 				frame.dispose();
 			}
 		});
-		//label for welcome message.
+
+		// Welcome
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel.setBounds(162, 24, 122, 23);
-		frame.getContentPane().add(lblNewLabel);
-		
-		//Creates a new button. When clicked user is redirected to sign up page.
+
+
+		// User Profile
 		JButton btnSignUp = new JButton("Create User Profile");
 		btnSignUp.setBounds(134, 116, 156, 27);
-		frame.getContentPane().add(btnSignUp);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignUpPage signUp = new SignUpPage();
@@ -92,5 +79,21 @@ public class Main {
 				frame.dispose();
 			}
 		});
+
+		// Setup
+		label.add(btnLogIn);
+		label.add(btnGuest);
+		label.add(lblNewLabel);
+		label.add(btnSignUp);
+
+		frame = new JFrame("RIMA - Welcome!");
+		frame.add(label);
+		frame.setSize(1280, 720);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+
 	}
+
 }
