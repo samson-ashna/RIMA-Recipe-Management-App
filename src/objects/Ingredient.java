@@ -89,5 +89,18 @@ public class Ingredient {
 		return this.user;
 	}
 	
+	public String ingredientToJSON() {
+		String jsonString = "";
+		
+		jsonString = jsonString + "{" + "\"name\": " + "\"" + this.name + "\", "
+	    		+ "\"cost\": " + "\"" + this.cost + "\", "
+	    		+ "\"expiration\": " + "\"" + this.expiration.toString() + "\", " //Temporary
+	    		+ "\"protein\": " + "\"" + this.protein + "\", "
+	    		+ "\"carbs\": " + "\"" + this.carbs + "\", "
+	    		+ "\"user\": " + "\"" + this.user + "\"" + "}";
+		
+		return jsonString;
+	}
+	
 	
 }

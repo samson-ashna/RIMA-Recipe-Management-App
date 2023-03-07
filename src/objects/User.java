@@ -146,7 +146,7 @@ public class User {
 	
 	public String ingredientsToJSON() {
 		//For testing purposes.
-		//ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
+		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
 		
 		//String for converted ingredients arraylist.
 		String jsonString = "";
@@ -154,12 +154,7 @@ public class User {
 		jsonString = jsonString + "[";
 		for (int i = 0; i < this.ingredients.size(); i++) {
 		    Ingredient ingredient = this.ingredients.get(i);
-		    jsonString = jsonString + "{" + "\"name\": " + "\"" + ingredient.getName() + "\", "
-		    		+ "\"cost\": " + "\"" + ingredient.getCost() + "\", "
-		    		+ "\"expiration\": " + "\"" + ingredient.getExpiration().toString() + "\", " //Temporary
-		    		+ "\"protein\": " + "\"" + ingredient.getProtein() + "\", "
-		    		+ "\"carbs\": " + "\"" + ingredient.getCarbs() + "\", "
-		    		+ "\"User\": " + "\"" + ingredient.getUser() + "\"" + "}";
+		    jsonString = jsonString + ingredient.ingredientToJSON();
 		    if (i < this.ingredients.size() - 1) {
 		    	jsonString = jsonString + ",";
 		    }
