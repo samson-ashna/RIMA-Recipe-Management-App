@@ -17,7 +17,9 @@ public class Main {
 
 	protected static JFrame frame;
     private ImageIcon icon;
+	private ImageIcon logo;
     private JLabel label;
+	
     private JButton start;
     private JButton end;
 
@@ -34,13 +36,13 @@ public class Main {
 	public Main() {
 
 		// Background Image
-		icon = new ImageIcon(this.getClass().getResource("/res/main_menu.jpg"));
+		icon = new ImageIcon(this.getClass().getResource("/res/main_menu2.jpg"));
         label = new JLabel(icon);
         label.setSize(1280, 720);
 
 		// Login
 		JButton btnLogIn = new JButton("Login");
-		btnLogIn.setBounds(162, 73, 89, 23);
+		btnLogIn.setBounds(560, 380, 156, 27);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
@@ -52,7 +54,7 @@ public class Main {
 
 		// Guest Login
 		JButton btnGuest = new JButton("Continue as Guest");
-		btnGuest.setBounds(134, 165, 156, 35);
+		btnGuest.setBounds(560, 420, 156, 35);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
@@ -62,15 +64,9 @@ public class Main {
 			}
 		});
 
-		// Welcome
-		JLabel lblNewLabel = new JLabel("Welcome");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(162, 24, 122, 23);
-
-
 		// User Profile
 		JButton btnSignUp = new JButton("Create User Profile");
-		btnSignUp.setBounds(134, 116, 156, 27);
+		btnSignUp.setBounds(560, 470, 156, 27);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignUpPage signUp = new SignUpPage();
@@ -83,7 +79,6 @@ public class Main {
 		// Setup
 		label.add(btnLogIn);
 		label.add(btnGuest);
-		label.add(lblNewLabel);
 		label.add(btnSignUp);
 
 		frame = new JFrame("RIMA - Welcome!");
