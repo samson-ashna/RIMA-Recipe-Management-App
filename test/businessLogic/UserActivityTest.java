@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import businessLogic.UserActivity;
 import objects.User;
-import persistence.UserDAOImpl;
+import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
 
 class UserActivityTest {
-	
-	UsersDAO dao = new UserDAOImpl();
+	UserActivity activity = new UserActivity();
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO dao = access.usersDB();
 	User user = new User("a","12");
 	@BeforeEach
 	void init() {
@@ -22,19 +23,19 @@ class UserActivityTest {
 	}
 	@Test
 	void testCheckUserName() {
-		assertTrue(UserActivity.checkUserName("a"));
+		assertTrue(activity.checkUserName("a"));
 	}
 	@Test
 	void testCheckUserName2() {
-		assertFalse(UserActivity.checkUserName("A"));
+		assertFalse(activity.checkUserName("A"));
 	}
 	@Test
 	void testCheckPassword() {
-		assertTrue(UserActivity.checkPassword(user.getName(),"12"));
+		assertTrue(activity.checkPassword(user.getName(),"12"));
 	}
 	@Test
 	void testCheckPassword2() {
-		assertFalse(UserActivity.checkPassword(user.getName(),"42"));
+		assertFalse(activity.checkPassword(user.getName(),"42"));
 	}
 	@Test
 	void testGetCurrentUser() {
@@ -47,7 +48,7 @@ class UserActivityTest {
 		String username = "sdf";
 		User user2 = new User(username,password);
 		dao.add(user2);
-		boolean useractivityactual = UserActivity.checkPassword(username, password);
+		boolean useractivityactual = activity.checkPassword(username, password);
 	    boolean useractivityexpected = true;
 	    assertEquals(useractivityexpected,useractivityactual);
 	}
