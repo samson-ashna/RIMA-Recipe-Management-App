@@ -1,0 +1,18 @@
+{
+
+    "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-19",
+    "java.project.sourcePaths": ["src"],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "C:\\Users\\shaun\\OneDrive\\Desktop\\eecs2311-rima\\lib\\junit-platform-console-standalone-1.9.2.jar"
+    ],
+    "java.completion.filteredTypes": [
+        "com.sun.*",
+        "sun.*",
+        "jdk.*",
+        "org.graalvm.*",
+        "io.micrometer.shaded.*"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+
+}
