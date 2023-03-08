@@ -37,7 +37,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JButton backButton;
 
-	protected static JFrame frame;
+	protected JFrame frame;
     private ImageIcon icon;
 	private ImageIcon logo;
     private JLabel lbl;

@@ -19,4 +19,5 @@ public interface UsersDAO extends DAO<User> {
 	boolean removeIngredient(User u, Ingredient i);
 	Ingredient getIngredient(User u, String name);
 	void edit(String oldName, String name, String Password); 
+	void editAllergy(User u, String allergyType, int change);
 }

@@ -244,7 +244,6 @@ public class EditProfileView extends JFrame {
 							}else if(!activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
 								currentUser.setName(nameField.getText());
 								change = true;
-								
 								db.edit(currentName,nameField.getText(),null);
 							}
 								

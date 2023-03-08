@@ -48,11 +48,12 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			while(result.next()) {
 				String name = result.getString(1);
 				String password=result.getString(2);
-				String myRecipes=result.getString(3);
+				String myRecipes=result.getString(4);
 				User u = new User(name,password);
 				u.setRecipeCollection(myRecipes);
 				dbUsers.add(u);
 				Hashtable<String, String> recipesLst = new Hashtable<String, String>();
+				if(myRecipes !=null) {
 				String[] arrOfStr = myRecipes.split(",");
 				for (String s: arrOfStr) {
 					s = s.replace("{","");
@@ -64,6 +65,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 					if(values[0].length()>0) {
 					recipesLst.put(values[0],values[1]);
 					}
+				}
 				}
 				u.setRecipeCollection(recipesLst);
 			//}
@@ -83,7 +85,6 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement = con.createStatement();
 				
 			query = "INSERT INTO users(name, password, myRecipes, myIngredients) VALUES (\'"+t.getName()+"\', \'"+t.getPassword()+"\',\'"+t.getRecipeCollection1()+"\', \'"+t.ingredientsToJSON()+"\');";
-
 			statement.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -355,5 +356,23 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	public void edit(User t) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void editAllergy(User u, String allergyType, int changeNum) {
+		try {
+			// create connection
+			con = DriverManager.getConnection (url , user , password );
+			// create statement
+			statement = con.createStatement();
+			//query="insert into users array set allergies =json_array(allergies,"+allergyType+") where name = \'"+u.getName()+"\';";
+			//query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+allergyType+"\"\',"+ change+") WHERE `name`=\'"+u.getName()+"\';";
+			//System.out.println(allergyType+" "+changeNum+" "+u.getName());
+			//query = "INSERT INTO users(name,allergies) VALUES ('user10',\'"+allergyType+"\');";
+			query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+allergyType+"\"',\'"+ changeNum+"\') WHERE `name`=\'"+u.getName()+"\';";
+			statement.execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

@@ -129,20 +129,26 @@ public class UsersStubDB implements UsersDAO {
 	}
 
 	@Override
-	public void addIngredient(User u, Ingredient i) {
+	public boolean addIngredient(User u, Ingredient i) {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	@Override
-	public void removeIngredient(User u, Ingredient i) {
+	public boolean removeIngredient(User u, Ingredient i) {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	@Override
 	public Ingredient getIngredient(User u, String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void editAllergy(User u, String allergyType, int change) {
+		// TODO Auto-generated method stub
+		u.allergens.getAllergies().replace(allergyType, change);
 	}
 }
