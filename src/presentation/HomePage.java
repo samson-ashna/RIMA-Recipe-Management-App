@@ -148,6 +148,7 @@ public class HomePage extends JFrame {
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity.getCurrentUser().loggedIn = false;
+				UserActivity.setCurrentUser(null);
 				Main mainPage = new Main();
 				mainPage.frame.setVisible(true);
 				contentPane.setVisible(false);

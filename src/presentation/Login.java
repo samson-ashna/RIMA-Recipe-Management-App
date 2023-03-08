@@ -40,7 +40,7 @@ public class Login extends JFrame {
 	protected static JFrame frame;
     private ImageIcon icon;
 	private ImageIcon logo;
-    private JLabel label;
+    private JLabel lbl;
 	
     private JButton start;
     private JButton end;
@@ -68,53 +68,75 @@ public class Login extends JFrame {
 		
 		// Background Image
 		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
-		label = new JLabel(icon);
-		label.setSize(1280, 720);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		frame = new JFrame("RIMA - Login");
+		frame.setSize(1280, 720);
+		frame.getContentPane().setLayout(null);
 		
-		// label for user name
-		JLabel lbluserName = new JLabel("User Name");
-		lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
-		lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lbluserName.setBounds(169, 39, 76, 51);
-		contentPane.add(lbluserName);
-		
-		//Creates a test field where user can enter user name
-		textField = new JTextField();
-		textField.setBounds(67, 93, 281, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		//label for password
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPassword.setBounds(169, 114, 76, 51);
-		contentPane.add(lblPassword);
-		
-		//Creates a text field where user can enter password
-		passwordField = new JPasswordField();
-		passwordField.setBounds(67, 165, 281, 33);
-		contentPane.add(passwordField);
-		
-		//Creates label for displaying error messages.
-		JLabel lblError = new JLabel("");
-		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setBounds(112, 209, 185, 14);
-		contentPane.add(lblError);
+		//Creates a back button. When clicked user is redirected to main page. 
+		backButton = new JButton("Back");
+		frame.getContentPane().add(backButton);
+		backButton.setForeground(new Color(64, 0, 64));
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		backButton.setBackground(Color.WHITE);
+		backButton.setBounds(674, 374, 76, 26);
+		//contentPane.add(lblError);
 		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
 		JButton logInButton = new JButton("Login");
+		frame.getContentPane().add(logInButton);
 		logInButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		logInButton.setBackground(new Color(255, 255, 255));
 		logInButton.setForeground(new Color(64, 0, 64));
-		logInButton.setBounds(112, 243, 76, 26);
-		contentPane.add(logInButton);
+		logInButton.setBounds(522, 374, 76, 26);
+				//contentPane.add(lblPassword);
+				
+				//Creates a text field where user can enter password
+				passwordField = new JPasswordField();
+				frame.getContentPane().add(passwordField);
+				passwordField.setBounds(469, 309, 338, 33);
+				
+				//label for password
+				JLabel lblPassword = new JLabel("Password");
+				lblPassword.setForeground(new Color(255, 255, 255));
+				frame.getContentPane().add(lblPassword);
+				lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+				lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
+				lblPassword.setBounds(584, 258, 76, 51);
+				//contentPane.add(lbluserName);
+				
+				//Creates a test field where user can enter user name
+				textField = new JTextField();
+				frame.getContentPane().add(textField);
+				textField.setBounds(469, 221, 327, 26);
+				//contentPane.add(textField);
+				textField.setColumns(10);
+				
+				// label for user name
+				JLabel lbluserName = new JLabel("User Name");
+				lbluserName.setForeground(new Color(255, 255, 255));
+				frame.getContentPane().add(lbluserName);
+				lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
+				lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 17));
+				lbluserName.setBounds(562, 170, 123, 51);
+				//contentPane.add(passwordField);
+				
+				//Creates label for displaying error messages.
+				JLabel lblError = new JLabel("");
+				frame.getContentPane().add(lblError);
+				lblError.setForeground(new Color(255, 255, 255));
+				lblError.setHorizontalAlignment(SwingConstants.CENTER);
+				lblError.setBounds(550, 425, 185, 14);
+				lbl = new JLabel(icon);
+				lbl.setText("");
+				lbl.setSize(1280, 720);
+				frame.getContentPane().add(lbl);
+		//contentPane.add(logInButton);
 		logInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity activity = new UserActivity();
@@ -133,6 +155,8 @@ public class Login extends JFrame {
 						db.get(username).loggedIn = true;
 						HomePage homePage = new HomePage();
 						homePage.setVisible(true);
+						frame.setVisible(false);
+						frame.dispose();
 						contentPane.setVisible(false);
 						Window win = SwingUtilities.getWindowAncestor(contentPane);
 						win.dispose();
@@ -142,37 +166,18 @@ public class Login extends JFrame {
 				}
 			}
 		});
-				
-		//Creates a back button. When clicked user is redirected to main page. 
-		backButton = new JButton("Back");
-		backButton.setForeground(new Color(64, 0, 64));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		backButton.setBackground(Color.WHITE);
-		backButton.setBounds(221, 243, 76, 26);
-		contentPane.add(backButton);
+		//contentPane.add(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main mainPage = new Main();
 				mainPage.frame.setVisible(true);
+				frame.setVisible(false);
+				frame.dispose();
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
 			}
 		});
-
-		// Setup
-		label.add(lbluserName);
-		label.add(textField);
-		label.add(lblPassword);
-		label.add(passwordField);
-		label.add(logInButton);
-		label.add(backButton);
-		label.add(lblError);
-
-		frame = new JFrame("RIMA - Login");
-		frame.add(label);
-		frame.setSize(1280, 720);
-		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

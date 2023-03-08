@@ -178,7 +178,6 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 
 	@Override
 	public void removeRecipes(User u, Recipes r) {
-		System.out.println("id to remove is"+(r.getRecipeID()));
 		try {
 			// create connection
 			con = DriverManager.getConnection (url , user , password );
