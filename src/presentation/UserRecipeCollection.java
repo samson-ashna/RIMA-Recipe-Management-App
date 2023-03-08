@@ -39,6 +39,7 @@ public class UserRecipeCollection extends JFrame {
 	//Button objects
 	private final JButton backButton = new JButton("Back");
 	private final JButton addRecipeButton = new JButton("Add Custom Recipe");
+	private final JButton favourites = new JButton("Favourites");
 
 	/**
 	 * Launch the application.
@@ -152,6 +153,24 @@ public class UserRecipeCollection extends JFrame {
 				//Close the UserRecipeCollection Window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				
+			}
+		});
+		
+		//Set up the font and bounds of the Favourite button
+		favourites.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		favourites.setBounds(10, 244, 90, 18);
+		//add the Favourite button to the content pane
+		contentPane.add(favourites);
+		//Set up what to do when the Favourite button is pressed
+		favourites.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create a allFavourites window
+				FavouritesWindow allFavourites = new FavouritesWindow();
+				//Make the allFavourites window visible
+				allFavourites.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
 			}
 		});
 		
