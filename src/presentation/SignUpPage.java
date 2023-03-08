@@ -24,6 +24,7 @@ import businessLogic.UserActivity;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
@@ -37,6 +38,10 @@ import javax.swing.JTextField;
  */
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {
+
+	private JFrame frame;
+	private ImageIcon icon;
+	private JLabel label;
 
 	//Container and panel objects.
 	private Container contentPane;
@@ -81,11 +86,27 @@ public class SignUpPage extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUpPage() {
+
+		// // Background Image
+		// icon = new ImageIcon(this.getClass().getResource("/res/menu.jpg"));
+		// label = new JLabel(icon);
+		// label.setSize(1280, 720);
+
+		// // Setup
+		// frame = new JFrame("RIMA - Register Account");
+		// frame.add(label);
+		// frame.setSize(1280, 720);
+		// frame.setLayout(null);
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// frame.setLocationRelativeTo(null);
+		// frame.setVisible(true);
+
+		// Username
+
+
 		setTitle("RIMA - Register Account");
-		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
-		//Set the size and pop up location of the window.
-		setSize(473, 524);
+		setSize(1280, 720);
 		setLocationRelativeTo(null);		
 		
 		//Get content pane.
@@ -204,6 +225,7 @@ public class SignUpPage extends JFrame {
 					if(!enterPassAgain.getText().equals(password) || password.isEmpty()) {
 						label.setText("Passwords do not match or you have not entered password!");
 					}else {
+						
 						//create a new login for a new user if no username or password matches in the system
 						User newUser = new User(name, password);
 						DatabaseAccess access = new DatabaseAccess();
@@ -212,6 +234,7 @@ public class SignUpPage extends JFrame {
 						db.add(newUser);
 						UserActivity.setCurrentUser(newUser);
 						newUser.loggedIn = true;
+						
 						//Add the selected allergies by the user to their allergy information. 
 						if(eggAllergy.isSelected()){
 							newUser.allergens.getAllergies().replace("Eggs", 1);
@@ -231,7 +254,9 @@ public class SignUpPage extends JFrame {
 						Window win = SwingUtilities.getWindowAncestor(contentPane);
 						win.dispose();
 					}
-				}else {
+				}
+				
+				else {
 					//other username accounts can be chosen if user knows the required username and password
 					label.setText("User name already exists. Select another!");
 					label.setVisible(true);

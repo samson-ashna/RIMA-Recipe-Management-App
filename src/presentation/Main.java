@@ -1,6 +1,7 @@
 package presentation;
 
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,6 +43,10 @@ public class Main {
 
 		// Login
 		JButton btnLogIn = new JButton("Login");
+		btnLogIn.setBackground(new Color(59, 89, 182));
+        btnLogIn.setForeground(Color.WHITE);
+        btnLogIn.setFocusPainted(false);
+        btnLogIn.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogIn.setBounds(560, 380, 156, 27);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -54,7 +59,11 @@ public class Main {
 
 		// Guest Login
 		JButton btnGuest = new JButton("Continue as Guest");
-		btnGuest.setBounds(560, 420, 156, 35);
+		btnGuest.setBackground(new Color(59, 89, 182));
+        btnGuest.setForeground(Color.WHITE);
+        btnGuest.setFocusPainted(false);
+        btnGuest.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnGuest.setBounds(560, 420, 156, 27);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
@@ -66,7 +75,11 @@ public class Main {
 
 		// User Profile
 		JButton btnSignUp = new JButton("Create User Profile");
-		btnSignUp.setBounds(560, 470, 156, 27);
+		btnSignUp.setBackground(new Color(59, 89, 182));
+        btnSignUp.setForeground(Color.WHITE);
+        btnSignUp.setFocusPainted(false);
+        btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSignUp.setBounds(560, 460, 156, 27);
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SignUpPage signUp = new SignUpPage();
