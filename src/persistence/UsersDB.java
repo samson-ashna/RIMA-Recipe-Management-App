@@ -249,8 +249,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	}
 
 	@Override
-	public boolean addIngredient(User u, Ingredient i) {
-		ArrayList<User> users = getAll();
+	public void addIngredient(User u, Ingredient i) {
+		/*ArrayList<User> users = getAll();
 		
 		for(User user : users) {
 			//Return user ingredients if user exists in the database.
@@ -258,97 +258,25 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
 				try {
 					result = statement.executeQuery(query);
-					if(!result.getString(1).equals("null")) {
-						String path = result.getString(1);
-						path = path.substring(0,path.indexOf("."));						
-						query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '"+path+"', \""+ i.ingredientToJSON()+"\") WHERE `name`='"+u.getName()+"';";
-						statement.execute(query);
-						u.addIngredientToCollection(i);
-						return true;
-					}else {
-						query = "SELECT JSON_LENGTH('myIngredients') FROM users;";
-						result = statement.executeQuery(query);
-						query = "UPDATE users SET myIngredients = JSON_INSERT(myIngredients, '"+Integer.parseInt(result.getString(1))+1+"', \""+ i.ingredientToJSON()+"\") WHERE `name`='"+u.getName()+"';";
-						statement.execute(query);
-						u.addIngredientToCollection(i);
-						return true;
-					}
+					query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '"+result.getString(1)+"', \""+ i.ingredientToJSON()+"\") WHERE `name`='"+u.getName()+"';";
+					statement.execute(query);
 				} catch (SQLException e) {
 					
 				}				
 			}
-		}
-		return false;
+		}*/
 	}
 
 	@Override
-	public boolean removeIngredient(User u, Ingredient i) {
-		ArrayList<User> users = getAll();
-		
-		for(User user : users) {
-			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
-				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
-				try {
-					result = statement.executeQuery(query);
-					if(!result.getString(1).equals("null")) {
-						String path = result.getString(1);
-						path = path.substring(0,path.indexOf("."));
-						query = "UPDATE users SET myIngredients = JSON_REMOVE(myIngredients, '"+path+"') WHERE `name`='"+u.getName()+"';";
-						statement.execute(query);
-						u.removeIngredientFromCollection(i);
-						return true;
-					}
-				} catch (SQLException e) {
-					
-				}	
-				
-				
-			}
-		}
-		return false;
+	public void removeIngredient(User u, Ingredient i) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Ingredient getIngredient(User u, String name) {
-		ArrayList<User> users = getAll();
-		Ingredient ingredient = null;
-		
-		for(User user : users) {
-			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
-				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + name + "') FROM users;";
-				try {
-					result = statement.executeQuery(query);
-					if(!result.getString(1).equals("null")) {
-						String path = result.getString(1);
-						path = path.substring(0,path.indexOf("."));
-						query = "SELECT JSON_EXTRACT('myIngredients', '" + path + "') FROM users;";
-						result = statement.executeQuery(query);
-						
-						//Parse result set into ingredient's attributes.
-						String iName = result.getString(1);
-						double cost = Double.parseDouble(result.getString(2));
-						Date expiration = null;
-						try {
-							expiration = DateFormat.getDateInstance().parse(result.getString(3));
-						} catch (Exception e) {
-							
-						}
-						int protein = Integer.parseInt(result.getString(4));
-						int carbs = Integer.parseInt(result.getString(5));
-						String userName = result.getString(6);
-						
-						//Create a new Ingredient object from the attributes and add it to the ingredients arraylist.
-						ingredient = new Ingredient(name, cost, expiration, protein, carbs, userName);
-					}
-				} catch (SQLException e) {
-					
-				}
-			}
-		}
-		return ingredient;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	@Override
