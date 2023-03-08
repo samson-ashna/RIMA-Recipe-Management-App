@@ -129,14 +129,16 @@ public class UsersStubDB implements UsersDAO {
 	}
 
 	@Override
-	public void addIngredient(User u, Ingredient i) {
+	public boolean addIngredient(User u, Ingredient i) {
 		// TODO Auto-generated method stub
+		return false;
 		
 	}
 
 	@Override
-	public void removeIngredient(User u, Ingredient i) {
+	public boolean removeIngredient(User u, Ingredient i) {
 		// TODO Auto-generated method stub
+		return false;
 		
 	}
 

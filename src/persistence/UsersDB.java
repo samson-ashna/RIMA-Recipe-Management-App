@@ -210,13 +210,16 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 		String ingredientsString;
 		
-		for(User user : users) {
+		for(User usr : users) {
 			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
-				
-				query = "SELECT myIngredients FROM users WHERE `name`='"+u.getName()+"\';";
-				
+			if(usr.getName().equals(u.getName())) {
+								
 				try {
+					// create connection
+					con = DriverManager.getConnection (url , user , password );
+					// create statement
+					statement = con.createStatement();
+					query = "SELECT myIngredients FROM users WHERE `name`='"+u.getName()+"\';";
 					result = statement.executeQuery(query);
 					while(result.next()) {
 						
@@ -252,23 +255,37 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	public boolean addIngredient(User u, Ingredient i) {
 		ArrayList<User> users = getAll();
 		
-		for(User user : users) {
+		for(User usr : users) {
 			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
+			if(usr.getName().equals(u.getName())) {
 				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
 				try {
+					// create connection
+					con = DriverManager.getConnection (url , user , password );
+					// create statement
+					statement = con.createStatement();
+					query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
 					result = statement.executeQuery(query);
 					if(!result.getString(1).equals("null")) {
 						String path = result.getString(1);
-						path = path.substring(0,path.indexOf("."));						
+						path = path.substring(0,path.indexOf("."));	
+						statement.close();
+						result.close();						
 						query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '"+path+"', \""+ i.ingredientToJSON()+"\") WHERE `name`='"+u.getName()+"';";
+						statement = con.createStatement();
 						statement.execute(query);
 						u.addIngredientToCollection(i);
 						return true;
 					}else {
 						query = "SELECT JSON_LENGTH('myIngredients') FROM users;";
+						statement.close();
+						result.close();
+						statement = con.createStatement();
 						result = statement.executeQuery(query);
 						query = "UPDATE users SET myIngredients = JSON_INSERT(myIngredients, '"+Integer.parseInt(result.getString(1))+1+"', \""+ i.ingredientToJSON()+"\") WHERE `name`='"+u.getName()+"';";
+						statement.close();
+						result.close();
+						statement = con.createStatement();
 						statement.execute(query);
 						u.addIngredientToCollection(i);
 						return true;
@@ -285,16 +302,24 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	public boolean removeIngredient(User u, Ingredient i) {
 		ArrayList<User> users = getAll();
 		
-		for(User user : users) {
+		for(User usr : users) {
 			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
-				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
+			if(usr.getName().equals(u.getName())) {
+				
 				try {
+					// create connection
+					con = DriverManager.getConnection (url , user , password );
+					// create statement
+					statement = con.createStatement();
+					query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
 					result = statement.executeQuery(query);
 					if(!result.getString(1).equals("null")) {
 						String path = result.getString(1);
 						path = path.substring(0,path.indexOf("."));
 						query = "UPDATE users SET myIngredients = JSON_REMOVE(myIngredients, '"+path+"') WHERE `name`='"+u.getName()+"';";
+						statement.close();
+						result.close();
+						statement = con.createStatement();
 						statement.execute(query);
 						u.removeIngredientFromCollection(i);
 						return true;
@@ -315,16 +340,24 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		ArrayList<User> users = getAll();
 		Ingredient ingredient = null;
 		
-		for(User user : users) {
+		for(User usr : users) {
 			//Return user ingredients if user exists in the database.
-			if(user.getName().equals(u.getName())) {
-				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + name + "') FROM users;";
+			if(usr.getName().equals(u.getName())) {
+				
 				try {
+					// create connection
+					con = DriverManager.getConnection (url , user , password );
+					// create statement
+					statement = con.createStatement();
+					query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + name + "') FROM users;";
 					result = statement.executeQuery(query);
 					if(!result.getString(1).equals("null")) {
 						String path = result.getString(1);
 						path = path.substring(0,path.indexOf("."));
 						query = "SELECT JSON_EXTRACT('myIngredients', '" + path + "') FROM users;";
+						statement.close();
+						result.close();
+						statement = con.createStatement();
 						result = statement.executeQuery(query);
 						
 						//Parse result set into ingredient's attributes.
