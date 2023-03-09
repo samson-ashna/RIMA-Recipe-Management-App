@@ -53,6 +53,7 @@ public class SignUpPage extends JFrame {
 	private final JLabel passLabel = new JLabel("Password");
 	private final JLabel confirmPassLabel = new JLabel("Confirm Password");
 	private final JLabel allergiesLabel = new JLabel("Allergies");
+	private final JLabel error = new JLabel("");
 	private JTextField enterName = new JTextField();
 	private JTextField enterPass = new JPasswordField();
 	private JTextField enterPassAgain = new JPasswordField();
@@ -133,6 +134,7 @@ public class SignUpPage extends JFrame {
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
 		//enterPass.setForeground(Color.WHITE);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
+		error.setAlignmentX(CENTER_ALIGNMENT);
 		//enterPassAgain.setForeground(Color.WHITE);
 
 		// Username
@@ -157,6 +159,8 @@ public class SignUpPage extends JFrame {
 		// Allergies
 		textPane.add(allergiesLabel);
 		textPane.add(Box.createVerticalGlue());
+		//textPane.add(error);
+		
 		
 		//Create a new button pane.
 		buttonPane = new JPanel(); 
@@ -180,32 +184,36 @@ public class SignUpPage extends JFrame {
         registerButton.setForeground(Color.WHITE);
         registerButton.setFocusPainted(false);
         registerButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		getContentPane().add(registerButton);
+		//getContentPane().add(registerButton);
 		
 		cancelButton.setBounds(650, 600, 114, 25);
 		cancelButton.setBackground(new Color(59, 89, 182));
         cancelButton.setForeground(Color.WHITE);
         cancelButton.setFocusPainted(false);
         cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		getContentPane().add(cancelButton);
+		//getContentPane().add(cancelButton);
 		
 		//Set up button fonts.
-		eggAllergy.setBounds(560, 475, 96, 31);
+		eggAllergy.setBounds(560, 500, 96, 31);
 		eggAllergy.setForeground(Color.WHITE);
-		getContentPane().add(eggAllergy);
+		//getContentPane().add(eggAllergy);
 
-		milkAllergy.setBounds(560, 500, 96, 25);
+		milkAllergy.setBounds(560, 525, 96, 25);
 		milkAllergy.setForeground(Color.WHITE);
-		getContentPane().add(milkAllergy);
+		//getContentPane().add(milkAllergy);
 
 		
-		peanutAllergy.setBounds(560, 525, 96, 25);
+		peanutAllergy.setBounds(560, 545, 96, 25);
 		peanutAllergy.setForeground(Color.WHITE);
-		getContentPane().add(peanutAllergy);
+		//getContentPane().add(peanutAllergy);
 		
-		seafoodAllergy.setBounds(560, 550, 96, 31);
+		seafoodAllergy.setBounds(560, 475, 96, 31);
 		seafoodAllergy.setForeground(Color.WHITE);
-		getContentPane().add(seafoodAllergy);
+		//getContentPane().add(seafoodAllergy);
+		error.setBounds(480, 640, 96, 21);
+		error.setForeground(Color.WHITE);
+		error.setSize(500,30);
+		//getContentPane().add(error);
 		
 		
 		// Add components to label
@@ -220,6 +228,7 @@ public class SignUpPage extends JFrame {
 		label.add(seafoodAllergy);
 		label.add(registerButton);
 		label.add(cancelButton);
+		label.add(error);
 
 		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
@@ -245,10 +254,10 @@ public class SignUpPage extends JFrame {
 				String password = enterPass.getText();
 				//Message to show so the field is not left empty
 				if(name.length()==0) {
-					label.setText("Need to enter a username!");
+					error.setText("Need to enter a username!");
 				}else if (!activity.checkUserName(name)) {
 					if(!enterPassAgain.getText().equals(password) || password.isEmpty()) {
-						label.setText("Passwords do not match or you have not entered password!");
+						error.setText("Passwords do not match or you have not entered password!");
 					}else {
 						
 						//create a new login for a new user if no username or password matches in the system
@@ -288,8 +297,8 @@ public class SignUpPage extends JFrame {
 				else {
 					//other username accounts can be chosen if user knows the required username and password
 
-					label.setText("User name already exists. Select another!");
-					label.setVisible(true);
+					error.setText("User name already exists. Select another!");
+					error.setVisible(true);
 				}		
 			}
 		});	
