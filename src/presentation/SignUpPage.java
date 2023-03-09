@@ -101,7 +101,7 @@ public class SignUpPage extends JFrame {
 		// Text Pane
 		textPane = new JPanel(); 
 		textPane.setOpaque(false);
-		textPane.setBounds(0, 0, 462, 275);
+		textPane.setBounds(0, 0, 1280, 720);
 		textPane.setBorder(new EmptyBorder(5, 5, 5, 5));	
 		textPane.setLayout(new BoxLayout(textPane, BoxLayout.PAGE_AXIS));
 		
@@ -121,12 +121,19 @@ public class SignUpPage extends JFrame {
 		
 		//Center align labels and text fields.
 		nameLabel.setAlignmentX(CENTER_ALIGNMENT);
+		nameLabel.setForeground(Color.WHITE);
 		passLabel.setAlignmentX(CENTER_ALIGNMENT);
+		passLabel.setForeground(Color.WHITE);
 		confirmPassLabel.setAlignmentX(CENTER_ALIGNMENT);
+		confirmPassLabel.setForeground(Color.WHITE);
 		allergiesLabel.setAlignmentX(CENTER_ALIGNMENT);
+		allergiesLabel.setForeground(Color.WHITE);
 		enterName.setAlignmentX(CENTER_ALIGNMENT);
+		enterName.setForeground(Color.WHITE);
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
+		enterPass.setForeground(Color.WHITE);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
+		enterPassAgain.setForeground(Color.WHITE);
 
 		// Username
 		textPane.add(Box.createVerticalGlue());
@@ -168,14 +175,14 @@ public class SignUpPage extends JFrame {
 		//label.setForeground(new Color(255, 0, 0));
 		//label.setBounds(78, 411, 322, 25);
 		getContentPane().add(label);
-		registerButton.setBounds(100, 435, 114, 25);
+		registerButton.setBounds(500, 600, 114, 25);
 		registerButton.setBackground(new Color(59, 89, 182));
         registerButton.setForeground(Color.WHITE);
         registerButton.setFocusPainted(false);
         registerButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		getContentPane().add(registerButton);
 		
-		cancelButton.setBounds(247, 435, 114, 25);
+		cancelButton.setBounds(650, 600, 114, 25);
 		cancelButton.setBackground(new Color(59, 89, 182));
         cancelButton.setForeground(Color.WHITE);
         cancelButton.setFocusPainted(false);
@@ -183,20 +190,20 @@ public class SignUpPage extends JFrame {
 		getContentPane().add(cancelButton);
 		
 		//Set up button fonts.
-		eggAllergy.setBounds(190, 266, 96, 31);
+		eggAllergy.setBounds(560, 475, 96, 31);
 		eggAllergy.setForeground(Color.WHITE);
 		getContentPane().add(eggAllergy);
 
-		milkAllergy.setBounds(190, 308, 96, 25);
+		milkAllergy.setBounds(560, 500, 96, 25);
 		milkAllergy.setForeground(Color.WHITE);
 		getContentPane().add(milkAllergy);
 
 		
-		peanutAllergy.setBounds(190, 344, 96, 25);
+		peanutAllergy.setBounds(560, 525, 96, 25);
 		peanutAllergy.setForeground(Color.WHITE);
 		getContentPane().add(peanutAllergy);
 		
-		seafoodAllergy.setBounds(190, 380, 96, 31);
+		seafoodAllergy.setBounds(560, 550, 96, 31);
 		seafoodAllergy.setForeground(Color.WHITE);
 		getContentPane().add(seafoodAllergy);
 		
