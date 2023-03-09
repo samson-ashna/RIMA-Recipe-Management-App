@@ -33,8 +33,6 @@ public class MainInterface extends JFrame {
         label = new JLabel(icon);
         label.setSize(1280, 720);
 
-
-
         // Find Recipes
         findRecipes = new JButton("Find Recipes");
         findRecipes.setBackground(new Color(59, 89, 182));

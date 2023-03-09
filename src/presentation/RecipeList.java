@@ -114,7 +114,7 @@ public class RecipeList extends JFrame {
 		//Creates a new section for an item list
 		list= new JList<String>();
 		list.setBackground(new Color(255, 255, 255));
-		list.setBounds(30, 61, 651, 486);
+		list.setBounds(30, 61, 650, 500);
 
 		label.add(list);
 

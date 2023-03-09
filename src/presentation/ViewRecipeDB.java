@@ -51,7 +51,7 @@ public class ViewRecipeDB extends JDialog {
 	public ViewRecipeDB(String name) {
 		setTitle("RIMA - View Recipe");
 		//Set the size and pop up location of the window.
-		setSize(862, 574);
+		setSize(1280, 720);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 836, 503);
@@ -76,7 +76,7 @@ public class ViewRecipeDB extends JDialog {
 		}
 		
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 503, 478, 33);
+		buttonPane.setBounds(0, 503, 120, 33);
 		getContentPane().add(buttonPane);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		//Creates a new button. When clicked, the user is redirected back to the list of recipes. 
@@ -86,7 +86,7 @@ public class ViewRecipeDB extends JDialog {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList lst = new RecipeList();
-				lst.setVisible(true);
+				lst.frame.setVisible(true);
 				contentPanel.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPanel);
 				win.dispose();
