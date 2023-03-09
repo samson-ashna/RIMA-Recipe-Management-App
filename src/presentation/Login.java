@@ -94,18 +94,20 @@ public class Login extends JFrame {
 		//Creates a back button. When clicked user is redirected to main page. 
 		backButton = new JButton("Back");
 		frame.add(backButton);
-		backButton.setForeground(new Color(64, 0, 64));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		backButton.setBackground(Color.WHITE);
+		backButton.setBackground(new Color(59, 89, 182));
+        backButton.setForeground(Color.WHITE);
+        backButton.setFocusPainted(false);
+        backButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		backButton.setBounds(674, 374, 76, 26);
 		//contentPane.add(lblError);
 		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
 		logInButton = new JButton("Login");
 		frame.add(logInButton);
-		logInButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		logInButton.setBackground(new Color(255, 255, 255));
-		logInButton.setForeground(new Color(64, 0, 64));
+		logInButton.setBackground(new Color(59, 89, 182));
+        logInButton.setForeground(Color.WHITE);
+        logInButton.setFocusPainted(false);
+        logInButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		logInButton.setBounds(522, 374, 76, 26);
 		//contentPane.add(lblPassword);
 		

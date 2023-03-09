@@ -73,10 +73,11 @@ public class RecipeList extends JFrame {
 		//Sets the application to exit when closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Sest the bounds of the window
-		setSize(319, 270);
+		setSize(1280, 720);
 		setLocationRelativeTo(null);
 		//Creates a new content pane
 		contentPane = new JPanel();
+		contentPane.setBounds(0, 0, 1280, 720);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Replaces the frame's content pane with the one that was just set up.
 		setContentPane(contentPane);
