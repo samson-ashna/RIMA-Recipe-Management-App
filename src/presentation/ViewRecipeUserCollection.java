@@ -73,6 +73,16 @@ public class ViewRecipeUserCollection extends JDialog {
 		getContentPane().add(buttonPane);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		// Creates a new button. When clicked user adds the recipe to Favourites.
+				JButton btnFavourite = new JButton("Add to Favourite");
+				btnFavourite.setBounds(5, 503, 160, 23);
+				getContentPane().add(btnFavourite);
+				btnFavourite.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+		
 		/*Creates a new button. When clicked, the user is redirected to 
 		the Edit Recipe page where they can modify the recipe's information. */
 		JButton btnEdit = new JButton("Edit");
@@ -114,6 +124,5 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 		});
-		
 	}
 }
