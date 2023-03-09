@@ -50,9 +50,9 @@ public class SignUpPage extends JFrame {
 	
 	//Component objects
 	private final JLabel nameLabel = new JLabel("Username");
-	private final JLabel passLabel = new JLabel("Password");;
-	private final JLabel confirmPassLabel = new JLabel("Confirm Password");;
-	private final JLabel allergiesLabel = new JLabel("Allergies");;
+	private final JLabel passLabel = new JLabel("Password");
+	private final JLabel confirmPassLabel = new JLabel("Confirm Password");
+	private final JLabel allergiesLabel = new JLabel("Allergies");
 	private JTextField enterName = new JTextField();
 	private JTextField enterPass = new JPasswordField();
 	private JTextField enterPassAgain = new JPasswordField();
@@ -87,46 +87,31 @@ public class SignUpPage extends JFrame {
 	 */
 	public SignUpPage() {
 
-		// // Background Image
-		// icon = new ImageIcon(this.getClass().getResource("/res/menu.jpg"));
-		// label = new JLabel(icon);
-		// label.setSize(1280, 720);
-
-		// // Setup
-		// frame = new JFrame("RIMA - Register Account");
-		// frame.add(label);
-		// frame.setSize(1280, 720);
-		// frame.setLayout(null);
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.setLocationRelativeTo(null);
-		// frame.setVisible(true);
-
-		// Username
-
-
+		// Setup
 		setTitle("RIMA - Register Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		setSize(1280, 720);
-		setLocationRelativeTo(null);		
-		
-		//Get content pane.
-		contentPane = getContentPane();
-		
-		//Create a new text pane.
+		setLocationRelativeTo(null);	
+
+		// Background Image
+		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
+		label = new JLabel(icon);
+		label.setSize(1280, 720);
+
+		// Text Pane
 		textPane = new JPanel(); 
+		textPane.setOpaque(false);
 		textPane.setBounds(0, 0, 462, 275);
-		//Set an invisible border for the text pane.
 		textPane.setBorder(new EmptyBorder(5, 5, 5, 5));	
-		//Set the text pane's layout manager to the vertical box layout.
 		textPane.setLayout(new BoxLayout(textPane, BoxLayout.PAGE_AXIS));
 		
-		//Set up header fonts
+		// Header fonts
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		passLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		confirmPassLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		allergiesLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		//Set up text field sizes and prevent resizing.
+		// Set up text field sizes and prevent resizing.
 		enterName.setSize(281, 26);
 		enterName.setMaximumSize(enterName.getSize());
 		enterPass.setSize(281, 26);
@@ -143,19 +128,26 @@ public class SignUpPage extends JFrame {
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
 
+		// Username
 		textPane.add(Box.createVerticalGlue());
 		textPane.add(nameLabel);
 		textPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		textPane.add(enterName);
 		textPane.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		// Password
 		textPane.add(passLabel);
 		textPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		textPane.add(enterPass);
+		
+		// Confirm Password
 		textPane.add(Box.createRigidArea(new Dimension(0, 20)));
 		textPane.add(confirmPassLabel);
 		textPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		textPane.add(enterPassAgain);
 		textPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		// Allergies
 		textPane.add(allergiesLabel);
 		textPane.add(Box.createVerticalGlue());
 		
@@ -169,34 +161,59 @@ public class SignUpPage extends JFrame {
 		getContentPane().setLayout(null);
 		
 		//Add text and button panes to the content pane.
+		contentPane = getContentPane();
 		contentPane.add(textPane);
 		
-		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(new Color(255, 0, 0));
-		label.setBounds(78, 411, 322, 25);
+		//label.setForeground(new Color(255, 0, 0));
+		//label.setBounds(78, 411, 322, 25);
 		getContentPane().add(label);
 		registerButton.setBounds(100, 435, 114, 25);
+		registerButton.setBackground(new Color(59, 89, 182));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setFocusPainted(false);
+        registerButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		getContentPane().add(registerButton);
-		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
 		cancelButton.setBounds(247, 435, 114, 25);
+		cancelButton.setBackground(new Color(59, 89, 182));
+        cancelButton.setForeground(Color.WHITE);
+        cancelButton.setFocusPainted(false);
+        cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		getContentPane().add(cancelButton);
 		
 		//Set up button fonts.
-		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		eggAllergy.setBounds(190, 266, 96, 31);
-		
+		eggAllergy.setForeground(Color.WHITE);
 		getContentPane().add(eggAllergy);
+
 		milkAllergy.setBounds(190, 308, 96, 25);
-		
+		milkAllergy.setForeground(Color.WHITE);
 		getContentPane().add(milkAllergy);
+
+		
 		peanutAllergy.setBounds(190, 344, 96, 25);
-		
+		peanutAllergy.setForeground(Color.WHITE);
 		getContentPane().add(peanutAllergy);
-		seafoodAllergy.setBounds(190, 380, 96, 31);
 		
+		seafoodAllergy.setBounds(190, 380, 96, 31);
+		seafoodAllergy.setForeground(Color.WHITE);
 		getContentPane().add(seafoodAllergy);
 		
+		
+		// Add components to label
+		eggAllergy.setOpaque(false);
+		milkAllergy.setOpaque(false);
+		peanutAllergy.setOpaque(false);
+		seafoodAllergy.setOpaque(false);
+
+		label.add(eggAllergy);
+		label.add(milkAllergy);
+		label.add(peanutAllergy);
+		label.add(seafoodAllergy);
+		label.add(registerButton);
+		label.add(cancelButton);
+
 		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -212,6 +229,9 @@ public class SignUpPage extends JFrame {
 				win.dispose();				
 			}
 		});	
+		
+
+
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity activity = new UserActivity();
@@ -262,6 +282,7 @@ public class SignUpPage extends JFrame {
 				
 				else {
 					//other username accounts can be chosen if user knows the required username and password
+
 					label.setText("User name already exists. Select another!");
 					label.setVisible(true);
 				}		
