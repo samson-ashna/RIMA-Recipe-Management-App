@@ -127,6 +127,8 @@ public class RecipeList extends JFrame {
 			ViewRecipeDB newWindow = new ViewRecipeDB(name);
 			newWindow.NewScreen(name);
 			contentPane.setVisible(false);
+			frame.setVisible(false);
+			frame.dispose();
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
 		});
@@ -201,6 +203,7 @@ public class RecipeList extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() == null) {
 					MainInterface.frame.setVisible(true);
+					//Main.frame.setVisible(true);
 				}else {
 //					MainInterface main = new MainInterface();
 //					main.setVisible(true);

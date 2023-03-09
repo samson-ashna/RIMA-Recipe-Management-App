@@ -1,6 +1,7 @@
 package presentation;
 
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -10,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
+import businessLogic.UserActivity;
 
 public class MainInterface extends JFrame {
     protected static JFrame frame;
@@ -55,9 +59,22 @@ public class MainInterface extends JFrame {
 
         // Setup
         frame = new JFrame("RIMA - Welcome!");
-        frame.add(label);
+        
+        JButton backButton = new JButton("Back to Menu");
+        backButton.setForeground(new Color(255, 255, 255));
+        backButton.setBackground(new Color(59, 89, 182));
+        backButton.setBounds(990, 26, 160, 23);
+        frame.getContentPane().add(backButton);
+        backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main .frame.setVisible(true);
+				frame.setVisible(false);
+				frame.dispose();
+			}
+		});		
+        frame.getContentPane().add(label);
         frame.setSize(1280, 720);
-        frame.setLayout(null);
+        frame.getContentPane().setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
