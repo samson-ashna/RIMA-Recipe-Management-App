@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -43,6 +44,9 @@ public class RecipeList extends JFrame {
 	private JTextField searchField;
 	String searchCategory;
 
+	protected JFrame frame;
+	private JLabel label;
+
 	/**
 	 * Launch the application.
 	 */
@@ -51,7 +55,7 @@ public class RecipeList extends JFrame {
 			public void run() {
 				try {
 					RecipeList frame = new RecipeList();
-					frame.setVisible(true);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -91,12 +95,15 @@ public class RecipeList extends JFrame {
 	 * Create the frame.
 	 */
 	public RecipeList() {
-		setTitle("RIMA - Recipes List");
-		//Sets the application to exit when closed
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Sest the bounds of the window
-		setSize(1280, 720);
-		setLocationRelativeTo(null);
+		
+		label = new JLabel();
+		
+		// setTitle("RIMA - Recipes List");
+		// //Sets the application to exit when closed
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// //Sest the bounds of the window
+		// setSize(1280, 720);
+		// setLocationRelativeTo(null);
 		//Creates a new content pane
 		contentPane = new JPanel();
 		contentPane.setBounds(0, 0, 1280, 720);
@@ -108,6 +115,9 @@ public class RecipeList extends JFrame {
 		list= new JList<String>();
 		list.setBackground(new Color(255, 255, 255));
 		list.setBounds(30, 61, 651, 486);
+
+		label.add(list);
+
 		//Adds the recipes in the app's database to the list section to display them
 		addRecipes();
 		//Sets up what to do when an item in the list is selected. When selected the recipe's detailed information is displayed.
@@ -125,11 +135,15 @@ public class RecipeList extends JFrame {
 		btnBack.setBounds(549, 558, 132, 29);
 		contentPane.add(btnBack);
 		
+		label.add(btnBack);
+
 		searchField = new JTextField();
 		searchField.setBounds(202, 11, 232, 39);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
 		
+		label.add(searchField);
+
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -143,6 +157,8 @@ public class RecipeList extends JFrame {
 		btnNewButton.setBounds(444, 11, 89, 39);
 		contentPane.add(btnNewButton);
 		
+		label.add(btnNewButton);
+
 		JButton btnNewButton_1 = new JButton("All Recipes");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_1.setBounds(543, 11, 138, 39);
@@ -153,6 +169,8 @@ public class RecipeList extends JFrame {
 			}
 		});
 		
+		label.add(btnNewButton_1);
+
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("Search By:");
 		comboBox.addItem("Name");
@@ -166,6 +184,8 @@ public class RecipeList extends JFrame {
 			}
 		});
 		
+		label.add(comboBox);
+
 		comboBox.setBounds(30, 10, 162, 40);
 		contentPane.add(comboBox);
 		
@@ -173,10 +193,12 @@ public class RecipeList extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() == null) {
-					Main.frame.setVisible(true);
+					MainInterface.frame.setVisible(true);
 				}else {
-					HomePage homePage = new HomePage();
-					homePage.setVisible(true);
+					MainInterface main = new MainInterface();
+					main.setVisible(true);
+					//HomePage homePage = new HomePage();
+					// homePage.setVisible(true);
 				}
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
@@ -184,6 +206,18 @@ public class RecipeList extends JFrame {
 				
 			}
 		});
+
+		label.add(contentPane);
+
+		frame = new JFrame("RIMA - Recipes List");
+		frame.setSize(1280, 720);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		
+		frame.add(label);
+
+		frame.setVisible(true);
 		
 	}
 }

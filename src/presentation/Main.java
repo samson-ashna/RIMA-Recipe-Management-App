@@ -66,8 +66,10 @@ public class Main {
 		btnGuest.setBounds(560, 420, 156, 27);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RecipeList listRecipes = new RecipeList();
-				listRecipes.setVisible(true);
+				//RecipeList listRecipes = new RecipeList();
+				//listRecipes.setVisible(true);
+				MainInterface main = new MainInterface();
+				main.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
