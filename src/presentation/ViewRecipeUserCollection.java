@@ -74,7 +74,14 @@ public class ViewRecipeUserCollection extends JDialog {
 				getContentPane().add(btnFavourite);
 				btnFavourite.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						if (r.favourite == 0)
+						{
+							r.isFavourite();
+						}
+						else
+						{
+							r.notFavourite();
+						}
 					}
 				});
 		
