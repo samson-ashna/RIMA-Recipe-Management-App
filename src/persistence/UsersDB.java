@@ -49,8 +49,10 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				String name = result.getString(1);
 				String password=result.getString(2);
 				String myRecipes=result.getString(4);
+				String allergies = result.getString(5);
 				User u = new User(name,password);
 				u.setRecipeCollection(myRecipes);
+				u.setAllergies(allergies);
 				dbUsers.add(u);
 				Hashtable<String, String> recipesLst = new Hashtable<String, String>();
 				if(myRecipes !=null) {
@@ -67,6 +69,26 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 					}
 				}
 				}
+				Hashtable<String,Integer> allergyLst = new Hashtable<String, Integer>();
+				if(allergies !=null) {
+				String[] arrOfStr = allergies.split(",");
+				for (String s: arrOfStr) {
+					s = s.replace("{","");
+					s= s.replace("}","");
+					String[] values = s.split(":");
+					values[0] = values[0].replace("\"","");
+					values[0] = values[0].replace("\\s","");
+					values[0].strip();
+					values[1] = values[1].replace("\"","");
+					values[1] = values[1].replace("\\s","");
+					values[1].strip();
+					//System.out.println(values[1]);
+					if(values[0].length()>0) {
+					allergyLst.put(values[0],Integer.parseInt(values[1].strip()));
+					}
+				}
+				}
+				u.setAllergyInformation(allergyLst);
 				u.setRecipeCollection(recipesLst);
 			//}
 			}
@@ -83,9 +105,13 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			con = DriverManager.getConnection (url , user , password );
 			// create statement
 			statement = con.createStatement();
-				
-			query = "INSERT INTO users(name, password, myRecipes, myIngredients) VALUES (\'"+t.getName()+"\', \'"+t.getPassword()+"\',\'"+t.getRecipeCollection1()+"\', \'"+t.ingredientsToJSON()+"\');";
+			
+			query = "INSERT INTO users(name, password, myRecipes, myIngredients,allergies) VALUES (\'"+t.getName()+"\', \'"+t.getPassword()+"\',\'"+t.getRecipeCollection1()+"\', \'"+t.ingredientsToJSON()+"\', \'"+t.getAllergies()+"\');";
 			statement.execute(query);
+			query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+"Eggs"+"\"',\'"+ 0+"\','$.\""+"Milk"+"\"',\'"+0+"\','$.\""+"Peanuts"+"\"',\'"+0+"\','$.\""+"Seafood"+"\"',\'"+0+"\') WHERE `name`=\'"+t.getName()+"\';";
+			statement.execute(query);
+			//query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\"Egg\"','0') WHERE `name`=\'"+t.getName()+"\';";
+			//statement.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -392,6 +418,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	}
 	@Override
 	public void editAllergy(User u, String allergyType, int changeNum) {
+		u.getUserAllergies().getAllergies().replace(allergyType, changeNum);
 		try {
 			// create connection
 			con = DriverManager.getConnection (url , user , password );

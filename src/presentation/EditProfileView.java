@@ -261,9 +261,15 @@ public class EditProfileView extends JFrame {
 							if(allergyChange) {
 								for(JCheckBox box : allergyBoxes) {
 									if(box.isSelected()){
-										userAllergies.replace(box.getText(), 1);
+										//currentUser.getUserAllergies().getAllergies().replace(box.getText(), 1);
+										//userAllergies.replace(box.getText(), 1);
+										//currentUser.allergens.getAllergies().replace(box.getText(), 0);
+										db.editAllergy(currentUser,box.getText(),1);
 									}else if(!box.isSelected()) {
-										userAllergies.replace(box.getText(), 0);
+										//currentUser.getUserAllergies().getAllergies().replace(box.getText(), 1);
+										//userAllergies.replace(box.getText(), 0);
+										//currentUser.allergens.getAllergies().replace(box.getText(), 0);
+										db.editAllergy(currentUser,box.getText(),0);
 									}
 								}
 								change = true;

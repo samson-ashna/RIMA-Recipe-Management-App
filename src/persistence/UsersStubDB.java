@@ -150,6 +150,7 @@ public class UsersStubDB implements UsersDAO {
 	@Override
 	public void editAllergy(User u, String allergyType, int change) {
 		// TODO Auto-generated method stub
-		u.allergens.getAllergies().replace(allergyType, change);
+		u.getUserAllergies().getAllergies().replace(allergyType, change);
+		//u.allergens.getAllergies().replace(allergyType, change);
 	}
 }
