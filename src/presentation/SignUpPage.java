@@ -129,11 +129,11 @@ public class SignUpPage extends JFrame {
 		allergiesLabel.setAlignmentX(CENTER_ALIGNMENT);
 		allergiesLabel.setForeground(Color.WHITE);
 		enterName.setAlignmentX(CENTER_ALIGNMENT);
-		enterName.setForeground(Color.WHITE);
+		//enterName.setForeground(Color.WHITE);
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
-		enterPass.setForeground(Color.WHITE);
+		//enterPass.setForeground(Color.WHITE);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
-		enterPassAgain.setForeground(Color.WHITE);
+		//enterPassAgain.setForeground(Color.WHITE);
 
 		// Username
 		textPane.add(Box.createVerticalGlue());
