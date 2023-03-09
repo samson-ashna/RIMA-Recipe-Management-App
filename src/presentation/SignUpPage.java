@@ -236,8 +236,6 @@ public class SignUpPage extends JFrame {
 				win.dispose();				
 			}
 		});	
-		
-
 
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

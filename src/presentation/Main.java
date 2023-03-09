@@ -51,7 +51,7 @@ public class Main {
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
-				login.setVisible(true);
+				//login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
