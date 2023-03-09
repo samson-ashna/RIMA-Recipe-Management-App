@@ -424,11 +424,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			con = DriverManager.getConnection (url , user , password );
 			// create statement
 			statement = con.createStatement();
-			//query="insert into users array set allergies =json_array(allergies,"+allergyType+") where name = \'"+u.getName()+"\';";
-			//query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+allergyType+"\"\',"+ change+") WHERE `name`=\'"+u.getName()+"\';";
-			//System.out.println(allergyType+" "+changeNum+" "+u.getName());
-			//query = "INSERT INTO users(name,allergies) VALUES ('user10',\'"+allergyType+"\');";
-			query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+allergyType+"\"',\'"+ changeNum+"\') WHERE `name`=\'"+u.getName()+"\';";
+			query = "UPDATE users SET allergies= JSON_REPLACE(allergies, '$.\""+allergyType+"\"',\'"+ changeNum+"\') WHERE `name`=\'"+u.getName()+"\';";
 			statement.execute(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
