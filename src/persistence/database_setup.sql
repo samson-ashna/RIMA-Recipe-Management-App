@@ -35,15 +35,3 @@ CREATE TABLE `users` (
 CREATE TABLE `id` (
 	`recipeID` int DEFAULT 2
 );
-INSERT INTO id (recipeID) VALUE (2);
-insert into users(name,password) values ('user','1');
-Update users SET allergies= JSON_SET(allergies, '$.allergyType', 1) WHERE `name`='user';
-update users array set allergies =json_array(allergies,2) where name = 'user';
-SELECT * FROM recipes;
-SELECT * FROM users;
-insert into users(name,password) values ('useryu','1');
-UPDATE users SET myrecipes= JSON_SET(myrecipes, '$.allergyType','0') WHERE `name`='useryu';
-UPDATE users SET allergies= JSON_SET(allergies, '$."4"','ih') WHERE `name`='user';
-
-
-
