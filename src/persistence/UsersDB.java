@@ -200,6 +200,12 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		query = "UPDATE id SET recipeID="+UserActivity.RecipeIDs+";";
+		try {
+			statement.execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
