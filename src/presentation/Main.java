@@ -58,7 +58,7 @@ public class Main {
 		});
 
 		// Guest Login
-		JButton btnGuest = new JButton("Continue as Guest");
+		JButton btnGuest = new JButton("Guest Login");
 		btnGuest.setBackground(new Color(59, 89, 182));
         btnGuest.setForeground(Color.WHITE);
         btnGuest.setFocusPainted(false);
@@ -66,10 +66,8 @@ public class Main {
 		btnGuest.setBounds(560, 420, 156, 27);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//RecipeList listRecipes = new RecipeList();
-				//listRecipes.setVisible(true);
 				MainInterface main = new MainInterface();
-				main.setVisible(true);
+				//login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
