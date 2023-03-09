@@ -97,6 +97,7 @@ public class RecipeList extends JFrame {
 	public RecipeList() {
 		
 		label = new JLabel();
+		label.setBounds(0, 0, 1268, 685);
 		
 		// setTitle("RIMA - Recipes List");
 		// //Sets the application to exit when closed
@@ -113,8 +114,8 @@ public class RecipeList extends JFrame {
 		contentPane.setLayout(null);
 		//Creates a new section for an item list
 		list= new JList<String>();
-		list.setBackground(new Color(255, 255, 255));
-		list.setBounds(30, 61, 650, 500);
+		list.setBackground(new Color(255,255, 255));
+		list.setBounds(60, 80, 1000, 550);
 
 		label.add(list);
 
@@ -129,47 +130,13 @@ public class RecipeList extends JFrame {
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
 		});
-		contentPane.add(list);
-		//Creates a back button. When clicked, user is redirected to the main page.
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnBack.setBounds(549, 558, 132, 29);
-		contentPane.add(btnBack);
-		
-		label.add(btnBack);
 
 		searchField = new JTextField();
-		searchField.setBounds(202, 11, 232, 39);
-		contentPane.add(searchField);
+		searchField.setBounds(252, 11, 460, 39);
+		//contentPane.add(searchField);
 		searchField.setColumns(10);
 		
 		label.add(searchField);
-
-		JButton btnNewButton = new JButton("Search");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DefaultListModel<String> model = new DefaultListModel<String>();
-				list.setModel(model);
-				searchUserRecipe(searchField.getText());
-				
-			}
-		});
-		btnNewButton.setBounds(444, 11, 89, 39);
-		contentPane.add(btnNewButton);
-		
-		label.add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("All Recipes");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_1.setBounds(543, 11, 138, 39);
-		contentPane.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addRecipes();
-			}
-		});
-		
-		label.add(btnNewButton_1);
 
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("Search By:");
@@ -186,8 +153,48 @@ public class RecipeList extends JFrame {
 		
 		label.add(comboBox);
 
-		comboBox.setBounds(30, 10, 162, 40);
-		contentPane.add(comboBox);
+		comboBox.setBounds(57, 10, 172, 40);
+
+		//contentPane.add(label);
+
+		frame = new JFrame("RIMA - Recipes List");
+		frame.setSize(1280, 720);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		
+		frame.getContentPane().add(label);
+		frame.getContentPane().add(btnBack);
+		//contentPane.add(list);
+		//Creates a back button. When clicked, user is redirected to the main page.
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setBounds(1092, 629, 132, 29);
+		
+				JButton btnNewButton_1 = new JButton("All Recipes");
+				frame.getContentPane().add(btnNewButton_1);
+				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				btnNewButton_1.setBounds(879, 11, 178, 39);
+				
+						JButton btnNewButton = new JButton("Search");
+						frame.getContentPane().add(btnNewButton);
+						btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+						btnNewButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								DefaultListModel<String> model = new DefaultListModel<String>();
+								list.setModel(model);
+								searchUserRecipe(searchField.getText());
+								
+							}
+						});
+						btnNewButton.setBounds(726, 11, 143, 39);
+				//contentPane.add(btnNewButton_1);
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						addRecipes();
+					}
+				});
+		//contentPane.add(comboBox);
 		
 		
 		btnBack.addActionListener(new ActionListener() {
@@ -195,27 +202,19 @@ public class RecipeList extends JFrame {
 				if(UserActivity.getCurrentUser() == null) {
 					MainInterface.frame.setVisible(true);
 				}else {
-					MainInterface main = new MainInterface();
-					main.setVisible(true);
-					//HomePage homePage = new HomePage();
-					// homePage.setVisible(true);
+//					MainInterface main = new MainInterface();
+//					main.setVisible(true);
+					HomePage homePage = new HomePage();
+					homePage.setVisible(true);
 				}
+				frame.setVisible(false);
+				frame.dispose();
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
 				
 			}
 		});
-
-		label.add(contentPane);
-
-		frame = new JFrame("RIMA - Recipes List");
-		frame.setSize(1280, 720);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		
-		frame.add(label);
 
 		frame.setVisible(true);
 		

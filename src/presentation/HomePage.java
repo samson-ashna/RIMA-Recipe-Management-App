@@ -135,6 +135,7 @@ public class HomePage extends JFrame {
 		//Set new recipes button to redirect to the app's recipe databse when pushed.
 		newRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//MainInterface main = new MainInterface();
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
 				contentPane.setVisible(false);
