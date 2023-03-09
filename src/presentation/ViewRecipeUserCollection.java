@@ -68,14 +68,9 @@ public class ViewRecipeUserCollection extends JDialog {
 		Recipes r = db.getRecipe(currentUser,name);
 		textArea.setText(r.toString());
 		
-		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 503, 507, 33);
-		getContentPane().add(buttonPane);
-		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
 		// Creates a new button. When clicked user adds the recipe to Favourites.
 				JButton btnFavourite = new JButton("Add to Favourite");
-				btnFavourite.setBounds(5, 503, 160, 23);
+				btnFavourite.setBounds(369, 503, 148, 23);
 				getContentPane().add(btnFavourite);
 				btnFavourite.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
