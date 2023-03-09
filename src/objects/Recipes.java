@@ -15,6 +15,7 @@ public class Recipes {
 	public static int id=1;
 	private int recipeID;
 	private String user;
+	public int favourite = 0;
 	
 	public Recipes() {}
 	/**
@@ -129,6 +130,16 @@ public class Recipes {
 		
 		return ingredients;
 
+	}
+	
+	public void isFavourite()
+	{
+		this.favourite = 1;
+	}
+	
+	public void notFavourite()
+	{
+		this.favourite = 0;
 	}
 
 	/**
