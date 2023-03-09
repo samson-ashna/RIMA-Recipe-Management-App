@@ -206,7 +206,6 @@ public class UserRecipeCollection extends JFrame {
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
-		String[] lst = {"Search by:","Name","Category","Ingredient"};
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("Search By:");
 		comboBox.addItem("Name");

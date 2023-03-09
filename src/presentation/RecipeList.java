@@ -7,6 +7,8 @@ import java.awt.Window;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.DefaultListModel;
@@ -21,7 +23,10 @@ import businessLogic.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
 import persistence.RecipesStubDB;
+import persistence.UsersDAO;
 import persistence.DatabaseAccess;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 /**
  * 
@@ -35,6 +40,8 @@ public class RecipeList extends JFrame {
 	private JList<String> list;
 	//Button object
 	private final JButton btnBack = new JButton("Back");
+	private JTextField searchField;
+	String searchCategory;
 
 	/**
 	 * Launch the application.
@@ -65,6 +72,21 @@ public class RecipeList extends JFrame {
 		}
 		list.setModel(model);
 	}
+	public void searchUserRecipe(String searchedItem) {
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		DatabaseAccess access = new DatabaseAccess();
+		DAO<Recipes> db = access.recipesDB();
+		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
+		recipes = db.getAll();
+		for(Recipes r: recipes) {
+			if(searchCategory.equals("Name") && r.getName().equals(searchedItem)) {
+				model.addElement(r.getName());
+			}else if(searchCategory.equals("Ingredient") && r.getIngredients().contains(searchedItem)) {
+				model.addElement(r.getName());
+			}
+		}
+		list.setModel(model);
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -73,7 +95,7 @@ public class RecipeList extends JFrame {
 		//Sets the application to exit when closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Sest the bounds of the window
-		setSize(319, 270);
+		setSize(724, 632);
 		setLocationRelativeTo(null);
 		//Creates a new content pane
 		contentPane = new JPanel();
@@ -84,7 +106,7 @@ public class RecipeList extends JFrame {
 		//Creates a new section for an item list
 		list= new JList<String>();
 		list.setBackground(new Color(255, 255, 255));
-		list.setBounds(10, 11, 280, 195);
+		list.setBounds(30, 61, 651, 486);
 		//Adds the recipes in the app's database to the list section to display them
 		addRecipes();
 		//Sets up what to do when an item in the list is selected. When selected the recipe's detailed information is displayed.
@@ -98,9 +120,55 @@ public class RecipeList extends JFrame {
 		});
 		contentPane.add(list);
 		//Creates a back button. When clicked, user is redirected to the main page.
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnBack.setBounds(225, 211, 65, 18);
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setBounds(549, 558, 132, 29);
 		contentPane.add(btnBack);
+		
+		searchField = new JTextField();
+		searchField.setBounds(202, 11, 232, 39);
+		contentPane.add(searchField);
+		searchField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Search");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultListModel<String> model = new DefaultListModel<String>();
+				list.setModel(model);
+				searchUserRecipe(searchField.getText());
+				
+			}
+		});
+		btnNewButton.setBounds(444, 11, 89, 39);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("All Recipes");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1.setBounds(543, 11, 138, 39);
+		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addRecipes();
+			}
+		});
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addItem("Search By:");
+		comboBox.addItem("Name");
+		comboBox.addItem("Category");
+		comboBox.addItem("Ingredient");
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED) {
+					searchCategory = comboBox.getSelectedItem().toString();
+				}
+			}
+		});
+		
+		comboBox.setBounds(30, 10, 162, 40);
+		contentPane.add(comboBox);
+		
+		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() == null) {
