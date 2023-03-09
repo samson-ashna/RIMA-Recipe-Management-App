@@ -26,6 +26,8 @@ import persistence.UsersDAO;
 import javax.swing.JMenuBar;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 /**
  * 
@@ -43,7 +45,8 @@ public class UserRecipeCollection extends JFrame {
 	private final JButton backButton = new JButton("Back");
 	private final JButton addRecipeButton = new JButton("Add Custom Recipe");
 	private final JButton favourites = new JButton("Favourites");
-	private JTextField textField;
+	private JTextField searchField;
+	private String searchCategory;
 
 	/**
 	 * Launch the application.
@@ -88,6 +91,21 @@ public class UserRecipeCollection extends JFrame {
 		//Set the model for the list section to be the one that was 
 		list.setModel(model);
 	}
+	public void searchUserRecipe(String searchedItem) {
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		DatabaseAccess access = new DatabaseAccess();
+		UsersDAO db = access.usersDB();	
+		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
+		recipes = db.getRecipes(UserActivity.getCurrentUser());
+		for(Recipes r: recipes) {
+			if(searchCategory.equals("Name") && r.getName().equals(searchedItem)) {
+				model.addElement(r.getName());
+			}else if(searchCategory.equals("Ingredient") && r.getIngredients().contains(searchedItem)) {
+				model.addElement(r.getName());
+			}
+		}
+		list.setModel(model);
+	}
 
 	/**
 	 * Create the frame.
@@ -97,7 +115,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.
-		setBounds(100, 100, 548, 556);		
+		setBounds(100, 100, 671, 591);		
 
 		setLocationRelativeTo(null);
 		//Create a new content pane.
@@ -115,7 +133,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
 		//Set the bounds of the list section
-		list.setBounds(10, 57, 512, 410);
+		list.setBounds(10, 57, 637, 437);
 		//Search.add()
 		//Add the current user's saved recipes to the list section to display them.
 		addUserRecipes();
@@ -138,8 +156,8 @@ public class UserRecipeCollection extends JFrame {
 		contentPane.add(list);
 		
 		//Set up the font and bounds of the back button.
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setBounds(441, 488, 81, 18);
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		backButton.setBounds(528, 518, 98, 21);
 		
 		//add the back button to the content pane.
 		contentPane.add(backButton);
@@ -161,8 +179,8 @@ public class UserRecipeCollection extends JFrame {
 		});
 		
 		//Set up the font and bounds of the Favourite button
-		favourites.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		favourites.setBounds(10, 488, 90, 18);
+		favourites.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		favourites.setBounds(176, 517, 116, 23);
 		//add the Favourite button to the content pane
 		contentPane.add(favourites);
 		//Set up what to do when the Favourite button is pressed
@@ -178,22 +196,35 @@ public class UserRecipeCollection extends JFrame {
 			}
 		});
 		
+		searchField = new JTextField();
+		searchField.setBounds(225, 8, 184, 40);
+		contentPane.add(searchField);
+		searchField.setColumns(10);
 		//Set up the font and bounds of the add button.
-		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		addRecipeButton.setBounds(289, 488, 130, 18);
+		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		addRecipeButton.setBounds(309, 517, 200, 23);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
 		String[] lst = {"Search by:","Name","Category","Ingredient"};
-		JComboBox comboBox = new JComboBox(lst);
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addItem("Search By:");
+		comboBox.addItem("Name");
+		comboBox.addItem("Category");
+		comboBox.addItem("Ingredient");
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED) {
+					searchCategory = comboBox.getSelectedItem().toString();
+				}
+			}
+		});
+		
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		comboBox.setBounds(10, 11, 205, 35);
 		contentPane.add(comboBox);
 		
-		textField = new JTextField();
-		textField.setBounds(225, 8, 184, 40);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		
 		
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -201,10 +232,22 @@ public class UserRecipeCollection extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel<String> model = new DefaultListModel<String>();
 				list.setModel(model);
+				searchUserRecipe(searchField.getText());
+				
 			}
 		});
 		btnNewButton.setBounds(420, 11, 89, 35);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("All Recipes");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addUserRecipes();
+			}
+		});
+		btnNewButton_1.setBounds(515, 11, 132, 35);
+		contentPane.add(btnNewButton_1);
 				
 		//Set up what to do when the add button is pressed.
 		addRecipeButton.addActionListener(new ActionListener() {
