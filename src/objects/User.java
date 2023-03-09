@@ -15,6 +15,7 @@ public class User {
 	//personal collection of the user's recipes,unlike database recipes, these recipes can be modified.
 	private ArrayList<Recipes> myRecipes=new ArrayList<Recipes>();
 	private Hashtable<String, String> recipelst=new Hashtable<String, String>();
+	private Hashtable<String, Integer> allergylst=new Hashtable<String, Integer>();
 	private ArrayList<Recipes> myFavourites = new ArrayList<Recipes>();
 	//private ArrayList<String> recipelst = new ArrayList<String>();
 	
@@ -25,6 +26,7 @@ public class User {
 	public Allergies allergens;
 	public static int id=1;
 	private int userID;
+	String allergies;
 	
 	/**
 	 *Default constructor 
@@ -182,6 +184,18 @@ public class User {
 	public ArrayList<Recipes> getFavourites()
 	{
 		return this.myFavourites;
+	}
+	public void setAllergies(String allergies) {
+		// TODO Auto-generated method stub
+		this.allergies = allergies;
+	}
+	public Hashtable<String,Integer> getAllergies() {
+		//return this.allergens.getAllergies();
+		return this.allergylst;
+	}
+	public void setAllergyInformation(Hashtable<String, Integer> allergyLst2) {
+		// TODO Auto-generated method stub
+		this.getUserAllergies().setAllergies(allergyLst2);
 	}
 
 }

@@ -238,19 +238,19 @@ public class SignUpPage extends JFrame {
 						//Add the selected allergies by the user to their allergy information. 
 						if(eggAllergy.isSelected()){
 							db.editAllergy(newUser, "Eggs",1);
-							//newUser.allergens.getAllergies().replace("Eggs", 1);
+							newUser.allergens.getAllergies().replace("Eggs", 1);
 						}
 						if(milkAllergy.isSelected()){
 							db.editAllergy(newUser, "Milk",1);
-							//newUser.allergens.getAllergies().replace("Milk", 1);
+							newUser.allergens.getAllergies().replace("Milk", 1);
 						}
 						if(peanutAllergy.isSelected()){
 							db.editAllergy(newUser, "Peanuts",1);
-							//newUser.allergens.getAllergies().replace("Peanuts", 1);
+							newUser.allergens.getAllergies().replace("Peanuts", 1);
 						}
 						if(seafoodAllergy.isSelected()){
 							db.editAllergy(newUser, "Seafood",1);
-							//newUser.allergens.getAllergies().replace("Seafood", 1);
+							newUser.allergens.getAllergies().replace("Seafood", 1);
 						}
 						HomePage homePage = new HomePage();
 						homePage.setVisible(true);
