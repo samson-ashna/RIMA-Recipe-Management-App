@@ -10,14 +10,14 @@ import java.util.Set;
  */
 public class Allergies
 {
-    Hashtable<String, Integer> allergies;
+    Hashtable<String, Integer> allergies=new Hashtable<String, Integer>();
 
     /**
      * Lists the options of allergies into a hashtable
      */
     public Allergies()
     {
-        this.allergies = new Hashtable<String, Integer>();
+        //this.allergies = new Hashtable<String, Integer>();
         this.allergies.put("Eggs", 0);
         this.allergies.put("Milk", 0);
         this.allergies.put("Peanuts", 0);
@@ -74,7 +74,11 @@ public class Allergies
      * @return
      */
     public Hashtable<String, Integer> getAllergies(){
+    	
     	return this.allergies;
+    }
+    public void setAllergies(Hashtable<String,Integer> lst) {
+    	this.allergies = lst;
     }
 
     /**
