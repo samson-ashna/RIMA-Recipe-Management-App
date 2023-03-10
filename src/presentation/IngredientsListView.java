@@ -1,7 +1,6 @@
 package presentation;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -9,29 +8,29 @@ import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
 import objects.Ingredient;
 import objects.User;
-import persistence.UsersStubDB;
 
 @SuppressWarnings("serial")
 public class IngredientsListView extends JFrame {
@@ -49,16 +48,19 @@ public class IngredientsListView extends JFrame {
 	//Component objects.
 	private final JButton backButton = new JButton("Back");
 	private final JButton addButton = new JButton("Add Ingredient");
-	private final JButton[] buttons = {backButton, addButton};
+	private final JButton editButton = new JButton("Edit");
+	private final JButton removeButton = new JButton("Remove");
+	private final JButton[] buttons = {backButton, addButton, editButton, removeButton};
 	private JList<String> ingredientsList = new JList<String>();
-	
-	//Popup menu items
-	private JPopupMenu menu = new JPopupMenu();
-	private JMenuItem editButton = new JMenuItem("Edit");
-	private JMenuItem removeButton = new JMenuItem("Remove");
 	
 	//Current user.
 	private User user;
+	
+	//Current user's ingredients.
+	ArrayList<Ingredient> ingredients;
+	
+	//Selected ingredient.
+	private Ingredient selectedIngredient = null;
 
 
 	/**
@@ -83,18 +85,7 @@ public class IngredientsListView extends JFrame {
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */
 	public void ingredientsListSetup() {
-		//Ingredient arraylist for user's ingredients.
-		ArrayList<Ingredient> ingredients;
 		String[] ingredientNames;
-		
-		//Save the current user.
-		user = UserActivity.getCurrentUser();
-		
-		if(user != null) {
-			ingredients = IngredientActions.getIngredients();
-		}else {
-			return;
-		}
 		
 		if(ingredients != null) {
 			//Initialize ingredientNames.
@@ -107,6 +98,9 @@ public class IngredientsListView extends JFrame {
 			
 			//Build ingredientsList using ingredientNames.
 			ingredientsList = new JList<String>(ingredientNames);
+			//Set up List dimensions.
+			ingredientsList.setPrototypeCellValue("Using this to set the ingredients list cell width for now ;)"); //Since other methods didn't work.
+			ingredientsList.setPreferredSize(new Dimension(200, 300));
 		}
 	}
 	
@@ -115,6 +109,10 @@ public class IngredientsListView extends JFrame {
 	 * Create the frame.
 	 */
 	public IngredientsListView() {
+		//Retrieve current user and ingredients.
+		user = UserActivity.getCurrentUser();
+		if(user != null) ingredients = IngredientActions.getIngredients();
+		
 		//Set title.
 		setTitle("RIMA - User Ingredients");
 		//Set the application to exit when closed.
@@ -152,26 +150,30 @@ public class IngredientsListView extends JFrame {
 		listPane.add(Box.createVerticalGlue());
 		
 		//Set up the button fonts.
-		addButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		for(JButton button:buttons) {
+			button.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		}
+		
+		//Disable edit and remove buttons due to unselected list item.
+		editButton.setEnabled(false);
+		removeButton.setEnabled(false);
 		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(backButton);
 		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
+		buttonPane.add(editButton);
+		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
+		buttonPane.add(removeButton);
+		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
 		buttonPane.add(addButton);
-		
-		//Set up menu item fonts.
-		editButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		removeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
-		//Set up popup menu.
-		menu.add(editButton);
-		menu.add(removeButton);
 		
 		//Add info and button panes to content pane.
 		contentPane.add(listPane);
 		contentPane.add(buttonPane, BorderLayout.PAGE_END);
+		
+		//Add components that need to be enabled and disabled during events to an array.
+		JComponent[] componentsToToggle = {backButton, addButton, ingredientsList};
 		
 		//Set up what to do when the back button is pressed.
 		backButton.addActionListener(new ActionListener() {
@@ -189,23 +191,80 @@ public class IngredientsListView extends JFrame {
 			}
 		});
 		
-		//Set up what to do when the back button is pressed.
+		//Set up what to do when the add button is pressed.
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Set selected ingredient to null and deselect ingredient.
+				selectedIngredient = null;
+				ingredientsList.clearSelection();
+				
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView(buttons);
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);
 				
-				//Disable buttons.
-				backButton.setEnabled(false);
-				addButton.setEnabled(false);
+				//Disable buttons and ingredients list.
+				for(JButton button:buttons) {
+					button.setEnabled(false);
+				}
+				ingredientsList.setEnabled(false);
 								
 			}
 		});
 		
-		//Set up what to do when list item is left clicked.
+		//Set up what to do when an item in the ingredient list is selected.
+		ingredientsList.addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent e) {
+		        if (!e.getValueIsAdjusting()){
+		            editButton.setEnabled(true);
+		            removeButton.setEnabled(true);
+		            String selectedValue = (String) ingredientsList.getSelectedValue();
+		            if(ingredients != null) {
+		            	for(Ingredient ingredient:ingredients) {
+		            		if(ingredient.getName().equals(selectedValue)) {
+		            			selectedIngredient = ingredient;
+		            		}
+		            	}
+		            }
+		        }
+		    }
+		});
+		
+		//Set up what to do when the edit button is pressed.
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create an EditIngredientView window
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient);
+						
+				//Make the HomePage window visible and the UserRecipeCollection window invisible.
+				editView.setVisible(true);
+				
+				//Disable buttons and ingredients list.
+				for(JButton button:buttons) {
+					button.setEnabled(false);
+				}
+				ingredientsList.setEnabled(false);
+								
+			}
+		});
+		
+		//Set up what to do when the remove button is pressed.
+		removeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Set selected ingredient to null;
+				selectedIngredient = null;
+				
+				//Remove ingredient from list.
+				ingredientsList.remove(ingredientsList.getSelectedIndex());
+				
+				//Remove ingredient from user collection and from user in database.
+				user.removeIngredientFromCollection(selectedIngredient);
+				IngredientActions.removeIngredient(selectedIngredient);
+										
+			}
+		});
+		
 	}
 	
 	//Constructor for another frame to change to this class's content pane instead of closing itself and opening this as a new frame.

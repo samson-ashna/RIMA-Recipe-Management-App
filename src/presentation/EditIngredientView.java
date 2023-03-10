@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -16,6 +18,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,8 +39,8 @@ import persistence.UsersDAO;
 @SuppressWarnings("serial")
 public class EditIngredientView extends JFrame{
 	
-	//Ingredients list buttons for re-enabling upon return.
-	private JButton[] listButtons;
+	//Ingredients view list and buttons for re-enabling upon return.
+	private JComponent[] componentsToToggle;
 	
 	//Pane objects
 	private Container contentPane;
@@ -94,9 +97,10 @@ public class EditIngredientView extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public EditIngredientView(JButton[] buttons) {
+	public EditIngredientView(JComponent[] components, Ingredient selectedIngredient) {
 		//Save previous frame's buttons to re-enable them.
-		listButtons = buttons;
+		componentsToToggle = components;
+		ingredient = selectedIngredient;
 		
 		//Set frame title.
 		setTitle("RIMA - Edit Ingredient");
@@ -174,8 +178,23 @@ public class EditIngredientView extends JFrame{
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();	
 				
-				reenableButtons();
+				//Re-enable ingredient view components.
+				for(JComponent component:componentsToToggle) {
+					component.setEnabled(true);
+				}
 			}
+		});
+		
+		//Set up what to do when window is closed
+		this.addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		    	//Re-enable ingredient view components.
+				for(JComponent component:componentsToToggle) {
+					component.setEnabled(true);
+				}
+				
+		    }
 		});
 
 		//Sets up save button to add ingredient to list or edit it when pressed and close window.
@@ -292,11 +311,5 @@ public class EditIngredientView extends JFrame{
 			carbsField.setText("\"" + ingredient.getCarbs() + "\"");
 		}
 		
-	}
-	
-	private void reenableButtons() {
-		for(JButton button:listButtons) {
-			button.setEnabled(true);
-		}
 	}
 }
