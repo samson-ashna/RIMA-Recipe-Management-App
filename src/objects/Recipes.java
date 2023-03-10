@@ -134,10 +134,20 @@ public class Recipes {
 
 	}
 	
+	/**
+	 * This methods return the ingredient as 1 or true if it is a favourite
+	 * @return this.favourite = 1, an integer value representing true, it is a favourite ingredient
+	 */
+	
 	public void isFavourite()
 	{
 		this.favourite = 1;
 	}
+	
+	/**
+	 * This methods return the ingredient as 0 or false if it is not a favourite
+	 * @return this.favourite = 0, an integer value representing false, it is not a favourite ingredient
+	 */
 	
 	public void notFavourite()
 	{
@@ -145,7 +155,8 @@ public class Recipes {
 	}
 
 	/**
-	 * 
+	 * This method prints out the String with all the meal's nutritional facts listed out
+	 * @return a String representing required recipe's nutrional facts
 	 */
 	@Override
 	public String toString() {
