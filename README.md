@@ -44,3 +44,24 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 **Favourite Recipe List:  As an app user, I want to be able to add my favourite recipes to a list for easier access.  Priority: Medium. Cost: 3 days**
 
 **Meal Planning:  As a home cook, I want to be able to plan my meals for the coming week and I would like to view recipe suggestions based on my favourite recipe list, available food ingredients, and dietary restrictions and preferences.  Priority: Medium. Cost: 5 days**
+#### Detailed User Stories For Iteration 2
+“Search Recipes” - 
+1. Display a Search Bar: As a user, I want to quickly find a search bar that can aid me in finding recipes with minimal effort.
+2. Display Categories: As a user, I would like to easily search for what type of food I’m willing to make based on the time of day, the ingredients I own, and other categories based on meal time, dietary restrictions and such.
+3. Display Searched Recipes - As a user, I want the specific recipes based on the search result to be filtered and displayed from the database.
+
+“Manipulate Food Ingredients” - 
+1. Display the Recipe Ingredients: As a user, I want to be able to view a list of the recipe list before I make the recipe in order to know whether I have the proper required ingredients to make the dish.
+2. Customize Serving Size: As a user, I want to have the ingredients fractioned out to fit the number of servings/portions I am making to be customizable on the app so that I do not accidentally miscalculate the ingredient ratios.
+3. Add Recipes: As a user, I would want to add my own recipes that I discover.
+4. Edit Recipes: As a user, I would want to edit the recipes that are already available in the database to customize them to my own liking.
+5. Manage my Inventory: As a user, I want to be able to add notes to the items I have included in my list of food ingredients and edit their information such as the food’s expiration date.
+
+“Favorite Recipe List” -
+1. Add a Favorites Page: As a user, I would want the recipes I “like” or “save” to be displayed on one page under my app account.
+2. Display a Collection: As a user, I want to be able to view a collection of recipes I made and recipes I recently viewed.
+3. Sort Recipes: As a user, I want the recipes I favorited to be displayed on the page as sorted from A-Z for easier access. 
+
+“Meal Planning” -
+1. Create a Calendar Page:  Add a calendar page for the week where the user can select a day and add recipes to that day from the personal collection list
+2. Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week.
