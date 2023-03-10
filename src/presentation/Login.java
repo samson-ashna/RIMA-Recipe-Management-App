@@ -19,10 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
-import objects.Recipes;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
-import persistence.DAO;
 import persistence.UsersDAO;
 
 /**
@@ -89,7 +86,6 @@ public class Login extends JFrame {
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		//frame.getContentPane().setLayout(null);
 		
 		//Creates a back button. When clicked user is redirected to main page. 
 		backButton = new JButton("Back");
@@ -99,7 +95,7 @@ public class Login extends JFrame {
         backButton.setFocusPainted(false);
         backButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		backButton.setBounds(674, 374, 76, 26);
-		//contentPane.add(lblError);
+		
 		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
 		logInButton = new JButton("Login");
@@ -109,7 +105,7 @@ public class Login extends JFrame {
         logInButton.setFocusPainted(false);
         logInButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		logInButton.setBounds(522, 374, 76, 26);
-		//contentPane.add(lblPassword);
+		
 		
 		//Creates a text field where user can enter password
 		passwordField = new JPasswordField();
@@ -123,13 +119,12 @@ public class Login extends JFrame {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblPassword.setBounds(584, 258, 76, 51);
-		//contentPane.add(lbluserName);
+		
 		
 		//Creates a test field where user can enter user name
 		textField = new JTextField();
 		frame.add(textField);
 		textField.setBounds(469, 221, 327, 26);
-		//contentPane.add(textField);
 		textField.setColumns(10);
 		
 		// label for user name
@@ -139,7 +134,7 @@ public class Login extends JFrame {
 		lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lbluserName.setBounds(562, 170, 123, 51);
-		//contentPane.add(passwordField);
+		
 		
 		//Creates label for displaying error messages.
 		lblError = new JLabel();
@@ -149,7 +144,7 @@ public class Login extends JFrame {
 		lblError.setBounds(550, 425, 185, 14);
 		
 
-		//contentPane.add(logInButton);
+		
 		logInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity activity = new UserActivity();
@@ -163,7 +158,6 @@ public class Login extends JFrame {
 					}else {
 						DatabaseAccess access = new DatabaseAccess();
 						UsersDAO db = access.usersDB();
-						//UsersDAO userDAO = new UsersStubDB();
 						UserActivity.setCurrentUser(db.get(username));
 						db.get(username).loggedIn = true;
 						HomePage homePage = new HomePage();
@@ -179,7 +173,6 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		//contentPane.add(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main mainPage = new Main();

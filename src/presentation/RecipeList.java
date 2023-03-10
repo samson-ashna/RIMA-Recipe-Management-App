@@ -58,7 +58,6 @@ public class RecipeList extends JFrame {
 			public void run() {
 				try {
 					RecipeList frame = new RecipeList();
-					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +71,6 @@ public class RecipeList extends JFrame {
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		DatabaseAccess access = new DatabaseAccess();
 		DAO<Recipes> db = access.recipesDB();
-		//DAO<Recipes> db = new RecipesStubDB();
 		ArrayList<Recipes> recipes = db.getAll();
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
@@ -80,7 +78,6 @@ public class RecipeList extends JFrame {
 		list.setModel(model);
 	}
 	public void searchUserRecipe(String searchedItem) {
-		//DefaultListModel<String> model = new DefaultListModel<String>();
 		DatabaseAccess access = new DatabaseAccess();
 		DAO<Recipes> db = access.recipesDB();
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
@@ -103,13 +100,6 @@ public class RecipeList extends JFrame {
 		
 		label = new JLabel();
 		label.setBounds(0, 0, 1268, 685);
-		
-		// setTitle("RIMA - Recipes List");
-		// //Sets the application to exit when closed
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// //Sest the bounds of the window
-		// setSize(1280, 720);
-		// setLocationRelativeTo(null);
 		//Creates a new content pane
 		contentPane = new JPanel();
 		contentPane.setBounds(0, 0, 1280, 720);
@@ -200,7 +190,6 @@ public class RecipeList extends JFrame {
 						btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								//DefaultListModel<String> model = new DefaultListModel<String>();
 								model.removeAllElements();
 								
 								searchCategory = comboBox.getSelectedItem().toString();
@@ -232,10 +221,8 @@ public class RecipeList extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() == null) {
 					MainInterface.frame.setVisible(true);
-					//Main.frame.setVisible(true);
+					
 				}else {
-//					MainInterface main = new MainInterface();
-//					main.setVisible(true);
 					HomePage homePage = new HomePage();
 					homePage.setVisible(true);
 				}

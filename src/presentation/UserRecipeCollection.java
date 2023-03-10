@@ -78,24 +78,21 @@ public class UserRecipeCollection extends JFrame {
 		//get a new instance of the user database.
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();
-		//UsersDAO db = new UsersStubDB();		
+		
 		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
-		//System.out.println(UserActivity.getCurrentUser().getName());
-		
+
 		recipes = db.getRecipes(UserActivity.getCurrentUser());
-		//System.out.println("user colleciton accessed"+UserActivity.getCurrentUser().getName());
+	
 		//Add all the user's recipes to the list model.
 		for(Recipes r: recipes) {
 			model.addElement(r.getName());
-			//System.out.println("in db"+r.getName());
 		}
 		
 		//Set the model for the list section to be the one that was 
 		list.setModel(model);
 	}
 	public void searchUserRecipe(String searchedItem) {
-		//DefaultListModel<String> model = new DefaultListModel<String>();
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();	
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
@@ -228,9 +225,7 @@ public class UserRecipeCollection extends JFrame {
 		comboBox.addItem("Ingredient");
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
 				if(e.getStateChange()==ItemEvent.SELECTED) {
-					
 					searchCategory = comboBox.getSelectedItem().toString();
 					if(searchCategory.equals("Meal Time")) {
 						searchField.setText(searchCategory);
@@ -250,8 +245,6 @@ public class UserRecipeCollection extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.removeAllElements();
-				//DefaultListModel<String> model = new DefaultListModel<String>();
-				//list.setModel(model);
 				searchCategory = comboBox.getSelectedItem().toString();
 				if(searchCategory.equals("Meal Time")) {		
 					comboBox1.addItemListener(new ItemListener() {

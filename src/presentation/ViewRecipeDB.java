@@ -67,7 +67,6 @@ public class ViewRecipeDB extends JDialog {
 		//Recipe database is accessed through the data access object and the recipe information is displayed in the text area.
 		DatabaseAccess access = new DatabaseAccess();
 		DAO<Recipes> db = access.recipesDB();
-		//DAO<Recipes> db = new RecipesStubDB();
 		textArea.setText(db.get(name).toString());
 		for (Recipes r: db.getAll()) {
 			if(r.getName().equals(name)) {
@@ -100,8 +99,6 @@ public class ViewRecipeDB extends JDialog {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() != null) {
-//					UsersDAO dbUser = access.usersDB(0);
-//					dbUser.addRecipes(UserActivity.getCurrentUser(),db.get(name));
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(db.get(name));
 					btnSave.setText("Saved to Collection");

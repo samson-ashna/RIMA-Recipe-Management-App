@@ -64,7 +64,6 @@ public class ViewRecipeUserCollection extends JDialog {
 		 * the recipe in the user's personal collection that has the specified name is displayed.*/ 
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();
-		//UsersDAO db = new UsersStubDB();
 		Recipes r = db.getRecipe(currentUser,name);
 		textArea.setText(r.toString());
 		

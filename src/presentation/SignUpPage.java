@@ -130,12 +130,9 @@ public class SignUpPage extends JFrame {
 		allergiesLabel.setAlignmentX(CENTER_ALIGNMENT);
 		allergiesLabel.setForeground(Color.WHITE);
 		enterName.setAlignmentX(CENTER_ALIGNMENT);
-		//enterName.setForeground(Color.WHITE);
 		enterPass.setAlignmentX(CENTER_ALIGNMENT);
-		//enterPass.setForeground(Color.WHITE);
 		enterPassAgain.setAlignmentX(CENTER_ALIGNMENT);
 		error.setAlignmentX(CENTER_ALIGNMENT);
-		//enterPassAgain.setForeground(Color.WHITE);
 
 		// Username
 		textPane.add(Box.createVerticalGlue());
@@ -159,7 +156,7 @@ public class SignUpPage extends JFrame {
 		// Allergies
 		textPane.add(allergiesLabel);
 		textPane.add(Box.createVerticalGlue());
-		//textPane.add(error);
+	
 		
 		
 		//Create a new button pane.
@@ -176,44 +173,38 @@ public class SignUpPage extends JFrame {
 		contentPane.add(textPane);
 		
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		//label.setForeground(new Color(255, 0, 0));
-		//label.setBounds(78, 411, 322, 25);
 		getContentPane().add(label);
 		registerButton.setBounds(500, 600, 114, 25);
 		registerButton.setBackground(new Color(59, 89, 182));
         registerButton.setForeground(Color.WHITE);
         registerButton.setFocusPainted(false);
         registerButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//getContentPane().add(registerButton);
+		
 		
 		cancelButton.setBounds(650, 600, 114, 25);
 		cancelButton.setBackground(new Color(59, 89, 182));
         cancelButton.setForeground(Color.WHITE);
         cancelButton.setFocusPainted(false);
         cancelButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//getContentPane().add(cancelButton);
+	
 		
 		//Set up button fonts.
 		eggAllergy.setBounds(560, 500, 96, 31);
 		eggAllergy.setForeground(Color.WHITE);
-		//getContentPane().add(eggAllergy);
+		
 
 		milkAllergy.setBounds(560, 525, 96, 25);
 		milkAllergy.setForeground(Color.WHITE);
-		//getContentPane().add(milkAllergy);
 
 		
 		peanutAllergy.setBounds(560, 545, 96, 25);
 		peanutAllergy.setForeground(Color.WHITE);
-		//getContentPane().add(peanutAllergy);
 		
 		seafoodAllergy.setBounds(560, 475, 96, 31);
 		seafoodAllergy.setForeground(Color.WHITE);
-		//getContentPane().add(seafoodAllergy);
 		error.setBounds(480, 640, 96, 21);
 		error.setForeground(Color.WHITE);
 		error.setSize(500,30);
-		//getContentPane().add(error);
 		
 		
 		// Add components to label
@@ -264,7 +255,6 @@ public class SignUpPage extends JFrame {
 						User newUser = new User(name, password);
 						DatabaseAccess access = new DatabaseAccess();
 						UsersDAO db = access.usersDB();
-						//UsersDAO userDAO = new UsersStubDB();
 						db.add(newUser);
 						UserActivity.setCurrentUser(newUser);
 						newUser.loggedIn = true;
@@ -276,15 +266,12 @@ public class SignUpPage extends JFrame {
 						}
 						if(milkAllergy.isSelected()){
 							db.editAllergy(newUser, "Milk",1);
-							//newUser.allergens.getAllergies().replace("Milk", 1);
 						}
 						if(peanutAllergy.isSelected()){
 							db.editAllergy(newUser, "Peanuts",1);
-							//newUser.allergens.getAllergies().replace("Peanuts", 1);
 						}
 						if(seafoodAllergy.isSelected()){
 							db.editAllergy(newUser, "Seafood",1);
-							//newUser.allergens.getAllergies().replace("Seafood", 1);
 						}
 						HomePage homePage = new HomePage();
 						homePage.setVisible(true);

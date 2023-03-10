@@ -195,13 +195,6 @@ public class EditRecipeView extends JDialog {
 					//RecipesDB db = new RecipesDB();
 					DAO<Recipes> db = access.recipesDB();
 					db.edit(recipe);
-					
-//					for (Recipes r: db.getAllRecipes()) {
-//						System.out.println(r.getRecipeID()+"id"+recipe.getRecipeID());
-//						if(r.getRecipeID()==recipe.getRecipeID()) {			
-//							db.edit(recipe);
-//						}
-//					}
 					UserRecipeCollection back = new UserRecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);
