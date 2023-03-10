@@ -32,6 +32,4 @@ CREATE TABLE `users` (
 CREATE TABLE `id` (
 	`recipeID` int DEFAULT 2
 );
-INSERT INTO id(recipeID) VALUE (2); 
-SELECT * FROM recipes;
-SELECT * FROM users;
+INSERT INTO id(recipeID) VALUE (2);

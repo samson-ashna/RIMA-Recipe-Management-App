@@ -33,7 +33,7 @@ public class MainInterface extends JFrame {
     public MainInterface() {
 
         // Background Image
-		icon = new ImageIcon();
+		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
         label = new JLabel(icon);
         label.setSize(1280, 720);
 

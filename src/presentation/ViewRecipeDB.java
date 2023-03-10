@@ -54,7 +54,7 @@ public class ViewRecipeDB extends JDialog {
 		setSize(1280, 720);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 836, 503);
+		contentPanel.setBounds(0, 0, 1232, 619);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
@@ -81,7 +81,7 @@ public class ViewRecipeDB extends JDialog {
 		buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		//Creates a new button. When clicked, the user is redirected back to the list of recipes. 
 		JButton btnBack = new JButton("Return to list");
-		btnBack.setBounds(686, 503, 150, 23);
+		btnBack.setBounds(1082, 630, 150, 23);
 		getContentPane().add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +95,7 @@ public class ViewRecipeDB extends JDialog {
 		/*Create a new button. When clicked, the recipe is saved to the user's personal collection where it can be viewed and edited.
 		If there is no logged in user, a message is displayed in the button*/
 		JButton btnSave = new JButton("Save To My Collection");
-		btnSave.setBounds(493, 503, 171, 23);
+		btnSave.setBounds(889, 630, 171, 23);
 		getContentPane().add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
