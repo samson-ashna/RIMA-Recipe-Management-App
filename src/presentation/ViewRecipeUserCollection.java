@@ -69,21 +69,40 @@ public class ViewRecipeUserCollection extends JDialog {
 		textArea.setText(r.toString());
 		
 		// Creates a new button. When clicked user adds the recipe to Favourites.
-				JButton btnFavourite = new JButton("Add to Favourite");
-				btnFavourite.setBounds(354, 503, 155, 23);
-				getContentPane().add(btnFavourite);
-				btnFavourite.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (r.favourite == 0)
-						{
-							r.isFavourite();
-						}
-						else
-						{
-							r.notFavourite();
-						}
-					}
-				});
+		JButton btnFavourite;
+		if (r.favourite == 0)
+		{
+			btnFavourite = new JButton("Favourite");
+			btnFavourite.setBounds(354, 503, 155, 23);
+			getContentPane().add(btnFavourite);
+			btnFavourite.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					r.isFavourite();
+					UserRecipeCollection collection = new UserRecipeCollection();
+					collection.setVisible(true);
+					contentPanel.setVisible(false);
+					Window win = SwingUtilities.getWindowAncestor(contentPanel);
+					win.dispose();
+				}
+			});
+		}
+		else if (r.favourite == 1)
+		{
+			btnFavourite = new JButton("Not Favourite");
+			btnFavourite.setBounds(354, 503, 155, 23);
+			getContentPane().add(btnFavourite);
+			btnFavourite.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					r.notFavourite();
+					UserRecipeCollection collection = new UserRecipeCollection();
+					collection.setVisible(true);
+					contentPanel.setVisible(false);
+					Window win = SwingUtilities.getWindowAncestor(contentPanel);
+					win.dispose();
+				}
+			});
+		}
+				
 		
 		/*Creates a new button. When clicked, the user is redirected to 
 		the Edit Recipe page where they can modify the recipe's information. */
