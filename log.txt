@@ -96,6 +96,7 @@ Original Allocated Time vs Actual Time Spent
 	-Favourite Recipe Page UI
 	-Favourite Recipe implementation
 	-Favourite Recipe List
+	-itr2 - implemented detailed user stories for developer tasks
 	
 **Search Recipes** (original:6 , actual:3) (Sheida)
 	-Implemented the search functionality for recipes by name, ingredient and meal time
@@ -112,3 +113,4 @@ Original Allocated Time vs Actual Time Spent
 	-Implemented User Calendar -itr2
 	-added functionalities within objects/presentation folder
 	-javadocs/comments
+	-itr2 - implemented detailed user stories for developer tasks
