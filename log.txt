@@ -63,7 +63,10 @@ Meeting Minutes
 
 ---------------------------------------------
 Plan Changes
-**Meal planner and survey will be added to the main window in the next iteration. Some functionalities are only implemented using stub database and will have to be implemented using the real database in the next iteration. These include "Favorite Recipes" and adding ingredients.Also, the design of the pages is not consistent and this will be fixed in the next iteration.
+**Meal planner and survey will be added to the main window in the next iteration. Some functionalities
+are only implemented using stub database and will have to be implemented using the real database in
+the next iteration. These include "Favorite Recipes" and adding ingredients.Also, the design of the 
+pages is not consistent and this will be fixed in the next iteration.
 ---------------------------------------------
 
 ---------------------------------------------
