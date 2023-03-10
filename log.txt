@@ -80,6 +80,18 @@ Concerns
 ---------------------------------------------
 
 ---------------------------------------------
+Original Allocated Time vs Actual Time Spent
+**Enhancing Current UI** (original: 2 days, actual: 2 days) (Shaun)
+	- Enhance Main UI
+	- Enhance Login UI
+	- Enhance SignUpPage UI
+	- Create MainInterface UI
+
+**Refactoring** (original: 3 days, actual: > 3 days (incomplete)) (Shaun)
+	- Refactor Main
+	- Refactor Login
+	- Refactor SignUpPage
+
 **Favourite Recipe List** (original: 3 days, actual: 3 days) (Felix)
 	-Favourite Recipe Page UI
 	-Favourite Recipe implementation
