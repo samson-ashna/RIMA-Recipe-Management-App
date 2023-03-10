@@ -132,6 +132,7 @@ public class User {
 		this.ingredients = ingredients;
 	}
 	
+	//Gets the ingredients and lists them out as an array
 	public ArrayList<Ingredient> getIngredients() {
 		return this.ingredients;
 	}
@@ -146,6 +147,7 @@ public class User {
 		this.ingredients.remove(ingredient);
 	}
 	
+	//converts the ingredients list to a String
 	public String ingredientsToJSON() {
 		//For testing purposes.
 		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
@@ -194,6 +196,7 @@ public class User {
 		//return this.allergens.getAllergies();
 		return this.allergylst;
 	}
+	// creates a hashtable to store all the user's allergy information
 	public void setAllergyInformation(Hashtable<String, Integer> allergyLst2) {
 		// TODO Auto-generated method stub
 		this.getUserAllergies().setAllergies(allergyLst2);
