@@ -45,16 +45,19 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement = con.createStatement();
 			query = "SELECT * FROM users";
 			result = statement.executeQuery(query);
+
 			while(result.next()) {
 				String name = result.getString(1);
 				String password=result.getString(2);
-				String myRecipes=result.getString(4);
+				String myRecipes=result.getString(3);
 				String allergies = result.getString(5);
-				String mealTime = result.getString(5);
+				//String mealTime = result.getString(5);
+				
 				User u = new User(name,password);
 				u.setRecipeCollection(myRecipes);
 				u.setAllergies(allergies);
 				dbUsers.add(u);
+
 				Hashtable<String, String> recipesLst = new Hashtable<String, String>();
 				if(myRecipes !=null) {
 				String[] arrOfStr = myRecipes.split(",");
