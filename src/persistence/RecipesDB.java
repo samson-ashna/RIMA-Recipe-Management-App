@@ -69,16 +69,13 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				r.setID(id);
 				r.setMealTime(mealTime);
 				dbRecipes.add(r);
-				
 			}
 			statement.close();
 			result.close();
 			
 		} catch (SQLException e) {
 			e. printStackTrace ();
-		}
-		//UserActivity.RecipeIDs=dbRecipes.size();
-		
+		}		
 		return dbRecipes;
 	}
 	@Override
@@ -106,7 +103,6 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				r.setMealTime(mealTime);
 				r.setID(id);
 				forAllUsers.add(r);
-				
 			}
 			statement.close();
 			result.close();
@@ -149,7 +145,6 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 	}
 	public void edit(Recipes t){
 		RecipesDB db = new RecipesDB();
-		//DAO<Recipes> db = new RecipesStubDB();
 		for (Recipes r: db.getAllRecipes()) {
 			if(r.getRecipeID()==t.getRecipeID()) {			
 				try {
@@ -182,7 +177,6 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 					statement.close();
 					result.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

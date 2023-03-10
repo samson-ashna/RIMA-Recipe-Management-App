@@ -117,8 +117,6 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement.execute(query);
 			query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\""+"Eggs"+"\"',\'"+ 0+"\','$.\""+"Milk"+"\"',\'"+0+"\','$.\""+"Peanuts"+"\"',\'"+0+"\','$.\""+"Seafood"+"\"',\'"+0+"\') WHERE `name`=\'"+t.getName()+"\';";
 			statement.execute(query);
-			//query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\"Egg\"','0') WHERE `name`=\'"+t.getName()+"\';";
-			//statement.execute(query);
 			statement.close();
 			result.close();
 		} catch (SQLException e) {
@@ -176,14 +174,12 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 	}
 	@Override
 	public ArrayList<Recipes> getRecipes(User u) {
-		// TODO Auto-generated method stub
 		ArrayList<Recipes> userRecipes = new ArrayList<Recipes>();
 		ArrayList<Recipes> allRecipes = new ArrayList<Recipes>();
 		RecipesDB db = new RecipesDB();
 		
 		allRecipes = db.getAllRecipes();
 		for(Recipes r: allRecipes) {
-			//if(u.getRecipeCollection1().containsKey(Integer.toString(r.getRecipeID()))) {
 			if(u.getName().equals(r.getUser())) {
 				userRecipes.add(r);
 			}
@@ -211,7 +207,6 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		}
 		u.addRecipeToCollection(Integer. toString(UserActivity.RecipeIDs),r.getName());
 		query = "UPDATE users SET myRecipes= JSON_SET(myRecipes, '$.\""+(UserActivity.RecipeIDs)+"\"',\""+ r.getName()+"\") WHERE `name`='"+u.getName()+"\';";
-		//query = "UPDATE users SET myRecipes=JSON_SET(myRecipes,\'{\" "+Integer.toString(UserActivity.RecipeIDs-1)+"\":"+Integer.toString(UserActivity.RecipeIDs-1)+"}\') WHERE `name`=\'"+u.getName()+"\';";
 		try {
 			con = DriverManager.getConnection (url , user , password );
 			// create statement
@@ -298,7 +293,6 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 							//Remove extra characters from value leaving behind only letters and numbers and save it.
 							valueStrings[i] = kvField[1].replaceAll("[{}\"]", "");							
 						}
-						
 						Date date = null;
 						try {
 							date = new SimpleDateFormat("dd MMMM yyyy").parse(valueStrings[5]);
