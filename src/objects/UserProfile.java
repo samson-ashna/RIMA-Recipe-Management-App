@@ -20,12 +20,12 @@ public class UserProfile
     Allergies allergens;
 
     /**
-     * 
+     * Created a User Profile Class
      */
     public UserProfile() {}
 
     /**
-     * 
+     * This method adds the user's username and password into the system
      * @param username
      * @param password
      */
@@ -38,7 +38,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method adds recipes
      * @param recipe
      */
     public void addRecipe(Recipes recipe)
@@ -47,7 +47,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method removes recipes
      * @param recipe
      */
     public void removeRecipe(Recipes recipe)
@@ -56,7 +56,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method allows the User to change their username
      * @param username
      */
     public void changeUsername(Username username)
@@ -66,7 +66,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method allows the User to change their password
      * @param password
      */
     public void changePassword(Password password)
@@ -76,8 +76,8 @@ public class UserProfile
     }
 
     /**
-     * 
-     * @return
+     * This methods writes the username as a String
+     * @return username, as a String conversion
      */
     public String username()
     {
@@ -85,8 +85,8 @@ public class UserProfile
     }
 
     /**
-     * 
-     * @return
+     * This methods writes the password as a String
+     * @return password, as a String conversion
      */
     public String password()
     {
@@ -94,7 +94,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method is the User's Signup page
      */
     public void SignUp()
     {
@@ -113,7 +113,7 @@ public class UserProfile
     }
 
     /**
-     * 
+     * This method allows the user to add any allergies they have to their account
      */
     public void addAllergen()
     {
@@ -129,8 +129,8 @@ public class UserProfile
     }
 
     /**
-     * 
-     * @return
+     * This methods writes the allergies selected as a String
+     * @return allergies, as a String conversion
      */
     public String allergies()
     {
@@ -140,7 +140,7 @@ public class UserProfile
 }
 
 /**
- * 
+ * These methods return the username and password
  */
 class Username
 {
