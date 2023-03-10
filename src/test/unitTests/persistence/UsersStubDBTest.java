@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import objects.Recipes;
 import objects.User;
 import persistence.DatabaseAccess;
+import persistence.UsersStubDB;
 
 class UsersStubDBTest {
 	
