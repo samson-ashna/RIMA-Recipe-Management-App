@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -22,8 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.IngredientActions;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
+import objects.Ingredient;
 import objects.Recipes;
 import objects.User;
 import persistence.DatabaseAccess;
@@ -67,6 +71,9 @@ public class EditIngredientView extends JFrame{
 	
 	//Current user
 	private User currentUser;
+	
+	//Ingredient getting edited
+	private Ingredient ingredient;
 
 	/**
 	 * Launch the application.
@@ -255,6 +262,19 @@ public class EditIngredientView extends JFrame{
 	}
 	
 	private void textFieldsSetup() {
+		//Save the current user.
+		currentUser = UserActivity.getCurrentUser();
+		DecimalFormat format = new DecimalFormat("$#,###,##0.00");
+		
+		//Do nothing and close the window if the current user is null.
+		if(currentUser == null) {
+			//Close the UserRecipeCollection Window.
+			Window win = SwingUtilities.getWindowAncestor(contentPane);
+			win.dispose();
+			return;
+		}
+		
+		//Set text field sizes and max sizes.
 		nameField.setSize(281, 26);
 		nameField.setMaximumSize(nameField.getSize());
 		costField.setSize(281, 26);
@@ -264,17 +284,14 @@ public class EditIngredientView extends JFrame{
 		carbsField.setSize(281, 26);
 		carbsField.setMaximumSize(carbsField.getSize());
 		
-		currentUser = UserActivity.getCurrentUser();
-		
-		//Ensure user is logged in.
-		if(currentUser != null) {
-			
-		//If no user logged in, close window.
-		} else {
-			//Close the UserRecipeCollection Window.
-			Window win = SwingUtilities.getWindowAncestor(contentPane);
-			win.dispose();
+		//If ingredient is not null, meaning an ingredient is being edited instead of created, add current ingredient info to text fields.
+		if(ingredient != null) {
+			nameField.setText(ingredient.getName());
+			costField.setText(format.format(ingredient.getCost()));
+			proteinField.setText("\"" + ingredient.getProtein() + "\"");
+			carbsField.setText("\"" + ingredient.getCarbs() + "\"");
 		}
+		
 	}
 	
 	private void reenableButtons() {
