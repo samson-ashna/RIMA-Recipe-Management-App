@@ -14,7 +14,7 @@ Set databaseType=0 in  src/persistence/DBSetup.java to access database and 1 to 
 The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenient way to create or follow recipes. RIMA will come with preloaded recipes and the users can additionally add their recipes to the database. RIMA combines the numerous functionalities of similar apps, while also improving upon these features according to user feedback. Its key functionalities include the ability to search for recipes according to the user’s ingredient of choice, or the user can search for the recipe and it will provide the required ingredients.
 
 ## Architecture Sketch
-![archsketch drawio](https://user-images.githubusercontent.com/51792193/219705926-e9607e13-bb1f-4a96-ac99-9002adb01c17.png)
+![archsketch](https://user-images.githubusercontent.com/51792193/224327850-15eb2baf-f8ae-407f-81bc-93d6f5dbccf5.jpg)
 
 ## Iteration 1 Developer Tasks
 **View Recipes:  As a cook, I want to be able to view a list of the recipes available in the app that I can save to my own personal recipe collection. Priority: High. Cost: 4 days**
