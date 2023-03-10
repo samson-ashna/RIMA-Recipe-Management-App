@@ -1,4 +1,4 @@
-package objects;
+package presentation;
 
 import java.awt.EventQueue;
 
