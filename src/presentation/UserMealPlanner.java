@@ -65,6 +65,7 @@ public class UserMealPlanner {
 		frame.getContentPane().add(panel_recipeplanning);
 		panel_recipeplanning.setLayout(null);
 		
+		// created labels and buttons for the first panel that selects recipes listed out
 		JLabel lblNewLabel_1 = new JLabel("Placeholder:Recipe #1");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(23, 72, 196, 22);
@@ -84,6 +85,7 @@ public class UserMealPlanner {
 		btnNewButton.setBounds(210, 68, 131, 30);
 		panel_recipeplanning.add(btnNewButton);
 		
+		// created a drop menu which selects the quantity of servings being made for the recipe
 		String quantity[] = {"1","2","3","4","5"};
 		JComboBox comboBox = new JComboBox(quantity);
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -174,7 +176,7 @@ public class UserMealPlanner {
 		comboBox_1_2.setBounds(414, 217, 82, 30);
 		panel_recipeplanning.add(comboBox_1_2);
 		
-		
+		//create a new panel for managing weekly meals
 		JPanel panel_1_weeklyManager = new JPanel();
 		panel_1_weeklyManager.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_1_weeklyManager.setBounds(576, 96, 342, 445);
@@ -217,6 +219,7 @@ public class UserMealPlanner {
 		comboBox_3_dayofWeek.setBounds(105, 136, 134, 30);
 		panel_1_weeklyManager.add(comboBox_3_dayofWeek);
 		
+		// created another panel for provides more recipe information to the user
 		JPanel panel_2_recipeinfo = new JPanel();
 		panel_2_recipeinfo.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_2_recipeinfo.setBounds(10, 333, 562, 231);
@@ -248,6 +251,8 @@ public class UserMealPlanner {
 		textField_1.setBounds(395, 90, 145, 36);
 		panel_2_recipeinfo.add(textField_1);
 		
+		// created a panel that allows the user to select a certain date from the calendar 
+		// to modify recipes for in the future
 		JPanel panel_3_calendar = new JPanel();
 		panel_3_calendar.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_3_calendar.setBounds(922, 58, 334, 507);
@@ -260,6 +265,8 @@ public class UserMealPlanner {
 		lblCalendarTitle.setBounds(82, 30, 175, 37);
 		panel_3_calendar.add(lblCalendarTitle);
 		
+		// More Swing custom components downloaded:
+		// http://www.java2s.com/Code/Jar/j/Downloadjcalendar14jar.htm
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -288,6 +295,7 @@ public class UserMealPlanner {
 		calendar.setBounds(40, 222, 233, 153);
 		panel_3_calendar.add(calendar);
 		
+		// the last panel has all the necessary buttons for the user to navigate through the app
 		JPanel panel_4_usefulbuttons = new JPanel();
 		panel_4_usefulbuttons.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_4_usefulbuttons.setBounds(10, 568, 1246, 68);
@@ -327,6 +335,7 @@ public class UserMealPlanner {
 		btnExit.setBounds(814, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnExit);
 		
+		// title of the page
 		JLabel lblNewLabel = new JLabel("RIMA's Meal Planner");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
