@@ -8,22 +8,19 @@ CREATE TABLE `recipes` (
     `name` varchar(255) NOT NULL,
 	`ingredients` text,
     `instruction` text,
-    `prep_time` int DEFAULT NULL,
-    `calories` int DEFAULT NULL,
     `carbs` int NOT NULL,
     `protein` int NOT NULL,
-    `fiber` int DEFAULT NULL,
-    `carbohydrates` int DEFAULT NULL,
+    `mealTime` varchar(255) DEFAULT "Breakfast/Lunch/Dinner",
     `user` varchar(255) DEFAULT "ALL",
     PRIMARY KEY (`food_id`)
 );
-INSERT INTO recipes(food_id, name, ingredients, instruction, prep_time, calories, carbs, protein, fiber, carbohydrates) VALUES (
+INSERT INTO recipes(food_id, name, ingredients, instruction,carbs, protein,mealTime) VALUES (
 1,'Baked Potato','1 large russet potato,salt,peper,1 tablespoon butter,1 tablespoon sour cream','Scrub potato and prick with a fork. Place on a microwave-safe plate. 
 Microwave on full power for 5 minutes. Turn potato over, and microwave until soft, about 5 more minutes. Remove potato from 
 the microwave, and cut in half lengthwise. Season with salt and pepper and mash up the inside a little with a fork. Add butter 
-and Cheddar cheese. Microwave until melted, about 1 more minute. Top with sour cream, and serve.',12,368,39,9,3,39),
+and Cheddar cheese. Microwave until melted, about 1 more minute. Top with sour cream, and serve.',9,39,'Lunch/Dinner'),
 (2,'Teriyaki Chicken','2 lb chicken thighs sliced into chunks, 1 cup soy sauce(240 ml),1/2 cup brown sugar(110 g)',"Sear the chicken thighs evenly in a pan, then flip. Add the
- soy sauce and brown sugar, stirring and bringing to a boil. Stir until the sauce has reduced and evenly glazes the chicken.",27,366,20,48,0,17);
+ soy sauce and brown sugar, stirring and bringing to a boil. Stir until the sauce has reduced and evenly glazes the chicken.",48,20,'Lunch');
 CREATE TABLE `users` (
     `name` varchar(255) NOT NULL,
     `password` varchar(255) DEFAULT NULL,
@@ -35,3 +32,6 @@ CREATE TABLE `users` (
 CREATE TABLE `id` (
 	`recipeID` int DEFAULT 2
 );
+INSERT INTO id(recipeID) VALUE (2); 
+SELECT * FROM recipes;
+SELECT * FROM users;
