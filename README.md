@@ -1,7 +1,12 @@
 # Recipe and Ingredient Management App (RIMA)
-Run database/database_setup in MySQL workbench, 
-Add sql root password in src/persistence/DBSetup.java, 
-Set databaseType=0 in  src/persistence/DBSetup.java to access database and 1 to access stub database,   
+
+**Before Running:**
+1. Open MySQL Workbench
+2. Import database/database_setup.sql
+![image](https://user-images.githubusercontent.com/51792193/224358614-d0b80140-b5ec-4310-b698-9420474e1587.png)
+3. Change user and/or password in src/persistence/DBSetup.java
+4. Set databaseType = 0 (access real database) or databaseType = 1 (access stub database)
+
 **To Run: src/presentation/Main.java**
 ## Team 1 Group Members
 - Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
