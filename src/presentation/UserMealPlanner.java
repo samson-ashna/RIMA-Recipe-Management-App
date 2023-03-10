@@ -172,8 +172,45 @@ public class UserMealPlanner {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_1.setBounds(576, 57, 398, 269);
+		panel_1.setBounds(576, 96, 342, 445);
 		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton btnAddSaved = new JButton("Add Saved Recipes");
+		btnAddSaved.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAddSaved.setBounds(71, 306, 209, 30);
+		panel_1.add(btnAddSaved);
+		
+		JButton btnNewButton_1_1 = new JButton("Create New Recipe");
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_1_1.setBounds(71, 345, 209, 30);
+		panel_1.add(btnNewButton_1_1);
+		
+		JButton btnNewButton_3_3 = new JButton("Save Recipe Link");
+		btnNewButton_3_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_3_3.setBounds(71, 384, 209, 30);
+		panel_1.add(btnNewButton_3_3);
+		
+		JLabel lblWeeklyManagerTitle = new JLabel("Weekly Manager");
+		lblWeeklyManagerTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblWeeklyManagerTitle.setBounds(83, 27, 175, 37);
+		panel_1.add(lblWeeklyManagerTitle);
+		
+		JLabel lblSelectDayofWeek = new JLabel("Select the Day of the Week Below:");
+		lblSelectDayofWeek.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblSelectDayofWeek.setBounds(31, 90, 284, 22);
+		panel_1.add(lblSelectDayofWeek);
+		
+		String WhichDayofWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		JComboBox comboBox_3_dayofWeek = new JComboBox(WhichDayofWeek);
+		comboBox_3_dayofWeek.setMaximumRowCount(20);
+		comboBox_3_dayofWeek.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		comboBox_3_dayofWeek.setBounds(105, 136, 134, 30);
+		panel_1.add(comboBox_3_dayofWeek);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 8));
@@ -208,20 +245,49 @@ public class UserMealPlanner {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_3.setBounds(978, 58, 278, 507);
+		panel_3.setBounds(922, 58, 334, 507);
 		frame.getContentPane().add(panel_3);
+		panel_3.setLayout(null);
 		
-		JPanel panel_2_1 = new JPanel();
-		panel_2_1.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_2_1.setBounds(576, 333, 398, 231);
-		frame.getContentPane().add(panel_2_1);
+		JLabel lblCalendarTitle = new JLabel("Calendar");
+		lblCalendarTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCalendarTitle.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblCalendarTitle.setBounds(82, 30, 175, 37);
+		panel_3.add(lblCalendarTitle);
 		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_2_2.setBounds(10, 568, 1246, 68);
 		frame.getContentPane().add(panel_2_2);
+		panel_2_2.setLayout(null);
+		
+		JButton btnHomepage = new JButton("<-- Back to HomePage");
+		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHomepage.setBounds(184, 20, 234, 31);
+		panel_2_2.add(btnHomepage);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				comboBox_3_dayofWeek.setSelectedItem("Choose the day...");
+			}
+		});
+		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnReset.setBounds(500, 20, 234, 31);
+		panel_2_2.add(btnReset);
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnExit.setBounds(814, 20, 234, 31);
+		panel_2_2.add(btnExit);
 		
 		JLabel lblNewLabel = new JLabel("RIMA's Meal Planner");
+		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
 		lblNewLabel.setBounds(10, 11, 1246, 43);
