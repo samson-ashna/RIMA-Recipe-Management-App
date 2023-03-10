@@ -2,7 +2,7 @@
 
 **Before Running:**
 1. Open MySQL Workbench
-2. Import database/database_setup.sql
+2. Import database/database_setup.sql and run it
 
 ![image](https://user-images.githubusercontent.com/51792193/224358614-d0b80140-b5ec-4310-b698-9420474e1587.png)
 
