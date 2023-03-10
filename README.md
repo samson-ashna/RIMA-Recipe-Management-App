@@ -1,6 +1,7 @@
 # Recipe and Ingredient Management App (RIMA)
 Run database/database_setup in MySQL workbench, 
 Add sql root password in src/persistence/DBSetup.java, 
+Set databaseType=0 in  src/persistence/DBSetup.java to access database and 1 to access stub database,   
 **To Run: src/presentation/Main.java**
 ## Team 1 Group Members
 - Sheida Khodabakhshian Khansari (**SheidaK**, 215534340)
