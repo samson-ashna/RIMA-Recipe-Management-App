@@ -24,6 +24,7 @@ import persistence.DatabaseAccess;
 import persistence.DAO;
 import persistence.UsersDAO;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ItemListener;
@@ -40,6 +41,7 @@ public class UserRecipeCollection extends JFrame {
 	
 	//List section object
 	private JList<String> list;
+	private String category;
 	
 	//Button objects
 	private final JButton backButton = new JButton("Back");
@@ -47,6 +49,7 @@ public class UserRecipeCollection extends JFrame {
 	private final JButton favourites = new JButton("Favourites");
 	private JTextField searchField;
 	private String searchCategory;
+	DefaultListModel<String> model = new DefaultListModel<String>();
 
 	/**
 	 * Launch the application.
@@ -71,7 +74,7 @@ public class UserRecipeCollection extends JFrame {
 	 */
 	public void addUserRecipes() {
 		//Create a new list model for the user's recipes.
-		DefaultListModel<String> model = new DefaultListModel<String>();		
+				
 		//get a new instance of the user database.
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();
@@ -92,7 +95,7 @@ public class UserRecipeCollection extends JFrame {
 		list.setModel(model);
 	}
 	public void searchUserRecipe(String searchedItem) {
-		DefaultListModel<String> model = new DefaultListModel<String>();
+		//DefaultListModel<String> model = new DefaultListModel<String>();
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();	
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
@@ -101,6 +104,8 @@ public class UserRecipeCollection extends JFrame {
 			if(searchCategory.equals("Name") && r.getName().equals(searchedItem)) {
 				model.addElement(r.getName());
 			}else if(searchCategory.equals("Ingredient") && r.getIngredients().contains(searchedItem)) {
+				model.addElement(r.getName());
+			}else if(r.mealTime.equals(searchCategory)) {
 				model.addElement(r.getName());
 			}
 		}
@@ -136,6 +141,7 @@ public class UserRecipeCollection extends JFrame {
 		list.setBounds(10, 57, 637, 437);
 		//Search.add()
 		//Add the current user's saved recipes to the list section to display them.
+		list.setModel(model);
 		addUserRecipes();
 		
 		//Set up what to do when an item in the list is selected.
@@ -206,15 +212,29 @@ public class UserRecipeCollection extends JFrame {
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);
+		JComboBox<String> comboBox1 = new JComboBox<String>();
+		comboBox1.addItem("Select MealTime:");
+		comboBox1.addItem("Breakfast");
+		comboBox1.addItem("Lunch");
+		comboBox1.addItem("Dinner");
+		comboBox1.addItem("Lunch/Dinner");
+		comboBox1.addItem("Breakfast/Lunch/Dinner");
+		
+		contentPane.add(comboBox1);
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("Search By:");
 		comboBox.addItem("Name");
-		comboBox.addItem("Category");
+		comboBox.addItem("Meal Time");
 		comboBox.addItem("Ingredient");
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				
 				if(e.getStateChange()==ItemEvent.SELECTED) {
+					
 					searchCategory = comboBox.getSelectedItem().toString();
+					if(searchCategory.equals("Meal Time")) {
+						searchField.setText(searchCategory);
+					}
 				}
 			}
 		});
@@ -229,8 +249,25 @@ public class UserRecipeCollection extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel<String> model = new DefaultListModel<String>();
-				list.setModel(model);
+				model.removeAllElements();
+				//DefaultListModel<String> model = new DefaultListModel<String>();
+				//list.setModel(model);
+				searchCategory = comboBox.getSelectedItem().toString();
+				if(searchCategory.equals("Meal Time")) {		
+					comboBox1.addItemListener(new ItemListener() {
+						public void itemStateChanged(ItemEvent e) {
+							
+							if(e.getStateChange()==ItemEvent.SELECTED) {
+								category = comboBox1.getSelectedItem().toString();
+								searchCategory = category;
+								searchField.setText(category);
+						
+							}
+						}
+					});
+					
+					JOptionPane.showMessageDialog(null, comboBox1);
+				}
 				searchUserRecipe(searchField.getText());
 				
 			}
@@ -242,6 +279,7 @@ public class UserRecipeCollection extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				model.removeAllElements();
 				addUserRecipes();
 			}
 		});

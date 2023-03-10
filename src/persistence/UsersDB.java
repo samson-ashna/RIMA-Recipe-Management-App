@@ -50,6 +50,7 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				String password=result.getString(2);
 				String myRecipes=result.getString(4);
 				String allergies = result.getString(5);
+				String mealTime = result.getString(5);
 				User u = new User(name,password);
 				u.setRecipeCollection(myRecipes);
 				u.setAllergies(allergies);

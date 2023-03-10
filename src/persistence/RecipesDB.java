@@ -56,14 +56,16 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				String instructions=result.getString(4);
 				String ingredients=result.getString(3);
 				int id = Integer.parseInt(result.getString(1));
-				int protein1=Integer.parseInt(result.getString(8));
-				int carbs1= Integer.parseInt(result.getString(7));
+				int protein1=Integer.parseInt(result.getString(6));
+				int carbs1= Integer.parseInt(result.getString(5));
+				String mealTime = result.getString(7);
 				r = new Recipes(name,protein1,carbs1);
-				String user = result.getString(11);
+				String user = result.getString(8);
 				r.setUser(user);
 				r.setIngredients(ingredients);
 				r.setInstructions(instructions);
 				r.setID(id);
+				r.setMealTime(mealTime);
 				dbRecipes.add(r);
 				
 			}
@@ -90,11 +92,14 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				String instructions=result.getString(4);
 				String ingredients=result.getString(3);
 				int id = Integer.parseInt(result.getString(1));
-				int protein1=Integer.parseInt(result.getString(8));
-				int carbs1= Integer.parseInt(result.getString(7));
+				int protein1=Integer.parseInt(result.getString(6));
+				int carbs1= Integer.parseInt(result.getString(5));
+				String mealTime = result.getString(7);
+				
 				Recipes r = new Recipes(name,protein1,carbs1);
 				r.setIngredients(ingredients);
 				r.setInstructions(instructions);
+				r.setMealTime(mealTime);
 				r.setID(id);
 				forAllUsers.add(r);
 				
@@ -111,8 +116,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			t.setID(UserActivity.RecipeIDs-1);
 			con = DriverManager.getConnection (url , user , password );
 			statement = con.createStatement();
-			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein) VALUES"
-					+ " ("+UserActivity.RecipeIDs+",\'"+t.getName()+"\'"+",\'"+t.getIngredients()+"\',"+"\'"+t.getInstructions()+"\',"+"\'"+t.getCarbs()+"\',\'"+t.getProtein()+"\');";
+			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein,mealTime) VALUES"
+					+ " ("+UserActivity.RecipeIDs+",\'"+t.getName()+"\'"+",\'"+t.getIngredients()+"\',"+"\'"+t.getInstructions()+"\',"+"\'"+t.getCarbs()+"\',\'"+t.getProtein()+"\',\'"+t.mealTime+"\');";
 			statement.execute(query);
 			query = "UPDATE id SET recipeID = recipeID + 1";
 			statement.execute(query);

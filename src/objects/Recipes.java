@@ -16,6 +16,7 @@ public class Recipes {
 	private int recipeID;
 	private String user;
 	public int favourite = 0;
+	public String mealTime;
 	
 	public Recipes() {}
 	/**
@@ -29,6 +30,7 @@ public class Recipes {
 		this.name = name;
 		this.protein = protein;
 		this.carbs = carbs;
+		this.mealTime = "Breakfast/Lunch/Dinner";
 		//this.recipeID = id;
 		id +=1;
 	}
@@ -149,5 +151,9 @@ public class Recipes {
 	public String toString() {
 		return "Name=" + name + "\n\n" + "Protein(g) =" + protein + "\n\n" + "Carbs(g)=" + carbs + "\n\n" + "Ingredients: "+"\n"
 				+ getIngredients() + "\n" + "Instruction: " + instructions;
+	}
+	public void setMealTime(String mealTime) {
+		this.mealTime=mealTime;
+		
 	}
 }

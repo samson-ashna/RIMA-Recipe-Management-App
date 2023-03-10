@@ -8,6 +8,8 @@ import java.awt.Window;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
@@ -22,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
+import javax.swing.JComboBox;
 
 /**
  * 
@@ -81,7 +84,7 @@ public class SaveRecipesView extends JFrame {
 		
 		JLabel lblInstruction = new JLabel("Instruction");
 		lblInstruction.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblInstruction.setBounds(112, 409, 157, 59);
+		lblInstruction.setBounds(112, 388, 157, 59);
 		contentPane.add(lblInstruction);
 		
 		JLabel lblProtein = new JLabel("Protein (g)");
@@ -115,7 +118,7 @@ public class SaveRecipesView extends JFrame {
 		
 		JTextArea instructionInfo = new JTextArea();
 		instructionInfo.setLineWrap(true);
-		instructionInfo.setBounds(327, 430, 221, 171);
+		instructionInfo.setBounds(327, 409, 221, 171);
 		contentPane.add(instructionInfo);
 			
 		//Creates label for error messages for when user enters string instead of integers for protein and carbs fields.		
@@ -146,8 +149,18 @@ public class SaveRecipesView extends JFrame {
 		//Creates a save button.When clicked, a new recipe object is created and added to the user's personal collection of recipes.
 		JButton save = new JButton("Save");
 		save.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		save.setBounds(226, 628, 207, 59);
+		save.setBounds(228, 657, 207, 59);
 		contentPane.add(save);
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addItem("Breakfast/Lunch/Dinner");
+		comboBox.addItem("Lunch/Dinner");
+		comboBox.addItem("Breakfast");
+		comboBox.addItem("Lunch");
+		comboBox.addItem("Dinner");
+		
+		comboBox.setBounds(205, 591, 247, 39);
+		contentPane.add(comboBox);
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean incorrectValues = false;
@@ -184,6 +197,7 @@ public class SaveRecipesView extends JFrame {
 					newRecipe = new Recipes(name, protein, carbs);
 					newRecipe.setIngredients(ingredients);
 					newRecipe.setInstructions(instructions);
+					newRecipe.setMealTime(comboBox.getSelectedItem().toString());
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(newRecipe);
 					//User is then redirected back to their recipe collection page.
