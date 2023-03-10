@@ -1,4 +1,4 @@
-package test.persistence;
+package test.unitTests.persistence;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

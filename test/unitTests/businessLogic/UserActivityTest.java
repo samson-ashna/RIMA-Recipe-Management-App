@@ -1,4 +1,4 @@
-package test.businessLogic;
+package test.unitTests.businessLogic;
 
 import static org.junit.jupiter.api.Assertions.*;
 

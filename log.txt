@@ -55,14 +55,16 @@ Original Allocated Time vs Actual Time Spent
 	-unit test cases(Ashna)
 	
 ---------------------------------------------
-
+Iteration 2:
 **Favourite Recipe List** (original: 3 days, actual: 3 days) (Felix)
 	-Favourite Recipe Page UI
 	-Favourite Recipe implementation
 	-Favourite Recipe List
 	
-**Search Recipes** (original: , actual: ) (your name)
-	-your work itr2
+**Search Recipes** (original:6 , actual:3) (Sheida)
+	-Implemented the search functionality for recipes by name, ingredient and meal time
+
+**Recipe and user database**(Sheida, Natalie)
 
 **Manipulate Food Ingredients Inventory** (original: , actual: ) (your name)
 	-your work itr2
