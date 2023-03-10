@@ -66,8 +66,9 @@ Iteration 2:
 
 **Recipe and user database**(Sheida, Natalie)
 
-**Manipulate Food Ingredients Inventory** (original: 4, actual: ) (Natalie)
+**Manipulate Food Ingredients Inventory** (original: 4 days, actual: >4 days (incomplete)) (Natalie)
 	-Ingredient list and edit ingredient GUIs
+	-Partial completion of ingredient add, remove, and edit functions.
 	
 **Meal Planning** (original: 5 days, actual: 3 days) (Ashna)
 	-User Meal Planning Page - itr2
