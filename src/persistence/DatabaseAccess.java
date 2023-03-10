@@ -7,7 +7,7 @@ import objects.Recipes;
 import objects.User;
 
 public class DatabaseAccess {
-	int databaseType = 0;//0 for access to real database, 1 for access to stub database
+	static int databaseType = DBSetup.databaseType;;//0 for access to real database, 1 for access to stub database
 	public DAO<Recipes> recipesDB() {
 		if(databaseType==0) {
 			RecipesDB db = new RecipesDB();
