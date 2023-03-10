@@ -14,11 +14,12 @@ import persistence.UsersDAO;
 class UserActivityTest {
 	UserActivity activity = new UserActivity();
 	DatabaseAccess access = new DatabaseAccess();
-	DatabaseAccess.databaseType =1;
+	
 	UsersDAO dao = access.usersDB();
 	User user = new User("a","12");
 	@BeforeEach
 	void init() {
+		DatabaseAccess.databaseType =1;
 		dao.add(user);
 		user.loggedIn = true;
 		UserActivity.setCurrentUser(user);
