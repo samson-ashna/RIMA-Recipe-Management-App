@@ -56,6 +56,27 @@ Original Allocated Time vs Actual Time Spent
 	
 ---------------------------------------------
 Iteration 2:
+Meeting Minutes
+- First Meeting: Discussed implementation of database and assigned tasks(30 minutes).
+- Second Meeting: Continued working on the assigned tasks (120 minutes) 
+---------------------------------------------
+
+---------------------------------------------
+Plan Changes
+**Meal planner and survey will be added to the main window in the next iteration. Some functionalities are only implemented using stub database and will have to be implemented using the real database in the next iteration. These include "Favorite Recipes" and adding ingredients.Also, the design of the pages is not consistent and this will be fixed in the next iteration.
+---------------------------------------------
+
+---------------------------------------------
+Big Design Decisions
+
+---------------------------------------------
+
+---------------------------------------------
+Concerns
+**No concerns**
+---------------------------------------------
+
+---------------------------------------------
 **Favourite Recipe List** (original: 3 days, actual: 3 days) (Felix)
 	-Favourite Recipe Page UI
 	-Favourite Recipe implementation
