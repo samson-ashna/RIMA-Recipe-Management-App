@@ -48,9 +48,16 @@ public class SaveRecipe {
      * @param recipe is the user's recipe they want to add
      */
     public void save(Recipes recipe) {
-       usersinfo.addRecipes(UserActivity.getCurrentUser(),recipe);
+        myRecipes.add(recipe);
+        usersinfo.addRecipes(UserActivity.getCurrentUser(),recipe);
         
     }
+
+    public void testSave(Recipes recipe) {
+        myRecipes.add(recipe);
+        usersinfo.addRecipes(new User("test", "test"),recipe);
+         
+     }
 
     /**
      * Getter method for myRecipes
