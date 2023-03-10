@@ -93,6 +93,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				u.setRecipeCollection(recipesLst);
 			//}
 			}
+			statement.close();
+			result.close();
 		}catch (SQLException e) {
 			e. printStackTrace ();
 		}	
@@ -113,6 +115,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement.execute(query);
 			//query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\"Egg\"','0') WHERE `name`=\'"+t.getName()+"\';";
 			//statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -128,6 +132,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			query = "DELETE FROM users WHERE `name`=\'"+t.getName()+"\';";
 		
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -143,6 +149,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				statement = con.createStatement();
 				query = "UPDATE users SET name=\'"+name+"\' WHERE `name`=\'"+oldName+"\';";
 				statement.execute(query);
+				statement.close();
+				result.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -155,6 +163,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 				query = "UPDATE users SET password=\'"+newPass+"\' WHERE `name`=\'"+oldName+"\';";
 			
 				statement.execute(query);
+				statement.close();
+				result.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -190,6 +200,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			query = "UPDATE recipes SET user=\'"+u.getName()+"\' WHERE `food_id`="+(UserActivity.RecipeIDs)+";";
 		
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -197,13 +209,14 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		query = "UPDATE users SET myRecipes= JSON_SET(myRecipes, '$.\""+(UserActivity.RecipeIDs)+"\"',\""+ r.getName()+"\") WHERE `name`='"+u.getName()+"\';";
 		//query = "UPDATE users SET myRecipes=JSON_SET(myRecipes,\'{\" "+Integer.toString(UserActivity.RecipeIDs-1)+"\":"+Integer.toString(UserActivity.RecipeIDs-1)+"}\') WHERE `name`=\'"+u.getName()+"\';";
 		try {
+			con = DriverManager.getConnection (url , user , password );
+			// create statement
+			statement = con.createStatement();
 			statement.execute(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		query = "UPDATE id SET recipeID="+UserActivity.RecipeIDs+";";
-		try {
+			query = "UPDATE id SET recipeID="+UserActivity.RecipeIDs+";";
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -219,6 +232,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement = con.createStatement();
 			query = "UPDATE users SET myRecipes= JSON_REMOVE(myRecipes, '$.\""+(r.getRecipeID())+"\"') WHERE `name`='"+u.getName()+"\';";
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -274,6 +289,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 						ingredients.add(new Ingredient(name, cost, expiration, protein, carbs, userName));
 						
 					}
+					statement.close();
+					result.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -433,6 +450,8 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 			statement = con.createStatement();
 			query = "UPDATE users SET allergies= JSON_REPLACE(allergies, '$.\""+allergyType+"\"',\'"+ changeNum+"\') WHERE `name`=\'"+u.getName()+"\';";
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

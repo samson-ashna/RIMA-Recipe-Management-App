@@ -23,6 +23,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				int id=Integer.parseInt(result.getString(1));
 				UserActivity.RecipeIDs = id;
 			}
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e. printStackTrace ();
 		}
@@ -69,6 +71,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				dbRecipes.add(r);
 				
 			}
+			statement.close();
+			result.close();
 			
 		} catch (SQLException e) {
 			e. printStackTrace ();
@@ -104,6 +108,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				forAllUsers.add(r);
 				
 			}
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e. printStackTrace ();
 		}
@@ -121,7 +127,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			statement.execute(query);
 			query = "UPDATE id SET recipeID = recipeID + 1";
 			statement.execute(query);
-			
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -134,6 +141,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			statement = con.createStatement();
 			query = "DELETE FROM recipes WHERE `food_id`=\'"+t.getRecipeID()+"\';";
 			statement.execute(query);
+			statement.close();
+			result.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -154,17 +163,24 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 															+ "WHERE food_id="+"\'"+t.getRecipeID()+"\';";
 							
 					statement.execute(query);
+					statement.close();
+					result.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+		
 		UsersDB dbUser = new UsersDB();
 		for(User u: dbUser.getAll()) {
 			if(dbUser.getRecipe(u, t.getName()).getRecipeID()==t.getRecipeID()){
 				query = "UPDATE users SET myRecipes= JSON_SET(myRecipes, '$.\""+(t.getRecipeID())+"\"',\""+ t.getName()+"\") WHERE `name`='"+u.getName()+"\';";
 				try {
+					con = DriverManager.getConnection (url , user , password );
+					statement = con.createStatement();
 					statement.execute(query);
+					statement.close();
+					result.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
