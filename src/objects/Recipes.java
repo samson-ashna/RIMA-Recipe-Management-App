@@ -31,7 +31,6 @@ public class Recipes {
 		this.protein = protein;
 		this.carbs = carbs;
 		this.mealTime = "Breakfast/Lunch/Dinner";
-		//this.recipeID = id;
 		id +=1;
 	}
 	/**

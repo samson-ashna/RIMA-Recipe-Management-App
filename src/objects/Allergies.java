@@ -17,7 +17,6 @@ public class Allergies
      */
     public Allergies()
     {
-        //this.allergies = new Hashtable<String, Integer>();
         this.allergies.put("Eggs", 0);
         this.allergies.put("Milk", 0);
         this.allergies.put("Peanuts", 0);

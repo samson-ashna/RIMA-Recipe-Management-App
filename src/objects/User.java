@@ -28,11 +28,7 @@ public class User {
 	private int userID;
 	String allergies;
 	
-	/**
-	 *Default constructor 
-	 */
-	//public User(){}
-	
+		
 	/**
 	 * Overloaded constructor
 	 * @param name represents a user name
@@ -189,16 +185,13 @@ public class User {
 		return this.myFavourites;
 	}
 	public void setAllergies(String allergies) {
-		// TODO Auto-generated method stub
 		this.allergies = allergies;
 	}
 	public Hashtable<String,Integer> getAllergies() {
-		//return this.allergens.getAllergies();
 		return this.allergylst;
 	}
 	// creates a hashtable to store all the user's allergy information
 	public void setAllergyInformation(Hashtable<String, Integer> allergyLst2) {
-		// TODO Auto-generated method stub
 		this.getUserAllergies().setAllergies(allergyLst2);
 	}
 
