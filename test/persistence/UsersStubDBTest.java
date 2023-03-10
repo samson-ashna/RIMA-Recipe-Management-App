@@ -13,18 +13,17 @@ import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
 import objects.User;
-import persistence.UserDAOImpl;
 
-class UserDAOImplTest {
+class UsersStubDBTest {
 	
-	static UserDAOImpl usersDB;
+	static UsersStubDB usersDB;
 	static User user;
 	static Recipes recipe;
 	static ArrayList<User> expected= new ArrayList<>();
 	static ArrayList<Recipes> expectedRecipes= new ArrayList<>();
 	@BeforeAll
 	static void init() {
-		usersDB = new UserDAOImpl();
+		usersDB = new UsersStubDB();
 		user = new User("Tom", "123");
 		usersDB.add(user);
 		expected.add(user);

@@ -20,6 +20,7 @@ class UserActivityTest {
 	void init() {
 		dao.add(user);
 		user.loggedIn = true;
+		UserActivity.setCurrentUser(user);
 	}
 	@Test
 	void testCheckUserName() {

@@ -38,8 +38,7 @@ public class SaveRecipeTest {
     void testGetRecipe() {
 
         Recipes temp = new Recipes("Boiled Egg", 6, 0);
-        ArrayList<String> ingredients = new ArrayList<>();
-        temp.setIngredients(ingredients);
+        temp.setIngredients("");
 
         SaveRecipe test = new SaveRecipe();
         test.save(temp);
@@ -74,9 +73,7 @@ public class SaveRecipeTest {
     @Test
     void testGetRecipes2() {
 
-        ArrayList<String> ingredients = new ArrayList<>();
-        ingredients.add("Potatoes");
-        ingredients.add("Salt");
+        String ingredients = "Potatoes, Salt";
 
         Recipes temp = new Recipes("Boiled Potato", 3, 6);
         temp.setInstructions("1. Boil water 2. Insert potatoes into boiling water");

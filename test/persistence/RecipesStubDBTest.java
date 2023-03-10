@@ -12,16 +12,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
-import persistence.RecipesDAOImpl;
 
-class RecipesDAOImplTest {
+class RecipesStubDBTest {
 
-	static RecipesDAOImpl recipesDB;
+	static RecipesStubDB recipesDB;
 	static Recipes recipe;
 	static ArrayList<Recipes> expected= new ArrayList<>();
 	@BeforeAll
 	static void init() {
-		recipesDB = new RecipesDAOImpl();
+		recipesDB = new RecipesStubDB();
 		recipe = new Recipes("cookie",23,34);
 		
 		for(Recipes r: recipesDB.getAll()) {

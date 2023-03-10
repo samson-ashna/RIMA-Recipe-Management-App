@@ -12,14 +12,14 @@ import objects.Recipes;
 class RecipesTest {
 	
 	Recipes r;
-	ArrayList<String> ingredients;
+	String ingredients;
 	
 	@BeforeEach
 	void init() {
 		r= new Recipes("pasta",1,3);
 		r.setInstructions("b");
-		ingredients= new ArrayList<String>();
-		ingredients.add("water");
+		
+		ingredients ="water";
 		r.setIngredients(ingredients);
 		
 	}
@@ -56,7 +56,7 @@ class RecipesTest {
 	}
 	@Test
 	void testGetIngredient() {
-		assertEquals("water\n", r.getIngredients());
+		assertEquals("water", r.getIngredients());
 	}
 
 }
