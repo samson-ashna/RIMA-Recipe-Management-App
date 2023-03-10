@@ -73,13 +73,12 @@ public class FavouritesWindow extends JFrame {
 		
 		recipes = db.getRecipes(UserActivity.getCurrentUser());
 		//System.out.println("user colleciton accessed"+UserActivity.getCurrentUser().getName());
-		//Add all the user's recipes to the list model.
+		//Add all the user's favourite recipes to the list model.
 		for(Recipes r: recipes) {
 			if (r.favourite == 1)
 			{
 				model.addElement(r.getName());
 			}
-			//System.out.println("in db"+r.getName());
 		}
 		
 		//Set the model for the list section to be the one that was 
