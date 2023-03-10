@@ -18,7 +18,6 @@ public class UserActivity {
 	//User database is accessed through the data access object, UsersDAO.
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO usersinfo = access.usersDB();
-	//static UsersDAO usersinfo = new UsersStubDB();
 
 	/**
 	 * This method checks whether the user with the name userName exists in the users database.
@@ -49,12 +48,6 @@ public class UserActivity {
 	 */
 	public static User getCurrentUser() {
 		return currentUser;
-//		for(User user : usersinfo.getAll()) {
-//			if(user.loggedIn) {
-//				return user;
-//			}
-//		}
-//		return null;
 	}
 	public static void setCurrentUser(User u) {
 		currentUser =u;
