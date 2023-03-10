@@ -1,5 +1,5 @@
 # Recipe and Ingredient Management App (RIMA)
-Run src/persistence/database_setup in MySQL workbench, 
+Run database/database_setup in MySQL workbench, 
 Add sql root password in src/persistence/DBSetup.java, 
 **To Run: src/presentation/Main.java**
 ## Team 1 Group Members
