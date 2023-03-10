@@ -1,5 +1,6 @@
 package objects;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ingredient {
@@ -92,9 +93,11 @@ public class Ingredient {
 	public String ingredientToJSON() {
 		String jsonString = "";
 		
+		SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+		
 		jsonString = jsonString + "{" + "\"name\": " + "\"" + this.name + "\", "
 	    		+ "\"cost\": " + "\"" + this.cost + "\", "
-	    		+ "\"expiration\": " + "\"" + this.expiration.toString() + "\", " //Temporary
+	    		+ "\"expiration\": " + "\"" + format.format(this.expiration) + "\", "
 	    		+ "\"protein\": " + "\"" + this.protein + "\", "
 	    		+ "\"carbs\": " + "\"" + this.carbs + "\", "
 	    		+ "\"user\": " + "\"" + this.user + "\"" + "}";

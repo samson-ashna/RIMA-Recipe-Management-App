@@ -149,6 +149,7 @@ public class User {
 	public String ingredientsToJSON() {
 		//For testing purposes.
 		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
+		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
 		
 		//String for converted ingredients arraylist.
 		String jsonString = "";

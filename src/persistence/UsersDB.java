@@ -3,6 +3,7 @@ package persistence;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
@@ -256,44 +257,56 @@ public class UsersDB extends DBSetup implements UsersDAO  {
 		return null;
 	}
 
-	@Override
 	public ArrayList<Ingredient> getIngredients(User u) {
 		ArrayList<User> users = getAll();
 		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-		String ingredientsString;
+		String jsonString;
 		
 		for(User usr : users) {
 			//Return user ingredients if user exists in the database.
 			if(usr.getName().equals(u.getName())) {
 								
 				try {
-					// create connection
+					//Create connection
 					con = DriverManager.getConnection (url , user , password );
-					// create statement
+					//Create statement
 					statement = con.createStatement();
+					//Set query to retrieve user's ingredients from database.
 					query = "SELECT myIngredients FROM users WHERE `name`='"+u.getName()+"\';";
-					result = statement.executeQuery(query);
-					while(result.next()) {
+					//Execute query and save result.
+					result = statement.executeQuery(query);					
+					
+					//Move result set cursor to the first (and only) row.
+					result.next();
+					//Retrieve the user's ingredients as a json string.
+					jsonString = result.getString(1);
+					System.out.println(jsonString); //temp print.
+					
+					//Parse json string.
+					//Remove array-indicating square brackets from the string.
+					jsonString = jsonString.substring(1, jsonString.length() - 1);
+					//Split string up into an array of strings for each ingredient by splitting where the string has "}, {"
+					String[] ingredientStrings = jsonString.split("\\}, \\{");
+					for(String ingredientString : ingredientStrings) {
+						//Further split each ingredient string up into another array for each field by spitting at each ",".
+						String[] fieldStrings = ingredientString.split(", ");
+						//Create an array to save the retrieved field values in.
+						String[] valueStrings = new String[fieldStrings.length];
+						for(int i = 0; i<fieldStrings.length; i++) {
+							//Further split each field into its key and value
+							String[] kvField = fieldStrings[i].split(": ");
+							//Remove extra characters from value leaving behind only letters and numbers and save it.
+							valueStrings[i] = kvField[1].replaceAll("[{}\"]", "");							
+						}
 						
-						//Parse result set into ingredient's attributes.
-						String name = result.getString(1);
-						double cost = Double.parseDouble(result.getString(2));
-						Date expiration = null;
+						Date date = null;
 						try {
-							expiration = DateFormat.getDateInstance().parse(result.getString(3));
-						} catch (Exception e) {
+							date = new SimpleDateFormat("dd MMMM yyyy").parse(valueStrings[5]);
+						}catch(Exception e) {
 							
 						}
-						int protein = Integer.parseInt(result.getString(4));
-						int carbs = Integer.parseInt(result.getString(5));
-						String userName = result.getString(6);
-						
-						//Create a new Ingredient object from the attributes and add it to the ingredients arraylist.
-						ingredients.add(new Ingredient(name, cost, expiration, protein, carbs, userName));
-						
-					}
-					statement.close();
-					result.close();
+						ingredients.add(new Ingredient(valueStrings[1], Double.parseDouble(valueStrings[0]), date, Integer.parseInt(valueStrings[4]), Integer.parseInt(valueStrings[3]), valueStrings[2]));
+					}					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

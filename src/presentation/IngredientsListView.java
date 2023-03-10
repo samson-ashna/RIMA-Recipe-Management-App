@@ -19,13 +19,17 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
+import objects.Ingredient;
 import objects.User;
 import persistence.UsersStubDB;
 
@@ -44,10 +48,17 @@ public class IngredientsListView extends JFrame {
 	
 	//Component objects.
 	private final JButton backButton = new JButton("Back");
-	private final JButton removeButton = new JButton("Remove");
 	private final JButton addButton = new JButton("Add Ingredient");
-	private final JButton[] buttons = {backButton, removeButton, addButton};
+	private final JButton[] buttons = {backButton, addButton};
 	private JList<String> ingredientsList = new JList<String>();
+	
+	//Popup menu items
+	private JPopupMenu menu = new JPopupMenu();
+	private JMenuItem editButton = new JMenuItem("Edit");
+	private JMenuItem removeButton = new JMenuItem("Remove");
+	
+	//Current user.
+	private User user;
 
 
 	/**
@@ -72,7 +83,31 @@ public class IngredientsListView extends JFrame {
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */
 	public void ingredientsListSetup() {
+		//Ingredient arraylist for user's ingredients.
+		ArrayList<Ingredient> ingredients;
+		String[] ingredientNames;
 		
+		//Save the current user.
+		user = UserActivity.getCurrentUser();
+		
+		if(user != null) {
+			ingredients = IngredientActions.getIngredients();
+		}else {
+			return;
+		}
+		
+		if(ingredients != null) {
+			//Initialize ingredientNames.
+			ingredientNames = new String[ingredients.size()];
+			
+			//Add ingredient names to ingredientNames.
+			for(int i = 0; i<ingredientNames.length; i++) {
+				ingredientNames[i] = ingredients.get(i).getName();
+			}
+			
+			//Build ingredientsList using ingredientNames.
+			ingredientsList = new JList<String>(ingredientNames);
+		}
 	}
 	
 	
@@ -118,16 +153,21 @@ public class IngredientsListView extends JFrame {
 		
 		//Set up the button fonts.
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		removeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(backButton);
 		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
-		buttonPane.add(removeButton);
-		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
 		buttonPane.add(addButton);
+		
+		//Set up menu item fonts.
+		editButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		removeButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		//Set up popup menu.
+		menu.add(editButton);
+		menu.add(removeButton);
 		
 		//Add info and button panes to content pane.
 		contentPane.add(listPane);
@@ -161,10 +201,11 @@ public class IngredientsListView extends JFrame {
 				//Disable buttons.
 				backButton.setEnabled(false);
 				addButton.setEnabled(false);
-				removeButton.setEnabled(false);
 								
 			}
 		});
+		
+		//Set up what to do when list item is left clicked.
 	}
 	
 	//Constructor for another frame to change to this class's content pane instead of closing itself and opening this as a new frame.
