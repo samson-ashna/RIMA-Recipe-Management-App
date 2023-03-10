@@ -67,5 +67,9 @@ Original Allocated Time vs Actual Time Spent
 **Manipulate Food Ingredients Inventory** (original: , actual: ) (your name)
 	-your work itr2
 	
-**Meal Planning** (original:, actual: ) (your name)
-	-your work itr2
+**Meal Planning** (original: 5 days, actual: 3 days) (Ashna)
+	-User Meal Planning Page - itr2
+	-User Meal Planning GUI - itr2
+	-Implemented User Calendar -itr2
+	-added functionalities within objects/presentation folder
+	-javadocs/comments
