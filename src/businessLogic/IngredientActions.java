@@ -59,4 +59,17 @@ public class IngredientActions {
 		//Return false if ingredient or user are null to inform that the removal was unsuccessful.
 		return false;
 	}
+
+	//Return whether an ingredient with the same name exists.
+	public static boolean checkName(String name) {
+		boolean ingredientExists = false;
+		ArrayList<Ingredient> ingredients = getIngredients();
+		
+		for(Ingredient ingredient:ingredients) {
+			if(ingredient.getName().toLowerCase().equals(name.toLowerCase())) {
+				ingredientExists = true;
+			}
+		}
+		return ingredientExists;
+	}
 }

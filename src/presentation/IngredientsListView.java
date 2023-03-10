@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -51,7 +52,8 @@ public class IngredientsListView extends JFrame {
 	private final JButton editButton = new JButton("Edit");
 	private final JButton removeButton = new JButton("Remove");
 	private final JButton[] buttons = {backButton, addButton, editButton, removeButton};
-	private JList<String> ingredientsList = new JList<String>();
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<String> ingredientsList = new JList<String>(listModel);
 	
 	//Current user.
 	private User user;
@@ -59,8 +61,9 @@ public class IngredientsListView extends JFrame {
 	//Current user's ingredients.
 	ArrayList<Ingredient> ingredients;
 	
-	//Selected ingredient.
+	//Selected ingredient and it's index in the list.
 	private Ingredient selectedIngredient = null;
+	private int selectedIndex = -1;
 
 
 	/**
@@ -85,19 +88,12 @@ public class IngredientsListView extends JFrame {
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */
 	public void ingredientsListSetup() {
-		String[] ingredientNames;
-		
 		if(ingredients != null) {
-			//Initialize ingredientNames.
-			ingredientNames = new String[ingredients.size()];
-			
-			//Add ingredient names to ingredientNames.
-			for(int i = 0; i<ingredientNames.length; i++) {
-				ingredientNames[i] = ingredients.get(i).getName();
+			//Add ingredient names to listModel.
+			for(int i = 0; i<ingredients.size(); i++) {
+				listModel.addElement(ingredients.get(i).getName());
 			}
 			
-			//Build ingredientsList using ingredientNames.
-			ingredientsList = new JList<String>(ingredientNames);
 			//Set up List dimensions.
 			ingredientsList.setPrototypeCellValue("Using this to set the ingredients list cell width for now ;)"); //Since other methods didn't work.
 			ingredientsList.setPreferredSize(new Dimension(200, 300));
@@ -220,6 +216,7 @@ public class IngredientsListView extends JFrame {
 		            editButton.setEnabled(true);
 		            removeButton.setEnabled(true);
 		            String selectedValue = (String) ingredientsList.getSelectedValue();
+		            selectedIndex = ingredientsList.getSelectedIndex();
 		            if(ingredients != null) {
 		            	for(Ingredient ingredient:ingredients) {
 		            		if(ingredient.getName().equals(selectedValue)) {
@@ -252,15 +249,17 @@ public class IngredientsListView extends JFrame {
 		//Set up what to do when the remove button is pressed.
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Set selected ingredient to null;
-				selectedIngredient = null;
-				
 				//Remove ingredient from list.
-				ingredientsList.remove(ingredientsList.getSelectedIndex());
+				listModel.remove(selectedIndex);
+				ingredientsList.repaint();
 				
 				//Remove ingredient from user collection and from user in database.
 				user.removeIngredientFromCollection(selectedIngredient);
 				IngredientActions.removeIngredient(selectedIngredient);
+				
+				//Set selected ingredient to null;
+				selectedIngredient = null;
+				selectedIndex = -1;
 										
 			}
 		});
