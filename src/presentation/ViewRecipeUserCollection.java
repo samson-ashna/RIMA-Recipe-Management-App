@@ -70,8 +70,10 @@ public class ViewRecipeUserCollection extends JDialog {
 		
 		// Creates a new button. When clicked user adds the recipe to Favourites.
 		JButton btnFavourite;
+		// Checks if the selected recipe is already a favourite
 		if (r.favourite == 0)
 		{
+			// Button displays "Favourite" is the recipe is not currently a favourite recipe
 			btnFavourite = new JButton("Favourite");
 			btnFavourite.setBounds(354, 503, 155, 23);
 			getContentPane().add(btnFavourite);
@@ -86,8 +88,10 @@ public class ViewRecipeUserCollection extends JDialog {
 				}
 			});
 		}
+		// Checks if the selected recipe is already a favourite
 		else if (r.favourite == 1)
 		{
+			// Button displays "Not Favourite" is the recipe is currently a favourite recipe
 			btnFavourite = new JButton("Not Favourite");
 			btnFavourite.setBounds(354, 503, 155, 23);
 			getContentPane().add(btnFavourite);
@@ -101,8 +105,7 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 			});
-		}
-				
+		}	
 		
 		/*Creates a new button. When clicked, the user is redirected to 
 		the Edit Recipe page where they can modify the recipe's information. */
