@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import businessLogic.SaveRecipe;
 import objects.Recipes;
+import persistence.DatabaseAccess;
 
 public class SaveRecipeTest {
     
@@ -18,7 +19,7 @@ public class SaveRecipeTest {
 
     @BeforeEach
     void init() {
-
+    	DatabaseAccess.databaseType =1;
         String[] name = {"Boiled Egg", "Fish Cakes", "Macaroni & Cheese"};
         int[] protein = {6, 4, 3};
         int[] carbs = {0, 6, 8};

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
 import objects.User;
+import persistence.DatabaseAccess;
 
 class UserTest {
 	
@@ -17,6 +18,8 @@ class UserTest {
 	Recipes r;
 	@BeforeEach
 	void init() {
+    	DatabaseAccess.databaseType =1;
+
 		user=new User("jake","123");
 		expected= new ArrayList<>();
 		r = new Recipes("name",1,2);

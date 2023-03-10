@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
+import persistence.DatabaseAccess;
 
 class RecipesStubDBTest {
 
@@ -20,6 +21,8 @@ class RecipesStubDBTest {
 	static ArrayList<Recipes> expected= new ArrayList<>();
 	@BeforeAll
 	static void init() {
+    	DatabaseAccess.databaseType =1;
+
 		recipesDB = new RecipesStubDB();
 		recipe = new Recipes("cookie",23,34);
 		

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
 import objects.User;
+import persistence.DatabaseAccess;
 import persistence.UsersStubDB;
 
 class UsersStubDBTest {
@@ -24,6 +25,8 @@ class UsersStubDBTest {
 	static ArrayList<Recipes> expectedRecipes= new ArrayList<>();
 	@BeforeAll
 	static void init() {
+    	DatabaseAccess.databaseType =1;
+
 		usersDB = new UsersStubDB();
 		user = new User("Tom", "123");
 		usersDB.add(user);

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
+import persistence.DatabaseAccess;
 
 class RecipesTest {
 	
@@ -16,6 +17,8 @@ class RecipesTest {
 	
 	@BeforeEach
 	void init() {
+    	DatabaseAccess.databaseType =1;
+
 		r= new Recipes("pasta",1,3);
 		r.setInstructions("b");
 		
