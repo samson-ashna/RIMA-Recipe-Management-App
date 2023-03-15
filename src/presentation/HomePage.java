@@ -81,8 +81,8 @@ public class HomePage extends JFrame {
 		frame = new JFrame("RIMA - Home");
 
 		// Background
-		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
-		label = new JLabel(icon);
+		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
+		label = new JLabel();
 		label.setSize(1280, 720);
 		
 		// Logout Button
@@ -268,8 +268,9 @@ public class HomePage extends JFrame {
 		// Setup
 		
 		
+		frame.getContentPane().setBackground(new Color(143, 188, 143));
 		frame.add(label);
-
+		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
