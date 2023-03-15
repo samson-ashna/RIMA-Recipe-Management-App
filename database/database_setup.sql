@@ -12,6 +12,7 @@ CREATE TABLE `recipes` (
     `protein` int NOT NULL,
     `mealTime` varchar(255) DEFAULT "Breakfast/Lunch/Dinner",
     `user` varchar(255) DEFAULT "ALL",
+    `favorite` int DEFAULT 0,
     PRIMARY KEY (`food_id`)
 );
 INSERT INTO recipes(food_id, name, ingredients, instruction,carbs, protein,mealTime) VALUES (

@@ -20,4 +20,6 @@ public interface UsersDAO extends DAO<User> {
 	Ingredient getIngredient(User u, String name);
 	void edit(String oldName, String name, String Password); 
 	void editAllergy(User u, String allergyType, int change);
+	public ArrayList<Recipes> getFavoriteList(User u);
+	public void editFavorites(Recipes r,int change);
 }

@@ -43,6 +43,7 @@ public class ViewProfile extends JFrame {
 	private JLabel displName = new JLabel();
 	private JLabel allergyInfo =  new JLabel();
 	private final JButton btnNewButton = new JButton("Survey");
+	private final JButton surveyButton = new JButton("Survey");
 
 
 	/**
@@ -132,6 +133,14 @@ public class ViewProfile extends JFrame {
 		//Set up the button fonts.
 		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		buttonPane.add(surveyButton);
+		surveyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserDietaryRestrictionsSurvey survey = new UserDietaryRestrictionsSurvey();
+				
+			}
+		});		
 		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());

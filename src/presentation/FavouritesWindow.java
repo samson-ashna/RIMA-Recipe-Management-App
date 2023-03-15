@@ -66,19 +66,11 @@ public class FavouritesWindow extends JFrame {
 		//get a new instance of the user database.
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();
-		//UsersDAO db = new UsersStubDB();		
-		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
-		//System.out.println(UserActivity.getCurrentUser().getName());
-		
-		recipes = db.getRecipes(UserActivity.getCurrentUser());
-		//System.out.println("user colleciton accessed"+UserActivity.getCurrentUser().getName());
+		recipes = db.getFavoriteList(UserActivity.getCurrentUser());
 		//Add all the user's favourite recipes to the list model.
 		for(Recipes r: recipes) {
-			if (r.favourite == 1)
-			{
-				model.addElement(r.getName());
-			}
+			model.addElement(r.getName());
 		}
 		
 		//Set the model for the list section to be the one that was 

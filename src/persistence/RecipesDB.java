@@ -63,6 +63,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 				String mealTime = result.getString(7);
 				r = new Recipes(name, protein1, carbs1);
 				String user = result.getString(8);
+				String favorite = result.getString(9);
+				r.favourite = Integer.parseInt(favorite);
 				r.setUser(user);
 				r.setIngredients(ingredients);
 				r.setInstructions(instructions);
@@ -119,10 +121,10 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			t.setID(UserActivity.RecipeIDs - 1);
 			con = DriverManager.getConnection(url, user, password);
 			statement = con.createStatement();
-			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein,mealTime) VALUES" + " ("
+			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein,mealTime, favorite) VALUES" + " ("
 					+ UserActivity.RecipeIDs + ",\'" + t.getName() + "\'" + ",\'" + t.getIngredients() + "\'," + "\'"
 					+ t.getInstructions() + "\'," + "\'" + t.getCarbs() + "\',\'" + t.getProtein() + "\',\'"
-					+ t.mealTime + "\');";
+					+ t.mealTime + "\',\'"+t.favourite+"\');";
 			statement.execute(query);
 			query = "UPDATE id SET recipeID = recipeID + 1";
 			statement.execute(query);
@@ -187,4 +189,6 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 		}
 
 	}
+	
+	
 }

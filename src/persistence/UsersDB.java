@@ -68,6 +68,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 						}
 					}
 				}
+				
 				Hashtable<String, Integer> allergyLst = new Hashtable<String, Integer>();
 				if (allergies != null) {
 					String[] arrOfStr = allergies.split(",");
@@ -226,6 +227,8 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			statement = con.createStatement();
 			query = "UPDATE users SET myRecipes= JSON_REMOVE(myRecipes, '$.\"" + (r.getRecipeID())
 					+ "\"') WHERE `name`='" + u.getName() + "\';";
+			statement.execute(query);
+			query = "DELETE FROM recipes WHERE `food_id`=\'" + r.getRecipeID() + "\';";
 			statement.execute(query);
 			statement.close();
 			result.close();
@@ -472,4 +475,34 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 
 	}
+	@Override
+	public ArrayList<Recipes> getFavoriteList(User u) {
+		ArrayList<Recipes> recipeList = new ArrayList<>();
+		for(Recipes r: getRecipes(u)) {
+			if(r.favourite==1) {
+				recipeList.add(r);
+			}
+		}
+		return recipeList;
+	}
+
+	@Override
+	public void editFavorites(Recipes r, int change) {
+		
+		try {
+			// create connection
+			con = DriverManager.getConnection(url, user, password);
+			// create statement
+			statement = con.createStatement();
+			query = "UPDATE recipes SET favorite=\'" + change + "\' WHERE `food_id`=\'" + r.getRecipeID() + "\';";
+			statement.execute(query);
+			statement.close();
+			result.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
 }

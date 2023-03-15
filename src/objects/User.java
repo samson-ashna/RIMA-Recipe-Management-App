@@ -174,7 +174,9 @@ public class User {
 	{
 		return this.allergens;
 	}
-
+	public void removeFavourite(Recipes recipes) {
+		this.myFavourites.remove(recipes);
+	}
 	public void setFavourite(Recipes recipes)
 	{
 		this.myFavourites.add(recipes);

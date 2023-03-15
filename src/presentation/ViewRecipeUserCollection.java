@@ -18,6 +18,8 @@ import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
 import persistence.DAO;
 import persistence.UsersDAO;
+import persistence.UsersDB;
+
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
@@ -78,7 +80,8 @@ public class ViewRecipeUserCollection extends JDialog {
 			getContentPane().add(btnFavourite);
 			btnFavourite.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					r.isFavourite();
+					db.editFavorites(r,1);
+					//r.isFavourite();
 					UserRecipeCollection collection = new UserRecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
@@ -96,7 +99,8 @@ public class ViewRecipeUserCollection extends JDialog {
 			getContentPane().add(btnFavourite);
 			btnFavourite.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					r.notFavourite();
+					db.editFavorites(r,0);
+					//r.notFavourite();
 					UserRecipeCollection collection = new UserRecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);

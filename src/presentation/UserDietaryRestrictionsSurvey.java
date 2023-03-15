@@ -1,5 +1,7 @@
 package presentation;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,9 +24,11 @@ public class UserDietaryRestrictionsSurvey {
 		do {
 			answerformat = JOptionPane.showInputDialog(null, questionformat);
 			if(answerformat == null) {
+				// JOptionPane.getRootFrame().dispose();
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to save your progress and continue later?", "Quit", JOptionPane.YES_NO_OPTION);
-				 if (exit == JOptionPane.YES_OPTION) {
-			          System.exit(0);
+				 if (exit == JOptionPane.YES_OPTION) { 
+			          //System.exit(0);
+					 
 			        }
 				else
 					continue;
@@ -70,7 +74,9 @@ public class UserDietaryRestrictionsSurvey {
 		}
 
 		public static void main(String[] args) {
-			
+			new UserDietaryRestrictionsSurvey();
+		}
+		public UserDietaryRestrictionsSurvey() {	
 			String[][] question = new String[12][5]; // 12 by 5 array to store questions
 			
 			question[0][0] = "1. How old are you?";

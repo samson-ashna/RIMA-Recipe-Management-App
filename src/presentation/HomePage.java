@@ -2,6 +2,7 @@ package presentation;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +36,8 @@ public class HomePage extends JFrame {
 	private Container ingredientsListPane;
 	private JPanel logoutPane;
 	private JPanel optionsPane;
+
+	
 	
 	//Button objects.
 	JButton logoutButton = new JButton("Log Out");	
@@ -45,6 +48,7 @@ public class HomePage extends JFrame {
 	
 	//Label objects.
 	JLabel welcomeLabel = new JLabel("");
+	private final JButton mealPlannerButton_1 = new JButton("Meal Planner");
 	
 	/**
 	 * Launch the application.
@@ -70,25 +74,28 @@ public class HomePage extends JFrame {
 		//Set application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Set size and pop up location of the window.
-		setSize(450, 330);
+		setSize(1280,720);
 		setLocationRelativeTo(null);
 		
 		//Get and store the content pane.
 		contentPane = getContentPane();	
-		
+		//contentPane.add(label);
 		//Create a new pane for the logout button.
 		logoutPane = new JPanel(); 
+		logoutPane.setBounds(0, 0, 1264, 33);
 		//Set an invisible border for the options pane.
 		logoutPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
 		//Set the options pane's layout manager to the horizontal box layout.
 		logoutPane.setLayout(new BoxLayout(logoutPane, BoxLayout.LINE_AXIS));
-		
+	
 		//Create a new options pane.
 		optionsPane = new JPanel(); 
+		optionsPane.setBounds(0, 201, 1264, 480);
 		//Set an invisible border for the options pane.
 		optionsPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
 		//Set the options pane's layout manager to the vertical box layout.
 		optionsPane.setLayout(new BoxLayout(optionsPane, BoxLayout.PAGE_AXIS));		
+		
 		
 		//Set up welcome label font and text.		
 		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -99,15 +106,22 @@ public class HomePage extends JFrame {
 		userRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
 		ingredientsButton.setAlignmentX(CENTER_ALIGNMENT);
 		newRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
-		viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
-		
+		mealPlannerButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserMealPlanner planner = new UserMealPlanner();
+				planner.frame.setVisible(true);
+				//planner.setVisible(true);
+				//planner.setVisible(true);
+				contentPane.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
+			}
+		});
+		mealPlannerButton_1.setAlignmentX(CENTER_ALIGNMENT);
 		
 		//Add logout button to the logout pane.
 		logoutPane.add(Box.createHorizontalGlue());
 		logoutPane.add(logoutButton);
-		
-		//Add other components to optionPane.
-		optionsPane.add(Box.createVerticalGlue());
 		optionsPane.add(welcomeLabel);
 		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));		
 		optionsPane.add(userRecipesButton);
@@ -115,11 +129,11 @@ public class HomePage extends JFrame {
 		optionsPane.add(ingredientsButton);
 		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
 		optionsPane.add(newRecipesButton);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
-		optionsPane.add(viewProfileButton);
 		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));
-		optionsPane.add(Box.createVerticalGlue());
-				
+		
+		optionsPane.add(mealPlannerButton_1);
+		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));
+
 		
 		//Set user recipes button to redirect to the user's personal recipe collection when pushed.
 		userRecipesButton.addActionListener(new ActionListener() {
@@ -155,22 +169,6 @@ public class HomePage extends JFrame {
 				win.dispose();
 			}
 		});				
-				
-		//Set view profile button to redirect to the user's profile when pushed.
-		viewProfileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Create a Profile window
-				ViewProfile viewProfile = new ViewProfile();
-						
-				//Make the Profile window visible and the HomePage window invisible.
-				viewProfile.setVisible(true);
-				contentPane.setVisible(false);
-						
-				//Close the old window.
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();				
-			}
-		});
 		
 		//Set ingredients button to redirect to the user's personal ingredient collection when pushed.
 		ingredientsButton.addActionListener(new ActionListener() {
@@ -185,9 +183,31 @@ public class HomePage extends JFrame {
 				validate();
 			}
 		});
+		getContentPane().setLayout(null);
 		
 		//Add components to content pane.
-		contentPane.add(logoutPane, BorderLayout.PAGE_START);
+		contentPane.add(logoutPane);
 		contentPane.add(optionsPane);
+		viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
+		//optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		optionsPane.add(viewProfileButton);
+		
+		//Set view profile button to redirect to the user's profile when pushed.
+		viewProfileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		//Create a Profile window
+		ViewProfile viewProfile = new ViewProfile();
+				
+		//Make the Profile window visible and the HomePage window invisible.
+		viewProfile.setVisible(true);
+		contentPane.setVisible(false);
+				
+		//Close the old window.
+		Window win = SwingUtilities.getWindowAncestor(contentPane);
+		win.dispose();				
+			}
+		});
+		
+		//optionsPane.add(mealPlannerButton_1);
 	}
 }

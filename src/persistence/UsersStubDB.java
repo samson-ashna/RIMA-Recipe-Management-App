@@ -2,6 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 
+import businessLogic.UserActivity;
 import objects.Ingredient;
 import objects.Recipes;
 import objects.User;
@@ -105,6 +106,9 @@ public class UsersStubDB implements UsersDAO {
 		for (User user : users) {
 			if (user.equals(u)) {
 				user.removeRecipeFromCollection(r);
+				if(r.favourite==1) {
+					u.removeFavourite(r);
+				}
 			}
 		}
 
@@ -150,5 +154,23 @@ public class UsersStubDB implements UsersDAO {
 	@Override
 	public void editAllergy(User u, String allergyType, int change) {
 		u.getUserAllergies().getAllergies().replace(allergyType, change);
+	}
+
+	@Override
+	public ArrayList<Recipes> getFavoriteList(User u) {
+		return u.getFavourites();
+		
+	}
+
+	@Override
+	public void editFavorites(Recipes r, int change) {
+		if(change ==1) {
+			UserActivity.getCurrentUser().setFavourite(r);
+			r.isFavourite();
+		}else {
+			UserActivity.getCurrentUser().removeFavourite(r);
+			r.notFavourite();
+		}
+		
 	}
 }

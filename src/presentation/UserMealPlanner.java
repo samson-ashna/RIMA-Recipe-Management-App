@@ -8,7 +8,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -22,7 +25,7 @@ import com.toedter.calendar.JCalendar;
 
 public class UserMealPlanner {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -58,6 +61,8 @@ public class UserMealPlanner {
 		frame.setBounds(0, 0, 1280, 680);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
+
 		
 		JPanel panel_recipeplanning = new JPanel();
 		panel_recipeplanning.setBorder(new LineBorder(new Color(0, 0, 0), 8));
@@ -303,10 +308,13 @@ public class UserMealPlanner {
 		panel_4_usefulbuttons.setLayout(null);
 		
 		JButton btnHomepage = new JButton("<-- Back to HomePage");
-		btnHomepage.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-//				HomePage homepage = new HomePage();
-//				HomePage.main(null);
+		btnHomepage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HomePage homePage = new HomePage();
+				homePage.setVisible(true);
+				frame.setVisible(false);
+				Window win = SwingUtilities.getWindowAncestor(frame.getContentPane());
+				win.dispose();
 			}	
 			
 		});
