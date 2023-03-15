@@ -36,6 +36,15 @@
     * Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week. Priority: Medium. Cost: 2 days
 
 ## Iteration 3
-* **Manage Pantry: As a user I want to be able to keep track of food expiration dates and be notified accordingly. Priority: Low. Cost:10 days**
+* **Manage Pantry: As a user I want to be able to keep track of food expiration dates and be notified accordingly. Priority: Low. Cost: 10 days**
+    * Display the Pantry List: As a user, I want to be able to view a list of the required ingredients before I make the recipe in order to know whether I have the proper ingredients needed and enough of them. Priority: High. Cost: 3 days
+    * Display Recipes from Pantry Ingredients: As a user, I want to enter the current ingredients I have available in my pantry and have a list of recipes I can create displayed to me based on the items I already own. Priority: Medium. Cost: 2 days
+    * Edit Pantry: As a user, I would want to add my own items and edit any items I already own such as adding/editing the expiry date or the quantity available in the pantry. Priority: Medium. Cost: 2 days
+    * Display Substitute Ingredients: As a user, I would want the ingredient substitutes including the quantity needed to be displayed in the pantry when I enter an item if I don’t have it available in my pantry to create certain recipes. Priority: Low. Cost: 1 day.
+
 * **Add recipes from websites: As a cook, I want to be able to add recipes I find on the Internet to the management system to view later. Priority: Low. Cost: 2 days**
-* **Shopping list: As a cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list. Priority: Low. Low Cost: 3 days**
+    * Display Management System: As a user, I want to add recipes from the internet to a section on the app such as the meal planner. Priority: Low. Cost: 2 days
+
+* **Shopping list: As a cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list. Priority: Low. Cost: 3 days**
+    * Display a Shopping List: As a user, I want to be able to see the food ingredients I would need to purchase in order to make certain recipes for the future. Priority: Medium. Cost: 2 days
+    * Create a Shopping Cart: As a user, I want to be able to add the ingredients I need to the shopping cart so that would be easier for me to check out later when I am shopping. Priority: Low. Cost: 1 day
