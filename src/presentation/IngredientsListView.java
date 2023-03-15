@@ -108,7 +108,7 @@ public class IngredientsListView extends JFrame {
 		//Retrieve current user and ingredients.
 		user = UserActivity.getCurrentUser();
 		if(user != null) ingredients = IngredientActions.getIngredients();
-		
+
 		//Set title.
 		setTitle("RIMA - User Ingredients");
 		//Set the application to exit when closed.

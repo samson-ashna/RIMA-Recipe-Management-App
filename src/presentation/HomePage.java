@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -36,6 +37,9 @@ public class HomePage extends JFrame {
 	private Container ingredientsListPane;
 	private JPanel logoutPane;
 	private JPanel optionsPane;
+	private JFrame frame;
+	private JLabel label;
+	private ImageIcon icon;
 
 	
 	
@@ -48,7 +52,7 @@ public class HomePage extends JFrame {
 	
 	//Label objects.
 	JLabel welcomeLabel = new JLabel("");
-	private final JButton mealPlannerButton_1 = new JButton("Meal Planner");
+	private JButton mealPlannerButton = new JButton("Meal Planner");
 	
 	/**
 	 * Launch the application.
@@ -70,144 +74,167 @@ public class HomePage extends JFrame {
 	 * Create the frame.
 	 */
 	public HomePage() {
-		setTitle("RIMA - Home");
-		//Set application to exit when closed.
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Set size and pop up location of the window.
-		setSize(1280,720);
-		setLocationRelativeTo(null);
-		
-		//Get and store the content pane.
-		contentPane = getContentPane();	
-		//contentPane.add(label);
-		//Create a new pane for the logout button.
-		logoutPane = new JPanel(); 
-		logoutPane.setBounds(0, 0, 1264, 33);
-		//Set an invisible border for the options pane.
-		logoutPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
-		//Set the options pane's layout manager to the horizontal box layout.
-		logoutPane.setLayout(new BoxLayout(logoutPane, BoxLayout.LINE_AXIS));
-	
-		//Create a new options pane.
-		optionsPane = new JPanel(); 
-		optionsPane.setBounds(0, 201, 1264, 480);
-		//Set an invisible border for the options pane.
-		optionsPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
-		//Set the options pane's layout manager to the vertical box layout.
-		optionsPane.setLayout(new BoxLayout(optionsPane, BoxLayout.PAGE_AXIS));		
-		
-		
-		//Set up welcome label font and text.		
-		welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		welcomeLabel.setText("Welcome "+ UserActivity.getCurrentUser().getName());
-		
-		//Centre align components for optionsPane.
-		welcomeLabel.setAlignmentX(CENTER_ALIGNMENT);
-		userRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
-		ingredientsButton.setAlignmentX(CENTER_ALIGNMENT);
-		newRecipesButton.setAlignmentX(CENTER_ALIGNMENT);
-		mealPlannerButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				UserMealPlanner planner = new UserMealPlanner();
-				planner.frame.setVisible(true);
-				//planner.setVisible(true);
-				//planner.setVisible(true);
-				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
-			}
-		});
-		mealPlannerButton_1.setAlignmentX(CENTER_ALIGNMENT);
-		
-		//Add logout button to the logout pane.
-		logoutPane.add(Box.createHorizontalGlue());
-		logoutPane.add(logoutButton);
-		optionsPane.add(welcomeLabel);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));		
-		optionsPane.add(userRecipesButton);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
-		optionsPane.add(ingredientsButton);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
-		optionsPane.add(newRecipesButton);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));
-		
-		optionsPane.add(mealPlannerButton_1);
-		optionsPane.add(Box.createRigidArea(new Dimension(0, 30)));
 
+		frame = new JFrame("RIMA - Home");
+
+		// Background
+		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
+		label = new JLabel(icon);
+		label.setSize(1280, 720);
 		
-		//Set user recipes button to redirect to the user's personal recipe collection when pushed.
+		// Logout Button
+		logoutButton = new JButton("Logout");
+		logoutButton.setForeground(new Color(255, 255, 255));
+        logoutButton.setBackground(new Color(59, 89, 182));
+        logoutButton.setBounds(990, 26, 160, 23);
+		label.add(logoutButton);
+
+		logoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.frame.setVisible(true);
+				UserActivity.getCurrentUser().loggedIn = false;
+				UserActivity.setCurrentUser(null);
+				frame.setVisible(false);
+				frame.dispose();
+			}
+		});	
+
+		// User Recipes Button
+		userRecipesButton = new JButton("My Collection");
+		userRecipesButton.setForeground(new Color(255, 255, 255));
+        userRecipesButton.setBackground(new Color(59, 89, 182));
+        userRecipesButton.setBounds(990, 26, 160, 23);
+		label.add(userRecipesButton);
+
 		userRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
 				collection.setVisible(true);
-				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
+				//contentPane.setVisible(false);
+				frame.dispose();
 			}
 		});
-		
-		//Set new recipes button to redirect to the app's recipe databse when pushed.
+
+		// Ingredients Button
+		ingredientsButton = new JButton("My Ingredients");
+		ingredientsButton.setForeground(new Color(255, 255, 255));
+        ingredientsButton.setBackground(new Color(59, 89, 182));
+        ingredientsButton.setBounds(890, 26, 160, 23);
+		label.add(ingredientsButton);
+
+		ingredientsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IngredientsListView ingredients = new IngredientsListView();
+				ingredients.setVisible(true);
+				//contentPane.setVisible(false);
+				frame.dispose();
+			}
+		});
+
+		// New Recipes Button
+		newRecipesButton = new JButton("Find New Recipes");
+		newRecipesButton.setForeground(new Color(255, 255, 255));
+        newRecipesButton.setBackground(new Color(59, 89, 182));
+        newRecipesButton.setBounds(790, 26, 160, 23);
+		label.add(newRecipesButton);
+
 		newRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
-				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
+				//contentPane.setVisible(false);
+				frame.dispose();
 			}
 		});
-		
-		//Set "log out" button to redirect to the main window of the application when pushed.
-		logoutButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				UserActivity.getCurrentUser().loggedIn = false;
-				UserActivity.setCurrentUser(null);
-				Main mainPage = new Main();
-				mainPage.frame.setVisible(true);
-				contentPane.setVisible(false);
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
-			}
-		});				
-		
-		//Set ingredients button to redirect to the user's personal ingredient collection when pushed.
-		ingredientsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IngredientsListView ingredientView = new IngredientsListView(homePage, contentPane);
-				
-				//Save the home page window's content pane.
-				ingredientsListPane = ingredientView.getContentPane();
-				
-				//Set the content pane to be the home page window's content pane.
-				setContentPane(ingredientsListPane);
-				validate();
-			}
-		});
-		getContentPane().setLayout(null);
-		
-		//Add components to content pane.
-		contentPane.add(logoutPane);
-		contentPane.add(optionsPane);
-		viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
-		//optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
-		optionsPane.add(viewProfileButton);
-		
-		//Set view profile button to redirect to the user's profile when pushed.
+
+		// View Profile Button
+		viewProfileButton = new JButton("View Profile");
+		viewProfileButton.setForeground(new Color(255, 255, 255));
+        viewProfileButton.setBackground(new Color(59, 89, 182));
+        viewProfileButton.setBounds(690, 26, 160, 23);
+		label.add(viewProfileButton);
+
 		viewProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//Create a Profile window
-		ViewProfile viewProfile = new ViewProfile();
-				
-		//Make the Profile window visible and the HomePage window invisible.
-		viewProfile.setVisible(true);
-		contentPane.setVisible(false);
-				
-		//Close the old window.
-		Window win = SwingUtilities.getWindowAncestor(contentPane);
-		win.dispose();				
+				ViewProfile profile = new ViewProfile();
+				profile.setVisible(true);
+				frame.dispose();
 			}
-		});
+		});	
+
+		// Meal Planner Button
+		mealPlannerButton = new JButton("Meal Planner");
+		mealPlannerButton.setForeground(new Color(255, 255, 255));
+        mealPlannerButton.setBackground(new Color(59, 89, 182));
+        mealPlannerButton.setBounds(590, 26, 160, 23);
+		label.add(mealPlannerButton);
+
+		mealPlannerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserMealPlanner planner = new UserMealPlanner();
+				planner.frame.setVisible(true);
+				frame.dispose();
+			}
+		});			
 		
+		// // //Set ingredients button to redirect to the user's personal ingredient collection when pushed.
+		// ingredientsButton.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent e) {
+		// 		IngredientsListView ingredientView = new IngredientsListView(homePage, contentPane);
+				
+		// 		//Save the home page window's content pane.
+		// 		//ingredientsListPane = ingredientView.getContentPane();
+		// 		IngredientsListView.frame.setVisible(true);
+				
+		// 		//Set the content pane to be the home page window's content pane.
+		// 		//setContentPane(ingredientsListPane);
+		// 		//validate();
+		// 	}
+		// });
+		// getContentPane().setLayout(null);
+		
+		// //Add components to content pane.
+		// contentPane.add(logoutPane);
+		// contentPane.add(optionsPane);
+		// viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
+		// //optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
+		// optionsPane.add(viewProfileButton);
+		
+		// //Set view profile button to redirect to the user's profile when pushed.
+		// viewProfileButton.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent e) {
+		// //Create a Profile window
+		// ViewProfile viewProfile = new ViewProfile();
+				
+		// //Make the Profile window visible and the HomePage window invisible.
+		// viewProfile.setVisible(true);
+		// contentPane.setVisible(false);
+				
+		// //Close the old window.
+		// Window win = SwingUtilities.getWindowAncestor(contentPane);
+		// win.dispose();				
+		// 	}
+		// });
+		
+		
+
+		// Add Objects
+		// frame.add(label);
+		// frame.add(welcomeLabel);
+		// frame.add(userRecipesButton);
+		// frame.add(newRecipesButton);
+		// frame.add(logoutButton);
+		// frame.add(ingredientsButton);
+		// frame.add(viewProfileButton);
+		// Setup
+		
+		
+		frame.add(label);
+		frame.setSize(1280,720);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+
 		//optionsPane.add(mealPlannerButton_1);
 	}
 }
