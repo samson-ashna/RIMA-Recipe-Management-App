@@ -72,3 +72,10 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 “Meal Planning” -
 1. Create a Calendar Page:  Add a calendar page for the week where the user can select a day and add recipes to that day from the personal collection list
 2. Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week.
+
+## Iteration 3 Developer Tasks
+**Manage Pantry:  As a user, I want to be able to keep track of food expiration dates and be notified accordingly.  Priority: Low. Cost: 9 days**
+
+**Add Recipes from Websites:  As a home cook, I want to be able to add recipes I find on the internet to the management system to view later.  Priority: Low. Cost: 2 days**
+
+**Shopping List:  As a home cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list.  Priority: Low. Cost: 3 days**
