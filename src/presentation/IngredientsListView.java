@@ -195,7 +195,7 @@ public class IngredientsListView extends JFrame {
 				ingredientsList.clearSelection();
 				
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient);
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);
@@ -232,7 +232,7 @@ public class IngredientsListView extends JFrame {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient);
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);

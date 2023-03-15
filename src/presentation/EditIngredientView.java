@@ -16,6 +16,7 @@ import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -34,6 +35,8 @@ public class EditIngredientView extends JFrame{
 	
 	//Ingredients view list and buttons for re-enabling upon return.
 	private JComponent[] componentsToToggle;
+	//List model to edit.\
+	DefaultListModel<String> listModel;
 	
 	//Pane objects
 	private Container contentPane;
@@ -79,7 +82,7 @@ public class EditIngredientView extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditIngredientView frame = new EditIngredientView(null, null);
+					EditIngredientView frame = new EditIngredientView(null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -91,10 +94,11 @@ public class EditIngredientView extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public EditIngredientView(JComponent[] components, Ingredient selectedIngredient) {
+	public EditIngredientView(JComponent[] components, Ingredient selectedIngredient, DefaultListModel<String> list) {
 		//Save previous frame's buttons to re-enable them.
 		componentsToToggle = components;
 		ingredient = selectedIngredient;
+		listModel = list;
 		
 		//Set frame title.
 		setTitle("RIMA - Edit Ingredient");
@@ -273,7 +277,7 @@ public class EditIngredientView extends JFrame{
 							//Update identifier.
 							entry = "Protein";
 							//If the protein isn't blank, update it.
-							if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein() && !proteinField.getText().equals("")){
+							if(!proteinField.getText().equals("")){
 								newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 								change = true;
 							}
@@ -281,7 +285,7 @@ public class EditIngredientView extends JFrame{
 							//Update identifier.
 							entry = "Carbs";
 							//If the carbs field isn't blank, update.
-							if(Integer.parseInt(carbsField.getText()) != ingredient.getCarbs() && !carbsField.getText().equals("")){
+							if(!carbsField.getText().equals("")){
 								newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
 								change = true;
 							}
@@ -295,16 +299,9 @@ public class EditIngredientView extends JFrame{
 						
 						//Update the ingredient in the database and in the user's collection.
 						IngredientActions.addIngredient(newIngredient);
-						currentUser.removeIngredientFromCollection(ingredient);
+						if(ingredient != null) currentUser.removeIngredientFromCollection(ingredient);
 						currentUser.addIngredientToCollection(newIngredient);
 						
-						//Create a HomePage window
-						ViewProfile viewProfile = new ViewProfile();
-							
-						//Make the HomePage window visible and the UserRecipeCollection window invisible.
-						viewProfile.setVisible(true);
-						contentPane.setVisible(false);
-							
 						//Close the UserRecipeCollection Window.
 						Window win = SwingUtilities.getWindowAncestor(contentPane);
 						win.dispose();
@@ -315,6 +312,10 @@ public class EditIngredientView extends JFrame{
 						}
 						
 						//Update ingredientsList.
+						listModel.removeAllElements();
+						for(Ingredient ingredient:currentUser.getIngredients()) {
+							listModel.addElement(ingredient.getName());
+						}
 					}
 				}
 			}

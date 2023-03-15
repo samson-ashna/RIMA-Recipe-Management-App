@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Ingredient {
 	private String name;
-	private int protein;
+	private int protein = 0;
 	private int carbs = 0;
 	private Date expiration;
 	private double cost = 0;
