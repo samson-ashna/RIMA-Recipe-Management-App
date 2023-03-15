@@ -220,7 +220,7 @@ public class RecipeList extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() == null) {
-					MainInterface.frame.setVisible(true);
+					GuestInterface.frame.setVisible(true);
 					
 				}else {
 					HomePage homePage = new HomePage();

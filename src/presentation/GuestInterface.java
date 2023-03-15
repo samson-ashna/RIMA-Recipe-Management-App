@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 
 import businessLogic.UserActivity;
 
-public class MainInterface extends JFrame {
+public class GuestInterface extends JFrame {
     protected static JFrame frame;
     private ImageIcon icon;
 	private ImageIcon logo;
@@ -26,11 +26,11 @@ public class MainInterface extends JFrame {
 
     public static void main(String[] args) {
 
-        new MainInterface();
+        new GuestInterface();
         
     }
 
-    public MainInterface() {
+    public GuestInterface() {
 
         // Background Image
 		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
@@ -58,7 +58,7 @@ public class MainInterface extends JFrame {
 
 
         // Setup
-        frame = new JFrame("RIMA - Welcome!");
+        frame = new JFrame("RIMA - Guest Interface");
         
         JButton backButton = new JButton("Back to Menu");
         backButton.setForeground(new Color(255, 255, 255));

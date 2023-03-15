@@ -66,7 +66,7 @@ public class Main {
 		btnGuest.setBounds(560, 420, 156, 27);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainInterface main = new MainInterface();
+				GuestInterface main = new GuestInterface();
 				//login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
