@@ -33,10 +33,13 @@ public class HomePage extends JFrame {
 	private final HomePage homePage = this;
 	
 	//Panel objects.
-	private Container contentPane;
-	private Container ingredientsListPane;
-	private JPanel logoutPane;
-	private JPanel optionsPane;
+	private JPanel breakfast;
+	private JPanel lunch;
+	private JPanel dinner;
+	private JPanel calendar;
+	private JPanel favourites;
+
+
 	private JFrame frame;
 	private JLabel label;
 	private ImageIcon icon;
@@ -175,7 +178,37 @@ public class HomePage extends JFrame {
 				planner.frame.setVisible(true);
 				frame.dispose();
 			}
-		});			
+		});	
+		
+		// Breakfast Panel
+		breakfast = new JPanel();
+		JLabel breakfastLabel1 = new JLabel("Breakfast");
+		breakfast.add(breakfastLabel1);
+		breakfast.setSize(320, 400);
+		breakfast.setBounds(0, 0, 320, 400);
+		breakfast.setBackground(Color.WHITE);
+
+		label.add(breakfast);
+
+		// Lunch Panel
+		lunch = new JPanel();
+		JLabel lunchLabel1 = new JLabel("Lunch");
+		lunch.add(lunchLabel1);
+		lunch.setSize(330, 400);
+		lunch.setBounds(330, 0, 320, 400);
+		lunch.setBackground(Color.WHITE);
+
+		label.add(lunch);
+
+		// Dinner Panel
+		dinner = new JPanel();
+		JLabel dinnerLabel1 = new JLabel("Dinner");
+		dinner.add(dinnerLabel1);
+		dinner.setSize(670, 400);
+		dinner.setBounds(670, 0, 320, 400);
+		dinner.setBackground(Color.WHITE);
+
+		label.add(dinner);
 		
 		// // //Set ingredients button to redirect to the user's personal ingredient collection when pushed.
 		// ingredientsButton.addActionListener(new ActionListener() {
@@ -230,6 +263,7 @@ public class HomePage extends JFrame {
 		
 		
 		frame.add(label);
+
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
