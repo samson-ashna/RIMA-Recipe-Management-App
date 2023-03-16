@@ -261,11 +261,11 @@ public class IngredientsListView extends JFrame {
 				//Remove ingredient from user collection and from user in database.
 				ingredients = user.getIngredients();
 				for(int i = 0; i<ingredients.size(); i++) {
-					if (ingredients.get(i).equals(selectedIngredient.getName())) {
+					if (ingredients.get(i).getName().equals(selectedIngredient.getName())) {
 						user.removeIngredientFromCollection(user.getIngredients().get(i));
+						IngredientActions.updateIngredients();
 					}
 				}
-				IngredientActions.updateIngredients();
 				
 				//Clear selected ingredient
 				ingredientsList.clearSelection();
