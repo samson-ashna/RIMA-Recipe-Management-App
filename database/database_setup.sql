@@ -34,3 +34,5 @@ CREATE TABLE `id` (
 	`recipeID` int DEFAULT 2
 );
 INSERT INTO id(recipeID) VALUE (2);
+
+SELECT * FROM users

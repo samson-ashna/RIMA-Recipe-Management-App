@@ -3,6 +3,8 @@ package objects;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import businessLogic.UserActivity;
+
 public class Ingredient {
 	private String name;
 	private int protein = 0;
@@ -82,7 +84,10 @@ public class Ingredient {
 	
 	public boolean setUser(User user) {
 		//check if user exists, if so, set the user and return true.
-		
+		if((new UserActivity()).checkUserName(user.getName())) {
+			this.user = user.getName();
+			return true;
+		}
 		return false;
 	}
 	

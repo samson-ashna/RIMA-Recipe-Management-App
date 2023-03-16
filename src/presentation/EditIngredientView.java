@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -37,6 +38,7 @@ public class EditIngredientView extends JFrame{
 	private JComponent[] componentsToToggle;
 	//List model to edit.\
 	DefaultListModel<String> listModel;
+	IngredientsListView previousFrame;
 	
 	//Pane objects
 	private Container contentPane;
@@ -82,7 +84,7 @@ public class EditIngredientView extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditIngredientView frame = new EditIngredientView(null, null, null);
+					EditIngredientView frame = new EditIngredientView(null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -94,11 +96,12 @@ public class EditIngredientView extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public EditIngredientView(JComponent[] components, Ingredient selectedIngredient, DefaultListModel<String> list) {
+	public EditIngredientView(JComponent[] components, Ingredient selectedIngredient, DefaultListModel<String> list, IngredientsListView listFrame) {
 		//Save previous frame's buttons to re-enable them.
 		componentsToToggle = components;
 		ingredient = selectedIngredient;
 		listModel = list;
+		previousFrame = listFrame;
 		
 		//Set frame title.
 		setTitle("RIMA - Edit Ingredient");
@@ -213,110 +216,133 @@ public class EditIngredientView extends JFrame{
 				//Flag for whether a change has been made.
 				boolean change = false;
 				
-				//Save text in fields.
-				
 				//Reset error label.
 				errorLabel.setText("");
 				
 				//Check that the user is logged in.
-				if(currentUser != null) {
-					
-					//If an ingredient was given to be edited and it corresponds to the current user. (EDITING)
-					if(ingredient != null && currentUser.getName().equals(ingredient.getUser())) {
-						//Set up an ingredient to modify
-						newIngredient = new Ingredient(ingredient.getName(), ingredient.getCost(), ingredient.getExpiration(), ingredient.getProtein(), ingredient.getCarbs(), ingredient.getUser());
+				if(currentUser == null) return;
+				
+				//If the name field is blank, inform the user and do nothing.
+				if(nameField.getText().equals("")){
+					errorLabel.setText("Name can't be blank!");
+					return;
+				}
+				
+				//If the name field is blank, inform the user and do nothing.
+				if(costField.getText().equals("")){
+					errorLabel.setText("Cost can't be blank!");
+					return;
+				}	
+				
+				//If the name field is blank, inform the user and do nothing.
+				if(proteinField.getText().equals("")){
+					errorLabel.setText("Protein can't be blank!");
+					return;
+				}	
+				
+				//If the name field is blank, inform the user and do nothing.
+				if(carbsField.getText().equals("")){
+					errorLabel.setText("Carbs can't be blank!");
+					return;
+				}
+				
+				//If an ingredient was given to be edited and it corresponds to the current user. (EDITING)
+				if(ingredient != null /*&& currentUser.getName().equals(ingredient.getUser())*/) {
+					//Set up an ingredient to modify
+					newIngredient = new Ingredient(ingredient.getName(), ingredient.getCost(), ingredient.getExpiration(), ingredient.getProtein(), ingredient.getCarbs(), ingredient.getUser());
 						
-						//If the new ingredient name exists and isn't it's own, do nothing and inform the user that the ingredient exists.
-						if (IngredientActions.checkName(nameField.getText()) && !nameField.getText().toLowerCase().equals(ingredient.getName().toLowerCase())){
-							errorLabel.setText("Ingredient name already exists!");
-						//Otherwise update the ingredient's name if the field isn't blank.
-						}else if(!IngredientActions.checkName(nameField.getText()) && !nameField.getText().toLowerCase().equals(ingredient.getName().toLowerCase()) && !nameField.getText().equals("")){
-							newIngredient.setName(nameField.getText());
-							change = true;
-						}
+					//If the new ingredient name exists and isn't it's own, do nothing and inform the user that the ingredient exists.
+					if (IngredientActions.checkName(nameField.getText()) && !nameField.getText().equalsIgnoreCase(ingredient.getName())){
+						errorLabel.setText("Ingredient name already exists!");
+						return;
+					}
+
+					//If the name field differs from the ingredient's name, change the name.
+					if(!nameField.getText().equals(ingredient.getName())) {
+						newIngredient.setName(nameField.getText());
+						change = true;
+					}
 						
+					//Field for which field is being checked.
+					String entry = "Cost";
+					try {
 						//If the cost has changed and isn't blank, update it.
-						if(Double.parseDouble(costField.getText()) != ingredient.getCost() && !costField.getText().equals("")){
+						if(Double.parseDouble(costField.getText()) != ingredient.getCost()){
 							newIngredient.setCost(Double.parseDouble(costField.getText()));
 							change = true;
 						}
 							
+						entry = "Protein";
 						//If the protein has changed and isn't blank, update it.
-						if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein() && !proteinField.getText().equals("")){
+						if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein()){
 							newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 							change = true;
 						}
-						
+							
+						entry = "Carbs";
 						//If the carbs have changed and the field isn't blank, update.
-						if(Integer.parseInt(carbsField.getText()) != ingredient.getCarbs() && !carbsField.getText().equals("")){
+						if(Integer.parseInt(carbsField.getText()) != ingredient.getCarbs()){
 							newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
 							change = true;
 						}
-					//If there is no ingredient to edit. (ADDING)
-					} else if(ingredient == null){
-						//If the new ingredient name exists, do nothing and inform the user that the ingredient exists.
-						if (IngredientActions.checkName(nameField.getText())){
-							errorLabel.setText("Ingredient name already exists!");
-						//Otherwise update the ingredient's name if the field isn't blank.
-						}else if(!IngredientActions.checkName(nameField.getText()) && !nameField.getText().equals("")){
-							newIngredient.setName(nameField.getText());
-							change = true;
-						}
-						
-						
-						//Identifier for which field is being checked.
-						String entry = "Cost";
-						try {
-							
-							//If the cost field isn't blank, update it.
-							if(!costField.getText().equals("")){
-								newIngredient.setCost(Double.parseDouble(costField.getText()));
-								change = true;
-							}
-							
-							//Update identifier.
-							entry = "Protein";
-							//If the protein isn't blank, update it.
-							if(!proteinField.getText().equals("")){
-								newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
-								change = true;
-							}
-							
-							//Update identifier.
-							entry = "Carbs";
-							//If the carbs field isn't blank, update.
-							if(!carbsField.getText().equals("")){
-								newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
-								change = true;
-							}
-						} catch (Exception ex) {
-							errorLabel.setText(entry + " entry invalid!");
-							return;
-						}
+					} catch (Exception ex) {
+						errorLabel.setText(entry + " entry invalid!");
+						return;
 					}
 					
-					if(change) {
-						
-						//Update the ingredient in the database and in the user's collection.
-						IngredientActions.addIngredient(newIngredient);
-						if(ingredient != null) currentUser.removeIngredientFromCollection(ingredient);
-						currentUser.addIngredientToCollection(newIngredient);
-						
-						//Close the UserRecipeCollection Window.
-						Window win = SwingUtilities.getWindowAncestor(contentPane);
-						win.dispose();
-						
-						//Re-enable ingredient view components.
-						for(JComponent component:componentsToToggle) {
-							component.setEnabled(true);
-						}
-						
-						//Update ingredientsList.
-						listModel.removeAllElements();
-						for(Ingredient ingredient:currentUser.getIngredients()) {
-							listModel.addElement(ingredient.getName());
-						}
+					if(change) currentUser.removeIngredientFromCollection(ingredient);
+					
+				//If there is no ingredient to edit. (ADDING)
+				} else if(ingredient == null){
+					//If the new ingredient name exists, do nothing and inform the user that the ingredient exists.
+					if (IngredientActions.checkName(nameField.getText())){
+						errorLabel.setText("Ingredient name already exists!");
+						return;
 					}
+					
+					//Otherwise set ingredient name.
+					newIngredient.setName(nameField.getText());
+						
+					//Identifier for which field is being checked.
+					String entry = "Cost";
+					try {
+						//Update other fields.
+						newIngredient.setCost(Double.parseDouble(costField.getText()));
+						entry = "Protein";
+						newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
+						entry = "Carbs";
+						newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
+					} catch (Exception ex) {
+						errorLabel.setText(entry + " entry invalid!");
+						return;
+					}
+					
+					//Update the ingredient in the database and in the user's collection.
+					change = true;
+				}
+					
+				if(change) {
+					//Update the ingredient in the database and in the user's collection.
+					newIngredient.setUser(currentUser);
+					currentUser.addIngredientToCollection(newIngredient);
+					IngredientActions.updateIngredients();
+					
+					//Close the UserRecipeCollection Window.
+					Window win = SwingUtilities.getWindowAncestor(contentPane);
+					win.dispose();
+					
+					//Re-enable ingredient view components.
+					for(JComponent component:componentsToToggle) {
+						component.setEnabled(true);
+					}
+					
+					//Update ingredientsList.
+					listModel.removeAllElements();
+					for(Ingredient ingredient:currentUser.getIngredients()) {
+						listModel.addElement(ingredient.getName());
+					}
+					JList list = (JList)componentsToToggle[componentsToToggle.length-1];
+					list.ensureIndexIsVisible(listModel.getSize());
 				}
 			}
 		});

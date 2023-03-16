@@ -38,6 +38,7 @@ public class IngredientsListView extends JFrame {
 
 	//Object for the previous frame, A, that used the content pane from this ingredients list view frame, B, to save a copy of itself in B so that B can modify A (for back button and title purposes).
 	private JFrame previousFrame;
+	IngredientsListView thisView = this;
 	//A's original content pane.
 	private Container previousPane;
 	
@@ -191,11 +192,11 @@ public class IngredientsListView extends JFrame {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Set selected ingredient to null and deselect ingredient.
-				selectedIngredient = null;
 				ingredientsList.clearSelection();
+				selectedIngredient = null;
 				
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel);
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel, thisView);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);
@@ -213,7 +214,12 @@ public class IngredientsListView extends JFrame {
 		ingredientsList.addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent e) {
 		        if (!e.getValueIsAdjusting()){
-		            editButton.setEnabled(true);
+		           
+		        	if(ingredientsList.isSelectionEmpty()) {
+		        		return;
+		        	}
+		        	
+		        	editButton.setEnabled(true);
 		            removeButton.setEnabled(true);
 		            String selectedValue = (String) ingredientsList.getSelectedValue();
 		            selectedIndex = ingredientsList.getSelectedIndex();
@@ -231,8 +237,11 @@ public class IngredientsListView extends JFrame {
 		//Set up what to do when the edit button is pressed.
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Clear selected ingredient
+				ingredientsList.clearSelection();
+				
 				//Create an EditIngredientView window
-				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel);
+				EditIngredientView editView = new EditIngredientView(componentsToToggle, selectedIngredient, listModel, thisView);
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				editView.setVisible(true);
@@ -249,17 +258,28 @@ public class IngredientsListView extends JFrame {
 		//Set up what to do when the remove button is pressed.
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Remove ingredient from list.
-				listModel.remove(selectedIndex);
-				ingredientsList.repaint();
-				
 				//Remove ingredient from user collection and from user in database.
-				user.removeIngredientFromCollection(selectedIngredient);
-				IngredientActions.removeIngredient(selectedIngredient);
+				ingredients = user.getIngredients();
+				for(int i = 0; i<ingredients.size(); i++) {
+					if (ingredients.get(i).equals(selectedIngredient.getName())) {
+						user.removeIngredientFromCollection(user.getIngredients().get(i));
+					}
+				}
+				IngredientActions.updateIngredients();
 				
-				//Set selected ingredient to null;
+				//Clear selected ingredient
+				ingredientsList.clearSelection();
+				
+				//Set selected ingredient and index to null;
 				selectedIngredient = null;
 				selectedIndex = -1;
+				
+				//Update ingredientsList.
+				listModel.removeAllElements();
+				for(Ingredient ingredient:user.getIngredients()) {
+					listModel.addElement(ingredient.getName());
+				}
+				ingredientsList.ensureIndexIsVisible(listModel.getSize());
 										
 			}
 		});

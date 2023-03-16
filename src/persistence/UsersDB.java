@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 
+import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
 import objects.Ingredient;
 import objects.Recipes;
@@ -47,10 +48,12 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				String name = result.getString(1);
 				String password = result.getString(2);
 				String myRecipes = result.getString(3);
+				ArrayList<Ingredient> ingredients = parseIngredients(result.getString(4));
 				String allergies = result.getString(5);
 				User u = new User(name, password);
 				u.setRecipeCollection(myRecipes);
 				u.setAllergies(allergies);
+				u.setIngredients(ingredients);
 				dbUsers.add(u);
 
 				Hashtable<String, String> recipesLst = new Hashtable<String, String>();
@@ -277,33 +280,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 					System.out.println(jsonString); // temp print.
 
 					// Parse json string.
-					// Remove array-indicating square brackets from the string.
-					jsonString = jsonString.substring(1, jsonString.length() - 1);
-					// Split string up into an array of strings for each ingredient by splitting
-					// where the string has "}, {"
-					String[] ingredientStrings = jsonString.split("\\}, \\{");
-					for (String ingredientString : ingredientStrings) {
-						// Further split each ingredient string up into another array for each field by
-						// spitting at each ",".
-						String[] fieldStrings = ingredientString.split(", ");
-						// Create an array to save the retrieved field values in.
-						String[] valueStrings = new String[fieldStrings.length];
-						for (int i = 0; i < fieldStrings.length; i++) {
-							// Further split each field into its key and value
-							String[] kvField = fieldStrings[i].split(": ");
-							// Remove extra characters from value leaving behind only letters and numbers
-							// and save it.
-							valueStrings[i] = kvField[1].replaceAll("[{}\"]", "");
-						}
-						Date date = null;
-						try {
-							date = new SimpleDateFormat("dd MMMM yyyy").parse(valueStrings[5]);
-						} catch (Exception e) {
-
-						}
-						ingredients.add(new Ingredient(valueStrings[1], Double.parseDouble(valueStrings[0]), date,
-								Integer.parseInt(valueStrings[4]), Integer.parseInt(valueStrings[3]), valueStrings[2]));
-					}
+					ingredients = parseIngredients(jsonString);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -313,6 +290,68 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 		// If user doesn't exist in the database, return null.
 		return null;
+	}
+	
+	private ArrayList<Ingredient> parseIngredients(String jsonString) {
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		
+		// Remove array-indicating square brackets from the string.
+		jsonString = jsonString.substring(1, jsonString.length() - 1);
+		// Split string up into an array of strings for each ingredient by splitting
+		// where the string has "}, {"
+		String[] ingredientStrings = jsonString.split("\\}, \\{");
+		for (String ingredientString : ingredientStrings) {
+			// Further split each ingredient string up into another array for each field by
+			// spitting at each ",".
+			String[] fieldStrings = ingredientString.split(", ");
+			// Create an array to save the retrieved field values in.
+			String[] valueStrings = new String[fieldStrings.length];
+			for (int i = 0; i < fieldStrings.length; i++) {
+				// Further split each field into its key and value
+				String[] kvField = fieldStrings[i].split(": ");
+				if(kvField.length <= 1) return ingredients;
+				// Remove extra characters from value leaving behind only letters and numbers
+				// and save it.
+				valueStrings[i] = kvField[1].replaceAll("[{}\"]", "");
+			}
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("dd MMMM yyyy").parse(valueStrings[5]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			ingredients.add(new Ingredient(valueStrings[1], Double.parseDouble(valueStrings[0]), date,
+					Integer.parseInt(valueStrings[4]), Integer.parseInt(valueStrings[3]), valueStrings[2]));
+		}
+		return ingredients;
+	}
+	
+	public boolean updateIngredients(User u, ArrayList<Ingredient> ingredients) {
+		ArrayList<User> users = getAll();
+		String jsonString;
+
+		for (User usr : users) {
+			// Return user ingredients if user exists in the database.
+			if (usr.getName().equals(u.getName())) {
+
+				try {
+					// Create connection
+					con = DriverManager.getConnection(url, user, password);
+					// Create statement
+					statement = con.createStatement();
+					// Set query to retrieve user's ingredients from database.
+					query = "UPDATE users SET myIngredients = \'" + u.ingredientsToJSON() + "\' WHERE `name`=\'" + u.getName() + "\';";
+					// Execute query and save result.
+					statement.execute(query);
+
+					return true;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// If user doesn't exist in the database, return false.
+		return false;
 	}
 
 	@Override
