@@ -233,6 +233,36 @@ public class IngredientsListView extends JFrame {
 		    }
 		});
 		
+		//Set up what to do when an item in the ingredient list is double-clicked.
+		ingredientsList.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        if (evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1) {
+		            
+		        	//Save selected ingredient.
+		        	for(Ingredient ingredient:ingredients) {
+		        		if(ingredientsList.getSelectedValue().equals(ingredient.getName())){
+		        			selectedIngredient = ingredient;
+		        		}
+		        	}
+		        	
+		        	//Clear selected ingredients list item.
+					ingredientsList.clearSelection();
+					
+					//Create an EditIngredientView window
+					IngredientView ingredientView = new IngredientView(componentsToToggle, selectedIngredient);
+							
+					//Make the HomePage window visible and the UserRecipeCollection window invisible.
+					ingredientView.setVisible(true);
+					
+					//Disable buttons and ingredients list.
+					for(JButton button:buttons) {
+						button.setEnabled(false);
+					}
+					ingredientsList.setEnabled(false);
+		        }
+		    }
+		});
+		
 		//Set up what to do when the edit button is pressed.
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -278,6 +308,9 @@ public class IngredientsListView extends JFrame {
 					listModel.addElement(ingredient.getName());
 				}
 				ingredientsList.ensureIndexIsVisible(listModel.getSize());
+				
+				editButton.setEnabled(false);
+				removeButton.setEnabled(false);
 										
 			}
 		});

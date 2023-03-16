@@ -51,7 +51,7 @@ public class EditIngredientView extends JFrame{
 	private JPanel carbsPane = new JPanel();
 	private JPanel costPane = new JPanel();
 	private JPanel expirationPane = new JPanel();
-	private JPanel[] panes = {namePane, costPane, expirationPane, proteinPane, carbsPane, buttonPane};
+	private JPanel[] panes = {namePane, costPane, expirationPane, carbsPane, proteinPane, buttonPane};
 
 	//Text field objects
 	private JTextField nameField = new JTextField("");
@@ -63,7 +63,7 @@ public class EditIngredientView extends JFrame{
 	private JLabel nameLabel = new JLabel("Ingredient Name");
 	private JLabel proteinLabel = new JLabel("Protein (g)");
 	private JLabel carbsLabel = new JLabel("Carbs (g)");
-	private JLabel costLabel = new JLabel("Price");
+	private JLabel costLabel = new JLabel("Cost");
 	private JLabel expirationLabel = new JLabel("Expiration Date");
 	private JLabel errorLabel = new JLabel("");
 	
