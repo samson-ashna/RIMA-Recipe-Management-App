@@ -78,7 +78,8 @@ public class HomePage extends JFrame {
 	 */
 	public HomePage() {
 
-		frame = new JFrame("RIMA - Home");
+		setTitle("RIMA - Home");
+		frame = this;
 
 		// Background
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));

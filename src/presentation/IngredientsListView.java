@@ -108,7 +108,7 @@ public class IngredientsListView extends JFrame {
 	public IngredientsListView() {
 		//Retrieve current user and ingredients.
 		user = UserActivity.getCurrentUser();
-		if(user != null) ingredients = IngredientActions.getIngredients();
+		if(user != null) ingredients = user.getIngredients();
 
 		//Set title.
 		setTitle("RIMA - User Ingredients");
@@ -222,7 +222,6 @@ public class IngredientsListView extends JFrame {
 		        	editButton.setEnabled(true);
 		            removeButton.setEnabled(true);
 		            String selectedValue = (String) ingredientsList.getSelectedValue();
-		            selectedIndex = ingredientsList.getSelectedIndex();
 		            if(ingredients != null) {
 		            	for(Ingredient ingredient:ingredients) {
 		            		if(ingredient.getName().equals(selectedValue)) {
@@ -272,7 +271,6 @@ public class IngredientsListView extends JFrame {
 				
 				//Set selected ingredient and index to null;
 				selectedIngredient = null;
-				selectedIndex = -1;
 				
 				//Update ingredientsList.
 				listModel.removeAllElements();

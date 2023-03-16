@@ -19,7 +19,7 @@ public class Ingredient {
 		
 		//temp
 		setProtein(protein);
-		setCarbs(protein);
+		setCarbs(carbs);
 		setCost(cost);
 	}
 	
