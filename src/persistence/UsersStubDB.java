@@ -173,4 +173,16 @@ public class UsersStubDB implements UsersDAO {
 		}
 		
 	}
+
+	@Override
+	public void editPlanner(User u, String day, String time, String recipe) {
+		// TODO Auto-generated method stub
+		if(time=="Breakfast") {
+			u.getWeekPlanner().get(day).breakfast = recipe;
+		}else if(time == "Lunch") {
+			u.getWeekPlanner().get(day).lunch = recipe;			
+		}else {
+			u.getWeekPlanner().get(day).dinner = recipe;
+		}
+	}
 }

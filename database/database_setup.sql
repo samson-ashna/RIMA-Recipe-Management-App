@@ -28,6 +28,7 @@ CREATE TABLE `users` (
     `myRecipes` json DEFAULT NULL ,
     `myIngredients` json DEFAULT NULL ,
 	`allergies` json DEFAULT NULL ,
+    `plan` json default null,
     PRIMARY KEY(`name`)
 );
 CREATE TABLE `id` (

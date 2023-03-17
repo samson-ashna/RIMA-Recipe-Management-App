@@ -2,7 +2,9 @@ package objects;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * This class represents a User object. 
@@ -17,6 +19,9 @@ public class User {
 	private Hashtable<String, String> recipelst=new Hashtable<String, String>();
 	private Hashtable<String, Integer> allergylst=new Hashtable<String, Integer>();
 	private ArrayList<Recipes> myFavourites = new ArrayList<Recipes>();
+	private HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
+	String[] days= {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+
 	//private ArrayList<String> recipelst = new ArrayList<String>();
 	
 	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
@@ -39,7 +44,14 @@ public class User {
 		this.password=password;
 		this.allergens = new objects.Allergies();
 		this.userID = id;
-		id++;
+		id++;	
+		for(String day:days) {
+			weekPlanner.put(day,new Planner());
+			
+		}
+	}
+	public HashMap<String,Planner> getWeekPlanner() {
+		return this.weekPlanner;
 	}
 	public static  int getID() {
 		return id;
@@ -145,6 +157,9 @@ public class User {
 	
 	//converts the ingredients list to a String
 	public String ingredientsToJSON() {
+		//For testing purposes.
+		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
+		ingredients.add(new Ingredient("x", 1.00, new Date(), 0, 0, "User"));
 		
 		//String for converted ingredients arraylist.
 		String jsonString = "";
@@ -192,6 +207,16 @@ public class User {
 	// creates a hashtable to store all the user's allergy information
 	public void setAllergyInformation(Hashtable<String, Integer> allergyLst2) {
 		this.getUserAllergies().setAllergies(allergyLst2);
+	}
+	public void editPlan(String day,String time, String recipe) {
+		// TODO Auto-generated method stub
+		if(time.contains("Breakfast")) {
+			weekPlanner.get(day).breakfast = recipe;
+		}else if(time.contains("Lunch")) {
+			weekPlanner.get(day).lunch = recipe;			
+		}else {
+			weekPlanner.get(day).dinner = recipe;
+		}
 	}
 
 }
