@@ -89,7 +89,7 @@ public class HomePage extends JFrame {
 		logoutButton = new JButton("Logout");
 		logoutButton.setForeground(new Color(255, 255, 255));
         logoutButton.setBackground(new Color(59, 89, 182));
-        logoutButton.setBounds(990, 600, 160, 23);
+        logoutButton.setBounds(1005, 653, 160, 23);
 		label.add(logoutButton);
 
 		logoutButton.addActionListener(new ActionListener() {
@@ -211,7 +211,7 @@ public class HomePage extends JFrame {
 		favourites = new JPanel();
 		JLabel favouritesLabel1 = new JLabel("Favourites");
 		favourites.add(favouritesLabel1);
-		favourites.setBounds(940, 45, 280, 400);
+		favourites.setBounds(940, 45, 280, 600);
 		favourites.setBackground(Color.WHITE);
 
 		label.add(favourites);
