@@ -13,9 +13,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JCalendar;
+
 import businessLogic.UserActivity;
 import objects.User;
+import persistence.DatabaseAccess;
+import persistence.UsersDAO;
 import objects.Planner;
+import objects.Recipes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,6 +32,12 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
+import java.awt.Component;
+import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 /**
  * 
@@ -50,6 +61,9 @@ public class HomePage extends JFrame {
 	private JLabel label;
 	private ImageIcon icon;
 	private JTable table;
+	JTextArea lunchText;
+	JTextArea breakfastText;
+	JTextArea dinnerText;
 
 	
 	
@@ -63,6 +77,7 @@ public class HomePage extends JFrame {
 	//Label objects.
 	JLabel welcomeLabel = new JLabel("");
 	private JButton mealPlannerButton = new JButton("Meal Planner");
+	private JComboBox comboBox;
 	
 	/**
 	 * Launch the application.
@@ -189,30 +204,49 @@ public class HomePage extends JFrame {
 		
 		// Breakfast Panel
 		breakfast = new JPanel();
+		breakfast.setLayout(null);
 		JLabel breakfastLabel1 = new JLabel("Breakfast");
+		breakfastLabel1.setBounds(116, 5, 99, 14);
 		breakfast.add(breakfastLabel1);
 		breakfast.setBounds(40, 45, 280, 400);
 		breakfast.setBackground(Color.WHITE);
 
 		label.add(breakfast);
+		
+		breakfastText = new JTextArea();
+		breakfastText.setLineWrap(true);
+		breakfastText.setBounds(10, 30, 260, 359);
+		breakfast.add(breakfastText);
 
 		// Lunch Panel
 		lunch = new JPanel();
+		lunch.setLayout(null);
 		JLabel lunchLabel1 = new JLabel("Lunch");
+		lunchLabel1.setBounds(125, 5, 79, 14);
 		lunch.add(lunchLabel1);
 		lunch.setBounds(340, 45, 280, 400);
 		lunch.setBackground(Color.WHITE);
 
 		label.add(lunch);
+		
+		lunchText = new JTextArea();
+		lunchText.setBounds(10, 41, 260, 359);
+		lunch.add(lunchText);
 
 		// Dinner Panel
 		dinner = new JPanel();
+		dinner.setLayout(null);
 		JLabel dinnerLabel1 = new JLabel("Dinner");
+		dinnerLabel1.setBounds(123, 5, 63, 14);
 		dinner.add(dinnerLabel1);
 		dinner.setBounds(640, 45, 280, 400);
 		dinner.setBackground(Color.WHITE);
 
 		label.add(dinner);
+		
+		dinnerText = new JTextArea();
+		dinnerText.setBounds(10, 30, 260, 359);
+		dinner.add(dinnerText);
 
 		// Favourites Panel
 		favourites = new JPanel();
@@ -225,33 +259,81 @@ public class HomePage extends JFrame {
 
 		// Meal Planner Panel
 		planner = new JPanel();
-		JLabel plannerLabel1 = new JLabel("Select Day");
+		planner.setLayout(null);
+		JLabel plannerLabel1 = new JLabel("Select A Day To View Recipes");
+		plannerLabel1.setBounds(10,11,275,14);
 		planner.add(plannerLabel1);
 		planner.setBounds(40, 465, 880, 180);
 		planner.setBackground(Color.WHITE);
 		table = new JTable();
+		table.setSize(652, 128);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		// User u = UserActivity.getCurrentUser();
-		// HashMap<String, Planner> p = u.getWeekPlanner();
-		// table.setModel(new DefaultTableModel (
-		// 	new Object[][] {
-		// 		{"Day", "Breakfast", "Lunch", "Dinner"},
-		// 		{"Monday", p.get("Monday").breakfast, p.get("Monday").lunch, p.get("Monday").dinner},
-		// 		{"Tuesday", p.get("Tuesday").breakfast, p.get("Tuesday").lunch, p.get("Tuesday").dinner},
-		// 		{"Wednesday",p.get("Wednesday").breakfast, p.get("Wednesday").lunch, p.get("Wednesday").dinner},
-		// 		{"Thursday", p.get("Thursday").breakfast, p.get("Thursday").lunch, p.get("Thursday").dinner},
-		// 		{"Friday", p.get("Friday").breakfast, p.get("Friday").lunch, p.get("Friday").dinner},
-		// 		{"Saturday", p.get("Saturday").breakfast, p.get("Saturday").lunch, p.get("Saturday").dinner},
-		// 		{"Sunday", p.get("Sunday").breakfast, p.get("Sunday").lunch, p.get("Sunday").dinner},
-		// 	},
-		// 	new String[] {
-		// 		"Day", "Breakfast", "Lunch", "Dinner"
-		// 	}
+		 User u = UserActivity.getCurrentUser();
+		 HashMap<String, Planner> p = u.getWeekPlanner();
+		 
+		 comboBox = new JComboBox();
+		 comboBox.addItemListener(new ItemListener() {
+		 	public void itemStateChanged(ItemEvent e) {
+		 		String day = day = comboBox.getSelectedItem().toString();
+		 		DatabaseAccess access = new DatabaseAccess();
+				UsersDAO db = access.usersDB();
+				User currentUser = UserActivity.currentUser;
+				Recipes rBreakfast = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).breakfast);
+				if( currentUser.getWeekPlanner().get(day).breakfast != ""){
+					if(rBreakfast  == null) {
+						breakfastText.setText(currentUser.getWeekPlanner().get(day).breakfast+"\n recipe not avaialable in collection.");
+					}else {
+						breakfastText.setText(rBreakfast.toString());
+					}
+				}
+				if(currentUser.getWeekPlanner().get(day).lunch != "") {
+					Recipes rLunch = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).lunch);
+					if( rLunch  == null) {
+						lunchText.setText(currentUser.getWeekPlanner().get(day).lunch+"\n recipe not avaialable in collection.");
+					}else {
+						lunchText.setText( rLunch.toString());
+					}
+				}
+				if(currentUser.getWeekPlanner().get(day).dinner != "") {
+					Recipes rDinner = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).dinner);
+					if(rDinner  == null ) {
+						dinnerText.setText(currentUser.getWeekPlanner().get(day).dinner+"\n recipe not avaialable in collection.");
+					}else {
+						dinnerText.setText(rDinner .toString());
+					}
+				}
+				
+		 	}
+		 });
+		 comboBox.setBounds(23,47,136,22);
+		 String WhichDayofWeek[] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		 for(String d: WhichDayofWeek) {
+			  comboBox.addItem(d);
+		 }
+		
+		 planner.add(comboBox);
+		 table.setModel(new DefaultTableModel (
+			new Object[][] {
+		 		{"Day", "Breakfast", "Lunch", "Dinner"},
+		 		{"Monday", p.get("Monday").breakfast, p.get("Monday").lunch, p.get("Monday").dinner},
+		 		{"Tuesday", p.get("Tuesday").breakfast, p.get("Tuesday").lunch, p.get("Tuesday").dinner},
+		 		{"Wednesday",p.get("Wednesday").breakfast, p.get("Wednesday").lunch, p.get("Wednesday").dinner},
+		 		{"Thursday", p.get("Thursday").breakfast, p.get("Thursday").lunch, p.get("Thursday").dinner},
+		 		{"Friday", p.get("Friday").breakfast, p.get("Friday").lunch, p.get("Friday").dinner},
+		 		{"Saturday", p.get("Saturday").breakfast, p.get("Saturday").lunch, p.get("Saturday").dinner},
+		 		{"Sunday", p.get("Sunday").breakfast, p.get("Sunday").lunch, p.get("Sunday").dinner},
+		 	},
+		 	new String[] {
+		 		"Day", "Breakfast", "Lunch", "Dinner"
+		 	}
 
 
-		// ));
-		// table.setLocation(40, 465);
-
+		));
+		table.setLocation(192, 22);
+		//JCalendar calendar = new JCalendar();
+		//calendar.setBounds(40, 222, 233, 153);
+		//panel_3_calendar.add(calendar);
+		//planner.add(calendar);
 		planner.add(table);
 
 		label.add(planner);
@@ -309,7 +391,7 @@ public class HomePage extends JFrame {
 		
 		
 		frame.getContentPane().setBackground(new Color(143, 188, 143));
-		frame.add(label);
+		frame.getContentPane().add(label);
 		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
