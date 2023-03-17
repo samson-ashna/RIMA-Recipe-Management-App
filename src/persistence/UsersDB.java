@@ -95,43 +95,50 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				}
 				u.setAllergyInformation(allergyLst);
 				u.setRecipeCollection(recipesLst);
-//				HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
-//				String breakfast=null;
-//				String lunch = null;
-//				String dinner =null;
-//				if(plan != null) {
-//					String[] arrOfStr = plan.split(",");
-//					for (String s : arrOfStr) {
-//						String[] values = s.split(":");
-//						values[0] = values[0].replace("\"", "");
-//						values[0] = values[0].replace("\\s", "");
-//						values[0]=values[0].replace("{","");
-//						values[0]=values[0].replace("}","");
-//						values[0].strip();
-//						values[1]=values[1].replace("{","");
-//						values[1]=values[1].replace("}","");
-//						String[] strTime = values[1].split(",");
-//						for(String s2: strTime) {
-//							String[] times = s2.split(":");
-//							if(times.length >2) {
-//							times[1] = times[1].replace("\"", "");
-//							times[1] = times[1].replace("\\s", "");
-//							if (times[0].contains("Breakfast")){
-//								breakfast = times[1].strip();
-//							}else if(times[0].contains("Lunch")) {
-//								lunch = times[1].strip();
-//							}else {
-//								dinner = times[1].strip();
-//							}
-//							}
-//						}
-//						System.out.println(values[0]);
-//						if (values[0].length() > 0) {
-//							weekPlanner.put(values[0].strip(),new Planner(breakfast,lunch,dinner));
-//						}
-//					}
-	//			}
-			}
+				HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
+				String breakfast=null;
+				String lunch = null;
+				String dinner =null;
+				String day = null;
+				String time = null;
+				ArrayList<String> days= new ArrayList<String>();
+				days.add("Monday");
+				days.add("Tuesday");
+				days.add("Wednesday");
+				days.add("Thursday");
+				days.add("Friday");
+				days.add("Saturday");
+				days.add("Sunday");
+				ArrayList<String> times = new ArrayList<String>();
+				times.add("Breakfast");
+				times.add("Lunch");
+				times.add("Dinner");
+				if(plan != null) {
+					String[] arrOfStr = plan.split(",");
+					for (String s : arrOfStr) {
+						s = s.replace("\"", "");
+						s = s.replace("\\s", "");
+						s = s.replace("{", "");
+						s = s.replace("}", "");
+						String[] arr = s.split(":");
+						for(String s2:arr) {
+							s2 = s2.replace("\"", "");
+							s2 = s2.replace("\\s", "");
+							s2 = s2.replace("{", "");
+							s2 = s2.replace("}", "");
+							if(days.contains(s2.strip())) {
+								day= s2.strip();
+							}else if(times.contains(s2.strip())) {
+								time = s2.strip();
+							}else {
+								if(s2.length()>1) {
+									u.editPlan(day.strip(),time.strip(),s2.strip());
+								}
+							}
+						}
+					}
+				}
+			}			
 			statement.close();
 			result.close();
 		} catch (SQLException e) {
