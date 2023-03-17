@@ -6,11 +6,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
 import objects.Ingredient;
+import objects.Planner;
 import objects.Recipes;
 import objects.User;
 
@@ -50,6 +52,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				String myRecipes = result.getString(3);
 				ArrayList<Ingredient> ingredients = parseIngredients(result.getString(4));
 				String allergies = result.getString(5);
+				String plan = result.getString(6);
 				User u = new User(name, password);
 				u.setRecipeCollection(myRecipes);
 				u.setAllergies(allergies);
@@ -92,6 +95,42 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				}
 				u.setAllergyInformation(allergyLst);
 				u.setRecipeCollection(recipesLst);
+//				HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
+//				String breakfast=null;
+//				String lunch = null;
+//				String dinner =null;
+//				if(plan != null) {
+//					String[] arrOfStr = plan.split(",");
+//					for (String s : arrOfStr) {
+//						String[] values = s.split(":");
+//						values[0] = values[0].replace("\"", "");
+//						values[0] = values[0].replace("\\s", "");
+//						values[0]=values[0].replace("{","");
+//						values[0]=values[0].replace("}","");
+//						values[0].strip();
+//						values[1]=values[1].replace("{","");
+//						values[1]=values[1].replace("}","");
+//						String[] strTime = values[1].split(",");
+//						for(String s2: strTime) {
+//							String[] times = s2.split(":");
+//							if(times.length >2) {
+//							times[1] = times[1].replace("\"", "");
+//							times[1] = times[1].replace("\\s", "");
+//							if (times[0].contains("Breakfast")){
+//								breakfast = times[1].strip();
+//							}else if(times[0].contains("Lunch")) {
+//								lunch = times[1].strip();
+//							}else {
+//								dinner = times[1].strip();
+//							}
+//							}
+//						}
+//						System.out.println(values[0]);
+//						if (values[0].length() > 0) {
+//							weekPlanner.put(values[0].strip(),new Planner(breakfast,lunch,dinner));
+//						}
+//					}
+	//			}
 			}
 			statement.close();
 			result.close();
@@ -108,9 +147,12 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			con = DriverManager.getConnection(url, user, password);
 			// create statement
 			statement = con.createStatement();
-			query = "INSERT INTO users(name, password, myRecipes, myIngredients,allergies) VALUES (\'" + t.getName()
+			String meal = "{\"Monday\":{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"},\"Tuesday\":{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"},\"Wednesday\":\r\n"
+					+ "{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"},\"Thursday\":{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"},\"Friday\":{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"},\"Saturday\":{\"Breakfast\":\"\",\r\n"
+					+ "\"Lunch\":\"\",\"Dinner\":\"\"},\"Sunday\":{\"Breakfast\":\"\",\"Lunch\":\"\",\"Dinner\":\"\"}}";
+			query = "INSERT INTO users(name, password, myRecipes, myIngredients,allergies,plan) VALUES (\'" + t.getName()
 					+ "\', \'" + t.getPassword() + "\',\'" + t.getRecipeCollection1() + "\', \'" + t.ingredientsToJSON()
-					+ "\', \'" + t.getAllergies() + "\');";
+					+ "\', \'" + t.getAllergies() + "\',\'"+meal+"\');";
 			statement.execute(query);
 			query = "UPDATE users SET allergies= JSON_SET(allergies, '$.\"" + "Eggs" + "\"',\'" + 0 + "\','$.\""
 					+ "Milk" + "\"',\'" + 0 + "\','$.\"" + "Peanuts" + "\"',\'" + 0 + "\','$.\"" + "Seafood" + "\"',\'"
@@ -541,6 +583,28 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public void editPlanner(User u,String day,String time, String recipe) {
+		if(time=="Breakfast") {
+			u.getWeekPlanner().get(day).breakfast = recipe;
+		}else if(time == "Lunch") {
+			u.getWeekPlanner().get(day).lunch = recipe;			
+		}else {
+			u.getWeekPlanner().get(day).dinner = recipe;
+		}
+		try {
+			// create connection
+			con = DriverManager.getConnection(url, user, password);
+			// create statement
+			statement = con.createStatement();
+			query = "UPDATE users SET `plan`=json_set(plan,'$."+day+"."+time+"\', \'"+recipe+"\') where `name`=\'"+u.getName()+"\';";
+			statement.execute(query);
+			statement.close();
+			result.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 

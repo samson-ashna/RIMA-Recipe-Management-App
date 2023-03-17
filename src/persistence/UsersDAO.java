@@ -22,4 +22,5 @@ public interface UsersDAO extends DAO<User> {
 	void editAllergy(User u, String allergyType, int change);
 	public ArrayList<Recipes> getFavoriteList(User u);
 	public void editFavorites(Recipes r,int change);
+	public void editPlanner(User u,String day,String time, String recipe);
 }

@@ -25,6 +25,8 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JDayChooser;
 
 import businessLogic.UserActivity;
+import persistence.DatabaseAccess;
+import persistence.UsersDAO;
 
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextArea;
@@ -243,7 +245,9 @@ public class UserMealPlanner {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserActivity.currentUser.editPlanner(day, time,textArea.getText());
+				DatabaseAccess access = new DatabaseAccess();
+				UsersDAO db = access.usersDB();
+				db.editPlanner(UserActivity.currentUser,day, time,textArea.getText());
 			}
 		});
 		addButton.setBounds(105, 376, 134, 23);

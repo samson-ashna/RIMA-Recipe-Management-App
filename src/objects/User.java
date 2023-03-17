@@ -208,15 +208,15 @@ public class User {
 	public void setAllergyInformation(Hashtable<String, Integer> allergyLst2) {
 		this.getUserAllergies().setAllergies(allergyLst2);
 	}
-	public void editPlanner(String day,String time, String recipe) {
-		// TODO Auto-generated method stub
-		if(time=="Breakfast") {
-			weekPlanner.get(day).breakfast = recipe;
-		}else if(time == "Lunch") {
-			weekPlanner.get(day).lunch = recipe;			
-		}else {
-			weekPlanner.get(day).dinner = recipe;
-		}
-	}
+//	public void editPlanner(String day,String time, String recipe) {
+//		// TODO Auto-generated method stub
+//		if(time=="Breakfast") {
+//			weekPlanner.get(day).breakfast = recipe;
+//		}else if(time == "Lunch") {
+//			weekPlanner.get(day).lunch = recipe;			
+//		}else {
+//			weekPlanner.get(day).dinner = recipe;
+//		}
+//	}
 
 }
