@@ -12,12 +12,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -66,6 +72,19 @@ public class EditIngredientView extends JFrame{
 	private JLabel costLabel = new JLabel("Cost");
 	private JLabel expirationLabel = new JLabel("Expiration Date");
 	private JLabel errorLabel = new JLabel("");
+	
+	//Date pane
+	private JPanel datePane = new JPanel();
+	private JComboBox<String> dayBox;
+	private JComboBox<String> monthBox;
+	private JComboBox<String> yearBox;
+	
+	//ComboBox options;
+	static String[] days;
+	static final String[] months = {"January", "February", "March", "April",
+									"May", "June", "July", "August",
+									"September", "October", "November", "December"};
+	static String[] years;
 	
 	//Button Objects
 	private JButton cancelButton = new JButton("Cancel");
@@ -133,6 +152,8 @@ public class EditIngredientView extends JFrame{
 		errorLabel.setForeground(new Color(255, 0, 0));
 		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
+		comboBoxSetup();
+		
 		//Add components to respective panes.
 		namePane.add(nameLabel);
 		namePane.add(Box.createRigidArea(new Dimension(20, 0)));
@@ -145,6 +166,7 @@ public class EditIngredientView extends JFrame{
 		//Add input object here.
 		expirationPane.add(expirationLabel);
 		expirationPane.add(Box.createRigidArea(new Dimension(20, 0)));	
+		expirationPane.add(datePane);
 		
 		proteinPane.add(proteinLabel);
 		proteinPane.add(Box.createRigidArea(new Dimension(20, 0)));
@@ -216,6 +238,9 @@ public class EditIngredientView extends JFrame{
 				//Flag for whether a change has been made.
 				boolean change = false;
 				
+				//Format for dates.
+				SimpleDateFormat format = new SimpleDateFormat("dd MMMM YYYY");
+				
 				//Reset error label.
 				errorLabel.setText("");
 				
@@ -272,6 +297,13 @@ public class EditIngredientView extends JFrame{
 							change = true;
 						}
 							
+						entry = "Date";
+						//If the expiration has changed and isn't blank, update it.
+						if(!format.format(ingredient.getExpiration()).equals(dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())){
+							newIngredient.setExpiration(format.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())));
+							change = true;
+						}
+						
 						entry = "Protein";
 						//If the protein has changed and isn't blank, update it.
 						if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein()){
@@ -287,6 +319,7 @@ public class EditIngredientView extends JFrame{
 						}
 					} catch (Exception ex) {
 						errorLabel.setText(entry + " entry invalid!");
+						ex.printStackTrace();
 						return;
 					}
 					
@@ -308,6 +341,8 @@ public class EditIngredientView extends JFrame{
 					try {
 						//Update other fields.
 						newIngredient.setCost(Double.parseDouble(costField.getText()));
+						entry = "Date";
+						newIngredient.setExpiration(format.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())));
 						entry = "Protein";
 						newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 						entry = "Carbs";
@@ -346,6 +381,56 @@ public class EditIngredientView extends JFrame{
 				}
 			}
 		});
+		
+		monthBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(days);
+            	switch((String)monthBox.getSelectedItem()){
+            		case "January":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "February":
+            			if(Year.now().getValue()%4 == 0) {
+            				model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 29));
+            			}else {
+            				model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 28));
+            			}
+            			break;
+            		case "March":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "April":
+            			model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 30));
+            			break;
+            		case "May":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "June":
+            			model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 30));
+            			break;
+            		case "July":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "August":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "September":
+            			model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 30));
+            			break;
+            		case "October":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            		case "November":
+            			model = new DefaultComboBoxModel<>(Arrays.copyOfRange(days, 0, 30));
+            			break;
+            		case "December":
+            			model = new DefaultComboBoxModel<>(days);
+            			break;
+            	}
+            	dayBox.setModel(model);
+            }
+        });
 	}
 	
 	private void textFieldsSetup() {
@@ -379,5 +464,59 @@ public class EditIngredientView extends JFrame{
 			carbsField.setText(""+ingredient.getCarbs());
 		}
 		
+	}
+	
+	private void comboBoxSetup() {
+		//Set up days values
+		days = new String[31];
+		for(int i = 1; i<32; i++) {
+			days[i-1] = ""+i; 
+		}
+			
+		//Set up years values.
+		int currentYear = Year.now().getValue();
+		years = new String[20];
+		for(int i = 0; i<20; i++) {
+			years[i] = ""+(currentYear+i);
+		}
+		
+		//Create date boxes.
+		dayBox = new JComboBox<String>(days);
+		monthBox = new JComboBox<String>(months);
+		yearBox = new JComboBox<String>(years);
+		
+		//Set maximum size of date boxes
+		dayBox.setMaximumSize(new Dimension((int)dayBox.getMinimumSize().getWidth(), (int)dayBox.getMinimumSize().getHeight()));
+		monthBox.setMaximumSize(new Dimension((int)monthBox.getMinimumSize().getWidth(), (int)monthBox.getMinimumSize().getHeight()));
+		yearBox.setMaximumSize(new Dimension((int)yearBox.getMinimumSize().getWidth(), (int)yearBox.getMinimumSize().getHeight()));
+		
+		//Change selected date items if ingredient isn't null.
+		if(ingredient != null) {
+			
+			//set selected month
+			for(int i = 0; i<monthBox.getComponentCount(); i++) {
+				if(i == ingredient.getExpiration().getMonth()){
+					monthBox.setSelectedIndex(i);
+				}
+			}
+			
+			//Set selected day
+			dayBox.setSelectedIndex(ingredient.getExpiration().getDay());
+			
+			//set selected year.
+			for(int i = 0; i<yearBox.getComponentCount(); i++) {
+				if(i == ingredient.getExpiration().getYear()+1900-Year.now().getValue()){
+					yearBox.setSelectedIndex(i);
+				}
+			}
+		}
+		
+		datePane.setLayout(new BoxLayout(datePane, BoxLayout.LINE_AXIS));
+		
+		datePane.add(dayBox);
+		datePane.add(Box.createRigidArea(new Dimension(0, 5)));
+		datePane.add(monthBox);
+		datePane.add(Box.createRigidArea(new Dimension(0, 5)));
+		datePane.add(yearBox);
 	}
 }
