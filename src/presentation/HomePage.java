@@ -7,11 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import businessLogic.UserActivity;
+import objects.User;
+import objects.Planner;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,6 +25,7 @@ import java.awt.EventQueue;
 import java.awt.Window;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
 /**
@@ -38,11 +43,13 @@ public class HomePage extends JFrame {
 	private JPanel dinner;
 	private JPanel calendar;
 	private JPanel favourites;
+	private JPanel planner;
 
 
 	private JFrame frame;
 	private JLabel label;
 	private ImageIcon icon;
+	private JTable table;
 
 	
 	
@@ -207,7 +214,7 @@ public class HomePage extends JFrame {
 
 		label.add(dinner);
 
-		// Favourites
+		// Favourites Panel
 		favourites = new JPanel();
 		JLabel favouritesLabel1 = new JLabel("Favourites");
 		favourites.add(favouritesLabel1);
@@ -215,6 +222,39 @@ public class HomePage extends JFrame {
 		favourites.setBackground(Color.WHITE);
 
 		label.add(favourites);
+
+		// Meal Planner Panel
+		planner = new JPanel();
+		JLabel plannerLabel1 = new JLabel("Select Day");
+		planner.add(plannerLabel1);
+		planner.setBounds(40, 465, 880, 180);
+		planner.setBackground(Color.WHITE);
+		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		// User u = UserActivity.getCurrentUser();
+		// HashMap<String, Planner> p = u.getWeekPlanner();
+		// table.setModel(new DefaultTableModel (
+		// 	new Object[][] {
+		// 		{"Day", "Breakfast", "Lunch", "Dinner"},
+		// 		{"Monday", p.get("Monday").breakfast, p.get("Monday").lunch, p.get("Monday").dinner},
+		// 		{"Tuesday", p.get("Tuesday").breakfast, p.get("Tuesday").lunch, p.get("Tuesday").dinner},
+		// 		{"Wednesday",p.get("Wednesday").breakfast, p.get("Wednesday").lunch, p.get("Wednesday").dinner},
+		// 		{"Thursday", p.get("Thursday").breakfast, p.get("Thursday").lunch, p.get("Thursday").dinner},
+		// 		{"Friday", p.get("Friday").breakfast, p.get("Friday").lunch, p.get("Friday").dinner},
+		// 		{"Saturday", p.get("Saturday").breakfast, p.get("Saturday").lunch, p.get("Saturday").dinner},
+		// 		{"Sunday", p.get("Sunday").breakfast, p.get("Sunday").lunch, p.get("Sunday").dinner},
+		// 	},
+		// 	new String[] {
+		// 		"Day", "Breakfast", "Lunch", "Dinner"
+		// 	}
+
+
+		// ));
+		// table.setLocation(40, 465);
+
+		planner.add(table);
+
+		label.add(planner);
 		
 		// // //Set ingredients button to redirect to the user's personal ingredient collection when pushed.
 		// ingredientsButton.addActionListener(new ActionListener() {
