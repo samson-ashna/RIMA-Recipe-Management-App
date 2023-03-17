@@ -1,3 +1,4 @@
+
 create database if not exists rimaDB;
 use rimaDB;
 drop table if exists recipes;
@@ -28,6 +29,7 @@ CREATE TABLE `users` (
     `myRecipes` json DEFAULT NULL ,
     `myIngredients` json DEFAULT NULL ,
 	`allergies` json DEFAULT NULL ,
+    `plan` json default null,
     PRIMARY KEY(`name`)
 );
 CREATE TABLE `id` (
