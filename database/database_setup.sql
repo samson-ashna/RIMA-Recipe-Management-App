@@ -1,4 +1,3 @@
-
 create database if not exists rimaDB;
 use rimaDB;
 drop table if exists recipes;
