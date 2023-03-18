@@ -2,6 +2,7 @@ package presentation;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,6 +31,7 @@ import java.awt.EventQueue;
 import java.awt.Window;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
@@ -38,6 +40,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
+import javax.swing.JList;
+import java.awt.Scrollbar;
 
 /**
  * 
@@ -78,6 +82,11 @@ public class HomePage extends JFrame {
 	JLabel welcomeLabel = new JLabel("");
 	private JButton mealPlannerButton = new JButton("Meal Planner");
 	private JComboBox comboBox;
+	private JList list;
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO db = access.usersDB();
+	DefaultListModel<String> model = new DefaultListModel<String>();		
+
 	
 	/**
 	 * Launch the application.
@@ -94,6 +103,18 @@ public class HomePage extends JFrame {
 			}
 		});
 	}
+	public void favouriteRecipes() {
+		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
+		recipes = db.getFavoriteList(UserActivity.getCurrentUser());
+		//Add all the user's favourite recipes to the list model.
+		for(Recipes r: recipes) {
+			model.addElement(r.getName());
+		}
+		
+		//Set the model for the list section to be the one that was 
+		list.setModel(model);
+	}
+
 
 	/**
 	 * Create the frame.
@@ -123,7 +144,7 @@ public class HomePage extends JFrame {
 				frame.dispose();
 			}
 		});	
-
+		
 		// User Recipes Button
 		userRecipesButton = new JButton("My Collection");
 		userRecipesButton.setForeground(new Color(255, 255, 255));
@@ -250,12 +271,48 @@ public class HomePage extends JFrame {
 
 		// Favourites Panel
 		favourites = new JPanel();
+		favourites.setLayout(null);
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setBounds(31, 52, 222, 439);
+		favourites.add(textArea);
+		textArea.setVisible(false);
 		JLabel favouritesLabel1 = new JLabel("Favourites");
+		favouritesLabel1.setBounds(114, 5, 118, 14);
 		favourites.add(favouritesLabel1);
 		favourites.setBounds(940, 45, 280, 600);
 		favourites.setBackground(Color.WHITE);
 
 		label.add(favourites);
+		JButton btnNewButton = new JButton("Back to List");
+		btnNewButton.setBounds(137, 566, 133, 23);
+		btnNewButton.setVisible(false);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton.setVisible(false);
+				textArea.setVisible(false);
+				favouriteRecipes();
+			}
+		});
+		favourites.add(btnNewButton);
+
+		
+		list = new JList();
+		list.setBounds(23, 43, 230, 510);
+		favourites.add(list);
+		list.getSelectionModel().addListSelectionListener(e-> {
+			//Get the selected list item
+			String name = (String) list.getSelectedValue();
+			//Create a ViewRecipe window for the selected list item/recipe.
+			Recipes r = db.getRecipe(UserActivity.currentUser,name);
+			if(r != null) {
+				model.clear();
+				textArea.setVisible(true);
+				textArea.setText(r.toString());
+				btnNewButton.setVisible(true);
+
+			}
+		});
 
 		// Meal Planner Panel
 		planner = new JPanel();
@@ -266,6 +323,7 @@ public class HomePage extends JFrame {
 		planner.setBounds(40, 465, 880, 180);
 		planner.setBackground(Color.WHITE);
 		table = new JTable();
+		table.setEnabled(false);
 		table.setSize(652, 128);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		 User u = UserActivity.getCurrentUser();
@@ -397,7 +455,10 @@ public class HomePage extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
+		favouriteRecipes();
+		
+		
 		//optionsPane.add(mealPlannerButton_1);
 	}
 }
+
