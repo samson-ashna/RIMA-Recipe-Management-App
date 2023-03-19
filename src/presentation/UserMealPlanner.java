@@ -25,6 +25,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JDayChooser;
 
 import businessLogic.UserActivity;
+import objects.Recipes;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
@@ -39,6 +40,7 @@ public class UserMealPlanner {
 	String day="Sunday";
 	String date;
 	String time,time2;
+	static JTextArea textArea = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -203,6 +205,12 @@ public class UserMealPlanner {
 		JButton btnAddSaved = new JButton("Select Recipe From Collection");
 		btnAddSaved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserRecipeCollection collection = new UserRecipeCollection();
+				collection.page =1;
+				collection.setVisible(true);
+//				frame.setVisible(false);
+//				Window win = SwingUtilities.getWindowAncestor(frame.getContentPane());
+//				win.dispose();
 			}
 		});
 		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -219,6 +227,8 @@ public class UserMealPlanner {
 		lblSelectDayofWeek.setBounds(31, 75, 284, 37);
 		panel_1_weeklyManager.add(lblSelectDayofWeek);
 		
+		JButton addButton = new JButton("Add");
+		
 		String WhichDayofWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 		JComboBox<?> comboBox_3_dayofWeek = new JComboBox<Object>(WhichDayofWeek);
 		comboBox_3_dayofWeek.setMaximumRowCount(20);
@@ -233,7 +243,7 @@ public class UserMealPlanner {
 			}
 		});
 		
-		JTextArea textArea = new JTextArea();
+		
 		textArea.setBounds(69, 244, 209, 30);
 		panel_1_weeklyManager.add(textArea);
 		
@@ -242,7 +252,7 @@ public class UserMealPlanner {
 		lblNewLabel_2.setBounds(31, 209, 249, 24);
 		panel_1_weeklyManager.add(lblNewLabel_2);
 		
-		JButton addButton = new JButton("Add");
+		
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatabaseAccess access = new DatabaseAccess();
@@ -440,5 +450,9 @@ public class UserMealPlanner {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
 		lblNewLabel.setBounds(10, 11, 1246, 43);
 		frame.getContentPane().add(lblNewLabel);
+	}
+	public static void setRecipe(String r) {
+		textArea.setText(r);
+		
 	}
 }

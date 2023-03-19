@@ -35,9 +35,9 @@ public class ViewRecipeUserCollection extends JDialog {
 	 * 
 	 * @param name
 	 */
-	public void NewScreen(String name) {
+	public void NewScreen(String name, int page) {
 		try {
-			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name);
+			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name, page);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class ViewRecipeUserCollection extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewRecipeUserCollection(String name) {
+	public ViewRecipeUserCollection(String name,int page) {
 		setBounds(100, 100, 862, 574);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 836, 503);
@@ -142,6 +142,8 @@ public class ViewRecipeUserCollection extends JDialog {
 		JButton btnReturn = new JButton("Return to List");
 		btnReturn.setBounds(705, 503, 131, 23);
 		getContentPane().add(btnReturn);
+		
+		
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					UserRecipeCollection collection = new UserRecipeCollection();
@@ -151,5 +153,20 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 		});
+		JButton plannerButton = new JButton("Add to Plan");
+		plannerButton.setBounds(10, 503, 131, 23);
+		getContentPane().add(plannerButton);
+		if(page ==0) {
+			plannerButton.setVisible(false);
+		}
+		plannerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					UserMealPlanner.setRecipe(name);
+					contentPanel.setVisible(false);
+					Window win = SwingUtilities.getWindowAncestor(contentPanel);
+					win.dispose();
+				}
+		});
+
 	}
 }

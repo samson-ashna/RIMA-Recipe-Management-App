@@ -50,6 +50,7 @@ public class UserRecipeCollection extends JFrame {
 	private JTextField searchField;
 	private String searchCategory;
 	DefaultListModel<String> model = new DefaultListModel<String>();
+	static int page=0;
 
 	/**
 	 * Launch the application.
@@ -147,9 +148,9 @@ public class UserRecipeCollection extends JFrame {
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
 			
-			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name);
+			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name,page);
 			//Set up the ViewRecipe window and make it visible.
-			newWindow.NewScreen(name);
+			newWindow.NewScreen(name,page);
 			contentPane.setVisible(false);
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
@@ -160,7 +161,7 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the back button.
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		backButton.setBounds(528, 518, 98, 21);
+		backButton.setBounds(528, 505, 98, 34);
 		
 		//add the back button to the content pane.
 		contentPane.add(backButton);
@@ -169,10 +170,12 @@ public class UserRecipeCollection extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
-				HomePage homePage = new HomePage();
-				
-				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				homePage.setVisible(true);
+				if(page==0) {
+					HomePage homePage = new HomePage();
+					
+					//Make the HomePage window visible and the UserRecipeCollection window invisible.
+					homePage.setVisible(true);
+				}
 				contentPane.setVisible(false);
 				
 				//Close the UserRecipeCollection Window.
@@ -183,7 +186,7 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the Favourite button
 		favourites.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		favourites.setBounds(176, 517, 116, 23);
+		favourites.setBounds(176, 505, 116, 35);
 		//add the Favourite button to the content pane
 		contentPane.add(favourites);
 		//Set up what to do when the Favourite button is pressed
@@ -205,7 +208,7 @@ public class UserRecipeCollection extends JFrame {
 		searchField.setColumns(10);
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		addRecipeButton.setBounds(309, 517, 200, 23);
+		addRecipeButton.setBounds(309, 505, 200, 35);
 				
 		//add the add button to the content pane.
 		contentPane.add(addRecipeButton);

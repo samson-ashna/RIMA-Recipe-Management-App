@@ -42,6 +42,8 @@ import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import java.awt.Scrollbar;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -158,6 +160,7 @@ public class HomePage extends JFrame {
 				collection.setVisible(true);
 				//contentPane.setVisible(false);
 				frame.dispose();
+				collection.page =0;
 			}
 		});
 
@@ -238,7 +241,6 @@ public class HomePage extends JFrame {
 		breakfastText.setLineWrap(true);
 		breakfastText.setBounds(10, 30, 260, 359);
 		breakfast.add(breakfastText);
-
 		// Lunch Panel
 		lunch = new JPanel();
 		lunch.setLayout(null);
@@ -332,6 +334,10 @@ public class HomePage extends JFrame {
 		 comboBox = new JComboBox();
 		 comboBox.addItemListener(new ItemListener() {
 		 	public void itemStateChanged(ItemEvent e) {
+		 		breakfastText.setText(null);
+		 		lunchText.setText(null);
+		 		dinnerText.setText(null);
+
 		 		String day = day = comboBox.getSelectedItem().toString();
 		 		DatabaseAccess access = new DatabaseAccess();
 				UsersDAO db = access.usersDB();
