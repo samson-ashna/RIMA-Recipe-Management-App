@@ -44,6 +44,9 @@ import javax.swing.JList;
 import java.awt.Scrollbar;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import java.awt.ScrollPane;
+import java.awt.TextArea;
 
 /**
  * 
@@ -67,9 +70,6 @@ public class HomePage extends JFrame {
 	private JLabel label;
 	private ImageIcon icon;
 	private JTable table;
-	JTextArea lunchText;
-	JTextArea breakfastText;
-	JTextArea dinnerText;
 
 	
 	
@@ -88,6 +88,12 @@ public class HomePage extends JFrame {
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
 	DefaultListModel<String> model = new DefaultListModel<String>();		
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JTextArea lunchText;
+	private JScrollPane scrollPane_2;
+	private JTextArea dinnerText;
+	private JScrollPane scrollPane_3;
 
 	
 	/**
@@ -234,13 +240,17 @@ public class HomePage extends JFrame {
 		breakfast.add(breakfastLabel1);
 		breakfast.setBounds(40, 45, 280, 400);
 		breakfast.setBackground(Color.WHITE);
-
+		
 		label.add(breakfast);
 		
-		breakfastText = new JTextArea();
+		scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(23, 30, 231, 359);
+		breakfast.add(scrollPane);
+		
+		JTextArea breakfastText = new JTextArea();
 		breakfastText.setLineWrap(true);
-		breakfastText.setBounds(10, 30, 260, 359);
-		breakfast.add(breakfastText);
+		scrollPane.setViewportView(breakfastText);
 		// Lunch Panel
 		lunch = new JPanel();
 		lunch.setLayout(null);
@@ -252,9 +262,15 @@ public class HomePage extends JFrame {
 
 		label.add(lunch);
 		
+		scrollPane_1 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_1.setBounds(10, 32, 260, 357);
+		lunch.add(scrollPane_1);
+		
 		lunchText = new JTextArea();
-		lunchText.setBounds(10, 41, 260, 359);
-		lunch.add(lunchText);
+		lunchText.setLineWrap(true);
+
+		scrollPane_1.setViewportView(lunchText);
 
 		// Dinner Panel
 		dinner = new JPanel();
@@ -267,25 +283,22 @@ public class HomePage extends JFrame {
 
 		label.add(dinner);
 		
+		scrollPane_2 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_2.setBounds(10, 30, 260, 359);
+		dinner.add(scrollPane_2);
+		
 		dinnerText = new JTextArea();
-		dinnerText.setBounds(10, 30, 260, 359);
-		dinner.add(dinnerText);
-
+		dinnerText.setLineWrap(true);
+		scrollPane_2.setViewportView(dinnerText);
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		
+		
+		
 		// Favourites Panel
 		favourites = new JPanel();
 		favourites.setLayout(null);
-		JTextArea textArea = new JTextArea();
-		textArea.setLineWrap(true);
-		textArea.setBounds(31, 52, 222, 439);
-		favourites.add(textArea);
-		textArea.setVisible(false);
-		JLabel favouritesLabel1 = new JLabel("Favourites");
-		favouritesLabel1.setBounds(114, 5, 118, 14);
-		favourites.add(favouritesLabel1);
-		favourites.setBounds(940, 45, 280, 600);
-		favourites.setBackground(Color.WHITE);
-
-		label.add(favourites);
 		JButton btnNewButton = new JButton("Back to List");
 		btnNewButton.setBounds(137, 566, 133, 23);
 		btnNewButton.setVisible(false);
@@ -293,28 +306,48 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnNewButton.setVisible(false);
 				textArea.setVisible(false);
+				list.setVisible(true);
 				favouriteRecipes();
 			}
 		});
 		favourites.add(btnNewButton);
-
+				
+				list = new JList();
+				list.setBounds(10, 29, 260, 526);
+				favourites.add(list);
+				
+						list.getSelectionModel().addListSelectionListener(e-> {
+							//Get the selected list item
+							String name = (String) list.getSelectedValue();
+							//Create a ViewRecipe window for the selected list item/recipe.
+							Recipes r = db.getRecipe(UserActivity.currentUser,name);
+							if(r != null) {
+								model.clear();
+								list.setVisible(false);
+								scrollPane_3.setVisible(true);
+								textArea.setVisible(true);
+								textArea.setText(r.toString());
+								btnNewButton.setVisible(true);
+				
+							}
+						});
+		JLabel favouritesLabel1 = new JLabel("Favourites");
+		favouritesLabel1.setBounds(114, 5, 118, 14);
+		favourites.add(favouritesLabel1);
+		favourites.setBounds(940, 45, 280, 600);
+		favourites.setBackground(Color.WHITE);
 		
-		list = new JList();
-		list.setBounds(23, 43, 230, 510);
-		favourites.add(list);
-		list.getSelectionModel().addListSelectionListener(e-> {
-			//Get the selected list item
-			String name = (String) list.getSelectedValue();
-			//Create a ViewRecipe window for the selected list item/recipe.
-			Recipes r = db.getRecipe(UserActivity.currentUser,name);
-			if(r != null) {
-				model.clear();
-				textArea.setVisible(true);
-				textArea.setText(r.toString());
-				btnNewButton.setVisible(true);
-
-			}
-		});
+		label.add(favourites);
+		
+		scrollPane_3 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_3.setBounds(23, 43, 230, 510);
+		favourites.add(scrollPane_3);
+		
+		scrollPane_3.setViewportView(textArea);
+		textArea.setLineWrap(true);
+		textArea.setVisible(false);
+		scrollPane_3.setVisible(false);
 
 		// Meal Planner Panel
 		planner = new JPanel();

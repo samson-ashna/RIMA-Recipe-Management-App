@@ -25,6 +25,7 @@ import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -98,28 +99,19 @@ public class SaveRecipesView extends JFrame {
 		
 		//Creates text fields where user can enter the new recipe's name, protein, carbs, ingredients, and instruction.
 		userName = new JTextField();
-		userName.setBounds(327, 71, 216, 41);
+		userName.setBounds(315, 71, 228, 41);
 		contentPane.add(userName);
 		userName.setColumns(10);
 		
 		proteinInfo = new JTextField();
 		proteinInfo.setColumns(10);
-		proteinInfo.setBounds(327, 139, 216, 36);
+		proteinInfo.setBounds(315, 139, 228, 36);
 		contentPane.add(proteinInfo);
 		
 		carbsInfo = new JTextField();
 		carbsInfo.setColumns(10);
-		carbsInfo.setBounds(327, 207, 216, 36);
+		carbsInfo.setBounds(315, 207, 228, 36);
 		contentPane.add(carbsInfo);
-		
-		JTextArea ingredientInfo = new JTextArea();
-		ingredientInfo.setBounds(327, 270, 216, 120);
-		contentPane.add(ingredientInfo);
-		
-		JTextArea instructionInfo = new JTextArea();
-		instructionInfo.setLineWrap(true);
-		instructionInfo.setBounds(327, 409, 221, 171);
-		contentPane.add(instructionInfo);
 			
 		//Creates label for error messages for when user enters string instead of integers for protein and carbs fields.		
 		JLabel lblError1 = new JLabel("");
@@ -161,6 +153,21 @@ public class SaveRecipesView extends JFrame {
 		
 		comboBox.setBounds(205, 591, 247, 39);
 		contentPane.add(comboBox);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(315, 270, 228, 129);
+		contentPane.add(scrollPane);
+		
+		JTextArea ingredientInfo = new JTextArea();
+		scrollPane.setViewportView(ingredientInfo);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(315, 409, 228, 171);
+		contentPane.add(scrollPane_1);
+		
+		JTextArea instructionInfo = new JTextArea();
+		scrollPane_1.setViewportView(instructionInfo);
+		instructionInfo.setLineWrap(true);
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean incorrectValues = false;
