@@ -59,10 +59,8 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 
 “Manipulate Food Ingredients” - 
 1. Display the Recipe Ingredients: As a user, I want to be able to view a list of the recipe list before I make the recipe in order to know whether I have the proper required ingredients to make the dish.
-2. Customize Serving Size: As a user, I want to have the ingredients fractioned out to fit the number of servings/portions I am making to be customizable on the app so that I do not accidentally miscalculate the ingredient ratios.
-3. Add Recipes: As a user, I would want to add my own recipes that I discover.
-4. Edit Recipes: As a user, I would want to edit the recipes that are already available in the database to customize them to my own liking.
-5. Manage my Inventory: As a user, I want to be able to add notes to the items I have included in my list of food ingredients and edit their information such as the food’s expiration date.
+2. Add/Remove ingredients
+3. Manage my Inventory: As a user, I want to be able to add notes to the items I have included in my list of food ingredients and edit their information such as the food’s expiration date.
 
 “Favorite Recipe List” -
 1. Add a Favorites Page: As a user, I would want the recipes I “like” or “save” to be displayed on one page under my app account.
