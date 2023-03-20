@@ -326,8 +326,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 					result.next();
 					// Retrieve the user's ingredients as a json string.
 					jsonString = result.getString(1);
-					System.out.println(jsonString); // temp print.
-
 					// Parse json string.
 					ingredients = parseIngredients(jsonString);
 				} catch (SQLException e) {

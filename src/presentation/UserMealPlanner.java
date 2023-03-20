@@ -279,6 +279,10 @@ public class UserMealPlanner {
 		comboBox_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox_3.setBounds(105, 164, 134, 34);
 		panel_1_weeklyManager.add(comboBox_3);
+		
+		JButton btnNewButton_5 = new JButton("Get Recommended Recipe");
+		btnNewButton_5.setBounds(58, 285, 220, 23);
+		panel_1_weeklyManager.add(btnNewButton_5);
 		comboBox_3.addItem("Breakfast");
 		comboBox_3.addItem("Lunch");
 		comboBox_3.addItem("Dinner");
