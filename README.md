@@ -67,7 +67,6 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 “Favorite Recipe List” -
 1. Add a Favorites Page: As a user, I would want the recipes I “like” or “save” to be displayed on one page under my app account.
 2. Display a Collection: As a user, I want to be able to view a collection of recipes I made and recipes I recently viewed.
-3. Sort Recipes: As a user, I want the recipes I favorited to be displayed on the page as sorted from A-Z for easier access. 
 
 “Meal Planning” -
 1. Create a Calendar Page:  Add a calendar page for the week where the user can select a day and add recipes to that day from the personal collection list

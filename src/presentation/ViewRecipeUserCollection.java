@@ -22,6 +22,7 @@ import persistence.UsersDB;
 
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -35,9 +36,9 @@ public class ViewRecipeUserCollection extends JDialog {
 	 * 
 	 * @param name
 	 */
-	public void NewScreen(String name) {
+	public void NewScreen(String name, int page) {
 		try {
-			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name);
+			ViewRecipeUserCollection dialog = new ViewRecipeUserCollection(name, page);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -48,17 +49,13 @@ public class ViewRecipeUserCollection extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewRecipeUserCollection(String name) {
+	public ViewRecipeUserCollection(String name,int page) {
 		setBounds(100, 100, 862, 574);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 836, 503);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
-		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
-		//Create a text area where the information on the recipe with the specified name will be displayed
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		contentPanel.add(textArea);
+		contentPanel.setLayout(null);
 		
 		User currentUser = UserActivity.getCurrentUser();
 		
@@ -67,6 +64,14 @@ public class ViewRecipeUserCollection extends JDialog {
 		DatabaseAccess access = new DatabaseAccess();
 		UsersDAO db = access.usersDB();
 		Recipes r = db.getRecipe(currentUser,name);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 820, 487);
+		contentPanel.add(scrollPane);
+		//Create a text area where the information on the recipe with the specified name will be displayed
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
 		textArea.setText(r.toString());
 		
 		// Creates a new button. When clicked user adds the recipe to Favourites.
@@ -142,6 +147,8 @@ public class ViewRecipeUserCollection extends JDialog {
 		JButton btnReturn = new JButton("Return to List");
 		btnReturn.setBounds(705, 503, 131, 23);
 		getContentPane().add(btnReturn);
+		
+		
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					UserRecipeCollection collection = new UserRecipeCollection();
@@ -151,5 +158,20 @@ public class ViewRecipeUserCollection extends JDialog {
 					win.dispose();
 				}
 		});
+		JButton plannerButton = new JButton("Add to Plan");
+		plannerButton.setBounds(10, 503, 131, 23);
+		getContentPane().add(plannerButton);
+		if(page ==0) {
+			plannerButton.setVisible(false);
+		}
+		plannerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					UserMealPlanner.setRecipe(name);
+					contentPanel.setVisible(false);
+					Window win = SwingUtilities.getWindowAncestor(contentPanel);
+					win.dispose();
+				}
+		});
+
 	}
 }

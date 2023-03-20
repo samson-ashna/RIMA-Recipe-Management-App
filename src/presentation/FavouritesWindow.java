@@ -114,9 +114,9 @@ public class FavouritesWindow extends JFrame {
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
 			
-			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name);
+			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name,0);
 			//Set up the ViewRecipe window and make it visible.
-			newWindow.NewScreen(name);
+			newWindow.NewScreen(name,0);
 			contentPane.setVisible(false);
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();

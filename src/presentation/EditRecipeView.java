@@ -21,6 +21,7 @@ import persistence.DatabaseAccess;
 import persistence.RecipesDB;
 
 import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -110,33 +111,40 @@ public class EditRecipeView extends JDialog {
 		
 		//Creates editor panes where user can enter recipe info;name, protein, carbs, ingredient and instructions.
 		JEditorPane editorPaneName = new JEditorPane();
-		editorPaneName.setBounds(283, 77, 248, 30);
+		editorPaneName.setBounds(267, 77, 283, 30);
 		contentPane.add(editorPaneName);
 		editorPaneName.setText(recipe.getName());
 		
 		JEditorPane editorPaneProtein = new JEditorPane();
-		editorPaneProtein.setBounds(283, 141, 248, 30);
+		editorPaneProtein.setBounds(267, 141, 283, 30);
 		contentPane.add(editorPaneProtein);
 		editorPaneProtein.setText(Integer.toString(recipe.getProtein()));
 		
 		JEditorPane editorPaneCarbs = new JEditorPane();
-		editorPaneCarbs.setBounds(283, 214, 248, 30);
+		editorPaneCarbs.setBounds(267, 214, 283, 30);
 		contentPane.add(editorPaneCarbs);
 		editorPaneCarbs.setText(Integer.toString(recipe.getCarbs()));
-		
-		JEditorPane editorIngredient = new JEditorPane();
-		editorIngredient.setBounds(283, 266, 248, 140);
-		contentPane.add(editorIngredient);
-		editorIngredient.setText(recipe.getIngredients());
-		
-		JEditorPane editorInstruction = new JEditorPane();
-		editorInstruction.setBounds(283, 430, 248, 162);
-		contentPane.add(editorInstruction);
-		editorInstruction.setText(recipe.getInstructions());
 		//label to let the user know to separate ingredient items by new line
 		JLabel lblNewLabel = new JLabel("Separate by new line");
 		lblNewLabel.setBounds(112, 294, 126, 14);
 		contentPane.add(lblNewLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(267, 427, 283, 178);
+		contentPane.add(scrollPane);
+		
+		JEditorPane editorInstruction = new JEditorPane();
+		scrollPane.setViewportView(editorInstruction);
+		editorInstruction.setText(recipe.getInstructions());
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(267, 253, 283, 163);
+		contentPane.add(scrollPane_1);
+		
+		JEditorPane editorIngredient = new JEditorPane();
+		
+		scrollPane_1.setViewportView(editorIngredient);
+		editorIngredient.setText(recipe.getIngredients());
 		
 		//Sets up what happens when back button is pressed. 
 		backButton.addActionListener(new ActionListener() {
