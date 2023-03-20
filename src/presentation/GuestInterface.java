@@ -58,7 +58,8 @@ public class GuestInterface extends JFrame {
 
 
         // Setup
-        frame = new JFrame("RIMA - Guest Interface");
+        frame = this;
+        frame.setTitle("RIMA - Guest Interface");
         
         JButton backButton = new JButton("Back to Menu");
         backButton.setForeground(new Color(255, 255, 255));
