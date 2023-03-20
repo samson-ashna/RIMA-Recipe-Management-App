@@ -92,7 +92,8 @@ public class SignUpPage extends JFrame {
 		setTitle("RIMA - Register Account");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		setSize(1280, 720);
-		setLocationRelativeTo(null);	
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		// Background Image
 		icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
