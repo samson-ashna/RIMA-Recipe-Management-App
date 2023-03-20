@@ -85,7 +85,8 @@ public class HomePage extends JFrame {
 	 */
 	public HomePage() {
 
-		frame = new JFrame("RIMA - Home");
+		frame = this;
+		setTitle(("RIMA - Welcome " + UserActivity.getCurrentUser().getName() + "!"));
 
 		// Background
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
@@ -253,61 +254,10 @@ public class HomePage extends JFrame {
 		// table.setLocation(40, 465);
 
 		planner.add(table);
-
 		label.add(planner);
 		
-		// // //Set ingredients button to redirect to the user's personal ingredient collection when pushed.
-		// ingredientsButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		IngredientsListView ingredientView = new IngredientsListView(homePage, contentPane);
-				
-		// 		//Save the home page window's content pane.
-		// 		//ingredientsListPane = ingredientView.getContentPane();
-		// 		IngredientsListView.frame.setVisible(true);
-				
-		// 		//Set the content pane to be the home page window's content pane.
-		// 		//setContentPane(ingredientsListPane);
-		// 		//validate();
-		// 	}
-		// });
-		// getContentPane().setLayout(null);
-		
-		// //Add components to content pane.
-		// contentPane.add(logoutPane);
-		// contentPane.add(optionsPane);
-		// viewProfileButton.setAlignmentX(CENTER_ALIGNMENT);
-		// //optionsPane.add(Box.createRigidArea(new Dimension(0, 20)));
-		// optionsPane.add(viewProfileButton);
-		
-		// //Set view profile button to redirect to the user's profile when pushed.
-		// viewProfileButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// //Create a Profile window
-		// ViewProfile viewProfile = new ViewProfile();
-				
-		// //Make the Profile window visible and the HomePage window invisible.
-		// viewProfile.setVisible(true);
-		// contentPane.setVisible(false);
-				
-		// //Close the old window.
-		// Window win = SwingUtilities.getWindowAncestor(contentPane);
-		// win.dispose();				
-		// 	}
-		// });
-		
-		
 
-		// Add Objects
-		// frame.add(label);
-		// frame.add(welcomeLabel);
-		// frame.add(userRecipesButton);
-		// frame.add(newRecipesButton);
-		// frame.add(logoutButton);
-		// frame.add(ingredientsButton);
-		// frame.add(viewProfileButton);
 		// Setup
-		
-		
 		frame.getContentPane().setBackground(new Color(143, 188, 143));
 		frame.add(label);
 		
@@ -316,6 +266,5 @@ public class HomePage extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
-		//optionsPane.add(mealPlannerButton_1);
 	}
 }
