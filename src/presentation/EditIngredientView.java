@@ -495,21 +495,13 @@ public class EditIngredientView extends JFrame{
 		if(ingredient != null) {
 			
 			//set selected month
-			for(int i = 0; i<monthBox.getComponentCount(); i++) {
-				if(i == ingredient.getExpiration().getMonthValue()){
-					monthBox.setSelectedIndex(i);
-				}
-			}
+			monthBox.setSelectedIndex(ingredient.getExpiration().getMonthValue()-1);
 			
 			//Set selected day
-			dayBox.setSelectedIndex(ingredient.getExpiration().getDayOfMonth());
+			dayBox.setSelectedIndex(ingredient.getExpiration().getDayOfMonth()-1);
 			
 			//set selected year.
-			for(int i = 0; i<yearBox.getComponentCount(); i++) {
-				if(i == ingredient.getExpiration().getYear()){
-					yearBox.setSelectedIndex(i);
-				}
-			}
+			yearBox.setSelectedIndex(ingredient.getExpiration().getYear()-Year.now().getValue());
 		}
 		
 		datePane.setLayout(new BoxLayout(datePane, BoxLayout.LINE_AXIS));

@@ -198,7 +198,7 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				IngredientsListView ingredients = new IngredientsListView();
 				ingredients.setVisible(true);
-				//contentPane.setVisible(false);
+				frame.dispose();
 			}
 		});
 
