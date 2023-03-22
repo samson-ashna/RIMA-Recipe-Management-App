@@ -79,6 +79,7 @@ public class HomePage extends JFrame {
 	JButton ingredientsButton = new JButton("My Ingredients");
 	JButton newRecipesButton = new JButton("Find New Recipes");
 	JButton viewProfileButton = new JButton("View Profile");
+	JButton shoppingListButton = new JButton("Shopping List");
 	
 	//Label objects.
 	JLabel welcomeLabel = new JLabel("");
@@ -136,6 +137,21 @@ public class HomePage extends JFrame {
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
 		label = new JLabel();
 		label.setSize(1280, 720);
+		
+		// Shopping List Button
+		shoppingListButton = new JButton("Shopping List");
+		shoppingListButton.setForeground(new Color(255, 255, 255));
+		shoppingListButton.setBackground(new Color(59, 89, 182));
+		shoppingListButton.setBounds(20, 10, 100, 23);
+		label.add(shoppingListButton);
+
+		shoppingListButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//IngredientsListView ingredients = new IngredientsListView();
+				//ingredients.setVisible(true);
+				//contentPane.setVisible(false);
+			}
+		});
 		
 		// Logout Button
 		logoutButton = new JButton("Logout");
