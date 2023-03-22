@@ -7,7 +7,7 @@
 ![image](https://user-images.githubusercontent.com/51792193/224358614-d0b80140-b5ec-4310-b698-9420474e1587.png)
 
 3. Change user and/or password in src/persistence/DBSetup.java
-4. Set databaseType = 0 (access real database) or databaseType = 1 (access stub database)
+4. Set databaseType = 0 (access real database) or databaseType = 1 (access stub database)\
 5.Add jcalendar-1.4.jar from lib folder to Build Path.
 
 **To Run: src/presentation/Main.java**
