@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -45,6 +46,7 @@ public class IngredientsListView extends JFrame {
 	//Container and Panel objects.
 	private Container contentPane;
 	private JPanel listPane;
+	private JScrollPane scrollPane;
 	private JPanel buttonPane;
 	
 	//Component objects.
@@ -94,10 +96,6 @@ public class IngredientsListView extends JFrame {
 			for(int i = 0; i<ingredients.size(); i++) {
 				listModel.addElement(ingredients.get(i).getName());
 			}
-			
-			//Set up List dimensions.
-			ingredientsList.setPrototypeCellValue("Using this to set the ingredients list cell width for now ;)"); //Since other methods didn't work.
-			ingredientsList.setPreferredSize(new Dimension(200, 300));
 		}
 	}
 	
@@ -136,14 +134,17 @@ public class IngredientsListView extends JFrame {
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
 				
 		//Add user ingredients to list.
-		ingredientsListSetup();			
+		ingredientsListSetup();	
 		
-		//Align list.
-		ingredientsList.setAlignmentX(CENTER_ALIGNMENT);	
+		//Scroll pane setup
+		scrollPane = new JScrollPane(ingredientsList);
+		scrollPane.setAlignmentX(CENTER_ALIGNMENT);	
+		scrollPane.setMaximumSize(new Dimension(250, 300));
+		scrollPane.setPreferredSize(scrollPane.getMaximumSize());
 		
 		//Add labels to the info pane.
 		listPane.add(Box.createVerticalGlue());
-		listPane.add(ingredientsList);
+		listPane.add(scrollPane);
 		listPane.add(Box.createVerticalGlue());
 		
 		//Set up the button fonts.
