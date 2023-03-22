@@ -18,6 +18,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -26,6 +28,7 @@ import com.toedter.calendar.JDayChooser;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
+import objects.User;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
@@ -41,6 +44,9 @@ public class UserMealPlanner {
 	String date;
 	String time,time2;
 	static JTextArea textArea = new JTextArea();
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO db = access.usersDB();
+	
 
 	/**
 	 * Launch the application.
@@ -79,7 +85,7 @@ public class UserMealPlanner {
 		
 		JPanel panel_recipeplanning = new JPanel();
 		panel_recipeplanning.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_recipeplanning.setBounds(10, 57, 562, 269);
+		panel_recipeplanning.setBounds(10, 58, 562, 269);
 		frame.getContentPane().add(panel_recipeplanning);
 		panel_recipeplanning.setLayout(null);
 		
@@ -89,20 +95,10 @@ public class UserMealPlanner {
 		lblNewLabel_1.setBounds(23, 72, 196, 22);
 		panel_recipeplanning.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Add Recipes to Start Planning");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1_1.setBounds(23, 24, 318, 37);
+		JLabel lblNewLabel_1_1 = new JLabel("Add Recipes to View Nutrition Information");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_1.setBounds(23, 24, 361, 37);
 		panel_recipeplanning.add(lblNewLabel_1_1);
-		
-		JButton btnNewButton = new JButton("Select");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnNewButton.setBounds(210, 68, 131, 30);
-		panel_recipeplanning.add(btnNewButton);
 		
 		// created a drop menu which selects the quantity of servings being made for the recipe
 		String quantity[] = {"1","2","3","4","5"};
@@ -114,8 +110,8 @@ public class UserMealPlanner {
 		panel_recipeplanning.add(comboBox);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Servings Quantity");
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 19));
-		lblNewLabel_1_1_1.setBounds(366, 24, 175, 37);
+		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1_1_1.setBounds(387, 24, 175, 37);
 		panel_recipeplanning.add(lblNewLabel_1_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Placeholder:Recipe #2");
@@ -123,17 +119,12 @@ public class UserMealPlanner {
 		lblNewLabel_1_2.setBounds(23, 109, 196, 22);
 		panel_recipeplanning.add(lblNewLabel_1_2);
 		
-		JButton btnNewButton_1 = new JButton("Select");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_1.setBounds(277, 197, 131, 30);
-		panel_recipeplanning.add(btnNewButton_1);
-		
 		String quantity2[] = {"1","2","3","4","5"};
 		JComboBox<?> comboBox_1 = new JComboBox<Object>(quantity2);
 		comboBox_1.setMaximumRowCount(20);
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox_1.setEditable(true);
-		comboBox_1.setBounds(414, 145, 82, 30);
+		comboBox_1.setBounds(414, 105, 82, 30);
 		panel_recipeplanning.add(comboBox_1);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Placeholder:Recipe #3");
@@ -142,8 +133,6 @@ public class UserMealPlanner {
 		panel_recipeplanning.add(lblNewLabel_1_3);
 		
 		JButton btnNewButton_2 = new JButton("Select");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_1.setBounds(210, 105, 131, 30);
 		panel_recipeplanning.add(btnNewButton_2);
 		
 		String quantity3[] = {"1","2","3","4","5"};
@@ -151,13 +140,8 @@ public class UserMealPlanner {
 		comboBox_2.setMaximumRowCount(20);
 		comboBox_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox_2.setEditable(true);
-		comboBox_2.setBounds(414, 105, 82, 30);
+		comboBox_2.setBounds(414, 213, 82, 30);
 		panel_recipeplanning.add(comboBox_2);
-		
-		JButton btnNewButton_3 = new JButton("Select");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_3.setBounds(210, 142, 131, 30);
-		panel_recipeplanning.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_1_3_1 = new JLabel("Placeholder:Recipe #4");
 		lblNewLabel_1_3_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -169,31 +153,60 @@ public class UserMealPlanner {
 		lblNewLabel_1_3_2.setBounds(23, 217, 196, 22);
 		panel_recipeplanning.add(lblNewLabel_1_3_2);
 		
-		JButton btnNewButton_3_1 = new JButton("Select");
-		btnNewButton_3_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_3_1.setBounds(210, 180, 131, 30);
-		panel_recipeplanning.add(btnNewButton_3_1);
-		
-		JButton btnNewButton_3_2 = new JButton("Select");
-		btnNewButton_3_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_3_2.setBounds(210, 217, 131, 30);
-		panel_recipeplanning.add(btnNewButton_3_2);
-		
 		String quantity4[] = {"1","2","3","4","5"};
-		JComboBox<?> comboBox_1_1 = new JComboBox<Object>(quantity4);
-		comboBox_1_1.setMaximumRowCount(20);
-		comboBox_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBox_1_1.setEditable(true);
-		comboBox_1_1.setBounds(414, 180, 82, 30);
-		panel_recipeplanning.add(comboBox_1_1);
+		JComboBox<?> comboBox_1_3 = new JComboBox<Object>(quantity4);
+		comboBox_1_3.setMaximumRowCount(20);
+		comboBox_1_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		comboBox_1_3.setEditable(true);
+		comboBox_1_3.setBounds(414, 180, 82, 30);
+		panel_recipeplanning.add(comboBox_1_3);
 		
 		String quantity5[] = {"1","2","3","4","5"};
 		JComboBox<?> comboBox_1_2 = new JComboBox<Object>(quantity5);
 		comboBox_1_2.setMaximumRowCount(20);
 		comboBox_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		comboBox_1_2.setEditable(true);
-		comboBox_1_2.setBounds(414, 217, 82, 30);
+		comboBox_1_2.setBounds(414, 141, 82, 30);
 		panel_recipeplanning.add(comboBox_1_2);
+		
+		JComboBox comboBox_4 = new JComboBox();
+		comboBox_4.setBounds(210, 75, 128, 22);
+		panel_recipeplanning.add(comboBox_4);
+		comboBox_4.addItem("Select");
+		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
+			comboBox_4.addItem(r.getName());
+		}
+		
+		JComboBox comboBox_4_1 = new JComboBox();
+		comboBox_4_1.setBounds(210, 112, 128, 22);
+		panel_recipeplanning.add(comboBox_4_1);
+		comboBox_4_1.addItem("Select");
+		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
+			comboBox_4_1.addItem(r.getName());
+		}
+		JComboBox comboBox_4_2 = new JComboBox();
+		comboBox_4_2.setBounds(210, 142, 128, 22);
+		panel_recipeplanning.add(comboBox_4_2);
+		comboBox_4_2.addItem("Select");
+		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
+			comboBox_4_2.addItem(r.getName());
+		}
+		
+		JComboBox comboBox_4_3 = new JComboBox();
+		comboBox_4_3.setBounds(210, 178, 128, 22);
+		panel_recipeplanning.add(comboBox_4_3);
+		comboBox_4_3.addItem("Select");
+		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
+			comboBox_4_3.addItem(r.getName());
+		}		
+		JComboBox comboBox_4_4 = new JComboBox();
+		comboBox_4_4.setBounds(210, 215, 128, 22);
+		panel_recipeplanning.add(comboBox_4_4);
+		comboBox_4_4.addItem("Select");
+		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
+			comboBox_4_4.addItem(r.getName());
+		}
+		
 		
 		//create a new panel for managing weekly meals
 		JPanel panel_1_weeklyManager = new JPanel();
@@ -213,13 +226,13 @@ public class UserMealPlanner {
 //				win.dispose();
 			}
 		});
-		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAddSaved.setBounds(41, 323, 249, 30);
+		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAddSaved.setBounds(58, 323, 220, 30);
 		panel_1_weeklyManager.add(btnAddSaved);
 		
-		JLabel lblWeeklyManagerTitle = new JLabel("Weekly Manager");
+		JLabel lblWeeklyManagerTitle = new JLabel("Weekly Meal Planner");
 		lblWeeklyManagerTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblWeeklyManagerTitle.setBounds(83, 27, 175, 37);
+		lblWeeklyManagerTitle.setBounds(58, 27, 234, 37);
 		panel_1_weeklyManager.add(lblWeeklyManagerTitle);
 		
 		JLabel lblSelectDayofWeek = new JLabel("Select the Day & TIme of the Week Below:");
@@ -255,8 +268,7 @@ public class UserMealPlanner {
 		
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DatabaseAccess access = new DatabaseAccess();
-				UsersDAO db = access.usersDB();
+				
 				db.editPlanner(UserActivity.currentUser,day, time,textArea.getText());
 			}
 		});
@@ -280,9 +292,43 @@ public class UserMealPlanner {
 		comboBox_3.setBounds(105, 164, 134, 34);
 		panel_1_weeklyManager.add(comboBox_3);
 		
-		JButton btnNewButton_5 = new JButton("Get Recommended Recipe");
-		btnNewButton_5.setBounds(58, 285, 220, 23);
-		panel_1_weeklyManager.add(btnNewButton_5);
+		JButton randomButton = new JButton("Get Recommended Recipe");
+		randomButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		randomButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textArea.setText("");
+				ArrayList<Recipes> recipes = new ArrayList<Recipes>();
+				boolean add = true;
+				User currentUser = UserActivity.currentUser;
+				for(Recipes recipe: db.getRecipes(UserActivity.currentUser)) {
+					//System.out.println(recipe.getName());
+					if(recipe.mealTime.contains(time)) {
+						if (currentUser.getUserAllergies().getAllergies().get("Eggs") !=null && currentUser.getUserAllergies().getAllergies().get("Eggs")==1 && (recipe.getIngredients().toLowerCase().contains("egg"))){
+							add =false;
+						}
+						if (currentUser.getUserAllergies().getAllergies().get("Milk")!=null && currentUser.getUserAllergies().getAllergies().get("Milk")==1 && (recipe.getIngredients().toLowerCase().contains("milk"))){
+							add =false;
+						}
+						if (currentUser.getUserAllergies().getAllergies().get("Peanuts") !=null && currentUser.getUserAllergies().getAllergies().get("Peanuts")==1 && (recipe.getIngredients().contains("nut"))){
+							add =false;
+						}
+						if (currentUser.getUserAllergies().getAllergies().get("Seafood") !=null && currentUser.getUserAllergies().getAllergies().get("Seafood")==1 && (recipe.getIngredients().contains("fish")|| recipe.getIngredients().contains("shellfish"))){
+							add =false;
+						}
+						if(add == true) {recipes.add(recipe);}
+						add=true;
+					}
+				}	
+				Random rand = new Random();
+				if(recipes.size() >0) {
+					int n = rand.nextInt(recipes.size());
+					textArea.setText(recipes.get(n).getName());
+				}
+			}
+			
+		});
+		randomButton.setBounds(58, 285, 220, 23);
+		panel_1_weeklyManager.add(randomButton);
 		comboBox_3.addItem("Breakfast");
 		comboBox_3.addItem("Lunch");
 		comboBox_3.addItem("Dinner");
@@ -294,30 +340,63 @@ public class UserMealPlanner {
 		frame.getContentPane().add(panel_2_recipeinfo);
 		panel_2_recipeinfo.setLayout(null);
 		
-		JButton btnSearchForRecipes = new JButton("Search For More Recipes");
-		btnSearchForRecipes.setBounds(139, 158, 258, 47);
-		btnSearchForRecipes.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_2_recipeinfo.add(btnSearchForRecipes);
+		JButton calculateRecipes = new JButton("Calculate");
+		calculateRecipes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int carbs=0;
+				int protein=0;
+				ArrayList<String> selectedRecipes = new ArrayList<String>();
+				ArrayList<String> quantities = new ArrayList<String>();
+				selectedRecipes.add(comboBox_4.getSelectedItem().toString());
+				selectedRecipes.add(comboBox_4_1.getSelectedItem().toString());
+				selectedRecipes.add(comboBox_4_2.getSelectedItem().toString());
+				selectedRecipes.add(comboBox_4_3.getSelectedItem().toString());
+				selectedRecipes.add(comboBox_4_4.getSelectedItem().toString());
+				quantities.add(comboBox.getSelectedItem().toString());
+				quantities.add(comboBox_1.getSelectedItem().toString());
+				quantities.add(comboBox_1_2.getSelectedItem().toString());
+				quantities.add(comboBox_1_3.getSelectedItem().toString());
+				quantities.add(comboBox_2.getSelectedItem().toString());
+				for(int i=0;i<selectedRecipes.size();i++) {
+					if(selectedRecipes.get(i) != "Select") {
+						carbs += db.getRecipe(UserActivity.currentUser,selectedRecipes.get(i)).getCarbs() * Integer.parseInt(quantities.get(i));
+						protein += db.getRecipe(UserActivity.currentUser,selectedRecipes.get(i)).getProtein() * Integer.parseInt(quantities.get(i));
+					}
+				}
+				textField.setText(Integer.toString(carbs));
+				textField_1.setText(Integer.toString(protein));
+			}
+		});
+		calculateRecipes.setBounds(139, 158, 258, 47);
+		calculateRecipes.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_2_recipeinfo.add(calculateRecipes);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Estimated Total Cost of Required Ingredients");
+		JLabel lblNewLabel_1_4 = new JLabel("Total Carbs (g):");
 		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_4.setBounds(20, 42, 379, 22);
 		panel_2_recipeinfo.add(lblNewLabel_1_4);
 		
 		JLabel lblNewLabel_1_4_1 = new JLabel("Estimated Nutritional Value");
 		lblNewLabel_1_4_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_4_1.setBounds(20, 93, 377, 22);
+		lblNewLabel_1_4_1.setBounds(20, 11, 377, 22);
 		panel_2_recipeinfo.add(lblNewLabel_1_4_1);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setBounds(395, 40, 145, 36);
 		panel_2_recipeinfo.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setColumns(10);
 		textField_1.setBounds(395, 90, 145, 36);
 		panel_2_recipeinfo.add(textField_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("Total Protein (g):");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_4.setBounds(20, 93, 175, 25);
+		panel_2_recipeinfo.add(lblNewLabel_4);
 		
 		// created a panel that allows the user to select a certain date from the calendar 
 		// to modify recipes for in the future
