@@ -10,9 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -59,7 +60,7 @@ public class IngredientView extends JFrame {
 			return;
 		}
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
 		DecimalFormat costFormat = new DecimalFormat("$###,###,##0.00");
 		
 		displName.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Name</span><br>"+ingredient.getName()+"</div></html>");

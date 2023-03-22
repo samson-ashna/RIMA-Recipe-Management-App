@@ -1,7 +1,8 @@
 package objects;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import businessLogic.UserActivity;
 
@@ -9,11 +10,11 @@ public class Ingredient {
 	private String name;
 	private int protein = 0;
 	private int carbs = 0;
-	private Date expiration;
+	private LocalDate expiration;
 	private double cost = 0;
 	private String user;
 	
-	public Ingredient(String name, double cost, Date expiration, int protein, int carbs, String user) {
+	public Ingredient(String name, double cost, LocalDate expiration, int protein, int carbs, String user) {
 		this.name = name;
 		this.expiration = expiration;
 		
@@ -24,11 +25,11 @@ public class Ingredient {
 	}
 	
 	//Getters and Setters
-	public void setExpiration(Date expiration) {
+	public void setExpiration(LocalDate expiration) {
 		this.expiration = expiration;
 	}
 	
-	public Date getExpiration() {
+	public LocalDate getExpiration() {
 		return this.expiration;
 	}
 	
@@ -98,7 +99,7 @@ public class Ingredient {
 	public String ingredientToJSON() {
 		String jsonString = "";
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);;
 		
 		jsonString = jsonString + "{" + "\"name\": " + "\"" + this.name + "\", "
 	    		+ "\"cost\": " + "\"" + this.cost + "\", "

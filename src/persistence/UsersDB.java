@@ -2,12 +2,13 @@ package persistence;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
@@ -361,9 +362,10 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				// and save it.
 				valueStrings[i] = kvField[1].replaceAll("[{}\"]", "");
 			}
-			Date date = null;
+			LocalDate date = null;
 			try {
-				date = new SimpleDateFormat("dd MMMM yyyy").parse(valueStrings[5]);
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
+				date = LocalDate.parse(valueStrings[5], format);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -515,9 +517,10 @@ public class UsersDB extends DBSetup implements UsersDAO {
 						// Parse result set into ingredient's attributes.
 						String iName = result.getString(1);
 						double cost = Double.parseDouble(result.getString(2));
-						Date expiration = null;
+						LocalDate expiration = null;
+						DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);;						
 						try {
-							expiration = DateFormat.getDateInstance().parse(result.getString(3));
+							expiration = LocalDate.parse(result.getString(3), format);
 						} catch (Exception e) {
 
 						}

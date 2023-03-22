@@ -12,11 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -229,17 +230,17 @@ public class EditIngredientView extends JFrame{
 		//Sets up save button to add ingredient to list or edit it when pressed and close window.
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Format for dates.
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);;
+				
 				//Ingredient to update.
-				Ingredient newIngredient = new Ingredient("", 0, new Date(), 0, 0, "");
+				Ingredient newIngredient = new Ingredient("", 0, LocalDate.of(Year.now().getValue(), 1, 1), 0, 0, "");
 				
 				//Get the current user.
 				currentUser = UserActivity.getCurrentUser();
 				
 				//Flag for whether a change has been made.
 				boolean change = false;
-				
-				//Format for dates.
-				SimpleDateFormat format = new SimpleDateFormat("dd MMMM YYYY");
 				
 				//Reset error label.
 				errorLabel.setText("");
@@ -300,7 +301,7 @@ public class EditIngredientView extends JFrame{
 						entry = "Date";
 						//If the expiration has changed and isn't blank, update it.
 						if(!format.format(ingredient.getExpiration()).equals(dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())){
-							newIngredient.setExpiration(format.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())));
+							newIngredient.setExpiration(LocalDate.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem()), format));
 							change = true;
 						}
 						
@@ -342,7 +343,7 @@ public class EditIngredientView extends JFrame{
 						//Update other fields.
 						newIngredient.setCost(Double.parseDouble(costField.getText()));
 						entry = "Date";
-						newIngredient.setExpiration(format.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem())));
+						newIngredient.setExpiration(LocalDate.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem()),format));
 						entry = "Protein";
 						newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 						entry = "Carbs";
@@ -495,17 +496,17 @@ public class EditIngredientView extends JFrame{
 			
 			//set selected month
 			for(int i = 0; i<monthBox.getComponentCount(); i++) {
-				if(i == ingredient.getExpiration().getMonth()){
+				if(i == ingredient.getExpiration().getMonthValue()){
 					monthBox.setSelectedIndex(i);
 				}
 			}
 			
 			//Set selected day
-			dayBox.setSelectedIndex(ingredient.getExpiration().getDay());
+			dayBox.setSelectedIndex(ingredient.getExpiration().getDayOfMonth());
 			
 			//set selected year.
 			for(int i = 0; i<yearBox.getComponentCount(); i++) {
-				if(i == ingredient.getExpiration().getYear()+1900-Year.now().getValue()){
+				if(i == ingredient.getExpiration().getYear()){
 					yearBox.setSelectedIndex(i);
 				}
 			}
