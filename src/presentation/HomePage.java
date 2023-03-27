@@ -147,8 +147,8 @@ public class HomePage extends JFrame {
 
 		shoppingListButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//IngredientsListView ingredients = new IngredientsListView();
-				//ingredients.setVisible(true);
+				UserShoppingList shoppingList = new UserShoppingList();
+				shoppingList.setVisible(true);
 				//contentPane.setVisible(false);
 			}
 		});
