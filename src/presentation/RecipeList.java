@@ -170,7 +170,7 @@ public class RecipeList extends JFrame {
 		setResizable(false);
 		setSize(671, 591);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		

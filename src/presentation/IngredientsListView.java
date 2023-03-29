@@ -111,7 +111,7 @@ public class IngredientsListView extends JFrame {
 		//Set title.
 		setTitle("RIMA - User Ingredients");
 		//Set the application to exit when closed.
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 		
 		//Set the size and pop up location of the window.
 		setSize(450, 450);	
 		setLocationRelativeTo(null);

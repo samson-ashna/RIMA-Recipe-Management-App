@@ -44,6 +44,7 @@ public class ViewProfile extends JFrame {
 	private JLabel allergyInfo =  new JLabel();
 	private final JButton btnNewButton = new JButton("Survey");
 	private final JButton surveyButton = new JButton("Survey");
+	private JLabel label = new JLabel();
 
 
 	/**
@@ -91,22 +92,24 @@ public class ViewProfile extends JFrame {
 	 * Create the frame.
 	 */
 	public ViewProfile() {
+		
 		setTitle("RIMA - User Profile");
-		//Set the application to exit when closed.
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
-		//Set the size and pop up location of the window.
 		setSize(450, 450);	
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setLocationRelativeTo(null);
 		setResizable(false);
-		//Get content pane.
-		contentPane = getContentPane();		
+
+		label = new JLabel();
+		
+		// contentPane = getContentPane();		
 		
 		//Create a new info pane.
 		infoPane = new JPanel();
 		//Set the info pane's layout manager to the vertical box layout.
 		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
-		infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		// infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 				
 		//Add user info to labels.
 		displayUserInfo();	
