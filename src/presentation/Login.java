@@ -94,7 +94,7 @@ public class Login extends JFrame {
         backButton.setForeground(Color.WHITE);
         backButton.setFocusPainted(false);
         backButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		backButton.setBounds(674, 374, 76, 26);
+		backButton.setBounds(674, 424, 76, 26);
 		
 		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
@@ -104,13 +104,13 @@ public class Login extends JFrame {
         logInButton.setForeground(Color.WHITE);
         logInButton.setFocusPainted(false);
         logInButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		logInButton.setBounds(522, 374, 76, 26);
+		logInButton.setBounds(522, 424, 76, 26);
 		
 		
 		//Creates a text field where user can enter password
 		passwordField = new JPasswordField();
 		frame.add(passwordField);
-		passwordField.setBounds(469, 309, 338, 33);
+		passwordField.setBounds(469, 359, 327, 26);
 		
 		//label for password
 
@@ -118,13 +118,13 @@ public class Login extends JFrame {
 		frame.add(lblPassword);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblPassword.setBounds(584, 258, 76, 51);
+		lblPassword.setBounds(584, 308, 76, 51);
 		
 		
 		//Creates a test field where user can enter user name
 		textField = new JTextField();
 		frame.add(textField);
-		textField.setBounds(469, 221, 327, 26);
+		textField.setBounds(469, 271, 327, 26);
 		textField.setColumns(10);
 		
 		// label for user name
@@ -133,7 +133,7 @@ public class Login extends JFrame {
 		frame.add(lbluserName);
 		lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lbluserName.setBounds(562, 170, 123, 51);
+		lbluserName.setBounds(562, 220, 123, 51);
 		
 		
 		//Creates label for displaying error messages.
