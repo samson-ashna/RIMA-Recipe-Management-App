@@ -1,6 +1,8 @@
 package presentation;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -10,10 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -96,6 +100,8 @@ public class IngredientsListView extends JFrame {
 			for(int i = 0; i<ingredients.size(); i++) {
 				listModel.addElement(ingredients.get(i).getName());
 			}
+			
+			ingredientsList.setCellRenderer(new ShowExpirationsListCellRenderer());
 		}
 	}
 	
@@ -343,4 +349,34 @@ public class IngredientsListView extends JFrame {
 			}
 		});
 	}
+}
+
+@SuppressWarnings("serial")
+class ShowExpirationsListCellRenderer extends DefaultListCellRenderer {
+
+    @Override
+    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+        User user = UserActivity.getCurrentUser();
+        ArrayList<Ingredient> ingredients;
+        
+        if(user == null) {
+        	return renderer;
+        }
+        
+        ingredients = user.getIngredients();
+        
+        if(ingredients == null) {
+        	return renderer;
+        }
+		
+        //Add ingredient names to listModel.
+		for(Ingredient ingredient : ingredients) {
+			 if (value.equals(ingredient.getName()) && ingredient.getExpiration().isBefore(LocalDate.now())) {
+		            renderer.setForeground(Color.RED);
+		     }
+		}
+        
+        return renderer;
+    }
 }
