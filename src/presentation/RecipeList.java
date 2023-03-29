@@ -99,10 +99,10 @@ public class RecipeList extends JFrame {
 	public RecipeList() {
 		
 		label = new JLabel();
-		label.setBounds(0, 0, 1268, 685);
+		label.setBounds(0, 0, 671, 591);
 		//Creates a new content pane
 		contentPane = new JPanel();
-		contentPane.setBounds(0, 0, 1280, 720);
+		contentPane.setBounds(0, 0, 671, 591);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Replaces the frame's content pane with the one that was just set up.
 		setContentPane(contentPane);
@@ -110,7 +110,7 @@ public class RecipeList extends JFrame {
 		//Creates a new section for an item list
 		list= new JList<String>();
 		list.setBackground(new Color(255,255, 255));
-		list.setBounds(60, 80, 1000, 550);
+		list.setBounds(10, 57, 637, 437);
 
 		label.add(list);
 		list.setModel(model);
@@ -123,14 +123,14 @@ public class RecipeList extends JFrame {
 			ViewRecipeDB newWindow = new ViewRecipeDB(name);
 			newWindow.NewScreen(name);
 			contentPane.setVisible(false);
-			frame.setVisible(false);
-			frame.dispose();
+			setVisible(false);
+			dispose();
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
 		});
 
 		
-		searchField.setBounds(252, 11, 460, 39);
+		searchField.setBounds(225, 8, 184, 40);
 		//contentPane.add(searchField);
 		searchField.setColumns(10);
 		
@@ -162,31 +162,32 @@ public class RecipeList extends JFrame {
 		
 		label.add(comboBox);
 
-		comboBox.setBounds(57, 10, 172, 40);
+		comboBox.setBounds(10, 11, 205, 35);
 
 		//contentPane.add(label);
 
-		frame = new JFrame("RIMA - Recipes List");
-		frame.setSize(1280, 720);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setTitle("RIMA - Recipes List");
+		this.setSize(671, 591);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
 
 		
-		frame.getContentPane().add(label);
-		frame.getContentPane().add(btnBack);
+		this.getContentPane().add(label);
+		this.getContentPane().add(btnBack);
 		//contentPane.add(list);
 		//Creates a back button. When clicked, user is redirected to the main page.
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnBack.setBounds(1092, 629, 132, 29);
+		btnBack.setBounds(528, 505, 98, 34);
+		//btnBack.setBounds(528, 505, 98, 34);
 		
 				JButton btnNewButton_1 = new JButton("All Recipes");
-				frame.getContentPane().add(btnNewButton_1);
+				this.getContentPane().add(btnNewButton_1);
 				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				btnNewButton_1.setBounds(879, 11, 178, 39);
+				btnNewButton_1.setBounds(515, 11, 132, 35);
 				
 						JButton btnNewButton = new JButton("Search");
-						frame.getContentPane().add(btnNewButton);
+						this.getContentPane().add(btnNewButton);
 						btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 						btnNewButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -210,7 +211,7 @@ public class RecipeList extends JFrame {
 								
 							}
 						});
-						btnNewButton.setBounds(726, 11, 143, 39);
+						btnNewButton.setBounds(420, 11, 89, 35);
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						addRecipes();
@@ -223,11 +224,11 @@ public class RecipeList extends JFrame {
 					GuestInterface.frame.setVisible(true);
 					
 				}else {
-					HomePage homePage = new HomePage();
-					homePage.setVisible(true);
+					//HomePage homePage = new HomePage();
+					//homePage.setVisible(true);
 				}
-				frame.setVisible(false);
-				frame.dispose();
+				setVisible(false);
+				dispose();
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
@@ -235,7 +236,7 @@ public class RecipeList extends JFrame {
 			}
 		});
 
-		frame.setVisible(true);
+		setVisible(true);
 		
 	}
 }

@@ -177,10 +177,10 @@ public class IngredientsListView extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
-				HomePage homePage = new HomePage();
+				//HomePage homePage = new HomePage();
 						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				homePage.setVisible(true);
+				//homePage.setVisible(true);
 				contentPane.setVisible(false);
 						
 				//Close the UserRecipeCollection Window.

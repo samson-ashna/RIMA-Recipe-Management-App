@@ -182,7 +182,7 @@ public class HomePage extends JFrame {
 				UserRecipeCollection collection = new UserRecipeCollection();
 				collection.setVisible(true);
 				//contentPane.setVisible(false);
-				frame.dispose();
+				//frame.dispose();
 				collection.page =0;
 			}
 		});
@@ -198,7 +198,7 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				IngredientsListView ingredients = new IngredientsListView();
 				ingredients.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});
 
@@ -214,7 +214,7 @@ public class HomePage extends JFrame {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
 				//contentPane.setVisible(false);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});
 

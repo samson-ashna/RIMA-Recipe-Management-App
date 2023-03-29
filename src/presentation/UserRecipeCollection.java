@@ -171,10 +171,10 @@ public class UserRecipeCollection extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
 				if(page==0) {
-					HomePage homePage = new HomePage();
+					//HomePage homePage = new HomePage();
 					
 					//Make the HomePage window visible and the UserRecipeCollection window invisible.
-					homePage.setVisible(true);
+					//homePage.setVisible(true);
 				}
 				contentPane.setVisible(false);
 				
