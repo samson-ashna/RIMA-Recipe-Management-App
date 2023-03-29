@@ -71,7 +71,7 @@ public class SaveShoppingListView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 			
-		//Creates labels for recipe name, ingredients, instruction, protein and carbs information
+		//Creates labels for ingredients
 		JLabel lblName = new JLabel("Ingredient");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblName.setBounds(112, 58, 157, 59);
@@ -138,10 +138,10 @@ public class SaveShoppingListView extends JFrame {
 			}
 		});
 		
-		//Creates a save button.When clicked, a new recipe object is created and added to the user's personal collection of recipes.
+		//Creates a save button.When clicked, a new ingredient object is created and added to the user's shopping list.
 		JButton save = new JButton("Save");
 		save.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		save.setBounds(228, 657, 207, 59);
+		save.setBounds(100, 120, 207, 59);
 		contentPane.add(save);
 		
 		/*JComboBox<String> comboBox = new JComboBox<String>();
