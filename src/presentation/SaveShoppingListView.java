@@ -72,12 +72,12 @@ public class SaveShoppingListView extends JFrame {
 		contentPane.setLayout(null);
 			
 		//Creates labels for recipe name, ingredients, instruction, protein and carbs information
-		JLabel lblName = new JLabel("Recipe Name");
+		JLabel lblName = new JLabel("Ingredient");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblName.setBounds(112, 58, 157, 59);
 		contentPane.add(lblName);
 		
-		JLabel lblIngredients = new JLabel("Ingredients");
+		/*JLabel lblIngredients = new JLabel("Ingredients");
 		lblIngredients.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblIngredients.setBounds(112, 249, 157, 59);
 		contentPane.add(lblIngredients);
@@ -95,7 +95,7 @@ public class SaveShoppingListView extends JFrame {
 		JLabel lblCarbs = new JLabel("Carbs(g)");
 		lblCarbs.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCarbs.setBounds(112, 196, 157, 59);
-		contentPane.add(lblCarbs);
+		contentPane.add(lblCarbs);*/
 		
 		//Creates text fields where user can enter the new recipe's name, protein, carbs, ingredients, and instruction.
 		userName = new JTextField();
@@ -103,7 +103,7 @@ public class SaveShoppingListView extends JFrame {
 		contentPane.add(userName);
 		userName.setColumns(10);
 		
-		proteinInfo = new JTextField();
+		/*proteinInfo = new JTextField();
 		proteinInfo.setColumns(10);
 		proteinInfo.setBounds(315, 139, 228, 36);
 		contentPane.add(proteinInfo);
@@ -111,7 +111,7 @@ public class SaveShoppingListView extends JFrame {
 		carbsInfo = new JTextField();
 		carbsInfo.setColumns(10);
 		carbsInfo.setBounds(315, 207, 228, 36);
-		contentPane.add(carbsInfo);
+		contentPane.add(carbsInfo);*/
 			
 		//Creates label for error messages for when user enters string instead of integers for protein and carbs fields.		
 		JLabel lblError1 = new JLabel("");
@@ -124,14 +124,14 @@ public class SaveShoppingListView extends JFrame {
 		lblError2.setBounds(120, 169, 185, 14);
 		contentPane.add(lblError2);
 		
-		//Creates a back button. When clicked, user is redirected to their recipe colleciton
+		//Creates a back button. When clicked, user is redirected to their shopping list
 		JButton btnNewButton_1 = new JButton("Back");
 		btnNewButton_1.setBounds(542, 11, 89, 23);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRecipeCollection collection = new UserRecipeCollection();
-				collection.setVisible(true);
+				UserShoppingList shoppingList = new UserShoppingList();
+				shoppingList.setVisible(true);
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();
@@ -144,7 +144,7 @@ public class SaveShoppingListView extends JFrame {
 		save.setBounds(228, 657, 207, 59);
 		contentPane.add(save);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		/*JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.addItem("Breakfast/Lunch/Dinner");
 		comboBox.addItem("Lunch/Dinner");
 		comboBox.addItem("Breakfast");
@@ -163,9 +163,9 @@ public class SaveShoppingListView extends JFrame {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(315, 409, 228, 171);
-		contentPane.add(scrollPane_1);
+		contentPane.add(scrollPane_1);*/
 		
-		JTextArea instructionInfo = new JTextArea();
+		/*JTextArea instructionInfo = new JTextArea();
 		scrollPane_1.setViewportView(instructionInfo);
 		instructionInfo.setLineWrap(true);
 		save.addActionListener(new ActionListener() {
@@ -193,9 +193,7 @@ public class SaveShoppingListView extends JFrame {
 					lblError1.setText("Must be an integer!");
 					
 				}
-				/*if user has not entered strings for protein and carbs, ingredient list 
-				and instruction is read and a new recipe is created and saved to the user's personal collection.
-				*/
+				
 				if(!incorrectValues) {
 		
 					String ingredients=ingredientInfo.getText();
@@ -216,6 +214,6 @@ public class SaveShoppingListView extends JFrame {
 				}
 				
 			}
-		});
+		});*/
 	}
 }
