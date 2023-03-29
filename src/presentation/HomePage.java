@@ -143,7 +143,7 @@ public class HomePage extends JFrame {
 		shoppingListButton = new JButton("Shopping List");
 		shoppingListButton.setForeground(new Color(255, 255, 255));
 		shoppingListButton.setBackground(new Color(59, 89, 182));
-		shoppingListButton.setBounds(20, 10, 100, 23);
+		shoppingListButton.setBounds(50, 10, 160, 23);
 		label.add(shoppingListButton);
 
 		shoppingListButton.addActionListener(new ActionListener() {
@@ -175,7 +175,7 @@ public class HomePage extends JFrame {
 		userRecipesButton = new JButton("My Collection");
 		userRecipesButton.setForeground(new Color(255, 255, 255));
         userRecipesButton.setBackground(new Color(59, 89, 182));
-        userRecipesButton.setBounds(150, 10, 160, 23);
+        userRecipesButton.setBounds(250, 10, 160, 23);
 		label.add(userRecipesButton);
 
 		userRecipesButton.addActionListener(new ActionListener() {
@@ -192,7 +192,7 @@ public class HomePage extends JFrame {
 		ingredientsButton = new JButton("My Ingredients");
 		ingredientsButton.setForeground(new Color(255, 255, 255));
         ingredientsButton.setBackground(new Color(59, 89, 182));
-        ingredientsButton.setBounds(350, 10, 160, 23);
+        ingredientsButton.setBounds(450, 10, 160, 23);
 		label.add(ingredientsButton);
 
 		ingredientsButton.addActionListener(new ActionListener() {
@@ -207,7 +207,7 @@ public class HomePage extends JFrame {
 		newRecipesButton = new JButton("Find New Recipes");
 		newRecipesButton.setForeground(new Color(255, 255, 255));
         newRecipesButton.setBackground(new Color(59, 89, 182));
-        newRecipesButton.setBounds(550, 10, 160, 23);
+        newRecipesButton.setBounds(650, 10, 160, 23);
 		label.add(newRecipesButton);
 
 		newRecipesButton.addActionListener(new ActionListener() {
@@ -223,7 +223,7 @@ public class HomePage extends JFrame {
 		viewProfileButton = new JButton("View Profile");
 		viewProfileButton.setForeground(new Color(255, 255, 255));
         viewProfileButton.setBackground(new Color(59, 89, 182));
-        viewProfileButton.setBounds(750, 10, 160, 23);
+        viewProfileButton.setBounds(850, 10, 160, 23);
 		label.add(viewProfileButton);
 
 		viewProfileButton.addActionListener(new ActionListener() {
@@ -238,7 +238,7 @@ public class HomePage extends JFrame {
 		mealPlannerButton = new JButton("Meal Planner");
 		mealPlannerButton.setForeground(new Color(255, 255, 255));
         mealPlannerButton.setBackground(new Color(59, 89, 182));
-        mealPlannerButton.setBounds(950, 10, 160, 23);
+        mealPlannerButton.setBounds(1050, 10, 160, 23);
 		label.add(mealPlannerButton);
 
 		mealPlannerButton.addActionListener(new ActionListener() {
