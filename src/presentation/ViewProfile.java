@@ -97,6 +97,7 @@ public class ViewProfile extends JFrame {
 		//Set the size and pop up location of the window.
 		setSize(450, 450);	
 		setLocationRelativeTo(null);
+		setResizable(false);
 		//Get content pane.
 		contentPane = getContentPane();		
 		
@@ -157,11 +158,11 @@ public class ViewProfile extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		//Create a HomePage window
-		HomePage homePage = new HomePage();
+		//HomePage homePage = new HomePage();
 				
 		//Make the HomePage window visible and the UserRecipeCollection window invisible.
-		homePage.setVisible(true);
-		contentPane.setVisible(false);
+			//homePage.setVisible(true);
+			contentPane.setVisible(false);
 				
 		//Close the UserRecipeCollection Window.
 		Window win = SwingUtilities.getWindowAncestor(contentPane);

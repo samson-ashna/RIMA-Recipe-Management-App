@@ -229,7 +229,7 @@ public class HomePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ViewProfile profile = new ViewProfile();
 				profile.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});	
 
