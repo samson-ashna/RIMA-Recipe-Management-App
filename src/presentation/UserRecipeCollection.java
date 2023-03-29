@@ -115,6 +115,8 @@ public class UserRecipeCollection extends JFrame {
 	 */
 	public UserRecipeCollection() {
 		setTitle("RIMA - User Recipes");
+
+		setResizable(false);
 		//Set the application to exit when closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		
 		//Set the bounds of the window.

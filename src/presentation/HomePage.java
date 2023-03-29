@@ -132,6 +132,7 @@ public class HomePage extends JFrame {
 
 		frame = this;
 		setTitle(("RIMA - Welcome " + UserActivity.getCurrentUser().getName() + "!"));
+		setResizable(false);
 
 		// Background
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));

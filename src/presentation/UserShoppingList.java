@@ -39,8 +39,11 @@ public class UserShoppingList extends JFrame {
 	 * Create the frame.
 	 */
 	public UserShoppingList() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setResizable(false);
 		setBounds(0, 0, 1280, 680);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,5 +82,14 @@ public class UserShoppingList extends JFrame {
 		btnAddtoList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAddtoList.setBounds(661, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnAddtoList);
+
+
+		btnHomepage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+
+			}
+		});
 	}
 }

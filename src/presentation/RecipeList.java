@@ -97,7 +97,7 @@ public class RecipeList extends JFrame {
 	 * Create the frame.
 	 */
 	public RecipeList() {
-		
+
 		label = new JLabel();
 		label.setBounds(0, 0, 671, 591);
 		//Creates a new content pane
@@ -167,10 +167,11 @@ public class RecipeList extends JFrame {
 		//contentPane.add(label);
 
 		setTitle("RIMA - Recipes List");
-		this.setSize(671, 591);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().setLayout(null);
+		setResizable(false);
+		setSize(671, 591);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		
 		this.getContentPane().add(label);
@@ -236,6 +237,7 @@ public class RecipeList extends JFrame {
 			}
 		});
 
+		setResizable(false);
 		setVisible(true);
 		
 	}
