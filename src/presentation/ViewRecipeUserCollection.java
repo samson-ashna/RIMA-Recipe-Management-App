@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -51,6 +52,7 @@ public class ViewRecipeUserCollection extends JDialog {
 	 */
 	public ViewRecipeUserCollection(String name,int page) {
 		setBounds(100, 100, 862, 574);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 836, 503);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
