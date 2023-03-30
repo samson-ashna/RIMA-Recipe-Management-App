@@ -114,7 +114,7 @@ public class ViewProfile extends JFrame {
 
 		//Create a new info pane.
 		infoPane = new JPanel();
-		infoPane.setBounds(15, 50, 405, 310);
+		infoPane.setBounds(15, 50, 405, 325);
 		//Set the info pane's layout manager to the vertical box layout.
 		// infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
@@ -147,7 +147,7 @@ public class ViewProfile extends JFrame {
 		//Create a new pane for buttons.
 		buttonPane = new JPanel();
 		buttonPane.setOpaque(false);
-		buttonPane.setBounds(15, 365, 405, 40);
+		buttonPane.setBounds(15, 375, 405, 40);
 		//Set an invisible border for the button pane.
 		// buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
