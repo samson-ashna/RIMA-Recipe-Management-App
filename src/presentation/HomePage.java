@@ -180,6 +180,7 @@ public void addDinnerRecipes(String day) {
 
 		frame = this;
 		setTitle(("RIMA - Welcome " + UserActivity.getCurrentUser().getName() + "!"));
+		setResizable(false);
 
 		// Background
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
@@ -191,7 +192,8 @@ public void addDinnerRecipes(String day) {
 		shoppingListButton = new JButton("Shopping List");
 		shoppingListButton.setForeground(new Color(255, 255, 255));
 		shoppingListButton.setBackground(new Color(59, 89, 182));
-		shoppingListButton.setBounds(40, 10, 110, 23);
+
+		shoppingListButton.setBounds(50, 10, 160, 23);
 		label.add(shoppingListButton);
 
 		shoppingListButton.addActionListener(new ActionListener() {
@@ -223,7 +225,8 @@ public void addDinnerRecipes(String day) {
 		userRecipesButton = new JButton("My Collection");
 		userRecipesButton.setForeground(new Color(255, 255, 255));
         userRecipesButton.setBackground(new Color(59, 89, 182));
-        userRecipesButton.setBounds(160, 10, 165, 23);
+
+        userRecipesButton.setBounds(250, 10, 160, 23);
 		label.add(userRecipesButton);
 
 		userRecipesButton.addActionListener(new ActionListener() {
@@ -231,7 +234,7 @@ public void addDinnerRecipes(String day) {
 				UserRecipeCollection collection = new UserRecipeCollection();
 				collection.setVisible(true);
 				//contentPane.setVisible(false);
-				frame.dispose();
+				//frame.dispose();
 				collection.page =0;
 			}
 		});
@@ -240,14 +243,14 @@ public void addDinnerRecipes(String day) {
 		ingredientsButton = new JButton("My Ingredients");
 		ingredientsButton.setForeground(new Color(255, 255, 255));
         ingredientsButton.setBackground(new Color(59, 89, 182));
-        ingredientsButton.setBounds(350, 10, 160, 23);
+        ingredientsButton.setBounds(450, 10, 160, 23);
 		label.add(ingredientsButton);
 
 		ingredientsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IngredientsListView ingredients = new IngredientsListView();
 				ingredients.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});
 
@@ -255,7 +258,7 @@ public void addDinnerRecipes(String day) {
 		newRecipesButton = new JButton("Find New Recipes");
 		newRecipesButton.setForeground(new Color(255, 255, 255));
         newRecipesButton.setBackground(new Color(59, 89, 182));
-        newRecipesButton.setBounds(550, 10, 160, 23);
+        newRecipesButton.setBounds(650, 10, 160, 23);
 		label.add(newRecipesButton);
 
 		newRecipesButton.addActionListener(new ActionListener() {
@@ -263,7 +266,7 @@ public void addDinnerRecipes(String day) {
 				RecipeList listRecipes = new RecipeList();
 				listRecipes.setVisible(true);
 				//contentPane.setVisible(false);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});
 
@@ -271,14 +274,14 @@ public void addDinnerRecipes(String day) {
 		viewProfileButton = new JButton("View Profile");
 		viewProfileButton.setForeground(new Color(255, 255, 255));
         viewProfileButton.setBackground(new Color(59, 89, 182));
-        viewProfileButton.setBounds(750, 10, 160, 23);
+        viewProfileButton.setBounds(850, 10, 160, 23);
 		label.add(viewProfileButton);
 
 		viewProfileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewProfile profile = new ViewProfile();
 				profile.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 			}
 		});	
 
@@ -286,7 +289,7 @@ public void addDinnerRecipes(String day) {
 		mealPlannerButton = new JButton("Meal Planner");
 		mealPlannerButton.setForeground(new Color(255, 255, 255));
         mealPlannerButton.setBackground(new Color(59, 89, 182));
-        mealPlannerButton.setBounds(950, 10, 160, 23);
+        mealPlannerButton.setBounds(1050, 10, 160, 23);
 		label.add(mealPlannerButton);
 
 		mealPlannerButton.addActionListener(new ActionListener() {

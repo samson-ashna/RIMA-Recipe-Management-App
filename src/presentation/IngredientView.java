@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -62,10 +63,15 @@ public class IngredientView extends JFrame {
 		
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
 		DecimalFormat costFormat = new DecimalFormat("$###,###,##0.00");
+		String expirationText = format.format(ingredient.getExpiration());
+		
+		if(ingredient.getExpiration().isBefore(LocalDate.now())) {
+			expirationText = expirationText + " [Expired]";
+		}
 		
 		displName.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Name</span><br>"+ingredient.getName()+"</div></html>");
 		displCost.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Cost</span><br>"+costFormat.format(ingredient.getCost())+"</div></html>");
-		displExpiration.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Expiration Date</span><br>"+format.format(ingredient.getExpiration())+"</div></html>");
+		displExpiration.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Expiration Date</span><br>"+expirationText+"</div></html>");
 		displCarbs.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Carbs (g)</span><br>"+ingredient.getCarbs()+"</div></html>");
 		displProtein.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Protein (g)</span><br>"+ingredient.getProtein()+"</div></html>");
 	}

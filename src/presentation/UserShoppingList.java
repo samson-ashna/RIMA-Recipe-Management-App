@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -39,8 +43,11 @@ public class UserShoppingList extends JFrame {
 	 * Create the frame.
 	 */
 	public UserShoppingList() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setResizable(false);
 		setBounds(0, 0, 1280, 680);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,18 +73,37 @@ public class UserShoppingList extends JFrame {
 		btnDisplayList.setBounds(347, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnDisplayList);
 		
-		JButton btnExit = new JButton("Exit");
+		/*JButton btnExit = new JButton("Exit");
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnExit.setBounds(977, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnExit);
+		panel_4_usefulbuttons.add(btnExit);*/
 		
-		JButton btnAddtoList = new JButton("Add to List");
+		JButton btnAddtoList = new JButton("Add Ingredient");
 		btnAddtoList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Create a SaveShoppingListView window
+				SaveShoppingListView addShoppingListPage = new SaveShoppingListView();
+						
+				//Make the SaveRecipesView window visible.
+				addShoppingListPage.setVisible(true);	
+				contentPane.setVisible(false);
+				
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();
 			}
 		});
 		btnAddtoList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAddtoList.setBounds(661, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnAddtoList);
+		
+		
+
+
+		btnHomepage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+		
+			}
+		});
 	}
 }
