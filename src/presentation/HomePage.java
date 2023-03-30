@@ -12,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JCalendar;
@@ -20,6 +22,7 @@ import businessLogic.UserActivity;
 import objects.User;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
+import objects.Ingredient;
 import objects.Planner;
 import objects.Recipes;
 
@@ -36,7 +39,10 @@ import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
@@ -62,9 +68,9 @@ public class HomePage extends JFrame {
 	private JPanel breakfast;
 	private JPanel lunch;
 	private JPanel dinner;
-	private JPanel calendar;
 	private JPanel favourites;
 	private JPanel planner;
+	private JPanel expirations;
 
 
 	private JFrame frame;
@@ -453,7 +459,7 @@ public void addDinnerRecipes(String day) {
 		JLabel favouritesLabel1 = new JLabel("Favourites");
 		favouritesLabel1.setBounds(114, 5, 118, 14);
 		favourites.add(favouritesLabel1);
-		favourites.setBounds(940, 45, 280, 600);
+		favourites.setBounds(940, 45, 280, 400);
 		favourites.setBackground(Color.WHITE);
 		
 		label.add(favourites);
@@ -469,8 +475,62 @@ public void addDinnerRecipes(String day) {
 		scrollPane_3.setVisible(false);
 		 
 		
+		//Expiration Dates Panel
+		//Panel setup.
+		expirations = new JPanel();
+		expirations.setLayout(null);
+		expirations.setBounds(940, 456, 280, 190);
+		expirations.setBackground(Color.WHITE);
 		
+		//Label setup
+		JLabel expLabel = new JLabel("Expired Ingredients");
+		int expWidth = 110;
+		expLabel.setBounds(expirations.getWidth()/2-expWidth/2, 5, expWidth, 14);
+		expirations.add(expLabel);
+		
+		//List setup
+		DefaultListModel<String> expModel = new DefaultListModel<>();
+		JList<String> expList = new JList<String>(expModel);
+		expirationListSetup(expModel);
+		
+		//Scroll pane setup
+		JScrollPane expScrollPane = new JScrollPane(expList);
+		int scrollBorder = 7;
+		expScrollPane.setBounds(scrollBorder, expLabel.getY()+expLabel.getHeight()+scrollBorder, expirations.getWidth()-scrollBorder*2,expirations.getHeight()-expLabel.getHeight()-scrollBorder*3);
+		expirations.add(expScrollPane);
+		
+		frame.getContentPane().add(expirations);
+		frame.validate();
 
+		//Set up what to do when an item in the list is selected.
+		expList.addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent e) {
+		        if (!e.getValueIsAdjusting()){
+		           
+		        	if(expList.isSelectionEmpty()) return;
+		        	
+		        	User user = UserActivity.getCurrentUser();
+		    		if(user == null) return;
+		    		
+		    		ArrayList<Ingredient> ingredients = user.getIngredients();
+		    		if(ingredients == null) return;
+		        	
+		        	String selectedValue = (String) expList.getSelectedValue();
+		            for(Ingredient ingredient:ingredients) {
+		            	if(ingredient.getName().equals(selectedValue)) {
+		            		JComponent[] components = new JComponent[]{expList};
+		            		IngredientView ingredientView = new IngredientView(components, ingredient);
+		            		expList.clearSelection();
+		            		expList.setEnabled(false);
+		            		ingredientView.setVisible(true);
+		            		return;
+		            	}
+		            }
+		        }
+		    }
+		});
+		
+		
 		// Setup
 		frame.getContentPane().setBackground(new Color(143, 188, 143));
 		getContentPane().setLayout(null);
@@ -529,8 +589,20 @@ public void addDinnerRecipes(String day) {
 		frame.setVisible(true);
 		favouriteRecipes();
 		showPlan();
-
+	}
+	
+	private void expirationListSetup(DefaultListModel<String> expModel) {
+		User user = UserActivity.getCurrentUser();
+		if(user == null) return;
 		
+		ArrayList<Ingredient> ingredients = user.getIngredients();
+		if(ingredients == null) return;
+		
+		for(Ingredient ingredient:ingredients) {
+			if(ingredient.getExpiration().isBefore(LocalDate.now())) {
+				expModel.addElement(ingredient.getName());
+			}
+		}
 	}
 	public void showPlan() {
 		modelLst.clear();
