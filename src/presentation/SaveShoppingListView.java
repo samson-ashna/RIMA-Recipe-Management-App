@@ -36,8 +36,8 @@ public class SaveShoppingListView extends JFrame {
 	private JPanel contentPane;
 	//text field objects
 	private JTextField userName;
-	private JTextField proteinInfo;
-	private JTextField carbsInfo;
+	private JTextField ingredientInfo;
+	ArrayList<String> shoppingList = new ArrayList<String>();
 
 	/**
 	 * Launch the application.
@@ -97,11 +97,17 @@ public class SaveShoppingListView extends JFrame {
 		lblCarbs.setBounds(112, 196, 157, 59);
 		contentPane.add(lblCarbs);*/
 		
-		//Creates text fields where user can enter the new recipe's name, protein, carbs, ingredients, and instruction.
-		userName = new JTextField();
+		//Creates text fields where user can enter the new ingredient into shopping list
+		/*userName = new JTextField();
 		userName.setBounds(315, 71, 228, 41);
 		contentPane.add(userName);
-		userName.setColumns(10);
+		userName.setColumns(10);*/
+		
+		ingredientInfo = new JTextField();
+		ingredientInfo.setBounds(315, 71, 228, 41);
+		contentPane.add(ingredientInfo);
+		//JScrollPane scrollPane_1 = new JScrollPane();
+		//scrollPane_1.setBounds(315, 409, 228, 171);
 		
 		/*proteinInfo = new JTextField();
 		proteinInfo.setColumns(10);
@@ -160,19 +166,18 @@ public class SaveShoppingListView extends JFrame {
 		
 		JTextArea ingredientInfo = new JTextArea();
 		scrollPane.setViewportView(ingredientInfo);
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(315, 409, 228, 171);
 		contentPane.add(scrollPane_1);*/
 		
 		/*JTextArea instructionInfo = new JTextArea();
 		scrollPane_1.setViewportView(instructionInfo);
-		instructionInfo.setLineWrap(true);
+		instructionInfo.setLineWrap(true);*/
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean incorrectValues = false;
-				String name = userName.getText();
-				int protein=0;
+				String name = ingredientInfo.getText();
+				/*int protein=0;
 				try
 				{
 				    protein = Integer.parseInt(proteinInfo.getText());
@@ -192,21 +197,18 @@ public class SaveShoppingListView extends JFrame {
 					incorrectValues = true;
 					lblError1.setText("Must be an integer!");
 					
-				}
+				}*/
 				
-				if(!incorrectValues) {
+				if(!name.equals("")) {
 		
-					String ingredients=ingredientInfo.getText();
-					String instructions = instructionInfo.getText();
-					Recipes newRecipe = null;
-					newRecipe = new Recipes(name, protein, carbs);
-					newRecipe.setIngredients(ingredients);
-					newRecipe.setInstructions(instructions);
-					newRecipe.setMealTime(comboBox.getSelectedItem().toString());
-					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
-					saveRecipe.save(newRecipe);
+					String ingredient = ingredientInfo.getText();
+					shoppingList.add(ingredient);
+					//String instructions = instructionInfo.getText();
+					//Recipes newRecipe = null;
+					//SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
+					//saveRecipe.save(newRecipe);
 					//User is then redirected back to their recipe collection page.
-					UserRecipeCollection back = new UserRecipeCollection();
+					UserShoppingList back = new UserShoppingList();
 					back.setVisible(true);
 					contentPane.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPane);
@@ -214,6 +216,6 @@ public class SaveShoppingListView extends JFrame {
 				}
 				
 			}
-		});*/
+		});
 	}
 }
