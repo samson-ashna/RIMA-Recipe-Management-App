@@ -54,6 +54,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				ArrayList<Ingredient> ingredients = parseIngredients(result.getString(4));
 				String allergies = result.getString(5);
 				String plan = result.getString(6);
+				String shoppingList = result.getString(7);
 				User u = new User(name, password);
 				u.setRecipeCollection(myRecipes);
 				u.setAllergies(allergies);
@@ -96,6 +97,16 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				}
 				u.setAllergyInformation(allergyLst);
 				u.setRecipeCollection(recipesLst);
+				ArrayList<String> shoppingLst = new ArrayList<String>();
+				if(shoppingList !=null) {
+					String[] arrOfStr = shoppingList.split("-");
+					for(String s: arrOfStr) {
+						if(s.length()>0) {
+							shoppingLst.add(s.strip());
+						}
+					}
+				}
+				u.setShoppingList(shoppingLst);
 				HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
 				String breakfast=null;
 				String lunch = null;
@@ -621,14 +632,14 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	}*/
 	
 	@Override
-	public void editShoppingList(String ingredient, int change)
+	public void editShoppingList(String ingredient, String name)
 	{
 		try {
 			// create connection
 			con = DriverManager.getConnection(url, user, password);
 			// create statement
 			statement = con.createStatement();
-			query = "UPDATE shopping list=\'" + change + "\' WHERE `ingredient`=\'" + ingredient + "\';";
+			query = "UPDATE users SET shoppingList=\'" + ingredient + "\' WHERE `name`=\'" + name + "\';";
 			statement.execute(query);
 			statement.close();
 			result.close();

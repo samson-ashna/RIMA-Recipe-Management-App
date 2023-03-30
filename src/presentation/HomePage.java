@@ -110,6 +110,8 @@ public class HomePage extends JFrame {
 	private JList listDinner;
 	DefaultListModel<String> modelLst = new DefaultListModel<String>();	
 	DefaultListModel<String> expModel = new DefaultListModel<String>();
+	static DefaultListModel<String> shoppingModel = new DefaultListModel<String>();
+
 	//JList list = new JList();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 	private JScrollPane scrollPane_4;
@@ -117,6 +119,8 @@ public class HomePage extends JFrame {
 	private JScrollPane scrollPane_5;
 	private JScrollPane scrollPane_6;
 	private JScrollPane scrollPane_7;
+	private JScrollPane scrollPane_8;
+	private static JList listShopping;
 	
 	/**
 	 * Launch the application.
@@ -578,10 +582,23 @@ public void addDinnerRecipes(String day) {
 		 }
 		
 		
-		JPanel ingredientPanel = new JPanel();
-		ingredientPanel.setBackground(new Color(255, 255, 255));
-		ingredientPanel.setBounds(518, 456, 400, 190);
-		getContentPane().add(ingredientPanel);
+		JPanel shoppingListPanel = new JPanel();
+		shoppingListPanel.setBackground(new Color(255, 255, 255));
+		shoppingListPanel.setBounds(518, 456, 400, 190);
+		getContentPane().add(shoppingListPanel);
+		shoppingListPanel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Shopping List");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(86, 11, 215, 14);
+		shoppingListPanel.add(lblNewLabel);
+		
+		scrollPane_8 = new JScrollPane();
+		scrollPane_8.setBounds(10, 33, 380, 146);
+		shoppingListPanel.add(scrollPane_8);
+		
+		listShopping = new JList();
+		scrollPane_8.setViewportView(listShopping);
 		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
@@ -589,6 +606,8 @@ public void addDinnerRecipes(String day) {
 		frame.setVisible(true);
 		favouriteRecipes();
 		showPlan();
+		
+		
 	}
 	
 	public void expirationListSetup() {
@@ -604,6 +623,13 @@ public void addDinnerRecipes(String day) {
 				expModel.addElement(ingredient.getName());
 			}
 		}
+	}
+	public static void shoppingLstSetUp() {
+		shoppingModel.clear();
+		for(String n: UserActivity.currentUser.getShoppingList()) {
+			shoppingModel.addElement(n);
+		}
+		listShopping.setModel(shoppingModel);
 	}
 	public void showPlan() {
 		modelLst.clear();
