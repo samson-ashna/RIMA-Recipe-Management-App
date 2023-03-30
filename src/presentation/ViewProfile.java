@@ -114,7 +114,7 @@ public class ViewProfile extends JFrame {
 
 		//Create a new info pane.
 		infoPane = new JPanel();
-		infoPane.setBounds(15, 50, 405, 340);
+		infoPane.setBounds(15, 50, 405, 310);
 		//Set the info pane's layout manager to the vertical box layout.
 		// infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
@@ -146,7 +146,8 @@ public class ViewProfile extends JFrame {
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel();
-		buttonPane.setBackground(Color.GRAY);
+		buttonPane.setOpaque(false);
+		buttonPane.setBounds(15, 365, 405, 40);
 		//Set an invisible border for the button pane.
 		// buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
@@ -164,13 +165,13 @@ public class ViewProfile extends JFrame {
 		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
-		buttonPane.add(surveyButton);
-		surveyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				UserDietaryRestrictionsSurvey survey = new UserDietaryRestrictionsSurvey();
+		// buttonPane.add(surveyButton);
+		// surveyButton.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent e) {
+		// 		UserDietaryRestrictionsSurvey survey = new UserDietaryRestrictionsSurvey();
 				
-			}
-		});		
+		// 	}
+		// });		
 		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());
