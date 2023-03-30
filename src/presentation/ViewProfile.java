@@ -1,5 +1,6 @@
 package presentation;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ import java.awt.Container;
 import objects.User;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 
 /**
@@ -45,6 +47,7 @@ public class ViewProfile extends JFrame {
 	private final JButton btnNewButton = new JButton("Survey");
 	private final JButton surveyButton = new JButton("Survey");
 	private JLabel label = new JLabel();
+	private JFrame frame;
 
 
 	/**
@@ -57,7 +60,7 @@ public class ViewProfile extends JFrame {
 					//Create a new frame.
 					ViewProfile frame = new ViewProfile();
 					//Make the frame visible.
-					frame.setVisible(true);
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,8 +72,11 @@ public class ViewProfile extends JFrame {
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */
 	public void displayUserInfo() {
+		contentPane = getContentPane();		
+
 		User currentUser = UserActivity.getCurrentUser();		
 		if(currentUser != null) {
+			
 			displName.setText(currentUser.getName());
 			Hashtable<String,Integer> userAllergies = currentUser.getUserAllergies().getAllergies();
 			ArrayList<String> allergyNames = currentUser.getUserAllergies().getAllergyNames();
@@ -93,47 +99,67 @@ public class ViewProfile extends JFrame {
 	 */
 	public ViewProfile() {
 		
-		setTitle("RIMA - User Profile");
-		setSize(450, 450);	
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
-		setLocationRelativeTo(null);
-		setResizable(false);
+		frame = this;
+		frame.setTitle("RIMA - User Profile");
+		frame.setSize(450, 450);	
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.getContentPane().setBackground(new Color(143, 188, 143));
 
 		label = new JLabel();
 		
 		// contentPane = getContentPane();		
-		
+		JPanel userPanel = new JPanel();
+
 		//Create a new info pane.
 		infoPane = new JPanel();
+		infoPane.setBounds(15, 50, 405, 340);
 		//Set the info pane's layout manager to the vertical box layout.
-		infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
+		// infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
 		//Make an invisible border for the info pane.
 		// infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 				
 		//Add user info to labels.
-		displayUserInfo();	
+		displayUserInfo();
+		// displName.setBounds(100, 100, 50, 50);
 		
 		//Align labels.
 		displName.setAlignmentX(CENTER_ALIGNMENT);
 		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);		
 		
 		//Add labels to the info pane.
-		infoPane.add(displName);
-		infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
+
+
+		displName.setBounds(0, 0, 50, 50);
+		allergyInfo.setBounds(0, 20, 50, 50);
+
+		// infoPane.add(displName);
+		userPanel.add(displName);
+		// infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		infoPane.add(allergyInfo);
+		infoPane.setBackground(Color.WHITE);
+		infoPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel();
+		buttonPane.setBackground(Color.GRAY);
 		//Set an invisible border for the button pane.
-		buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		// buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
-		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+		// buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
 		
 		//Add the button and info panes to the content pane.
-		contentPane.add(infoPane);
-		contentPane.add(buttonPane);
+		// contentPane.add(infoPane);
+		// contentPane.add(buttonPane);
 		
+
+
+
+
 		//Set up the button fonts.
 		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -154,8 +180,19 @@ public class ViewProfile extends JFrame {
 		
 		
 		//Add info and button panes to content pane.
-		contentPane.add(infoPane);
-		contentPane.add(buttonPane, BorderLayout.PAGE_END);
+		
+		userPanel.setBounds(15, 10, 405, 30);
+
+		label.add(userPanel);
+		label.add(infoPane);
+		label.add(buttonPane);
+		
+
+		frame.add(label);
+		frame.setVisible(true);
+
+		// contentPane.add(infoPane);
+		// contentPane.add(buttonPane, BorderLayout.PAGE_END);
 		
 		//Set up what to do when the back button is pressed.
 		backButton.addActionListener(new ActionListener() {
