@@ -188,7 +188,7 @@ public class UsersStubDB implements UsersDAO {
 	}
 
 	@Override
-	public void editShoppingList(String ingredient, int change) {
+	public void editShoppingList(String ingredient, String name) {
 		// TODO Auto-generated method stub
 		
 	}

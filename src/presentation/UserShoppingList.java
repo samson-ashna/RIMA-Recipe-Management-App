@@ -26,10 +26,18 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JList;
 
 public class UserShoppingList extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField ingredientInfo;
+	DefaultListModel<String> model = new DefaultListModel<String>();
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO db = access.usersDB();
+
 
 	/**
 	 * Launch the application.
@@ -69,17 +77,8 @@ public class UserShoppingList extends JFrame {
 		
 		JButton btnHomepage = new JButton("<-- Back to HomePage");
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnHomepage.setBounds(32, 20, 234, 31);
+		btnHomepage.setBounds(976, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnHomepage);
-		
-		JButton btnDisplayList = new JButton("Display List");
-		btnDisplayList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDisplayList.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnDisplayList.setBounds(347, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnDisplayList);
 		
 		/*JButton btnExit = new JButton("Exit");
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -105,30 +104,69 @@ public class UserShoppingList extends JFrame {
 			//Set the model for the list section to be the one that was 
 			list.setModel(model);
 		}*/
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(31, 35, 873, 499);
+		contentPane.add(scrollPane);
 		
-		JButton btnAddtoList = new JButton("Add Ingredient");
-		btnAddtoList.addActionListener(new ActionListener() {
+		JList list = new JList();
+		scrollPane.setViewportView(list);
+		list.setModel(model);
+		for(String n: UserActivity.currentUser.getShoppingList()) {
+			model.addElement(n);
+		}
+		JButton btnRemoveFromList = new JButton("Remove Selected Ingredient");
+		btnRemoveFromList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a SaveShoppingListView window
-				SaveShoppingListView addShoppingListPage = new SaveShoppingListView();
-						
-				//Make the SaveRecipesView window visible.
-				addShoppingListPage.setVisible(true);	
-				contentPane.setVisible(false);
+				String name = (String) list.getSelectedValue();
+				UserActivity.currentUser.removeFromShoppingLst(name);
+				db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
+				model.removeElement(name);
 				
-				Window win = SwingUtilities.getWindowAncestor(contentPane);
-				win.dispose();
 			}
 		});
-		btnAddtoList.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAddtoList.setBounds(661, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnAddtoList);
+		btnRemoveFromList.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnRemoveFromList.setBounds(27, 20, 300, 31);
+		panel_4_usefulbuttons.add(btnRemoveFromList);
+		
+		
+		
+		JLabel lblName = new JLabel("Ingredient & Quantity");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblName.setBounds(947, 181, 258, 59);
+		contentPane.add(lblName);
+		
+		ingredientInfo = new JTextField();
+		ingredientInfo.setBounds(957, 260, 240, 41);
+		contentPane.add(ingredientInfo);
+		
+		JButton btnAddToList = new JButton("Add to List");
+		btnAddToList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean incorrectValues = false;
+				String name = ingredientInfo.getText();
+				if(!name.equals("")) {
+					
+					UserActivity.currentUser.addToShoppingLst(name);
+					db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
+					model.addElement(name);
+					
+				}
+				
+			}
+		});
+	
+		btnAddToList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAddToList.setBounds(975, 347, 207, 59);
+		contentPane.add(btnAddToList);
 		
 		
 
 
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				HomePage.shoppingLstSetUp();
 				dispose();
 		
 			}

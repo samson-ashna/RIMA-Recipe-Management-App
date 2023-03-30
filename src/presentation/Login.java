@@ -83,13 +83,13 @@ public class Login extends JFrame {
 
 		frame = new JFrame("RIMA - Login");
 		frame.setSize(1280, 720);
-		frame.setLayout(null);
+		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		
 		//Creates a back button. When clicked user is redirected to main page. 
 		backButton = new JButton("Back");
-		frame.add(backButton);
+		frame.getContentPane().add(backButton);
 		backButton.setBackground(new Color(59, 89, 182));
         backButton.setForeground(Color.WHITE);
         backButton.setFocusPainted(false);
@@ -99,7 +99,7 @@ public class Login extends JFrame {
 		
 		//Creates a button for login. When clicked, if the entered information is correct, user is redirected to home page.
 		logInButton = new JButton("Login");
-		frame.add(logInButton);
+		frame.getContentPane().add(logInButton);
 		logInButton.setBackground(new Color(59, 89, 182));
         logInButton.setForeground(Color.WHITE);
         logInButton.setFocusPainted(false);
@@ -109,13 +109,13 @@ public class Login extends JFrame {
 		
 		//Creates a text field where user can enter password
 		passwordField = new JPasswordField();
-		frame.add(passwordField);
+		frame.getContentPane().add(passwordField);
 		passwordField.setBounds(469, 359, 327, 26);
 		
 		//label for password
 
 		lblPassword.setForeground(new Color(255, 255, 255));
-		frame.add(lblPassword);
+		frame.getContentPane().add(lblPassword);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblPassword.setBounds(584, 308, 76, 51);
@@ -123,14 +123,14 @@ public class Login extends JFrame {
 		
 		//Creates a test field where user can enter user name
 		textField = new JTextField();
-		frame.add(textField);
+		frame.getContentPane().add(textField);
 		textField.setBounds(469, 271, 327, 26);
 		textField.setColumns(10);
 		
 		// label for user name
 		
 		lbluserName.setForeground(new Color(255, 255, 255));
-		frame.add(lbluserName);
+		frame.getContentPane().add(lbluserName);
 		lbluserName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbluserName.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lbluserName.setBounds(562, 220, 123, 51);
@@ -138,10 +138,10 @@ public class Login extends JFrame {
 		
 		//Creates label for displaying error messages.
 		lblError = new JLabel();
-		frame.add(lblError);
+		frame.getContentPane().add(lblError);
 		lblError.setForeground(new Color(255, 255, 255));
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		lblError.setBounds(550, 425, 185, 14);
+		lblError.setBounds(550, 463, 185, 14);
 		
 
 		
@@ -184,7 +184,7 @@ public class Login extends JFrame {
 				win.dispose();
 			}
 		});
-		frame.add(lbl);
+		frame.getContentPane().add(lbl);
 		frame.setVisible(true);
 		
 	}

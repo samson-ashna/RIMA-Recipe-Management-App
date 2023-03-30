@@ -110,6 +110,8 @@ public class HomePage extends JFrame {
 	private JList listDinner;
 	DefaultListModel<String> modelLst = new DefaultListModel<String>();	
 	DefaultListModel<String> expModel = new DefaultListModel<String>();
+	static DefaultListModel<String> shoppingModel = new DefaultListModel<String>();
+
 	//JList list = new JList();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 	private JScrollPane scrollPane_4;
@@ -117,6 +119,8 @@ public class HomePage extends JFrame {
 	private JScrollPane scrollPane_5;
 	private JScrollPane scrollPane_6;
 	private JScrollPane scrollPane_7;
+	private JScrollPane scrollPane_8;
+	private static JList listShopping;
 	
 	/**
 	 * Launch the application.
@@ -589,12 +593,21 @@ public void addDinnerRecipes(String day) {
 		lblNewLabel.setBounds(86, 11, 215, 14);
 		shoppingListPanel.add(lblNewLabel);
 		
+		scrollPane_8 = new JScrollPane();
+		scrollPane_8.setBounds(10, 33, 380, 146);
+		shoppingListPanel.add(scrollPane_8);
+		
+		listShopping = new JList();
+		scrollPane_8.setViewportView(listShopping);
+		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		favouriteRecipes();
 		showPlan();
+		
+		
 	}
 	
 	public void expirationListSetup() {
@@ -610,6 +623,13 @@ public void addDinnerRecipes(String day) {
 				expModel.addElement(ingredient.getName());
 			}
 		}
+	}
+	public static void shoppingLstSetUp() {
+		shoppingModel.clear();
+		for(String n: UserActivity.currentUser.getShoppingList()) {
+			shoppingModel.addElement(n);
+		}
+		listShopping.setModel(shoppingModel);
 	}
 	public void showPlan() {
 		modelLst.clear();

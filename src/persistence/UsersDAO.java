@@ -23,7 +23,7 @@ public interface UsersDAO extends DAO<User> {
 	public ArrayList<Recipes> getFavoriteList(User u);
 	public void editFavorites(Recipes r,int change);
 	public void editPlanner(User u,String day,String time, String recipe);
-	public void editShoppingList(String ingredient, int change);
+	public void editShoppingList(String ingredient, String name);
 	//public ArrayList<String> getShoppingList(User u);
 	//ArrayList<Recipes> shoppingIngredients(User u);
 }

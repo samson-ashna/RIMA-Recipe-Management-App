@@ -22,6 +22,7 @@ public class User {
 	private HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
 	String[] days= {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 	private HashMap<String,Planner> planner = new HashMap<String, Planner>();
+	private ArrayList<String> shoppingList = new ArrayList<String>();
 	
 	//private ArrayList<String> recipelst = new ArrayList<String>();
 	
@@ -235,6 +236,25 @@ public class User {
 			weekPlanner.get(day).dinner.add(recipe);
 			//weekPlanner.get(day).setListFormat("dinner",recipe);
 		}
+	}
+	public void addToShoppingLst(String name) {
+		shoppingList.add(name);
+	}
+	public void removeFromShoppingLst(String name) {
+		shoppingList.remove(name);
+	}
+	public ArrayList<String> getShoppingList(){
+		return shoppingList;
+	}
+	public String shoppingItems() {
+		String items ="";
+		for(String n: shoppingList) {
+			items+=n+"-";
+		}
+		return items;
+	}
+	public void setShoppingList(ArrayList<String> list) {
+		this.shoppingList = list;
 	}
 
 }
