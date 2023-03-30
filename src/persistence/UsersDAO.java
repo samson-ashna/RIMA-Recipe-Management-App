@@ -24,4 +24,6 @@ public interface UsersDAO extends DAO<User> {
 	public void editFavorites(Recipes r,int change);
 	public void editPlanner(User u,String day,String time, String recipe);
 	public void editShoppingList(String ingredient, int change);
+	//public ArrayList<String> getShoppingList(User u);
+	//ArrayList<Recipes> shoppingIngredients(User u);
 }

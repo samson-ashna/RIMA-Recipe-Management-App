@@ -192,4 +192,17 @@ public class UsersStubDB implements UsersDAO {
 		// TODO Auto-generated method stub
 		
 	}
+
+	// to do 0330
+	/*@Override
+	public ArrayList<String> getShoppingList(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Recipes> shoppingIngredients(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 }

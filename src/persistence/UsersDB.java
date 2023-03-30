@@ -593,6 +593,33 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 	}
 	
+	// to do 0330
+	/*@Override
+	public ArrayList<Recipes> shoppingIngredients(User u) {
+		ArrayList<Recipes> userRecipes = new ArrayList<Recipes>();
+		ArrayList<Recipes> allRecipes = new ArrayList<Recipes>();
+		RecipesDB db = new RecipesDB();
+		allRecipes = db.getAllRecipes();
+		for (Recipes r : allRecipes) {
+			if (u.getName().equals(r.getUser())) {
+				userRecipes.add(r);
+			}
+		}
+		return userRecipes;
+	}*/
+
+	// to do 0330
+	/*Override
+	public ArrayList<String> getShoppingList(User u) {
+		ArrayList<String> shoppingList = new ArrayList<>();
+		for(Recipes r: getRecipes(u)) {
+			if(r.favourite==1) {
+				shoppingList.add(r);
+			}
+		}
+		return shoppingList;
+	}*/
+	
 	@Override
 	public void editShoppingList(String ingredient, int change)
 	{
