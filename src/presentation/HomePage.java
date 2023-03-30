@@ -578,10 +578,16 @@ public void addDinnerRecipes(String day) {
 		 }
 		
 		
-		JPanel ingredientPanel = new JPanel();
-		ingredientPanel.setBackground(new Color(255, 255, 255));
-		ingredientPanel.setBounds(518, 456, 400, 190);
-		getContentPane().add(ingredientPanel);
+		JPanel shoppingListPanel = new JPanel();
+		shoppingListPanel.setBackground(new Color(255, 255, 255));
+		shoppingListPanel.setBounds(518, 456, 400, 190);
+		getContentPane().add(shoppingListPanel);
+		shoppingListPanel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Shopping List");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(86, 11, 215, 14);
+		shoppingListPanel.add(lblNewLabel);
 		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);

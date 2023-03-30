@@ -285,7 +285,7 @@ public class UserMealPlanner {
 		frame.getContentPane().add(panel_3_calendar);
 		panel_3_calendar.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 83, 277, 324);
+		scrollPane.setBounds(23, 83, 285, 400);
 		panel_3_calendar.add(scrollPane);
 		
 		scrollPane.setViewportView(list);
@@ -439,20 +439,6 @@ public class UserMealPlanner {
 		lblNewLabel_4.setBounds(20, 93, 175, 25);
 		panel_2_recipeinfo.add(lblNewLabel_4);
 		
-		
-		
-		// More Swing custom components downloaded:
-		// http://www.java2s.com/Code/Jar/j/Downloadjcalendar14jar.htm
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				date = dateChooser.getDate().toString();
-//				System.out.println(date);
-			}
-		});
-		dateChooser.setBounds(107, 429, 146, 31);
-		panel_3_calendar.add(dateChooser);
-		
 		JLabel lblWeeklyManagerTitle_1 = new JLabel("Weekly Meal Planner");
 		lblWeeklyManagerTitle_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblWeeklyManagerTitle_1.setBounds(57, 29, 234, 37);
@@ -482,28 +468,8 @@ public class UserMealPlanner {
 		});
 		
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnHomepage.setBounds(184, 20, 234, 31);
+		btnHomepage.setBounds(980, 26, 234, 31);
 		panel_4_usefulbuttons.add(btnHomepage);
-		
-		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				comboBox_3_dayofWeek.setSelectedItem("Choose the day...");
-			}
-		});
-		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnReset.setBounds(500, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnReset);
-		
-		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnExit.setBounds(814, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnExit);
 		
 		// title of the page
 		JLabel lblNewLabel = new JLabel("RIMA's Meal Planner");
