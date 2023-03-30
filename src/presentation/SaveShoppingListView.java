@@ -24,6 +24,9 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
+import persistence.DatabaseAccess;
+import persistence.UsersDAO;
+
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
@@ -37,7 +40,7 @@ public class SaveShoppingListView extends JFrame {
 	//text field objects
 	private JTextField userName;
 	private JTextField ingredientInfo;
-	ArrayList<String> shoppingList = new ArrayList<String>();
+	//ArrayList<String> shoppingList = new ArrayList<String>();
 
 	/**
 	 * Launch the application.
@@ -202,7 +205,10 @@ public class SaveShoppingListView extends JFrame {
 				if(!name.equals("")) {
 		
 					String ingredient = ingredientInfo.getText();
-					shoppingList.add(ingredient);
+					DatabaseAccess access = new DatabaseAccess();
+					UsersDAO db = access.usersDB();
+					db.editShoppingList(ingredient, 1);
+					//shoppingList.add(ingredient);
 					//String instructions = instructionInfo.getText();
 					//Recipes newRecipe = null;
 					//SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());

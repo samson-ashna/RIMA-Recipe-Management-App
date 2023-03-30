@@ -13,10 +13,18 @@ import javax.swing.SwingUtilities;
 import java.awt.Font;
 import java.awt.Window;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import businessLogic.UserActivity;
+import objects.Recipes;
+import persistence.DatabaseAccess;
+import persistence.UsersDAO;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class UserShoppingList extends JFrame {
@@ -77,6 +85,26 @@ public class UserShoppingList extends JFrame {
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnExit.setBounds(977, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnExit);*/
+		
+		/**
+		 * Adds the current user's shopping list to the list section to display them.
+		 */
+		/*public void ingredientList() {
+			//Create a new list model for the user's recipes.
+			DefaultListModel<String> model = new DefaultListModel<String>();		
+			//get a new instance of the user database.
+			DatabaseAccess access = new DatabaseAccess();
+			UsersDAO db = access.usersDB();
+			ArrayList<String> ingredients = new ArrayList<String>(); 
+			ingredients = db.getFavoriteList(UserActivity.getCurrentUser());
+			//Add all the user's favourite recipes to the list model.
+			for(Recipes r: recipes) {
+				model.addElement(r.getName());
+			}
+			
+			//Set the model for the list section to be the one that was 
+			list.setModel(model);
+		}*/
 		
 		JButton btnAddtoList = new JButton("Add Ingredient");
 		btnAddtoList.addActionListener(new ActionListener() {
