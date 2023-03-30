@@ -109,6 +109,7 @@ public class HomePage extends JFrame {
 	private JList listLunch;
 	private JList listDinner;
 	DefaultListModel<String> modelLst = new DefaultListModel<String>();	
+	DefaultListModel<String> expModel = new DefaultListModel<String>();
 	//JList list = new JList();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 	private JScrollPane scrollPane_4;
@@ -254,7 +255,7 @@ public void addDinnerRecipes(String day) {
 
 		ingredientsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IngredientsListView ingredients = new IngredientsListView();
+				IngredientsListView ingredients = new IngredientsListView(homePage);
 				ingredients.setVisible(true);
 				//frame.dispose();
 			}
@@ -489,9 +490,8 @@ public void addDinnerRecipes(String day) {
 		expirations.add(expLabel);
 		
 		//List setup
-		DefaultListModel<String> expModel = new DefaultListModel<>();
 		JList<String> expList = new JList<String>(expModel);
-		expirationListSetup(expModel);
+		expirationListSetup();
 		
 		//Scroll pane setup
 		JScrollPane expScrollPane = new JScrollPane(expList);
@@ -591,13 +591,14 @@ public void addDinnerRecipes(String day) {
 		showPlan();
 	}
 	
-	private void expirationListSetup(DefaultListModel<String> expModel) {
+	public void expirationListSetup() {
 		User user = UserActivity.getCurrentUser();
 		if(user == null) return;
 		
 		ArrayList<Ingredient> ingredients = user.getIngredients();
 		if(ingredients == null) return;
 		
+		expModel.removeAllElements();
 		for(Ingredient ingredient:ingredients) {
 			if(ingredient.getExpiration().isBefore(LocalDate.now())) {
 				expModel.addElement(ingredient.getName());

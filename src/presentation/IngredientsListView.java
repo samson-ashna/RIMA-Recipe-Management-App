@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -322,6 +324,41 @@ public class IngredientsListView extends JFrame {
 			}
 		});
 		
+	}
+	
+	//Constructor for updating HomePage expiration list.
+	public IngredientsListView(HomePage page) {
+		this();
+		
+		//Remove action listener created by default constructor.
+		for(ActionListener l : backButton.getActionListeners()) {
+			backButton.removeActionListener(l);
+		}
+		
+		//Set up what to do when the back button is pressed.
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(page != null) {
+					page.expirationListSetup();
+				}
+				
+				contentPane.setVisible(false);
+						
+				//Close the UserRecipeCollection Window.
+				Window win = SwingUtilities.getWindowAncestor(contentPane);
+				win.dispose();	
+			}
+		});
+		
+		//Set up what to do when window is closed
+		this.addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+				if(page != null) {
+					page.expirationListSetup();
+				}
+		    }
+		});
 	}
 	
 	//Constructor for another frame to change to this class's content pane instead of closing itself and opening this as a new frame.
