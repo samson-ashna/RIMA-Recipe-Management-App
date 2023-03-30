@@ -29,6 +29,7 @@ CREATE TABLE `users` (
     `myIngredients` json DEFAULT NULL ,
 	`allergies` json DEFAULT NULL ,
     `plan` json default null,
+	`shoppingList` text,
     PRIMARY KEY(`name`)
 );
 CREATE TABLE `id` (
