@@ -186,4 +186,10 @@ public class UsersStubDB implements UsersDAO {
 //			u.getWeekPlanner().get(day).dinner.add(recipe);
 //		}
 	}
+
+	@Override
+	public void editShoppingList(String ingredient, int change) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -591,8 +591,25 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
+	
+	@Override
+	public void editShoppingList(String ingredient, int change)
+	{
+		try {
+			// create connection
+			con = DriverManager.getConnection(url, user, password);
+			// create statement
+			statement = con.createStatement();
+			query = "UPDATE shopping list=\'" + change + "\' WHERE `ingredient`=\'" + ingredient + "\';";
+			statement.execute(query);
+			statement.close();
+			result.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void editPlanner(User u,String day,String time, String recipe) {
 //		if(time=="Breakfast") {
@@ -617,6 +634,4 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			e.printStackTrace();
 		}
 	}
-
-
 }
