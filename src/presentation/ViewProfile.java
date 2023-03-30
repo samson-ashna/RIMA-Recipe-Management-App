@@ -140,14 +140,14 @@ public class ViewProfile extends JFrame {
 		// infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		infoPane.add(allergyInfo);
 		infoPane.setBackground(Color.WHITE);
-		infoPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		// infoPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel();
 		buttonPane.setOpaque(false);
-		buttonPane.setBounds(15, 375, 405, 40);
+		buttonPane.setBounds(15, 377, 405, 40);
 		//Set an invisible border for the button pane.
 		// buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//Set the button pane's layout manager to the horizontal box layout.
