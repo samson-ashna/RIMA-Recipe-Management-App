@@ -133,6 +133,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 								time = s2.strip();
 							}else {
 								if(s2.length()>1) {
+									//System.out.println(s2.strip());
 									u.editPlan(day.strip(),time.strip(),s2.strip());
 								}
 							}
@@ -594,19 +595,21 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	}
 	@Override
 	public void editPlanner(User u,String day,String time, String recipe) {
-		if(time=="Breakfast") {
-			u.getWeekPlanner().get(day).breakfast = recipe;
-		}else if(time == "Lunch") {
-			u.getWeekPlanner().get(day).lunch = recipe;			
-		}else {
-			u.getWeekPlanner().get(day).dinner = recipe;
-		}
+//		if(time=="Breakfast") {
+//			u.getWeekPlanner().get(day).breakfast.add(recipe);
+//			//System.out.println(u.getWeekPlanner().get(day).recipesToJSON(time));
+//			//for(String r:u.getWeekPlanner().get(day).breakfast)
+//		}else if(time == "Lunch") {
+//			u.getWeekPlanner().get(day).lunch.add(recipe);			
+//		}else {
+//			u.getWeekPlanner().get(day).dinner.add(recipe);
+//		}
 		try {
 			// create connection
 			con = DriverManager.getConnection(url, user, password);
 			// create statement
 			statement = con.createStatement();
-			query = "UPDATE users SET `plan`=json_set(plan,'$."+day+"."+time+"\', \'"+recipe+"\') where `name`=\'"+u.getName()+"\';";
+			query = "UPDATE users SET `plan`=json_set(plan,'$."+day+"."+time+"\', \'"+u.getWeekPlanner().get(day).recipesToJSON(time)+"\') where `name`=\'"+u.getName()+"\';";
 			statement.execute(query);
 			statement.close();
 			result.close();

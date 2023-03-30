@@ -58,11 +58,11 @@ public class User {
 			planner.put(date,new Planner());
 		}
 		if(time.contains("Breaksfast")) {
-			planner.get(date).breakfast = recipe;
+			planner.get(date).breakfast.add(recipe);
 		}else if(time.contains("Lunch")) {
-			planner.get(date).lunch = recipe;
+			planner.get(date).lunch.add(recipe);
 		}else {
-			planner.get(date).dinner = recipe;
+			planner.get(date).dinner.add(recipe);
 		}
 	}
 	public HashMap<String,Planner> getPlanner(){
@@ -220,13 +220,20 @@ public class User {
 		this.getUserAllergies().setAllergies(allergyLst2);
 	}
 	public void editPlan(String day,String time, String recipe) {
+		//ArrayList<String> recieps = new ArrayList<String>();
+		
 		// TODO Auto-generated method stub
 		if(time.contains("Breakfast")) {
-			weekPlanner.get(day).breakfast = recipe;
+			weekPlanner.get(day).breakfast.add(recipe);
+			//weekPlanner.get(day).setListFormat("breakfast", recipe);
+			
 		}else if(time.contains("Lunch")) {
-			weekPlanner.get(day).lunch = recipe;			
+			weekPlanner.get(day).lunch.add(recipe);
+			//weekPlanner.get(day).setListFormat("lunch",recipe);	
+			//System.out.println("lunch added"+recipe);
 		}else {
-			weekPlanner.get(day).dinner = recipe;
+			weekPlanner.get(day).dinner.add(recipe);
+			//weekPlanner.get(day).setListFormat("dinner",recipe);
 		}
 	}
 

@@ -47,6 +47,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import java.awt.ScrollPane;
 import java.awt.TextArea;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * 
@@ -69,7 +70,6 @@ public class HomePage extends JFrame {
 	private JFrame frame;
 	private JLabel label;
 	private ImageIcon icon;
-	private JTable table;
 
 	
 	
@@ -88,14 +88,28 @@ public class HomePage extends JFrame {
 	private JList list;
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
-	DefaultListModel<String> model = new DefaultListModel<String>();		
+	DefaultListModel<String> model = new DefaultListModel<String>();	
+	DefaultListModel<String> modelBreakfast = new DefaultListModel<String>();		
+	DefaultListModel<String> modelLunch = new DefaultListModel<String>();		
+	DefaultListModel<String> modelDinner = new DefaultListModel<String>();		
+
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
 	private JTextArea lunchText;
 	private JScrollPane scrollPane_2;
 	private JTextArea dinnerText;
 	private JScrollPane scrollPane_3;
-
+	private JList listBreakfast;
+	private JList listLunch;
+	private JList listDinner;
+	DefaultListModel<String> modelLst = new DefaultListModel<String>();	
+	//JList list = new JList();
+	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
+	private JScrollPane scrollPane_4;
+	private JList list_1=new JList();
+	private JScrollPane scrollPane_5;
+	private JScrollPane scrollPane_6;
+	private JScrollPane scrollPane_7;
 	
 	/**
 	 * Launch the application.
@@ -123,6 +137,40 @@ public class HomePage extends JFrame {
 		//Set the model for the list section to be the one that was 
 		list.setModel(model);
 	}
+	public void addBreakfastRecipes(String day) {
+		modelBreakfast.clear();
+		ArrayList<String> recipes =new ArrayList<String>();
+		recipes = UserActivity.currentUser.getWeekPlanner().get(day).breakfast;
+
+		for(String r: recipes) {
+			modelBreakfast.addElement(r);
+		}
+		
+		//Set the model for the list section to be the one that was 
+		listBreakfast.setModel(modelBreakfast);
+	}
+public void addLunchRecipes(String day) {
+	modelLunch.clear();
+		ArrayList<String> recipes =new ArrayList<String>();
+		recipes = UserActivity.currentUser.getWeekPlanner().get(day).lunch;
+
+		for(String r: recipes) {
+			modelLunch.addElement(r);
+		}
+		
+		//Set the model for the list section to be the one that was 
+		listLunch.setModel(modelLunch);
+	}
+public void addDinnerRecipes(String day) {
+	modelDinner.clear();
+	ArrayList<String> recipes =new ArrayList<String>();
+	recipes = UserActivity.currentUser.getWeekPlanner().get(day).dinner;
+	for(String r: recipes) {
+		modelDinner.addElement(r);
+	}
+	//Set the model for the list section to be the one that was 
+	listDinner.setModel(modelDinner);
+}
 
 
 	/**
@@ -136,13 +184,14 @@ public class HomePage extends JFrame {
 		// Background
 		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
 		label = new JLabel();
-		label.setSize(1280, 720);
+		label.setLocation(0, 0);
+		label.setSize(1264, 681);
 		
 		// Shopping List Button
 		shoppingListButton = new JButton("Shopping List");
 		shoppingListButton.setForeground(new Color(255, 255, 255));
 		shoppingListButton.setBackground(new Color(59, 89, 182));
-		shoppingListButton.setBounds(20, 10, 100, 23);
+		shoppingListButton.setBounds(40, 10, 110, 23);
 		label.add(shoppingListButton);
 
 		shoppingListButton.addActionListener(new ActionListener() {
@@ -174,7 +223,7 @@ public class HomePage extends JFrame {
 		userRecipesButton = new JButton("My Collection");
 		userRecipesButton.setForeground(new Color(255, 255, 255));
         userRecipesButton.setBackground(new Color(59, 89, 182));
-        userRecipesButton.setBounds(150, 10, 160, 23);
+        userRecipesButton.setBounds(160, 10, 165, 23);
 		label.add(userRecipesButton);
 
 		userRecipesButton.addActionListener(new ActionListener() {
@@ -261,12 +310,29 @@ public class HomePage extends JFrame {
 		
 		scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(23, 30, 231, 359);
+		scrollPane.setBounds(23, 154, 231, 235);
 		breakfast.add(scrollPane);
 		
 		JTextArea breakfastText = new JTextArea();
-		breakfastText.setLineWrap(true);
 		scrollPane.setViewportView(breakfastText);
+		breakfastText.setLineWrap(true);
+		
+		scrollPane_5 = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_5.setBounds(23, 30, 231, 106);
+		breakfast.add(scrollPane_5);
+		
+		listBreakfast = new JList();
+		scrollPane_5.setViewportView(listBreakfast);
+		listBreakfast.getSelectionModel().addListSelectionListener(e-> {
+			//Get the selected list item
+			String name = (String) listBreakfast.getSelectedValue();
+			Recipes r = db.getRecipe(UserActivity.currentUser,name);
+			if(r != null) {
+				breakfastText.setText(r.toString());
+			}else {
+				breakfastText.setText(name+" is not avialable in your collection!");
+			}
+		});
 		// Lunch Panel
 		lunch = new JPanel();
 		lunch.setLayout(null);
@@ -280,13 +346,28 @@ public class HomePage extends JFrame {
 		
 		scrollPane_1 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBounds(10, 32, 260, 357);
+		scrollPane_1.setBounds(10, 154, 260, 235);
 		lunch.add(scrollPane_1);
-		
 		lunchText = new JTextArea();
-		lunchText.setLineWrap(true);
-
 		scrollPane_1.setViewportView(lunchText);
+		lunchText.setLineWrap(true);
+		
+		scrollPane_6 = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_6.setBounds(10, 30, 260, 106);
+		lunch.add(scrollPane_6);
+		
+		listLunch = new JList();
+		scrollPane_6.setViewportView(listLunch);
+		listLunch.getSelectionModel().addListSelectionListener(e-> {
+			//Get the selected list item
+			String name = (String) listLunch.getSelectedValue();
+			Recipes r = db.getRecipe(UserActivity.currentUser,name);
+			if(r != null) {
+				lunchText.setText(r.toString());
+			}else {
+				lunchText.setText(name+" is not avialable in your collection!");
+			}
+		});
 
 		// Dinner Panel
 		dinner = new JPanel();
@@ -301,15 +382,31 @@ public class HomePage extends JFrame {
 		
 		scrollPane_2 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_2.setBounds(10, 30, 260, 359);
+		scrollPane_2.setBounds(10, 154, 260, 235);
 		dinner.add(scrollPane_2);
 		
 		dinnerText = new JTextArea();
-		dinnerText.setLineWrap(true);
 		scrollPane_2.setViewportView(dinnerText);
+		dinnerText.setLineWrap(true);
+		
+		scrollPane_7 = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_7.setBounds(10, 30, 260, 103);
+		dinner.add(scrollPane_7);
+		
+		listDinner = new JList();
+		scrollPane_7.setViewportView(listDinner);
+		listDinner.getSelectionModel().addListSelectionListener(e-> {
+			//Get the selected list item
+			String name = (String) listDinner.getSelectedValue();
+			Recipes r = db.getRecipe(UserActivity.currentUser,name);
+			if(r != null) {
+				dinnerText.setText(r.toString());
+			}else {
+				dinnerText.setText(name+" is not avialable in your collection!");
+			}
+		});
 		JTextArea textArea = new JTextArea();
 		textArea.setLineWrap(true);
-		
 		
 		
 		// Favourites Panel
@@ -339,6 +436,9 @@ public class HomePage extends JFrame {
 							Recipes r = db.getRecipe(UserActivity.currentUser,name);
 							if(r != null) {
 								model.clear();
+								modelBreakfast.clear();
+								modelLunch.clear();
+								modelDinner.clear();
 								list.setVisible(false);
 								scrollPane_3.setVisible(true);
 								textArea.setVisible(true);
@@ -364,104 +464,93 @@ public class HomePage extends JFrame {
 		textArea.setLineWrap(true);
 		textArea.setVisible(false);
 		scrollPane_3.setVisible(false);
-
-		// Meal Planner Panel
-		planner = new JPanel();
-		planner.setLayout(null);
-		JLabel plannerLabel1 = new JLabel("Select A Day To View Recipes");
-		plannerLabel1.setBounds(10,11,275,14);
-		planner.add(plannerLabel1);
-		planner.setBounds(40, 465, 880, 180);
-		planner.setBackground(Color.WHITE);
-		table = new JTable();
-		table.setEnabled(false);
-		table.setSize(652, 128);
-		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		 User u = UserActivity.getCurrentUser();
-		 HashMap<String, Planner> p = u.getWeekPlanner();
 		 
-		 comboBox = new JComboBox();
-		 comboBox.addItemListener(new ItemListener() {
-		 	public void itemStateChanged(ItemEvent e) {
-		 		breakfastText.setText(null);
-		 		lunchText.setText(null);
-		 		dinnerText.setText(null);
+		
+		
 
-		 		String day = day = comboBox.getSelectedItem().toString();
-		 		DatabaseAccess access = new DatabaseAccess();
+		// Setup
+		frame.getContentPane().setBackground(new Color(143, 188, 143));
+		getContentPane().setLayout(null);
+		// Meal Planner Panel
+				planner = new JPanel();
+				getContentPane().add(planner);
+				planner.setLayout(null);
+				JLabel plannerLabel1 = new JLabel("Select  Day To View Recipe Details");
+				plannerLabel1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+				plannerLabel1.setBounds(10,11,174,25);
+				planner.add(plannerLabel1);
+				planner.setBounds(40, 456, 468, 190);
+				planner.setBackground(Color.WHITE);
+				
+				comboBox = new JComboBox();
+				comboBox.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+						breakfastText.setText(null);
+						lunchText.setText(null);
+						dinnerText.setText(null);
+
+						String day = comboBox.getSelectedItem().toString();
+						DatabaseAccess access = new DatabaseAccess();
 				UsersDAO db = access.usersDB();
 				User currentUser = UserActivity.currentUser;
-				Recipes rBreakfast = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).breakfast);
-				if( currentUser.getWeekPlanner().get(day).breakfast != ""){
-					if(rBreakfast  == null) {
-						breakfastText.setText(currentUser.getWeekPlanner().get(day).breakfast+"\n recipe not avaialable in collection.");
-					}else {
-						breakfastText.setText(rBreakfast.toString());
+				addBreakfastRecipes(day);
+				addLunchRecipes(day);
+				addDinnerRecipes(day);				
 					}
-				}
-				if(currentUser.getWeekPlanner().get(day).lunch != "") {
-					Recipes rLunch = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).lunch);
-					if( rLunch  == null) {
-						lunchText.setText(currentUser.getWeekPlanner().get(day).lunch+"\n recipe not avaialable in collection.");
-					}else {
-						lunchText.setText( rLunch.toString());
-					}
-				}
-				if(currentUser.getWeekPlanner().get(day).dinner != "") {
-					Recipes rDinner = db.getRecipe(currentUser,currentUser.getWeekPlanner().get(day).dinner);
-					if(rDinner  == null ) {
-						dinnerText.setText(currentUser.getWeekPlanner().get(day).dinner+"\n recipe not avaialable in collection.");
-					}else {
-						dinnerText.setText(rDinner .toString());
-					}
-				}
+				});
+				comboBox.setBounds(23,47,136,22);
 				
-		 	}
-		 });
-		 comboBox.setBounds(23,47,136,22);
+				 planner.add(comboBox);
+				 
+				 scrollPane_4 = new JScrollPane();
+				 scrollPane_4.setBounds(194, 11, 250, 168);
+				 planner.add(scrollPane_4);
+				 scrollPane_4.setViewportView(list_1);
+		frame.getContentPane().add(label);
+		
 		 String WhichDayofWeek[] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 		 for(String d: WhichDayofWeek) {
 			  comboBox.addItem(d);
 		 }
 		
-		 planner.add(comboBox);
-		 table.setModel(new DefaultTableModel (
-			new Object[][] {
-		 		{"Day", "Breakfast", "Lunch", "Dinner"},
-		 		{"Monday", p.get("Monday").breakfast, p.get("Monday").lunch, p.get("Monday").dinner},
-		 		{"Tuesday", p.get("Tuesday").breakfast, p.get("Tuesday").lunch, p.get("Tuesday").dinner},
-		 		{"Wednesday",p.get("Wednesday").breakfast, p.get("Wednesday").lunch, p.get("Wednesday").dinner},
-		 		{"Thursday", p.get("Thursday").breakfast, p.get("Thursday").lunch, p.get("Thursday").dinner},
-		 		{"Friday", p.get("Friday").breakfast, p.get("Friday").lunch, p.get("Friday").dinner},
-		 		{"Saturday", p.get("Saturday").breakfast, p.get("Saturday").lunch, p.get("Saturday").dinner},
-		 		{"Sunday", p.get("Sunday").breakfast, p.get("Sunday").lunch, p.get("Sunday").dinner},
-		 	},
-		 	new String[] {
-		 		"Day", "Breakfast", "Lunch", "Dinner"
-		 	}
-
-
-		));
-		table.setLocation(192, 22);
-		//JCalendar calendar = new JCalendar();
-		//calendar.setBounds(40, 222, 233, 153);
-		//panel_3_calendar.add(calendar);
-		//planner.add(calendar);
-		planner.add(table);
-		label.add(planner);
 		
-
-		// Setup
-		frame.getContentPane().setBackground(new Color(143, 188, 143));
-		frame.getContentPane().add(label);
+		JPanel ingredientPanel = new JPanel();
+		ingredientPanel.setBackground(new Color(255, 255, 255));
+		ingredientPanel.setBounds(518, 456, 400, 190);
+		getContentPane().add(ingredientPanel);
 		
 		frame.setSize(1280,720);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		favouriteRecipes();
+		showPlan();
+
 		
-		
+	}
+	public void showPlan() {
+		modelLst.clear();
+		String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		for(String d:days) {
+			modelLst.addElement(d);
+			modelLst.addElement("        "+"Breakfast:");
+			for(String b:p.get(d).breakfast) {
+				modelLst.addElement("             "+b);
+
+			}
+			modelLst.addElement("        "+"Lunch:");
+			for(String b:p.get(d).lunch) {
+				modelLst.addElement("             "+b);
+
+			}
+			modelLst.addElement("        "+"Dinner:");
+			for(String b:p.get(d).dinner) {
+				modelLst.addElement("             "+b);
+
+			}
+		}
+		list_1.setModel(modelLst);
 	}
 }
 

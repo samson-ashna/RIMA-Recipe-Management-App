@@ -12,6 +12,7 @@ import java.awt.Window;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +20,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -27,6 +29,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JDayChooser;
 
 import businessLogic.UserActivity;
+import objects.Planner;
 import objects.Recipes;
 import objects.User;
 import persistence.DatabaseAccess;
@@ -34,6 +37,11 @@ import persistence.UsersDAO;
 
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextArea;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import java.awt.List;
+import javax.swing.JList;
 
 public class UserMealPlanner {
 
@@ -46,7 +54,10 @@ public class UserMealPlanner {
 	static JTextArea textArea = new JTextArea();
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
-	
+	DefaultListModel<String> model = new DefaultListModel<String>();	
+	JList list = new JList();
+	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
+
 
 	/**
 	 * Launch the application.
@@ -211,7 +222,7 @@ public class UserMealPlanner {
 		//create a new panel for managing weekly meals
 		JPanel panel_1_weeklyManager = new JPanel();
 		panel_1_weeklyManager.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_1_weeklyManager.setBounds(576, 96, 342, 445);
+		panel_1_weeklyManager.setBounds(576, 58, 342, 506);
 		frame.getContentPane().add(panel_1_weeklyManager);
 		panel_1_weeklyManager.setLayout(null);
 		
@@ -227,7 +238,7 @@ public class UserMealPlanner {
 			}
 		});
 		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAddSaved.setBounds(58, 323, 220, 30);
+		btnAddSaved.setBounds(58, 361, 220, 38);
 		panel_1_weeklyManager.add(btnAddSaved);
 		
 		JLabel lblWeeklyManagerTitle = new JLabel("Weekly Meal Planner");
@@ -235,9 +246,9 @@ public class UserMealPlanner {
 		lblWeeklyManagerTitle.setBounds(58, 27, 234, 37);
 		panel_1_weeklyManager.add(lblWeeklyManagerTitle);
 		
-		JLabel lblSelectDayofWeek = new JLabel("Select the Day & TIme of the Week Below:");
+		JLabel lblSelectDayofWeek = new JLabel("Select the Day & Meal of the Week Below:");
 		lblSelectDayofWeek.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblSelectDayofWeek.setBounds(31, 75, 284, 37);
+		lblSelectDayofWeek.setBounds(31, 95, 284, 37);
 		panel_1_weeklyManager.add(lblSelectDayofWeek);
 		
 		JButton addButton = new JButton("Add");
@@ -246,7 +257,7 @@ public class UserMealPlanner {
 		JComboBox<?> comboBox_3_dayofWeek = new JComboBox<Object>(WhichDayofWeek);
 		comboBox_3_dayofWeek.setMaximumRowCount(20);
 		comboBox_3_dayofWeek.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBox_3_dayofWeek.setBounds(105, 123, 134, 30);
+		comboBox_3_dayofWeek.setBounds(105, 143, 134, 30);
 		panel_1_weeklyManager.add(comboBox_3_dayofWeek);
 		comboBox_3_dayofWeek.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -257,27 +268,41 @@ public class UserMealPlanner {
 		});
 		
 		
-		textArea.setBounds(69, 244, 209, 30);
+		textArea.setBounds(58, 255, 220, 30);
 		panel_1_weeklyManager.add(textArea);
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter Name of Recipe");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(31, 209, 249, 24);
+		lblNewLabel_2.setBounds(31, 233, 249, 24);
 		panel_1_weeklyManager.add(lblNewLabel_2);
 		
 		
+		// created a panel that allows the user to select a certain date from the calendar 
+		// to modify recipes for in the future
+		JPanel panel_3_calendar = new JPanel();
+		panel_3_calendar.setBorder(new LineBorder(new Color(0, 0, 0), 8));
+		panel_3_calendar.setBounds(922, 58, 334, 507);
+		frame.getContentPane().add(panel_3_calendar);
+		panel_3_calendar.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(31, 83, 277, 324);
+		panel_3_calendar.add(scrollPane);
+		
+		scrollPane.setViewportView(list);
+		showPlan();
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				p.get(day).addToPlanner(day, time,textArea.getText());
 				db.editPlanner(UserActivity.currentUser,day, time,textArea.getText());
+				showPlan();
 			}
 		});
-		addButton.setBounds(105, 376, 134, 23);
+		addButton.setBounds(105, 410, 134, 23);
 		panel_1_weeklyManager.add(addButton);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Or");
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1.setBounds(31, 285, 46, 14);
+		lblNewLabel_3_1.setBounds(31, 296, 46, 14);
 		panel_1_weeklyManager.add(lblNewLabel_3_1);
 		
 		JComboBox<String> comboBox_3 = new JComboBox<String>();
@@ -289,7 +314,7 @@ public class UserMealPlanner {
 			}
 		});
 		comboBox_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBox_3.setBounds(105, 164, 134, 34);
+		comboBox_3.setBounds(105, 188, 134, 34);
 		panel_1_weeklyManager.add(comboBox_3);
 		
 		JButton randomButton = new JButton("Get Recommended Recipe");
@@ -327,8 +352,24 @@ public class UserMealPlanner {
 			}
 			
 		});
-		randomButton.setBounds(58, 285, 220, 23);
+		randomButton.setBounds(58, 309, 220, 41);
 		panel_1_weeklyManager.add(randomButton);
+		
+		JLabel lblNewLabel_5 = new JLabel("Add Recipes to Planner");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_5.setBounds(81, 70, 197, 14);
+		panel_1_weeklyManager.add(lblNewLabel_5);
+		
+		JButton removeButton = new JButton("Remove From Planner");
+		removeButton.setBounds(91, 444, 163, 30);
+		panel_1_weeklyManager.add(removeButton);
+		removeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				p.get(day).removeFromPlanner(day,time,textArea.getText());
+				db.editPlanner(UserActivity.currentUser,day, time,textArea.getText());
+				showPlan();
+			}
+		});
 		comboBox_3.addItem("Breakfast");
 		comboBox_3.addItem("Lunch");
 		comboBox_3.addItem("Dinner");
@@ -398,19 +439,7 @@ public class UserMealPlanner {
 		lblNewLabel_4.setBounds(20, 93, 175, 25);
 		panel_2_recipeinfo.add(lblNewLabel_4);
 		
-		// created a panel that allows the user to select a certain date from the calendar 
-		// to modify recipes for in the future
-		JPanel panel_3_calendar = new JPanel();
-		panel_3_calendar.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_3_calendar.setBounds(922, 58, 334, 507);
-		frame.getContentPane().add(panel_3_calendar);
-		panel_3_calendar.setLayout(null);
 		
-		JLabel lblCalendarTitle = new JLabel("Calendar");
-		lblCalendarTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCalendarTitle.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblCalendarTitle.setBounds(82, 30, 175, 37);
-		panel_3_calendar.add(lblCalendarTitle);
 		
 		// More Swing custom components downloaded:
 		// http://www.java2s.com/Code/Jar/j/Downloadjcalendar14jar.htm
@@ -421,67 +450,17 @@ public class UserMealPlanner {
 //				System.out.println(date);
 			}
 		});
-		dateChooser.setBounds(92, 124, 146, 31);
+		dateChooser.setBounds(107, 429, 146, 31);
 		panel_3_calendar.add(dateChooser);
 		
-		
-		JLabel lblChooseTheDate = new JLabel("Choose the Date...");
-		lblChooseTheDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblChooseTheDate.setBounds(40, 91, 155, 22);
-		panel_3_calendar.add(lblChooseTheDate);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(40, 289, 251, 37);
-		panel_3_calendar.add(textArea_1);
-		
-		JButton btnEditRecipeOn = new JButton("Add");
-		btnEditRecipeOn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				date = dateChooser.getDate().toString();
-				UserActivity.currentUser.addToPlanner(date,time2,textArea_1.getText());
-				
-			}
-		});
-		btnEditRecipeOn.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnEditRecipeOn.setBounds(93, 421, 133, 30);
-		panel_3_calendar.add(btnEditRecipeOn);
-		
-		JLabel lblOrSelectHere = new JLabel("Enter Recipe Name");
-		lblOrSelectHere.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblOrSelectHere.setBounds(40, 256, 251, 22);
-		panel_3_calendar.add(lblOrSelectHere);
+		JLabel lblWeeklyManagerTitle_1 = new JLabel("Weekly Meal Planner");
+		lblWeeklyManagerTitle_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblWeeklyManagerTitle_1.setBounds(57, 29, 234, 37);
+		panel_3_calendar.add(lblWeeklyManagerTitle_1);
 		
 		
 		
-		JButton btnNewButton_4 = new JButton("Select Recipe From Collection");
-		btnNewButton_4.setBounds(66, 379, 205, 23);
-		panel_3_calendar.add(btnNewButton_4);
 		
-		JLabel lblNewLabel_3 = new JLabel("Or");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(35, 337, 46, 14);
-		panel_3_calendar.add(lblNewLabel_3);
-		
-		JComboBox<String> comboBox_3_1 = new JComboBox<String>();
-		comboBox_3_1.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange()==ItemEvent.SELECTED) {
-					time2 = comboBox_3_1.getSelectedItem().toString();
-				}
-			}
-		});
-		comboBox_3_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		comboBox_3_1.setBounds(92, 200, 134, 34);
-		panel_3_calendar.add(comboBox_3_1);
-		comboBox_3_1.addItem("Breakfast");
-		comboBox_3_1.addItem("Lunch");
-		comboBox_3_1.addItem("Dinner");
-
-		
-		JLabel lblChooseTheMeal = new JLabel("Choose the Meal");
-		lblChooseTheMeal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblChooseTheMeal.setBounds(40, 166, 155, 22);
-		panel_3_calendar.add(lblChooseTheMeal);
 		
 		// the last panel has all the necessary buttons for the user to navigate through the app
 		JPanel panel_4_usefulbuttons = new JPanel();
@@ -537,5 +516,28 @@ public class UserMealPlanner {
 	public static void setRecipe(String r) {
 		textArea.setText(r);
 		
+	}
+	public void showPlan() {
+		model.clear();
+		String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		for(String d:days) {
+			model.addElement(d);
+			model.addElement("        "+"Breakfast:");
+			for(String b:p.get(d).breakfast) {
+				model.addElement("             "+b);
+
+			}
+			model.addElement("        "+"Lunch:");
+			for(String b:p.get(d).lunch) {
+				model.addElement("             "+b);
+
+			}
+			model.addElement("        "+"Dinner:");
+			for(String b:p.get(d).dinner) {
+				model.addElement("             "+b);
+
+			}
+		}
+		list.setModel(model);
 	}
 }
