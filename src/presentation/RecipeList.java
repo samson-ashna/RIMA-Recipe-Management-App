@@ -29,6 +29,7 @@ import persistence.UsersDAO;
 import persistence.DatabaseAccess;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -49,6 +50,7 @@ public class RecipeList extends JFrame {
 	protected JFrame frame;
 	private JLabel label;
 	DefaultListModel<String> model = new DefaultListModel<String>();
+	private final JScrollPane scrollPane = new JScrollPane();
 
 	/**
 	 * Launch the application.
@@ -107,27 +109,17 @@ public class RecipeList extends JFrame {
 		//Replaces the frame's content pane with the one that was just set up.
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		scrollPane.setBounds(10, 55, 637, 439);
+		contentPane.add(scrollPane);
 		//Creates a new section for an item list
 		list= new JList<String>();
+		scrollPane.setViewportView(list);
 		list.setBackground(new Color(255,255, 255));
 		list.setBounds(10, 57, 637, 437);
-
-		label.add(list);
 		list.setModel(model);
 
 		//Adds the recipes in the app's database to the list section to display them
 		addRecipes();
-		//Sets up what to do when an item in the list is selected. When selected the recipe's detailed information is displayed.
-		list.getSelectionModel().addListSelectionListener(e-> {
-			String name = (String) list.getSelectedValue();
-			ViewRecipeDB newWindow = new ViewRecipeDB(name);
-			newWindow.NewScreen(name);
-			contentPane.setVisible(false);
-			setVisible(false);
-			dispose();
-			Window win = SwingUtilities.getWindowAncestor(contentPane);
-			win.dispose();
-		});
 
 		
 		searchField.setBounds(225, 8, 184, 40);
@@ -161,6 +153,8 @@ public class RecipeList extends JFrame {
 		});
 		
 		label.add(comboBox);
+		label.add(scrollPane);
+		
 
 		comboBox.setBounds(10, 11, 205, 35);
 
@@ -219,6 +213,18 @@ public class RecipeList extends JFrame {
 							}
 						});
 						btnNewButton.setBounds(420, 11, 89, 35);
+						
+						//Sets up what to do when an item in the list is selected. When selected the recipe's detailed information is displayed.
+						list.getSelectionModel().addListSelectionListener(e-> {
+							String name = (String) list.getSelectedValue();
+							ViewRecipeDB newWindow = new ViewRecipeDB(name);
+							newWindow.NewScreen(name);
+							contentPane.setVisible(false);
+							setVisible(false);
+							dispose();
+							Window win = SwingUtilities.getWindowAncestor(contentPane);
+							win.dispose();
+						});
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						addRecipes();

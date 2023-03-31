@@ -29,6 +29,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JScrollPane;
 
 /**
  * 
@@ -132,17 +133,21 @@ public class UserRecipeCollection extends JFrame {
 		setContentPane(contentPane);		
 		//Set the content pane's layout manager to null for full customization.
 		contentPane.setLayout(null);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 57, 637, 437);
+		contentPane.add(scrollPane);
 		
 		//Create a new section for an item list.
 		list= new JList<String>(); 		
+		scrollPane.setViewportView(list);
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
-		//Set the bounds of the list section
-		list.setBounds(10, 57, 637, 437);
 		//Search.add()
 		//Add the current user's saved recipes to the list section to display them.
 		list.setModel(model);
+		
 		addUserRecipes();
+		
 		
 		//Set up what to do when an item in the list is selected.
 		list.getSelectionModel().addListSelectionListener(e-> {
@@ -157,9 +162,6 @@ public class UserRecipeCollection extends JFrame {
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
 		});
-		
-		//Add the list section to the content pane.
-		contentPane.add(list);
 		
 		//Set up the font and bounds of the back button.
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
