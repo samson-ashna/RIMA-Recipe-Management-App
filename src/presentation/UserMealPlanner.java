@@ -103,6 +103,8 @@ public class UserMealPlanner {
 		// created labels and buttons for the first panel that selects recipes listed out
 		JLabel lblNewLabel_1 = new JLabel("Placeholder:Recipe #1");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1.setBackground(new Color(59, 89, 182));
 		lblNewLabel_1.setBounds(23, 72, 196, 22);
 		panel_recipeplanning.add(lblNewLabel_1);
 		
@@ -144,6 +146,8 @@ public class UserMealPlanner {
 		panel_recipeplanning.add(lblNewLabel_1_3);
 		
 		JButton btnNewButton_2 = new JButton("Select");
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+        btnNewButton_2.setBackground(new Color(59, 89, 182));
 		panel_recipeplanning.add(btnNewButton_2);
 		
 		String quantity3[] = {"1","2","3","4","5"};
@@ -227,6 +231,8 @@ public class UserMealPlanner {
 		panel_1_weeklyManager.setLayout(null);
 		
 		JButton btnAddSaved = new JButton("Select Recipe From Collection");
+		btnAddSaved.setForeground(new Color(255, 255, 255));
+        btnAddSaved.setBackground(new Color(59, 89, 182));
 		btnAddSaved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserRecipeCollection collection = new UserRecipeCollection();
@@ -252,6 +258,8 @@ public class UserMealPlanner {
 		panel_1_weeklyManager.add(lblSelectDayofWeek);
 		
 		JButton addButton = new JButton("Add");
+		addButton.setForeground(new Color(255, 255, 255));
+        addButton.setBackground(new Color(59, 89, 182));
 		
 		String WhichDayofWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 		JComboBox<?> comboBox_3_dayofWeek = new JComboBox<Object>(WhichDayofWeek);
@@ -318,6 +326,8 @@ public class UserMealPlanner {
 		panel_1_weeklyManager.add(comboBox_3);
 		
 		JButton randomButton = new JButton("Get Recommended Recipe");
+		randomButton.setForeground(new Color(255, 255, 255));
+        randomButton.setBackground(new Color(59, 89, 182));
 		randomButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -361,6 +371,8 @@ public class UserMealPlanner {
 		panel_1_weeklyManager.add(lblNewLabel_5);
 		
 		JButton removeButton = new JButton("Remove From Planner");
+		removeButton.setForeground(new Color(255, 255, 255));
+        removeButton.setBackground(new Color(59, 89, 182));
 		removeButton.setBounds(91, 444, 163, 30);
 		panel_1_weeklyManager.add(removeButton);
 		removeButton.addActionListener(new ActionListener() {
@@ -382,6 +394,8 @@ public class UserMealPlanner {
 		panel_2_recipeinfo.setLayout(null);
 		
 		JButton calculateRecipes = new JButton("Calculate");
+		calculateRecipes.setForeground(new Color(255, 255, 255));
+        calculateRecipes.setBackground(new Color(59, 89, 182));
 		calculateRecipes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int carbs=0;
@@ -456,6 +470,8 @@ public class UserMealPlanner {
 		panel_4_usefulbuttons.setLayout(null);
 		
 		JButton btnHomepage = new JButton("<-- Back to HomePage");
+		btnHomepage.setForeground(new Color(255, 255, 255));
+        btnHomepage.setBackground(new Color(59, 89, 182));
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HomePage homePage = new HomePage();

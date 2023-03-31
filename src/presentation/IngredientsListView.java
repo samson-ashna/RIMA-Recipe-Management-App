@@ -157,7 +157,8 @@ public class IngredientsListView extends JFrame {
 		
 		//Set up the button fonts.
 		for(JButton button:buttons) {
-			button.setFont(new Font("Tahoma", Font.PLAIN, 10));
+			button.setForeground(new Color(255, 255, 255));
+			button.setBackground(new Color(59, 89, 182));
 		}
 		
 		//Disable edit and remove buttons due to unselected list item.

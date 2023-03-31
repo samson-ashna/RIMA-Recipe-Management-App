@@ -40,8 +40,8 @@ public class ViewProfile extends JFrame {
 	private JPanel buttonPane;
 	
 	//Component objects.
-	private final JButton backButton = new JButton("Back");
-	private final JButton editProfileButton = new JButton("Edit Profile");
+	private JButton backButton = new JButton("Back");
+	private JButton editProfileButton = new JButton("Edit Profile");
 	private JLabel displName = new JLabel();
 	private JLabel allergyInfo =  new JLabel();
 	private final JButton btnNewButton = new JButton("Survey");
@@ -162,8 +162,14 @@ public class ViewProfile extends JFrame {
 
 
 		//Set up the button fonts.
-		editProfileButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
+		editProfileButton.setForeground(new Color(255, 255, 255));
+        editProfileButton.setBackground(new Color(59, 89, 182));
+		editProfileButton.setBounds(400, 400, 160, 23);
+
+		backButton.setForeground(new Color(255, 255, 255));
+        backButton.setBackground(new Color(59, 89, 182));
+        
 		
 		// buttonPane.add(surveyButton);
 		// surveyButton.addActionListener(new ActionListener() {

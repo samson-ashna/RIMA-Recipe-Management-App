@@ -179,15 +179,21 @@ public class RecipeList extends JFrame {
 		//contentPane.add(list);
 		//Creates a back button. When clicked, user is redirected to the main page.
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setForeground(new Color(255, 255, 255));
+        btnBack.setBackground(new Color(59, 89, 182));
 		btnBack.setBounds(528, 505, 98, 34);
 		//btnBack.setBounds(528, 505, 98, 34);
 		
 				JButton btnNewButton_1 = new JButton("All Recipes");
+				btnNewButton_1.setForeground(new Color(255, 255, 255));
+				btnNewButton_1.setBackground(new Color(59, 89, 182));
 				this.getContentPane().add(btnNewButton_1);
 				btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 				btnNewButton_1.setBounds(515, 11, 132, 35);
 				
 						JButton btnNewButton = new JButton("Search");
+						btnNewButton.setForeground(new Color(255, 255, 255));
+						btnNewButton.setBackground(new Color(59, 89, 182));
 						this.getContentPane().add(btnNewButton);
 						btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 						btnNewButton.addActionListener(new ActionListener() {

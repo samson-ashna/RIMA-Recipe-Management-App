@@ -164,6 +164,8 @@ public class UserRecipeCollection extends JFrame {
 		//Set up the font and bounds of the back button.
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		backButton.setBounds(528, 505, 98, 34);
+		backButton.setForeground(new Color(255, 255, 255));
+        backButton.setBackground(new Color(59, 89, 182));
 		
 		//add the back button to the content pane.
 		contentPane.add(backButton);
@@ -188,6 +190,8 @@ public class UserRecipeCollection extends JFrame {
 		
 		//Set up the font and bounds of the Favourite button
 		favourites.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		favourites.setForeground(new Color(255, 255, 255));
+        favourites.setBackground(new Color(59, 89, 182));
 		favourites.setBounds(176, 505, 116, 35);
 		//add the Favourite button to the content pane
 		contentPane.add(favourites);
@@ -210,6 +214,8 @@ public class UserRecipeCollection extends JFrame {
 		searchField.setColumns(10);
 		//Set up the font and bounds of the add button.
 		addRecipeButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		addRecipeButton.setForeground(new Color(255, 255, 255));
+        addRecipeButton.setBackground(new Color(59, 89, 182));
 		addRecipeButton.setBounds(309, 505, 200, 35);
 				
 		//add the add button to the content pane.
@@ -247,6 +253,8 @@ public class UserRecipeCollection extends JFrame {
 		
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+        btnNewButton.setBackground(new Color(59, 89, 182));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.removeAllElements();
@@ -275,6 +283,8 @@ public class UserRecipeCollection extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("All Recipes");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+        btnNewButton_1.setBackground(new Color(59, 89, 182));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.removeAllElements();
