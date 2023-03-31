@@ -168,10 +168,23 @@ public class SaveRecipesView extends JFrame {
 		JTextArea instructionInfo = new JTextArea();
 		scrollPane_1.setViewportView(instructionInfo);
 		instructionInfo.setLineWrap(true);
+		
+		JLabel errorNoNamelbl = new JLabel("New label");
+		errorNoNamelbl.setVisible(false);
+		errorNoNamelbl.setForeground(new Color(255, 0, 0));
+		errorNoNamelbl.setBounds(112, 119, 207, 14);
+		contentPane.add(errorNoNamelbl);
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean incorrectValues = false;
 				String name = userName.getText();
+				if(name.length()==0) {
+					incorrectValues=true;
+					errorNoNamelbl.setVisible(true);
+					errorNoNamelbl.setText("You must enter the recipe's name!");
+				}else {
+					errorNoNamelbl.setVisible(false);
+				}
 				int protein=0;
 				try
 				{
