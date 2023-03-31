@@ -194,7 +194,7 @@ public void addDinnerRecipes(String day) {
 	public HomePage() {
 
 		frame = this;
-		setTitle(("RIMA - Welcome " + UserActivity.getCurrentUser().getName() + "!"));
+		setTitle(("RIMA - Welcome!"));
 		setResizable(false);
 
 		// Background
