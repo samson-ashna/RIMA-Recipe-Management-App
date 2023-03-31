@@ -21,7 +21,7 @@ import objects.User;
  * 
  */
 public class UsersDB extends DBSetup implements UsersDAO {
-	private static ArrayList<User> dbUsers = new ArrayList<User>();;
+	private ArrayList<User> dbUsers = new ArrayList<User>();;
 
 	// Returns the user with specified name.
 	@Override

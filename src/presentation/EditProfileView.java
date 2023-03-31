@@ -242,7 +242,6 @@ public class EditProfileView extends JFrame {
 								errorLabel.setText("Username already exists!");
 							//Otherwise update the user's name
 							}else if(!activity.checkUserName(nameField.getText()) && !nameField.getText().equals(currentUser.getName())){
-								//for(db.get)
 								currentUser.setName(nameField.getText());
 								change = true;
 								db.edit(currentName,nameField.getText(),null);
