@@ -29,7 +29,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			e.printStackTrace();
 		}
 	}
-
+	
+        // ArrayList for list of recipes
 	@Override
 	public Recipes get(String name) {
 		ArrayList<Recipes> lst = getAll();
@@ -52,7 +53,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			query = "SELECT * FROM recipes";
 			result = statement.executeQuery(query);
 			Recipes r = new Recipes();
-
+			
+			//add recipe component results to String
 			while (result.next()) {
 				String name = result.getString(2);
 				String instructions = result.getString(4);
@@ -81,6 +83,7 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 		return dbRecipes;
 	}
 
+	//get a list of recipes for all app users
 	@Override
 	public ArrayList<Recipes> getAll() {
 		ArrayList<Recipes> forAllUsers = new ArrayList<Recipes>();
@@ -121,6 +124,7 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			t.setID(UserActivity.RecipeIDs - 1);
 			con = DriverManager.getConnection(url, user, password);
 			statement = con.createStatement();
+			//each recipe added should include all these components in its display
 			query = "INSERT INTO recipes(food_id, name, ingredients, instruction, carbs,protein,mealTime, favorite) VALUES" + " ("
 					+ UserActivity.RecipeIDs + ",\'" + t.getName() + "\'" + ",\'" + t.getIngredients() + "\'," + "\'"
 					+ t.getInstructions() + "\'," + "\'" + t.getCarbs() + "\',\'" + t.getProtein() + "\',\'"
@@ -149,7 +153,8 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 			e.printStackTrace();
 		}
 	}
-
+        
+	//each recipe edited should include all these components in its display
 	public void edit(Recipes t) {
 		RecipesDB db = new RecipesDB();
 		for (Recipes r : db.getAllRecipes()) {
