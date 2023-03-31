@@ -38,6 +38,8 @@ public class FavouritesWindow extends JFrame {
 	
 	//Button objects
 	private final JButton backButton = new JButton("Back");
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO db = access.usersDB();
 
 	/**
 	 * Launch the application.
@@ -64,8 +66,7 @@ public class FavouritesWindow extends JFrame {
 		//Create a new list model for the user's recipes.
 		DefaultListModel<String> model = new DefaultListModel<String>();		
 		//get a new instance of the user database.
-		DatabaseAccess access = new DatabaseAccess();
-		UsersDAO db = access.usersDB();
+		
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
 		recipes = db.getFavoriteList(UserActivity.getCurrentUser());
 		//Add all the user's favourite recipes to the list model.

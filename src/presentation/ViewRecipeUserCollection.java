@@ -88,6 +88,7 @@ public class ViewRecipeUserCollection extends JDialog {
 			btnFavourite.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					db.editFavorites(r,1);
+					HomePage.favouriteRecipes();
 					//r.isFavourite();
 					UserRecipeCollection collection = new UserRecipeCollection();
 					collection.setVisible(true);
@@ -107,6 +108,8 @@ public class ViewRecipeUserCollection extends JDialog {
 			btnFavourite.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					db.editFavorites(r,0);
+					HomePage.removeFavourite(r);
+
 					//r.notFavourite();
 					UserRecipeCollection collection = new UserRecipeCollection();
 					collection.setVisible(true);

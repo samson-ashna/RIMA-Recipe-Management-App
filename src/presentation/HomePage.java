@@ -91,10 +91,10 @@ public class HomePage extends JFrame {
 	JLabel welcomeLabel = new JLabel("");
 	private JButton mealPlannerButton = new JButton("Meal Planner");
 	private JComboBox comboBox;
-	private JList list;
-	DatabaseAccess access = new DatabaseAccess();
-	UsersDAO db = access.usersDB();
-	DefaultListModel<String> model = new DefaultListModel<String>();	
+	private static JList list;
+	static DatabaseAccess access = new DatabaseAccess();
+	static UsersDAO db = access.usersDB();
+	static DefaultListModel<String> model = new DefaultListModel<String>();	
 	DefaultListModel<String> modelBreakfast = new DefaultListModel<String>();		
 	DefaultListModel<String> modelLunch = new DefaultListModel<String>();		
 	DefaultListModel<String> modelDinner = new DefaultListModel<String>();		
@@ -137,7 +137,8 @@ public class HomePage extends JFrame {
 			}
 		});
 	}
-	public void favouriteRecipes() {
+	public static void favouriteRecipes() {
+		model.clear();
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
 		recipes = db.getFavoriteList(UserActivity.getCurrentUser());
 		//Add all the user's favourite recipes to the list model.
@@ -147,6 +148,9 @@ public class HomePage extends JFrame {
 		
 		//Set the model for the list section to be the one that was 
 		list.setModel(model);
+	}
+	public static void removeFavourite(Recipes r) {
+		model.removeElement(r.getName());
 	}
 	public void addBreakfastRecipes(String day) {
 		modelBreakfast.clear();
@@ -427,7 +431,7 @@ public void addDinnerRecipes(String day) {
 		favourites = new JPanel();
 		favourites.setLayout(null);
 		JButton btnNewButton = new JButton("Back to List");
-		btnNewButton.setBounds(137, 566, 133, 23);
+		btnNewButton.setBounds(137, 366, 133, 23);
 		btnNewButton.setVisible(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -440,7 +444,7 @@ public void addDinnerRecipes(String day) {
 		favourites.add(btnNewButton);
 				
 				list = new JList();
-				list.setBounds(10, 29, 260, 526);
+				list.setBounds(10, 29, 260, 360);
 				favourites.add(list);
 				
 						list.getSelectionModel().addListSelectionListener(e-> {
@@ -471,7 +475,7 @@ public void addDinnerRecipes(String day) {
 		
 		scrollPane_3 = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_3.setBounds(23, 43, 230, 510);
+		scrollPane_3.setBounds(23, 43, 230, 320);
 		favourites.add(scrollPane_3);
 		
 		scrollPane_3.setViewportView(textArea);
@@ -606,6 +610,7 @@ public void addDinnerRecipes(String day) {
 		frame.setVisible(true);
 		favouriteRecipes();
 		showPlan();
+		shoppingLstSetUp();
 		
 		
 	}

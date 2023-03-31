@@ -122,7 +122,8 @@ public class UserShoppingList extends JFrame {
 				UserActivity.currentUser.removeFromShoppingLst(name);
 				db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
 				model.removeElement(name);
-				
+				HomePage.shoppingLstSetUp();
+
 			}
 		});
 		btnRemoveFromList.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -151,7 +152,8 @@ public class UserShoppingList extends JFrame {
 					UserActivity.currentUser.addToShoppingLst(name);
 					db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
 					model.addElement(name);
-					
+					HomePage.shoppingLstSetUp();
+
 				}
 				
 			}
