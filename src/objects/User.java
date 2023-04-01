@@ -21,7 +21,6 @@ public class User {
 	private ArrayList<Recipes> myFavourites = new ArrayList<Recipes>();
 	private HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
 	String[] days= {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-	private HashMap<String,Planner> planner = new HashMap<String, Planner>();
 	private ArrayList<String> shoppingList = new ArrayList<String>();
 	
 	//private ArrayList<String> recipelst = new ArrayList<String>();
@@ -54,21 +53,7 @@ public class User {
 	public HashMap<String,Planner> getWeekPlanner() {
 		return this.weekPlanner;
 	}
-	public void addToPlanner(String date, String time, String recipe) {
-		if(!planner.containsKey(date)) {
-			planner.put(date,new Planner());
-		}
-		if(time.contains("Breaksfast")) {
-			planner.get(date).breakfast.add(recipe);
-		}else if(time.contains("Lunch")) {
-			planner.get(date).lunch.add(recipe);
-		}else {
-			planner.get(date).dinner.add(recipe);
-		}
-	}
-	public HashMap<String,Planner> getPlanner(){
-		return this.planner;
-	}
+	
 	public static  int getID() {
 		return id;
 	}
