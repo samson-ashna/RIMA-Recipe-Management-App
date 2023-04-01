@@ -73,7 +73,7 @@ public class Main {
 				list.setVisible(true);
 				
 				//frame.setVisible(false);
-				//frame.dispose();
+				frame.dispose();
 			}
 		});
 
