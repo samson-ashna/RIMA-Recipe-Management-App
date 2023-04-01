@@ -305,13 +305,6 @@ public class EditIngredientView extends JFrame{
 							change = true;
 						}
 						
-						entry = "Protein";
-						//If the protein has changed and isn't blank, update it.
-						if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein()){
-							newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
-							change = true;
-						}
-						
 						entry = "Carbs";
 						//If the carbs have changed and the field isn't blank, update.
 						if(Integer.parseInt(carbsField.getText()) != ingredient.getCarbs()){
@@ -319,10 +312,16 @@ public class EditIngredientView extends JFrame{
 							change = true;
 						}
 						
+						entry = "Protein";
+						//If the protein has changed and isn't blank, update it.
+						if(Integer.parseInt(proteinField.getText()) != ingredient.getProtein()){
+							newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
+							change = true;
+						}
+						
 							
 					} catch (Exception ex) {
 						errorLabel.setText(entry + " entry invalid!");
-						ex.printStackTrace();
 						return;
 					}
 					
@@ -346,10 +345,10 @@ public class EditIngredientView extends JFrame{
 						newIngredient.setCost(Double.parseDouble(costField.getText()));
 						entry = "Date";
 						newIngredient.setExpiration(LocalDate.parse((dayBox.getSelectedItem() + " " + monthBox.getSelectedItem() + " " + yearBox.getSelectedItem()),format));
-						entry = "Protein";
-						newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 						entry = "Carbs";
 						newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
+						entry = "Protein";
+						newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 					} catch (Exception ex) {
 						errorLabel.setText(entry + " entry invalid!");
 						return;
