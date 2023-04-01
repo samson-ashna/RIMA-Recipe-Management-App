@@ -68,7 +68,7 @@ public class IngredientView extends JFrame {
 		if(ingredient.getExpiration().isBefore(LocalDate.now())) {
 			expirationText = expirationText + "<br>[Expired]";
 		}else if (ingredient.getExpiration().isBefore(LocalDate.now().plusWeeks(1))){
-			expirationText = expirationText + "<br>[Expires this week]";
+			expirationText = expirationText + "<br>[Expires within 7 days]";
 		}
 		
 		displName.setText("<html><div align=\"center\"><span style='font-size:14pt;'>Name</span><br>"+ingredient.getName()+"</div></html>");
