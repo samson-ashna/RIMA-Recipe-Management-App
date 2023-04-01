@@ -254,23 +254,23 @@ public class EditIngredientView extends JFrame{
 					return;
 				}
 				
-				//If the name field is blank, inform the user and do nothing.
+				//If the cost field is blank, inform the user and do nothing.
 				if(costField.getText().equals("")){
 					errorLabel.setText("Cost can't be blank!");
 					return;
 				}	
 				
-				//If the name field is blank, inform the user and do nothing.
-				if(proteinField.getText().equals("")){
-					errorLabel.setText("Protein can't be blank!");
-					return;
-				}	
-				
-				//If the name field is blank, inform the user and do nothing.
+				//If the carbs field is blank, inform the user and do nothing.
 				if(carbsField.getText().equals("")){
 					errorLabel.setText("Carbs can't be blank!");
 					return;
 				}
+				
+				//If the protein field is blank, inform the user and do nothing.
+				if(proteinField.getText().equals("")){
+					errorLabel.setText("Protein can't be blank!");
+					return;
+				}	
 				
 				//If an ingredient was given to be edited and it corresponds to the current user. (EDITING)
 				if(ingredient != null /*&& currentUser.getName().equals(ingredient.getUser())*/) {
@@ -311,13 +311,15 @@ public class EditIngredientView extends JFrame{
 							newIngredient.setProtein(Integer.parseInt(proteinField.getText()));
 							change = true;
 						}
-							
+						
 						entry = "Carbs";
 						//If the carbs have changed and the field isn't blank, update.
 						if(Integer.parseInt(carbsField.getText()) != ingredient.getCarbs()){
 							newIngredient.setCarbs(Integer.parseInt(carbsField.getText()));
 							change = true;
 						}
+						
+							
 					} catch (Exception ex) {
 						errorLabel.setText(entry + " entry invalid!");
 						ex.printStackTrace();
