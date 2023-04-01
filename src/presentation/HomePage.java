@@ -246,7 +246,8 @@ public void addDinnerRecipes(String day) {
 
 		userRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRecipeCollection collection = new UserRecipeCollection();
+				RecipeCollection.page =0;
+				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
 				//contentPane.setVisible(false);
 				//frame.dispose();
@@ -278,8 +279,10 @@ public void addDinnerRecipes(String day) {
 
 		newRecipesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RecipeList listRecipes = new RecipeList();
-				listRecipes.setVisible(true);
+				RecipeCollection.page =1;
+				RecipeCollection list = new RecipeCollection();
+				//RecipeList listRecipes = new RecipeList();
+				list.setVisible(true);
 				//contentPane.setVisible(false);
 				//frame.dispose();
 			}

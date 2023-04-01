@@ -149,7 +149,7 @@ public class EditRecipeView extends JDialog {
 		//Sets up what happens when back button is pressed. 
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRecipeCollection collection = new UserRecipeCollection();
+				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
@@ -203,7 +203,7 @@ public class EditRecipeView extends JDialog {
 					//RecipesDB db = new RecipesDB();
 					DAO<Recipes> db = access.recipesDB();
 					db.edit(recipe);
-					UserRecipeCollection back = new UserRecipeCollection();
+					RecipeCollection back = new RecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPane);

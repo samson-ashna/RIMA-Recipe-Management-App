@@ -235,8 +235,9 @@ public class UserMealPlanner {
         btnAddSaved.setBackground(new Color(59, 89, 182));
 		btnAddSaved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRecipeCollection collection = new UserRecipeCollection();
-				collection.page =1;
+				RecipeCollection.page =0;
+				RecipeCollection.recipeView =1;
+				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
 //				frame.setVisible(false);
 //				Window win = SwingUtilities.getWindowAncestor(frame.getContentPane());

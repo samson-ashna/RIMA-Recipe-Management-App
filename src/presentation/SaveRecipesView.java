@@ -130,7 +130,7 @@ public class SaveRecipesView extends JFrame {
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserRecipeCollection collection = new UserRecipeCollection();
+				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
 				contentPane.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
@@ -221,7 +221,7 @@ public class SaveRecipesView extends JFrame {
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(newRecipe);
 					//User is then redirected back to their recipe collection page.
-					UserRecipeCollection back = new UserRecipeCollection();
+					RecipeCollection back = new RecipeCollection();
 					back.setVisible(true);
 					contentPane.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPane);

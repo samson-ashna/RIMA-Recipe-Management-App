@@ -84,8 +84,10 @@ public class ViewRecipeDB extends JDialog {
 		getContentPane().add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RecipeList lst = new RecipeList();
-				lst.getContentPane().setVisible(true);
+				RecipeCollection.page =1;
+				RecipeCollection list = new RecipeCollection();
+				//RecipeList lst = new RecipeList();
+				list.setVisible(true);
 				contentPanel.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPanel);
 				win.dispose();

@@ -30,12 +30,14 @@ import javax.swing.JTextField;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 /**
  * 
  */
 @SuppressWarnings("serial")
-public class UserRecipeCollection extends JFrame {
+public class RecipeCollection extends JFrame {
 
 	//Content pane object.
 	private JPanel contentPane;
@@ -52,6 +54,10 @@ public class UserRecipeCollection extends JFrame {
 	private String searchCategory;
 	DefaultListModel<String> model = new DefaultListModel<String>();
 	static int page=0;
+	static int recipeView =0;
+	DatabaseAccess access = new DatabaseAccess();
+	UsersDAO db = access.usersDB();
+	DAO<Recipes> dbGuest = access.recipesDB();
 
 	/**
 	 * Launch the application.
@@ -61,7 +67,7 @@ public class UserRecipeCollection extends JFrame {
 			public void run() {
 				try {
 					//Create a new frame.
-					UserRecipeCollection frame = new UserRecipeCollection();
+					RecipeCollection frame = new RecipeCollection();
 					//Make the frame visible.
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -78,13 +84,16 @@ public class UserRecipeCollection extends JFrame {
 		//Create a new list model for the user's recipes.
 				
 		//get a new instance of the user database.
-		DatabaseAccess access = new DatabaseAccess();
-		UsersDAO db = access.usersDB();
+		
 		
 		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
 
-		recipes = db.getRecipes(UserActivity.getCurrentUser());
+		if(page==0) {
+			recipes = db.getRecipes(UserActivity.getCurrentUser());
+		}else {
+			recipes = dbGuest.getAll();
+		}
 	
 		//Add all the user's recipes to the list model.
 		for(Recipes r: recipes) {
@@ -95,16 +104,19 @@ public class UserRecipeCollection extends JFrame {
 		list.setModel(model);
 	}
 	public void searchUserRecipe(String searchedItem) {
-		DatabaseAccess access = new DatabaseAccess();
-		UsersDAO db = access.usersDB();	
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 
-		recipes = db.getRecipes(UserActivity.getCurrentUser());
+		if(page==0) {
+			recipes = db.getRecipes(UserActivity.getCurrentUser());
+		}else {
+			recipes = dbGuest.getAll();
+		}
+		
 		for(Recipes r: recipes) {
-			if(searchCategory.equals("Name") && r.getName().equals(searchedItem)) {
+			if(searchCategory.equals("Name") && r.getName().equalsIgnoreCase(searchedItem)) {
 				model.addElement(r.getName());
-			}else if(searchCategory.equals("Ingredient") && r.getIngredients().contains(searchedItem)) {
+			}else if(searchCategory.equals("Ingredient") && r.getIngredients().toLowerCase().contains(searchedItem.toLowerCase())) {
 				model.addElement(r.getName());
-			}else if(r.mealTime.equals(searchCategory)) {
+			}else if(searchCategory.contains(r.mealTime) || r.mealTime.contains(searchCategory)) {
 				model.addElement(r.getName());
 			}
 		}
@@ -114,7 +126,7 @@ public class UserRecipeCollection extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserRecipeCollection() {
+	public RecipeCollection() {
 		setTitle("RIMA - User Recipes");
 
 		setResizable(false);
@@ -134,7 +146,7 @@ public class UserRecipeCollection extends JFrame {
 		//Set the content pane's layout manager to null for full customization.
 		contentPane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 57, 637, 437);
+		scrollPane.setBounds(10, 53, 637, 441);
 		contentPane.add(scrollPane);
 		
 		//Create a new section for an item list.
@@ -154,10 +166,14 @@ public class UserRecipeCollection extends JFrame {
 			//Get the selected list item
 			String name = (String) list.getSelectedValue();
 			//Create a ViewRecipe window for the selected list item/recipe.
-			
-			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name,page);
+			if(page==0) {
+			ViewRecipeUserCollection newWindow = new ViewRecipeUserCollection(name,recipeView);
 			//Set up the ViewRecipe window and make it visible.
-			newWindow.NewScreen(name,page);
+			newWindow.NewScreen(name,recipeView);
+			}else {
+				ViewRecipeDB newWindow = new ViewRecipeDB(name);
+				newWindow.NewScreen(name);
+			}
 			contentPane.setVisible(false);
 			Window win = SwingUtilities.getWindowAncestor(contentPane);
 			win.dispose();
@@ -176,12 +192,6 @@ public class UserRecipeCollection extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
-				if(page==0) {
-					//HomePage homePage = new HomePage();
-					
-					//Make the HomePage window visible and the UserRecipeCollection window invisible.
-					//homePage.setVisible(true);
-				}
 				contentPane.setVisible(false);
 				
 				//Close the UserRecipeCollection Window.
@@ -209,9 +219,9 @@ public class UserRecipeCollection extends JFrame {
 				win.dispose();
 			}
 		});
-		
+		if(page==1) {favourites.setVisible(false);}
 		searchField = new JTextField();
-		searchField.setBounds(225, 8, 184, 40);
+		searchField.setBounds(221, 2, 184, 40);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
 		//Set up the font and bounds of the add button.
@@ -231,57 +241,22 @@ public class UserRecipeCollection extends JFrame {
 		comboBox1.addItem("Breakfast/Lunch/Dinner");
 		
 		contentPane.add(comboBox1);
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addItem("Search By:");
-		comboBox.addItem("Name");
-		comboBox.addItem("Meal Time");
-		comboBox.addItem("Ingredient");
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange()==ItemEvent.SELECTED) {
-					searchCategory = comboBox.getSelectedItem().toString();
-					if(searchCategory.equals("Meal Time")) {
-						searchField.setText(searchCategory);
-					}
-				}
-			}
-		});
-		
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		comboBox.setBounds(10, 11, 205, 35);
-		contentPane.add(comboBox);
 		
 		
 		
-		JButton btnNewButton = new JButton("Search");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-        btnNewButton.setBackground(new Color(59, 89, 182));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton searchButton = new JButton("Search");
+		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		searchButton.setForeground(new Color(255, 255, 255));
+        searchButton.setBackground(new Color(59, 89, 182));
+		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.removeAllElements();
-				searchCategory = comboBox.getSelectedItem().toString();
-				if(searchCategory.equals("Meal Time")) {		
-					comboBox1.addItemListener(new ItemListener() {
-						public void itemStateChanged(ItemEvent e) {
-							
-							if(e.getStateChange()==ItemEvent.SELECTED) {
-								category = comboBox1.getSelectedItem().toString();
-								searchCategory = category;
-								searchField.setText(category);
-						
-							}
-						}
-					});
-					
-					JOptionPane.showMessageDialog(null, comboBox1);
-				}
 				searchUserRecipe(searchField.getText());
 				
 			}
 		});
-		btnNewButton.setBounds(420, 11, 89, 35);
-		contentPane.add(btnNewButton);
+		searchButton.setBounds(415, 3, 89, 35);
+		contentPane.add(searchButton);
 		
 		JButton btnNewButton_1 = new JButton("All Recipes");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -293,8 +268,73 @@ public class UserRecipeCollection extends JFrame {
 				addUserRecipes();
 			}
 		});
-		btnNewButton_1.setBounds(515, 11, 132, 35);
+		btnNewButton_1.setBounds(514, 3, 132, 35);
 		contentPane.add(btnNewButton_1);
+		
+		JMenuBar searchBar = new JMenuBar();
+		searchBar.setBounds(54, 0, 237, 42);
+		contentPane.add(searchBar);
+		
+		JMenu categories = new JMenu("Search Categories");
+		searchBar.add(categories);
+		
+		JMenuItem mntmName = new JMenuItem("Name");
+		mntmName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchCategory = "Name";
+				categories.setText("Search by Name");
+				
+			}
+		});
+		categories.add(mntmName);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Ingredient");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchCategory = "Ingredient";
+				categories.setText("Search by ingredient");
+			}
+		});
+		categories.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("Meal");
+		categories.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Breakfast");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchCategory = "Breakfast";
+				categories.setText("Breakfast Recipes");
+				searchField.setText("Breakfast Recipes");
+				model.removeAllElements();
+				searchUserRecipe(searchField.getText());
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Lunch");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchCategory = "Lunch";
+				categories.setText("Lunch Recipes");
+				searchField.setText("Lunch Recipes");
+				model.removeAllElements();
+				searchUserRecipe(searchField.getText());
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Dinner");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				searchCategory = "Dinner";
+				categories.setText("Dinner Recipes");
+				searchField.setText("Dinner Recipes");
+				model.removeAllElements();
+				searchUserRecipe(searchField.getText());
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_3);
 				
 		//Set up what to do when the add button is pressed.
 		addRecipeButton.addActionListener(new ActionListener() {
@@ -310,5 +350,8 @@ public class UserRecipeCollection extends JFrame {
 				win.dispose();
 			}
 		});
+		if(page==1) {
+			addRecipeButton.setVisible(false);
+		}
 	}
 }

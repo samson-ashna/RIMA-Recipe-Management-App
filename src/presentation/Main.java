@@ -67,10 +67,13 @@ public class Main {
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// GuestInterface main = new GuestInterface();
-				RecipeList list = new RecipeList();
+				//RecipeList list = new RecipeList();
+				RecipeCollection.page =1;
+				RecipeCollection list = new RecipeCollection();
 				list.setVisible(true);
-				frame.setVisible(false);
-				frame.dispose();
+				
+				//frame.setVisible(false);
+				//frame.dispose();
 			}
 		});
 

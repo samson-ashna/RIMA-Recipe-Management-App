@@ -137,7 +137,7 @@ public class FavouritesWindow extends JFrame {
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
-				UserRecipeCollection userRecipeCollection = new UserRecipeCollection();
+				RecipeCollection userRecipeCollection = new RecipeCollection();
 				
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
 				userRecipeCollection.setVisible(true);

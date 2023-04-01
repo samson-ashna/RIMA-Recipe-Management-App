@@ -90,7 +90,7 @@ public class ViewRecipeUserCollection extends JDialog {
 					db.editFavorites(r,1);
 					HomePage.favouriteRecipes();
 					//r.isFavourite();
-					UserRecipeCollection collection = new UserRecipeCollection();
+					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);
@@ -111,7 +111,7 @@ public class ViewRecipeUserCollection extends JDialog {
 					HomePage.removeFavourite(r);
 
 					//r.notFavourite();
-					UserRecipeCollection collection = new UserRecipeCollection();
+					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);
@@ -141,7 +141,7 @@ public class ViewRecipeUserCollection extends JDialog {
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					db.removeRecipes(currentUser, r);
-					UserRecipeCollection collection = new UserRecipeCollection();
+					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);
@@ -156,7 +156,7 @@ public class ViewRecipeUserCollection extends JDialog {
 		
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					UserRecipeCollection collection = new UserRecipeCollection();
+					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);
