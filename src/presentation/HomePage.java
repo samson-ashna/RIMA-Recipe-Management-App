@@ -493,8 +493,8 @@ public void addDinnerRecipes(String day) {
 		
 		//Label setup
 		JLabel expLabel = new JLabel("Expired Ingredients");
-		int expWidth = 110;
-		expLabel.setBounds(expirations.getWidth()/2-expWidth/2, 5, expWidth, 14);
+		int expWidth = 115;
+		expLabel.setBounds(expirations.getWidth()/2-expWidth/2, 7, expWidth, 16);
 		expirations.add(expLabel);
 		
 		//List setup
@@ -503,7 +503,7 @@ public void addDinnerRecipes(String day) {
 		
 		//Scroll pane setup
 		JScrollPane expScrollPane = new JScrollPane(expList);
-		int scrollBorder = 7;
+		int scrollBorder = 9;
 		expScrollPane.setBounds(scrollBorder, expLabel.getY()+expLabel.getHeight()+scrollBorder, expirations.getWidth()-scrollBorder*2,expirations.getHeight()-expLabel.getHeight()-scrollBorder*3);
 		expirations.add(expScrollPane);
 		
