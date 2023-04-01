@@ -410,9 +410,13 @@ class ShowExpirationsListCellRenderer extends DefaultListCellRenderer {
 		
         //Add ingredient names to listModel.
 		for(Ingredient ingredient : ingredients) {
-			 if (value.equals(ingredient.getName()) && ingredient.getExpiration().isBefore(LocalDate.now())) {
-		            renderer.setForeground(Color.RED);
+			 if (!value.equals(ingredient.getName())) continue;
+		     if(ingredient.getExpiration().isBefore(LocalDate.now())) {
+		    	 renderer.setForeground(Color.RED);
+		     }else if(ingredient.getExpiration().isBefore(LocalDate.now().plusWeeks(1))) {
+		    	 renderer.setForeground(new Color(252, 198, 3));
 		     }
+			 
 		}
         
         return renderer;

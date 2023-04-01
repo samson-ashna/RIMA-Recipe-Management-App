@@ -7,7 +7,8 @@ import objects.Recipes;
 import objects.User;
 
 /**
- * 
+ *  The interface DAO specifies additional methods for managing users, 
+ *  recipes, ingredients, and other relating data.
  */
 public interface UsersDAO extends DAO<User> {
 	ArrayList<Recipes> getRecipes(User u);

@@ -84,6 +84,9 @@ public class RecipesStubDB implements DAO<Recipes> {
 		
 	}
 
+	/**
+	 * Edits Recipes r in the database
+	 */
 	@Override
 	public void edit(Recipes t) {
 		for(Recipes r:dbRecipes) {

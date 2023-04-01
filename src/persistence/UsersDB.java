@@ -18,7 +18,7 @@ import objects.Recipes;
 import objects.User;
 
 /**
- * 
+ * this method implements a new arraylist consisting of users in the database
  */
 public class UsersDB extends DBSetup implements UsersDAO {
 	private ArrayList<User> dbUsers = new ArrayList<User>();;
@@ -384,6 +384,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			ingredients.add(new Ingredient(valueStrings[1], Double.parseDouble(valueStrings[0]), date,
 					Integer.parseInt(valueStrings[4]), Integer.parseInt(valueStrings[3]), valueStrings[2]));
 		}
+		// Return user ingredients if it exists in the database.
 		return ingredients;
 	}
 	
@@ -557,7 +558,8 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		// TODO Auto-generated method stub
 
 	}
-
+        
+	// this method edits the user's allergies
 	@Override
 	public void editAllergy(User u, String allergyType, int changeNum) {
 		u.getUserAllergies().getAllergies().replace(allergyType, changeNum);
@@ -587,6 +589,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		return recipeList;
 	}
 
+	// this method edits the user's favourite recipes
 	@Override
 	public void editFavorites(Recipes r, int change) {
 		
