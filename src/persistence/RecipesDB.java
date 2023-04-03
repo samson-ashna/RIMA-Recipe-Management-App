@@ -42,6 +42,27 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 		}
 		return recipe;
 	}
+	public void changeUserNames(String oldName, String newName) {
+		try {
+			con = DriverManager.getConnection(url, user, password);
+				// create statement
+			//statement = con.createStatement();
+			for(Recipes r: getAllRecipes()) {
+				if(r.user.equals(oldName)) {
+					r.user = newName;
+					//System.out.println(r.getRecipeID());
+					statement = con.createStatement();
+					query = "update recipes set user=\'"+newName+"\' where food_id="+r.getRecipeID()+";";
+					statement.execute(query);
+				}
+			}
+			statement.close();
+			result.close();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Recipes> getAllRecipes() {
 
@@ -164,7 +185,7 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 					statement = con.createStatement();
 					query = "UPDATE recipes SET name=\'" + t.getName() + "\'" + "," + "ingredients=\'"
 							+ t.getIngredients() + "\'," + " instruction=\'" + t.getInstructions() + "\',"
-							+ "protein=\'" + t.getProtein() + "\'," + " carbs=\'" + t.getCarbs() + "\' "
+							+ "protein=\'" + t.getProtein() + "\'," + " carbs=\'" + t.getCarbs() + "\',"+"user=\'"+t.user+"\'"
 							+ "WHERE food_id=" + "\'" + t.getRecipeID() + "\';";
 
 					statement.execute(query);

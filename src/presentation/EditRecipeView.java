@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 import objects.Recipes;
 import persistence.DAO;
 import persistence.DatabaseAccess;
-import persistence.RecipesDB;
 
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;

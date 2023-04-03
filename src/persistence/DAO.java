@@ -3,6 +3,7 @@ package persistence;
 import java.util.ArrayList;
 
 import objects.Recipes;
+import objects.User;
 
 /**
  * Interface to the Databases containing user and recipe information.
@@ -14,4 +15,5 @@ public interface DAO<T> {
 	void add(T t);
 	void remove(T t);
 	void edit(T t);
+	//void changeUserNames(User u, String newName);
 }

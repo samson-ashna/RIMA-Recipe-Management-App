@@ -14,7 +14,7 @@ public class Recipes {
 	private String ingredients;
 	public static int id=1;
 	private int recipeID;
-	private String user;
+	public String user;
 	public int favourite = 0;
 	public String mealTime;
 	

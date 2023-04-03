@@ -206,6 +206,8 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	public void edit(String oldName, String name, String newPass) {
 		if (name != null) {
 			try {
+				RecipesDB dbRecipes = new RecipesDB();
+				dbRecipes.changeUserNames(oldName,name);
 				// create connection
 				con = DriverManager.getConnection(url, user, password);
 				// create statement
