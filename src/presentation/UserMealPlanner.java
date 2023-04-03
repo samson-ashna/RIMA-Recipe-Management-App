@@ -103,7 +103,7 @@ public class UserMealPlanner {
 		// created labels and buttons for the first panel that selects recipes listed out
 		JLabel lblNewLabel_1 = new JLabel("Placeholder:Recipe #1");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
         lblNewLabel_1.setBackground(new Color(59, 89, 182));
 		lblNewLabel_1.setBounds(23, 72, 196, 22);
 		panel_recipeplanning.add(lblNewLabel_1);
@@ -374,7 +374,7 @@ public class UserMealPlanner {
 		JButton removeButton = new JButton("Remove From Planner");
 		removeButton.setForeground(new Color(255, 255, 255));
         removeButton.setBackground(new Color(59, 89, 182));
-		removeButton.setBounds(91, 444, 163, 30);
+		removeButton.setBounds(74, 444, 197, 30);
 		panel_1_weeklyManager.add(removeButton);
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

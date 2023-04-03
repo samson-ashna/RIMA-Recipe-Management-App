@@ -193,8 +193,8 @@ public class RecipeCollection extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
 				contentPane.setVisible(false);
-				Main menu = new Main();
-				menu.frame.setVisible(true);
+				//Main menu = new Main();
+				//menu.frame.setVisible(true);
 				//Close the UserRecipeCollection Window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				

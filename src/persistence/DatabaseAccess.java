@@ -1,10 +1,8 @@
 package persistence;
 
-import java.util.ArrayList;
 
-import businessLogic.UserActivity;
 import objects.Recipes;
-import objects.User;
+
 
 public class DatabaseAccess {
 	public static int databaseType = DBSetup.databaseType;//0 for access to real database, 1 for access to stub database

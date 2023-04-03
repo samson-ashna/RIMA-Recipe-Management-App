@@ -446,28 +446,23 @@ public void addDinnerRecipes(String day) {
 		});
 		favourites.add(btnNewButton);
 				
-				list = new JList();
-				list.setBounds(10, 29, 260, 360);
-				favourites.add(list);
-				
-						list.getSelectionModel().addListSelectionListener(e-> {
-							//Get the selected list item
-							String name = (String) list.getSelectedValue();
-							//Create a ViewRecipe window for the selected list item/recipe.
-							Recipes r = db.getRecipe(UserActivity.currentUser,name);
-							if(r != null) {
-								model.clear();
-								modelBreakfast.clear();
-								modelLunch.clear();
-								modelDinner.clear();
-								list.setVisible(false);
-								scrollPane_3.setVisible(true);
-								textArea.setVisible(true);
-								textArea.setText(r.toString());
-								btnNewButton.setVisible(true);
-				
-							}
-						});
+		list = new JList();
+		list.setBounds(10, 29, 260, 360);
+		favourites.add(list);
+		list.getSelectionModel().addListSelectionListener(e-> {
+			//Get the selected list item
+			String name = (String) list.getSelectedValue();
+			//Create a ViewRecipe window for the selected list item/recipe.
+			Recipes r = db.getRecipe(UserActivity.currentUser,name);
+			if(r != null) {
+				model.clear();
+				list.setVisible(false);
+				scrollPane_3.setVisible(true);
+				textArea.setVisible(true);
+				textArea.setText(r.toString());
+				btnNewButton.setVisible(true);
+			}
+		});
 		JLabel favouritesLabel1 = new JLabel("Favourites");
 		favouritesLabel1.setBounds(114, 5, 118, 14);
 		favourites.add(favouritesLabel1);
