@@ -350,7 +350,7 @@ public void addDinnerRecipes(String day) {
 			Recipes r = db.getRecipe(UserActivity.currentUser,name);
 			if(r != null) {
 				breakfastText.setText(r.toString());
-			}else {
+			}else if(name !=null) {
 				breakfastText.setText(name+" is not avialable in your collection!");
 			}
 		});
@@ -385,7 +385,7 @@ public void addDinnerRecipes(String day) {
 			Recipes r = db.getRecipe(UserActivity.currentUser,name);
 			if(r != null) {
 				lunchText.setText(r.toString());
-			}else {
+			}else if(name !=null) {
 				lunchText.setText(name+" is not avialable in your collection!");
 			}
 		});
@@ -422,7 +422,7 @@ public void addDinnerRecipes(String day) {
 			Recipes r = db.getRecipe(UserActivity.currentUser,name);
 			if(r != null) {
 				dinnerText.setText(r.toString());
-			}else {
+			}else if(name!=null) {
 				dinnerText.setText(name+" is not avialable in your collection!");
 			}
 		});
@@ -561,11 +561,11 @@ public void addDinnerRecipes(String day) {
 
 						String day = comboBox.getSelectedItem().toString();
 						DatabaseAccess access = new DatabaseAccess();
-				UsersDAO db = access.usersDB();
-				User currentUser = UserActivity.currentUser;
-				addBreakfastRecipes(day);
-				addLunchRecipes(day);
-				addDinnerRecipes(day);				
+						UsersDAO db = access.usersDB();
+						User currentUser = UserActivity.currentUser;
+						addBreakfastRecipes(day);
+						addLunchRecipes(day);
+						addDinnerRecipes(day);				
 					}
 				});
 				comboBox.setBounds(23,47,136,22);
