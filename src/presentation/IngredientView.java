@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import objects.Ingredient;
 
 
+@SuppressWarnings("serial")
 public class IngredientView extends JFrame {
 	JComponent[] componentsToToggle;
 	Ingredient ingredient;

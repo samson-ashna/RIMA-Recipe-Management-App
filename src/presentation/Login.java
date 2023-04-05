@@ -1,7 +1,6 @@
 package presentation;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionListener;
@@ -38,12 +37,9 @@ public class Login extends JFrame {
 
 	protected JFrame frame;
     private ImageIcon icon;
-	private ImageIcon logo;
     private JLabel lbl;
 	private JLabel lblError;
 	
-    private JButton start;
-    private JButton end;
 
 	private final JLabel lblPassword = new JLabel("Password");
 	private final JLabel lbluserName = new JLabel("User Name");
@@ -132,7 +128,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity activity = new UserActivity();
 				String username = textField.getText();
-				String password = passwordField.getText();
+				String password = String.valueOf(passwordField.getPassword());
 				//checks to see if user name already exists.
 				if(activity.checkUserName(username)) {
 					//checks to see if password matches user name.
@@ -158,8 +154,7 @@ public class Login extends JFrame {
 		});
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main mainPage = new Main();
-				mainPage.frame.setVisible(true);
+				Main.frame.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 				contentPane.setVisible(false);
