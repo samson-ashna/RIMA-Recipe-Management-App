@@ -9,11 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
 
-import objects.Recipes;
 import objects.User;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
-import persistence.DAO;
 import persistence.UsersDAO;
 
 import javax.swing.SwingConstants;
@@ -263,7 +260,6 @@ public class SignUpPage extends JFrame {
 						//Add the selected allergies by the user to their allergy information. 
 						if(eggAllergy.isSelected()){
 							db.editAllergy(newUser, "Eggs",1);
-							//newUser.allergens.getAllergies().replace("Eggs", 1);
 						}
 						if(milkAllergy.isSelected()){
 							db.editAllergy(newUser, "Milk",1);

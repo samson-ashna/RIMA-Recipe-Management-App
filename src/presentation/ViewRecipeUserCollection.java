@@ -1,11 +1,9 @@
 package presentation;
 
-import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -15,11 +13,8 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
-import persistence.DAO;
 import persistence.UsersDAO;
-import persistence.UsersDB;
 
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -110,7 +105,6 @@ public class ViewRecipeUserCollection extends JDialog {
 					db.editFavorites(r,0);
 					HomePage.removeFavourite(r);
 
-					//r.notFavourite();
 					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);

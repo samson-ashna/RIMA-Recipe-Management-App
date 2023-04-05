@@ -1,6 +1,5 @@
 package presentation;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,23 +7,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import java.awt.Font;
-import java.awt.Window;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import businessLogic.UserActivity;
-import objects.Recipes;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -60,7 +55,7 @@ public class UserShoppingList extends JFrame {
 	 */
 	public UserShoppingList() {
 
-		// setResizable(false);
+		setResizable(false);
 		setBounds(0, 0, 450, 450);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

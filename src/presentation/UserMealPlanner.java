@@ -17,16 +17,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JDayChooser;
 
 import businessLogic.UserActivity;
 import objects.Planner;
@@ -35,12 +31,8 @@ import objects.User;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
 
-import com.toedter.calendar.JCalendar;
 import javax.swing.JTextArea;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import java.awt.List;
 import javax.swing.JList;
 
 public class UserMealPlanner {
@@ -239,9 +231,6 @@ public class UserMealPlanner {
 				RecipeCollection.recipeView =1;
 				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
-//				frame.setVisible(false);
-//				Window win = SwingUtilities.getWindowAncestor(frame.getContentPane());
-//				win.dispose();
 			}
 		});
 		btnAddSaved.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -337,7 +326,7 @@ public class UserMealPlanner {
 				boolean add = true;
 				User currentUser = UserActivity.currentUser;
 				for(Recipes recipe: db.getRecipes(UserActivity.currentUser)) {
-					//System.out.println(recipe.getName());
+
 					if(recipe.mealTime.contains(time)) {
 						if (currentUser.getUserAllergies().getAllergies().get("Eggs") !=null && currentUser.getUserAllergies().getAllergies().get("Eggs")==1 && (recipe.getIngredients().toLowerCase().contains("egg"))){
 							add =false;

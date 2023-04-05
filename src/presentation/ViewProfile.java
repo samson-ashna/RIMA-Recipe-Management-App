@@ -1,18 +1,14 @@
 package presentation;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -23,9 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Container;
 import objects.User;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 
 /**
  * 
@@ -44,8 +38,6 @@ public class ViewProfile extends JFrame {
 	private JButton editProfileButton = new JButton("Edit Profile");
 	private JLabel displName = new JLabel();
 	private JLabel allergyInfo =  new JLabel();
-	private final JButton btnNewButton = new JButton("Survey");
-	private final JButton surveyButton = new JButton("Survey");
 	private JLabel label = new JLabel();
 	private JFrame frame;
 
@@ -57,10 +49,7 @@ public class ViewProfile extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//Create a new frame.
-					ViewProfile frame = new ViewProfile();
-					//Make the frame visible.
-					// frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -115,51 +104,27 @@ public class ViewProfile extends JFrame {
 		//Create a new info pane.
 		infoPane = new JPanel();
 		infoPane.setBounds(15, 50, 405, 325);
-		//Set the info pane's layout manager to the vertical box layout.
-		// infoPane.setLayout(new BoxLayout(infoPane, BoxLayout.PAGE_AXIS));
-		//Make an invisible border for the info pane.
-		// infoPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-				
-		//Add user info to labels.
 		displayUserInfo();
-		// displName.setBounds(100, 100, 50, 50);
+
 		
 		//Align labels.
 		displName.setAlignmentX(CENTER_ALIGNMENT);
 		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);		
 		
-		//Add labels to the info pane.
 
 
 		displName.setBounds(0, 0, 50, 50);
 		allergyInfo.setBounds(0, 20, 50, 50);
 
-		// infoPane.add(displName);
 		userPanel.add(displName);
-		// infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
 		infoPane.add(allergyInfo);
 		infoPane.setBackground(Color.WHITE);
-		// infoPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-
 				
 		//Create a new pane for buttons.
 		buttonPane = new JPanel();
 		buttonPane.setOpaque(false);
 		buttonPane.setBounds(15, 377, 405, 40);
-		//Set an invisible border for the button pane.
-		// buttonPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//Set the button pane's layout manager to the horizontal box layout.
-		// buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		
-		//Add the button and info panes to the content pane.
-		// contentPane.add(infoPane);
-		// contentPane.add(buttonPane);
-		
-
-
-
 
 		//Set up the button fonts.
 		
@@ -169,22 +134,12 @@ public class ViewProfile extends JFrame {
 
 		backButton.setForeground(new Color(255, 255, 255));
         backButton.setBackground(new Color(59, 89, 182));
-        
-		
-		// buttonPane.add(surveyButton);
-		// surveyButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		UserDietaryRestrictionsSurvey survey = new UserDietaryRestrictionsSurvey();
-				
-		// 	}
-		// });		
 		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(backButton);
 		buttonPane.add(Box.createRigidArea(new Dimension(5, 0)));
 		buttonPane.add(editProfileButton);
-		
 		
 		//Add info and button panes to content pane.
 		
@@ -197,18 +152,11 @@ public class ViewProfile extends JFrame {
 
 		frame.add(label);
 		frame.setVisible(true);
-
-		// contentPane.add(infoPane);
-		// contentPane.add(buttonPane, BorderLayout.PAGE_END);
 		
 		//Set up what to do when the back button is pressed.
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		//Create a HomePage window
-		//HomePage homePage = new HomePage();
-				
-		//Make the HomePage window visible and the UserRecipeCollection window invisible.
-			//homePage.setVisible(true);
+
 			contentPane.setVisible(false);
 				
 		//Close the UserRecipeCollection Window.
@@ -223,13 +171,6 @@ public class ViewProfile extends JFrame {
 				
 				showEditProfileView();
 				
-				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				//editProfileView.setVisible(true);
-				//contentPane.setVisible(false);
-				
-				//Close the UserRecipeCollection Window.
-				//Window win = SwingUtilities.getWindowAncestor(contentPane);
-				//win.dispose();				
 			}
 		});				
 
