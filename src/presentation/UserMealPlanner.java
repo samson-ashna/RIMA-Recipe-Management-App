@@ -47,7 +47,7 @@ public class UserMealPlanner {
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
 	DefaultListModel<String> model = new DefaultListModel<String>();	
-	JList list = new JList();
+	JList<String> list = new JList<String>();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 
 
@@ -176,7 +176,7 @@ public class UserMealPlanner {
 		comboBox_1_2.setBounds(414, 141, 82, 30);
 		panel_recipeplanning.add(comboBox_1_2);
 		
-		JComboBox comboBox_4 = new JComboBox();
+		JComboBox<String> comboBox_4 = new JComboBox<String>();
 		comboBox_4.setBounds(210, 75, 128, 22);
 		panel_recipeplanning.add(comboBox_4);
 		comboBox_4.addItem("Select");
@@ -184,14 +184,14 @@ public class UserMealPlanner {
 			comboBox_4.addItem(r.getName());
 		}
 		
-		JComboBox comboBox_4_1 = new JComboBox();
+		JComboBox<String> comboBox_4_1 = new JComboBox<String>();
 		comboBox_4_1.setBounds(210, 112, 128, 22);
 		panel_recipeplanning.add(comboBox_4_1);
 		comboBox_4_1.addItem("Select");
 		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
 			comboBox_4_1.addItem(r.getName());
 		}
-		JComboBox comboBox_4_2 = new JComboBox();
+		JComboBox<String> comboBox_4_2 = new JComboBox<String>();
 		comboBox_4_2.setBounds(210, 142, 128, 22);
 		panel_recipeplanning.add(comboBox_4_2);
 		comboBox_4_2.addItem("Select");
@@ -199,14 +199,14 @@ public class UserMealPlanner {
 			comboBox_4_2.addItem(r.getName());
 		}
 		
-		JComboBox comboBox_4_3 = new JComboBox();
+		JComboBox<String> comboBox_4_3 = new JComboBox<String>();
 		comboBox_4_3.setBounds(210, 178, 128, 22);
 		panel_recipeplanning.add(comboBox_4_3);
 		comboBox_4_3.addItem("Select");
 		for(Recipes r: db.getRecipes(UserActivity.currentUser) ) {
 			comboBox_4_3.addItem(r.getName());
 		}		
-		JComboBox comboBox_4_4 = new JComboBox();
+		JComboBox<String> comboBox_4_4 = new JComboBox<String>();
 		comboBox_4_4.setBounds(210, 215, 128, 22);
 		panel_recipeplanning.add(comboBox_4_4);
 		comboBox_4_4.addItem("Select");
@@ -326,7 +326,6 @@ public class UserMealPlanner {
 				boolean add = true;
 				User currentUser = UserActivity.currentUser;
 				for(Recipes recipe: db.getRecipes(UserActivity.currentUser)) {
-
 					if(recipe.mealTime.contains(time)) {
 						if (currentUser.getUserAllergies().getAllergies().get("Eggs") !=null && currentUser.getUserAllergies().getAllergies().get("Eggs")==1 && (recipe.getIngredients().toLowerCase().contains("egg"))){
 							add =false;
