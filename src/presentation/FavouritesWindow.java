@@ -38,24 +38,6 @@ public class FavouritesWindow extends JFrame {
 	private final JButton backButton = new JButton("Back");
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Create a new frame.
-					FavouritesWindow frame = new FavouritesWindow();
-					//Make the frame visible.
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * Adds the current user's saved recipes to the list section to display them.

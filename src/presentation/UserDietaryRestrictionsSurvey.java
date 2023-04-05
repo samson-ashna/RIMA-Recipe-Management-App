@@ -1,7 +1,5 @@
 package presentation;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,10 +22,8 @@ public class UserDietaryRestrictionsSurvey {
 		do {
 			answerformat = JOptionPane.showInputDialog(null, questionformat);
 			if(answerformat == null) {
-				// JOptionPane.getRootFrame().dispose();
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to save your progress and continue later?", "Quit", JOptionPane.YES_NO_OPTION);
 				 if (exit == JOptionPane.YES_OPTION) { 
-			          //System.exit(0);
 					 
 			        }
 				else

@@ -106,22 +106,7 @@ public class HomePage extends JFrame {
 	private JScrollPane scrollPane_7;
 	private JScrollPane scrollPane_8;
 	private static JList listShopping;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePage frame = new HomePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	public static void favouriteRecipes() {
 		model.clear();
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 

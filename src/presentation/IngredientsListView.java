@@ -72,26 +72,6 @@ public class IngredientsListView extends JFrame {
 	//Selected ingredient and it's index in the list.
 	private Ingredient selectedIngredient = null;
 
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Create a new frame.
-					ViewProfile frame = new ViewProfile();
-					//Make the frame visible.
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */

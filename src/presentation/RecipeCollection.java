@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -54,24 +53,6 @@ public class RecipeCollection extends JFrame {
 	UsersDAO db = access.usersDB();
 	DAO<Recipes> dbGuest = access.recipesDB();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Create a new frame.
-					RecipeCollection frame = new RecipeCollection();
-					//Make the frame visible.
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	/**
 	 * Adds the current user's saved recipes to the list section to display them.
 	 */

@@ -52,24 +52,6 @@ public class EditProfileView extends JFrame {
 	private ArrayList<JCheckBox> allergyBoxes = new ArrayList<JCheckBox>();
 	private JPasswordField enterPass = new JPasswordField("");
 	private JPasswordField enterPassAgain = new JPasswordField("");
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Create a new frame.
-					EditProfileView frame = new EditProfileView();
-					//Make the frame visible.
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * Set up allergy check list.

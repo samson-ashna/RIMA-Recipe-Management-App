@@ -48,20 +48,6 @@ public class Login extends JFrame {
 	private final JLabel lblPassword = new JLabel("Password");
 	private final JLabel lbluserName = new JLabel("User Name");
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

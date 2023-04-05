@@ -35,22 +35,6 @@ public class SaveRecipesView extends JFrame {
 	private JTextField carbsInfo;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SaveRecipesView frame = new SaveRecipesView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public SaveRecipesView() {

@@ -95,23 +95,7 @@ public class EditIngredientView extends JFrame{
 	
 	//Ingredient getting edited
 	private Ingredient ingredient;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditIngredientView frame = new EditIngredientView(null, null, null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
