@@ -147,12 +147,10 @@ public class IngredientView extends JFrame {
 		backButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		addToShoppingLstButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
-		
-		buttonPane.add(addToShoppingLstButton);
-		
 		//Add buttons to button pane.
 		buttonPane.add(Box.createHorizontalGlue());
 		buttonPane.add(backButton);
+		buttonPane.add(addToShoppingLstButton);
 		getContentPane().setLayout(null);
 		
 		
@@ -191,7 +189,6 @@ public class IngredientView extends JFrame {
 		addToShoppingLstButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserActivity.currentUser.addToShoppingLst(selectedIngredient.getName());
-				
 				db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
 				addToShoppingLstButton.setText("Added to Shopping List");
 				HomePage.shoppingLstSetUp();
@@ -199,7 +196,6 @@ public class IngredientView extends JFrame {
 		});
 		addToShoppingLstButton.setVisible(false);
 		if(!UserActivity.currentUser.getShoppingList().contains(selectedIngredient.getName())) {
-		//if (selectedIngredient.getExpiration().isBefore(LocalDate.now())) {
 			addToShoppingLstButton.setVisible(true);
 		}
 	}
