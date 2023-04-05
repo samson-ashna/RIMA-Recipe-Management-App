@@ -146,7 +146,6 @@ public class RecipeCollection extends JFrame {
 		scrollPane.setViewportView(list);
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
-		//Search.add()
 		//Add the current user's saved recipes to the list section to display them.
 		list.setModel(model);
 		

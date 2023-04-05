@@ -2,7 +2,6 @@ package presentation;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,11 +17,7 @@ public class Main {
 
 	protected static JFrame frame;
     private ImageIcon icon;
-	private ImageIcon logo;
     private JLabel label;
-	
-    private JButton start;
-    private JButton end;
 
 	/**
 	 * Launch the application.
@@ -50,8 +45,6 @@ public class Main {
 		btnLogIn.setBounds(560, 380, 156, 27);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				//login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
@@ -66,14 +59,10 @@ public class Main {
 		btnGuest.setBounds(560, 420, 156, 27);
 		btnGuest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// GuestInterface main = new GuestInterface();
-				//RecipeList list = new RecipeList();
 				RecipeCollection.page =1;
 				RecipeCollection list = new RecipeCollection();
 				list.setVisible(true);
-				
-				//frame.setVisible(false);
-				//frame.dispose();
+
 			}
 		});
 
