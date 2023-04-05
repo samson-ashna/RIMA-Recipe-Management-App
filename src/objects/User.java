@@ -19,10 +19,7 @@ public class User {
 	private ArrayList<Recipes> myFavourites = new ArrayList<Recipes>();
 	private HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
 	String[] days= {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-	private ArrayList<String> shoppingList = new ArrayList<String>();
-	
-	//private ArrayList<String> recipelst = new ArrayList<String>();
-	
+	private ArrayList<String> shoppingList = new ArrayList<String>();	
 	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 	
 	String lst;
@@ -204,20 +201,13 @@ public class User {
 		this.getUserAllergies().setAllergies(allergyLst2);
 	}
 	public void editPlan(String day,String time, String recipe) {
-		//ArrayList<String> recieps = new ArrayList<String>();
-		
-		// TODO Auto-generated method stub
 		if(time.contains("Breakfast")) {
 			weekPlanner.get(day).breakfast.add(recipe);
-			//weekPlanner.get(day).setListFormat("breakfast", recipe);
 			
 		}else if(time.contains("Lunch")) {
 			weekPlanner.get(day).lunch.add(recipe);
-			//weekPlanner.get(day).setListFormat("lunch",recipe);	
-			//System.out.println("lunch added"+recipe);
 		}else {
 			weekPlanner.get(day).dinner.add(recipe);
-			//weekPlanner.get(day).setListFormat("dinner",recipe);
 		}
 	}
 	public void addToShoppingLst(String name) {
