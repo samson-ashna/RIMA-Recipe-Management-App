@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -37,12 +36,13 @@ import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
 import objects.Ingredient;
 import objects.User;
+
 @SuppressWarnings("serial")
 public class EditIngredientView extends JFrame{
 	
 	//Ingredients view list and buttons for re-enabling upon return.
 	private JComponent[] componentsToToggle;
-	//List model to edit.\
+	//List model to edit.
 	DefaultListModel<String> listModel;
 	IngredientsListView previousFrame;
 	
@@ -136,6 +136,7 @@ public class EditIngredientView extends JFrame{
 		errorLabel.setForeground(new Color(255, 0, 0));
 		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
+		//Set up combo boxes for selecting expiration date.
 		comboBoxSetup();
 		
 		//Add components to respective panes.
@@ -184,7 +185,7 @@ public class EditIngredientView extends JFrame{
 		contentPane.add(optionsPane);
 		contentPane.add(buttonPane, BorderLayout.PAGE_END);
 		
-		//Set up what to do when the back button is pressed.
+		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Close the UserRecipeCollection Window.
@@ -256,7 +257,7 @@ public class EditIngredientView extends JFrame{
 				}	
 				
 				//If an ingredient was given to be edited and it corresponds to the current user. (EDITING)
-				if(ingredient != null /*&& currentUser.getName().equals(ingredient.getUser())*/) {
+				if(ingredient != null) {
 					//Set up an ingredient to modify
 					newIngredient = new Ingredient(ingredient.getName(), ingredient.getCost(), ingredient.getExpiration(), ingredient.getProtein(), ingredient.getCarbs(), ingredient.getUser());
 						
@@ -361,12 +362,13 @@ public class EditIngredientView extends JFrame{
 					for(Ingredient ingredient:currentUser.getIngredients()) {
 						listModel.addElement(ingredient.getName());
 					}
-					JList list = (JList)componentsToToggle[componentsToToggle.length-1];
+					JList<String> list = (JList<String>)componentsToToggle[componentsToToggle.length-1];
 					list.ensureIndexIsVisible(listModel.getSize());
 				}
 			}
 		});
 		
+		//Set up what to do when month box selection is changed.
 		monthBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -451,6 +453,7 @@ public class EditIngredientView extends JFrame{
 		
 	}
 	
+	//Sets up combo boxes for selecting expiration date.
 	private void comboBoxSetup() {
 		//Set up days values
 		days = new String[31];
@@ -488,8 +491,10 @@ public class EditIngredientView extends JFrame{
 			yearBox.setSelectedIndex(ingredient.getExpiration().getYear()-Year.now().getValue());
 		}
 		
+		//Set up date pane layout.
 		datePane.setLayout(new BoxLayout(datePane, BoxLayout.LINE_AXIS));
 		
+		//Build date pane.
 		datePane.add(dayBox);
 		datePane.add(Box.createRigidArea(new Dimension(0, 5)));
 		datePane.add(monthBox);
