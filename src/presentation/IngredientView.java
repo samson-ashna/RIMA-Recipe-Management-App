@@ -12,8 +12,6 @@ import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Locale;
 
 import javax.swing.Box;
@@ -26,9 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import businessLogic.UserActivity;
 import objects.Ingredient;
-import objects.User;
+
 
 public class IngredientView extends JFrame {
 	JComponent[] componentsToToggle;
@@ -36,7 +33,6 @@ public class IngredientView extends JFrame {
 	
 	//Container and Panel objects.
 	private Container contentPane;
-	private Container editProfileContentPane;
 	private JPanel infoPane;
 	private JPanel buttonPane;
 	
@@ -122,7 +118,6 @@ public class IngredientView extends JFrame {
 		proteinPane.setAlignmentX(CENTER_ALIGNMENT);
 		
 		//Add labels to the info pane.
-		int space = 10;
 		infoPane.add(Box.createVerticalGlue());
 		infoPane.add(namePane);
 		infoPane.add(Box.createRigidArea(new Dimension(0, 10)));
