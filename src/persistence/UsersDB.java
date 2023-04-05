@@ -3,7 +3,6 @@ package persistence;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 
 import businessLogic.UserActivity;
 import objects.Ingredient;
-import objects.Planner;
 import objects.Recipes;
 import objects.User;
 
@@ -105,10 +103,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 					}
 				}
 				u.setShoppingList(shoppingLst);
-				HashMap<String,Planner> weekPlanner = new HashMap<String,Planner>();
-				String breakfast=null;
-				String lunch = null;
-				String dinner =null;
+
 				String day = null;
 				String time = null;
 				ArrayList<String> days= new ArrayList<String>();
@@ -142,7 +137,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 								time = s2.strip();
 							}else {
 								if(s2.length()>1) {
-									//System.out.println(s2.strip());
 									u.editPlan(day.strip(),time.strip(),s2.strip());
 								}
 							}
@@ -390,8 +384,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	
 	public boolean updateIngredients(User u, ArrayList<Ingredient> ingredients) {
 		ArrayList<User> users = getAll();
-		String jsonString;
-
 		for (User usr : users) {
 			// Return user ingredients if user exists in the database.
 			if (usr.getName().equals(u.getName())) {
@@ -442,7 +434,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 						result = statement.executeQuery(query);
 
 						// Parse result set into ingredient's attributes.
-						String iName = result.getString(1);
 						double cost = Double.parseDouble(result.getString(2));
 						LocalDate expiration = null;
 						DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);;						
@@ -468,10 +459,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	}
 
 	@Override
-	public void edit(User t) {
-		// TODO Auto-generated method stub
-
-	}
+	public void edit(User t) {}
         
 	// this method edits the user's allergies
 	@Override
@@ -567,15 +555,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 	
 	@Override
 	public void editPlanner(User u,String day,String time, String recipe) {
-//		if(time=="Breakfast") {
-//			u.getWeekPlanner().get(day).breakfast.add(recipe);
-//			//System.out.println(u.getWeekPlanner().get(day).recipesToJSON(time));
-//			//for(String r:u.getWeekPlanner().get(day).breakfast)
-//		}else if(time == "Lunch") {
-//			u.getWeekPlanner().get(day).lunch.add(recipe);			
-//		}else {
-//			u.getWeekPlanner().get(day).dinner.add(recipe);
-//		}
 		try {
 			// create connection
 			con = DriverManager.getConnection(url, user, password);
