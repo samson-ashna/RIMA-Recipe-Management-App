@@ -19,16 +19,12 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
 import persistence.DAO;
 import persistence.UsersDAO;
 import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -44,7 +40,6 @@ public class RecipeCollection extends JFrame {
 	
 	//List section object
 	private JList<String> list;
-	private String category;
 	
 	//Button objects
 	private final JButton backButton = new JButton("Back");
@@ -154,7 +149,6 @@ public class RecipeCollection extends JFrame {
 		scrollPane.setViewportView(list);
 		//Set the background colour of the list section.
 		list.setBackground(new Color(255, 255, 255));
-		//Search.add()
 		//Add the current user's saved recipes to the list section to display them.
 		list.setModel(model);
 		
@@ -193,8 +187,6 @@ public class RecipeCollection extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Create a HomePage window
 				contentPane.setVisible(false);
-				//Main menu = new Main();
-				//menu.frame.setVisible(true);
 				//Close the UserRecipeCollection Window.
 				Window win = SwingUtilities.getWindowAncestor(contentPane);
 				win.dispose();				
