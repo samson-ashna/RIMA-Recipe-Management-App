@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,11 +23,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JList;
-import javax.swing.JMenuItem;
+
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -72,7 +71,7 @@ public class IngredientsListView extends JFrame {
 	
 	//Selected ingredient and it's index in the list.
 	private Ingredient selectedIngredient = null;
-	private int selectedIndex = -1;
+
 
 
 	/**
