@@ -59,25 +59,6 @@ public class SignUpPage extends JFrame {
 	private final JCheckBoxMenuItem peanutAllergy = new JCheckBoxMenuItem("Peanuts");
 	private final JCheckBoxMenuItem seafoodAllergy = new JCheckBoxMenuItem("Seafood");
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//Create a new frame
-					SignUpPage frame = new SignUpPage();
-					//Make the frame visible.
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

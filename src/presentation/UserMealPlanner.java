@@ -50,23 +50,6 @@ public class UserMealPlanner {
 	JList<String> list = new JList<String>();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserMealPlanner window = new UserMealPlanner();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */

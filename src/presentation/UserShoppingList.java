@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -32,23 +30,6 @@ public class UserShoppingList extends JFrame {
 	DefaultListModel<String> model = new DefaultListModel<String>();
 	DatabaseAccess access = new DatabaseAccess();
 	UsersDAO db = access.usersDB();
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserShoppingList frame = new UserShoppingList();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

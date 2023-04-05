@@ -41,22 +41,6 @@ public class ViewProfile extends JFrame {
 	private JLabel label = new JLabel();
 	private JFrame frame;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Adds the current user's info (user name and allergies) to the user info label.
 	 */
