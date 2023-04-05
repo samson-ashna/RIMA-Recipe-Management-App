@@ -18,8 +18,6 @@ import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
 import persistence.DAO;
-import persistence.RecipesStubDB;
-import persistence.UsersDAO;
 import persistence.DatabaseAccess;
 
 /**
@@ -86,7 +84,6 @@ public class ViewRecipeDB extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				RecipeCollection.page =1;
 				RecipeCollection list = new RecipeCollection();
-				//RecipeList lst = new RecipeList();
 				list.setVisible(true);
 				contentPanel.setVisible(false);
 				Window win = SwingUtilities.getWindowAncestor(contentPanel);
