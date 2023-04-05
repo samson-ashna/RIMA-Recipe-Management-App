@@ -1,22 +1,17 @@
 package presentation;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.JCalendar;
 
 import businessLogic.UserActivity;
 import objects.User;
@@ -26,33 +21,27 @@ import objects.Ingredient;
 import objects.Planner;
 import objects.Recipes;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
+
+
 import java.awt.EventQueue;
-import java.awt.Window;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
-import java.awt.event.ItemListener;
 import java.time.LocalDate;
-import java.awt.event.ItemEvent;
-import javax.swing.JTextPane;
+
 import javax.swing.JTextArea;
 import javax.swing.JList;
-import java.awt.Scrollbar;
-import javax.swing.JScrollBar;
+
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import java.awt.ScrollPane;
-import java.awt.TextArea;
+
 import javax.swing.ScrollPaneConstants;
 
 /**
@@ -72,12 +61,8 @@ public class HomePage extends JFrame {
 	private JPanel planner;
 	private JPanel expirations;
 
-
 	private JFrame frame;
 	private JLabel label;
-	private ImageIcon icon;
-
-	
 	
 	//Button objects.
 	JButton logoutButton = new JButton("Log Out");	
@@ -198,7 +183,6 @@ public void addDinnerRecipes(String day) {
 		setResizable(false);
 
 		// Background
-		//icon = new ImageIcon(this.getClass().getResource("/res/background.jpg"));
 		label = new JLabel();
 		label.setLocation(0, 0);
 		label.setSize(1264, 681);
@@ -215,7 +199,6 @@ public void addDinnerRecipes(String day) {
 			public void actionPerformed(ActionEvent e) {
 				UserShoppingList shoppingList = new UserShoppingList();
 				shoppingList.setVisible(true);
-				//contentPane.setVisible(false);
 			}
 		});
 		
@@ -249,8 +232,6 @@ public void addDinnerRecipes(String day) {
 				RecipeCollection.page =0;
 				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
-				//contentPane.setVisible(false);
-				//frame.dispose();
 				collection.page =0;
 			}
 		});
@@ -266,7 +247,6 @@ public void addDinnerRecipes(String day) {
 			public void actionPerformed(ActionEvent e) {
 				IngredientsListView ingredients = new IngredientsListView(homePage);
 				ingredients.setVisible(true);
-				//frame.dispose();
 			}
 		});
 
@@ -281,10 +261,8 @@ public void addDinnerRecipes(String day) {
 			public void actionPerformed(ActionEvent e) {
 				RecipeCollection.page =1;
 				RecipeCollection list = new RecipeCollection();
-				//RecipeList listRecipes = new RecipeList();
 				list.setVisible(true);
-				//contentPane.setVisible(false);
-				//frame.dispose();
+
 			}
 		});
 
@@ -299,7 +277,6 @@ public void addDinnerRecipes(String day) {
 			public void actionPerformed(ActionEvent e) {
 				ViewProfile profile = new ViewProfile();
 				profile.setVisible(true);
-				//frame.dispose();
 			}
 		});	
 
@@ -560,9 +537,6 @@ public void addDinnerRecipes(String day) {
 						dinnerText.setText(null);
 
 						String day = comboBox.getSelectedItem().toString();
-						DatabaseAccess access = new DatabaseAccess();
-						UsersDAO db = access.usersDB();
-						User currentUser = UserActivity.currentUser;
 						addBreakfastRecipes(day);
 						addLunchRecipes(day);
 						addDinnerRecipes(day);				
@@ -609,7 +583,6 @@ public void addDinnerRecipes(String day) {
 		favouriteRecipes();
 		showPlan();
 		shoppingLstSetUp();
-		
 		
 	}
 	

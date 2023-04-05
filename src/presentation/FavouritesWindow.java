@@ -19,9 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
-import persistence.DAO;
 import persistence.UsersDAO;
 
 /**

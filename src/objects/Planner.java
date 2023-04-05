@@ -1,10 +1,6 @@
 package objects;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 public class Planner {
 	public ArrayList<String> breakfast = new ArrayList<String>();

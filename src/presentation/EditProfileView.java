@@ -19,7 +19,6 @@ import businessLogic.UserActivity;
 import objects.User;
 import persistence.UsersDAO;
 import persistence.UsersStubDB;
-import persistence.DAO;
 import persistence.DatabaseAccess;
 
 /**

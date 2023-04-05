@@ -1,8 +1,6 @@
 package persistence;
 
-
 import objects.Recipes;
-
 
 public class DatabaseAccess {
 	public static int databaseType = DBSetup.databaseType;//0 for access to real database, 1 for access to stub database
