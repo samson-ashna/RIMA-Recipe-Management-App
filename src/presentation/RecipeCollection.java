@@ -76,10 +76,7 @@ public class RecipeCollection extends JFrame {
 	 * Adds the current user's saved recipes to the list section to display them.
 	 */
 	public void addUserRecipes() {
-		//Create a new list model for the user's recipes.
-				
-		//get a new instance of the user database.
-		
+		//Create a new list model for the user's recipes.		
 		
 		//save a reference of the user's recipes.
 		ArrayList<Recipes> recipes = new ArrayList<Recipes>(); 

@@ -8,7 +8,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
-
 import objects.User;
 import persistence.DatabaseAccess;
 import persistence.UsersDAO;
@@ -35,8 +34,7 @@ import javax.swing.JTextField;
  */
 @SuppressWarnings("serial")
 public class SignUpPage extends JFrame {
-
-	private JFrame frame;
+	
 	private ImageIcon icon;
 	private JLabel label;
 
@@ -222,11 +220,9 @@ public class SignUpPage extends JFrame {
 		//Set up what to do when the cancel button is pressed.
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Create a HomePage window
-				Main mainPage = new Main();
-						
+				//Create a HomePage window						
 				//Make the HomePage window visible and the UserRecipeCollection window invisible.
-				mainPage.frame.setVisible(true);
+				Main.frame.setVisible(true);
 				contentPane.setVisible(false);
 						
 				//Close the UserRecipeCollection Window.
