@@ -20,13 +20,7 @@ import persistence.UsersDAO;
 import objects.Ingredient;
 import objects.Planner;
 import objects.Recipes;
-
-
 import java.awt.Color;
-
-
-import java.awt.EventQueue;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -75,8 +69,8 @@ public class HomePage extends JFrame {
 	//Label objects.
 	JLabel welcomeLabel = new JLabel("");
 	private JButton mealPlannerButton = new JButton("Meal Planner");
-	private JComboBox comboBox;
-	private static JList list;
+	private JComboBox<String> comboBox;
+	private static JList<String> list;
 	static DatabaseAccess access = new DatabaseAccess();
 	static UsersDAO db = access.usersDB();
 	static DefaultListModel<String> model = new DefaultListModel<String>();	
@@ -90,9 +84,9 @@ public class HomePage extends JFrame {
 	private JScrollPane scrollPane_2;
 	private JTextArea dinnerText;
 	private JScrollPane scrollPane_3;
-	private JList listBreakfast;
-	private JList listLunch;
-	private JList listDinner;
+	private JList<String> listBreakfast;
+	private JList<String> listLunch;
+	private JList<String> listDinner;
 	DefaultListModel<String> modelLst = new DefaultListModel<String>();	
 	DefaultListModel<String> expModel = new DefaultListModel<String>();
 	static DefaultListModel<String> shoppingModel = new DefaultListModel<String>();
@@ -100,12 +94,12 @@ public class HomePage extends JFrame {
 	//JList list = new JList();
 	HashMap<String, Planner> p = UserActivity.currentUser.getWeekPlanner();
 	private JScrollPane scrollPane_4;
-	private JList list_1=new JList();
+	private JList<String> list_1=new JList<String>();
 	private JScrollPane scrollPane_5;
 	private JScrollPane scrollPane_6;
 	private JScrollPane scrollPane_7;
 	private JScrollPane scrollPane_8;
-	private static JList listShopping;
+	private static JList<String> listShopping;
 
 	public static void favouriteRecipes() {
 		model.clear();
@@ -217,7 +211,6 @@ public void addDinnerRecipes(String day) {
 				RecipeCollection.page =0;
 				RecipeCollection collection = new RecipeCollection();
 				collection.setVisible(true);
-				collection.page =0;
 			}
 		});
 
@@ -304,7 +297,7 @@ public void addDinnerRecipes(String day) {
 		scrollPane_5.setBounds(23, 30, 231, 106);
 		breakfast.add(scrollPane_5);
 		
-		listBreakfast = new JList();
+		listBreakfast = new JList<String>();
 		scrollPane_5.setViewportView(listBreakfast);
 		listBreakfast.getSelectionModel().addListSelectionListener(e-> {
 			//Get the selected list item
@@ -339,7 +332,7 @@ public void addDinnerRecipes(String day) {
 		scrollPane_6.setBounds(10, 30, 260, 106);
 		lunch.add(scrollPane_6);
 		
-		listLunch = new JList();
+		listLunch = new JList<String>();
 		scrollPane_6.setViewportView(listLunch);
 		listLunch.getSelectionModel().addListSelectionListener(e-> {
 			//Get the selected list item
@@ -376,7 +369,7 @@ public void addDinnerRecipes(String day) {
 		scrollPane_7.setBounds(10, 30, 260, 103);
 		dinner.add(scrollPane_7);
 		
-		listDinner = new JList();
+		listDinner = new JList<String>();
 		scrollPane_7.setViewportView(listDinner);
 		listDinner.getSelectionModel().addListSelectionListener(e-> {
 			//Get the selected list item
@@ -408,7 +401,7 @@ public void addDinnerRecipes(String day) {
 		});
 		favourites.add(btnNewButton);
 				
-		list = new JList();
+		list = new JList<String>();
 		list.setBounds(10, 29, 260, 360);
 		favourites.add(list);
 		list.getSelectionModel().addListSelectionListener(e-> {
@@ -513,7 +506,7 @@ public void addDinnerRecipes(String day) {
 				planner.setBounds(40, 456, 468, 190);
 				planner.setBackground(Color.WHITE);
 				
-				comboBox = new JComboBox();
+				comboBox = new JComboBox<String>();
 				comboBox.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
@@ -558,7 +551,7 @@ public void addDinnerRecipes(String day) {
 		scrollPane_8.setBounds(10, 33, 380, 146);
 		shoppingListPanel.add(scrollPane_8);
 		
-		listShopping = new JList();
+		listShopping = new JList<String>();
 		scrollPane_8.setViewportView(listShopping);
 		
 		frame.setSize(1280,720);

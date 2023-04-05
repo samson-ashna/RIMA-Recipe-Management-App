@@ -2,7 +2,6 @@ package presentation;
 
 import java.awt.Dimension;
 import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.BorderLayout;
@@ -18,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 import objects.User;
 import persistence.UsersDAO;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
 
 /**
@@ -33,7 +31,6 @@ public class EditProfileView extends JFrame {
 	private JPanel buttonPane;
 	
 	//Objects for displaying user info.
-	private UsersStubDB userDAO;
 	private User currentUser;
 	private Hashtable<String,Integer> userAllergies;
 	private ArrayList<String> allergyNames;
