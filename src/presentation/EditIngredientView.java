@@ -95,7 +95,7 @@ public class EditIngredientView extends JFrame{
 	
 	//Ingredient getting edited
 	private Ingredient ingredient;
-	
+
 	/**
 	 * Create the frame.
 	 */
