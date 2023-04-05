@@ -45,6 +45,8 @@ public class Main {
 		btnLogIn.setBounds(560, 380, 156, 27);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
 				frame.setVisible(false);
 				frame.dispose();
 			}
