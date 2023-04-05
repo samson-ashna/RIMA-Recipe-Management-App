@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -95,7 +94,7 @@ public class EditIngredientView extends JFrame{
 	
 	//Ingredient getting edited
 	private Ingredient ingredient;
-	
+
 	/**
 	 * Create the frame.
 	 */
