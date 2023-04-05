@@ -1,12 +1,12 @@
 package persistence;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import businessLogic.UserActivity;
 import objects.Recipes;
 import objects.User;
-
-import java.sql.*;
 
 public class RecipesDB extends DBSetup implements DAO<Recipes> {
 	private ArrayList<Recipes> dbRecipes = new ArrayList<Recipes>();;

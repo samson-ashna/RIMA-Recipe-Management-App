@@ -60,10 +60,10 @@ public class UserShoppingList extends JFrame {
 	 */
 	public UserShoppingList() {
 
-		setResizable(false);
-		setBounds(0, 0, 1280, 680);
+		// setResizable(false);
+		setBounds(0, 0, 450, 450);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,6 +76,8 @@ public class UserShoppingList extends JFrame {
 		contentPane.add(panel_4_usefulbuttons);
 		
 		JButton btnHomepage = new JButton("<-- Back to HomePage");
+		btnHomepage.setForeground(new Color(255, 255, 255));
+        btnHomepage.setBackground(new Color(59, 89, 182));
 		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnHomepage.setBounds(976, 20, 234, 31);
 		panel_4_usefulbuttons.add(btnHomepage);
@@ -127,6 +129,8 @@ public class UserShoppingList extends JFrame {
 			}
 		});
 		btnRemoveFromList.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnHomepage.setForeground(new Color(255, 255, 255));
+        btnHomepage.setBackground(new Color(59, 89, 182));
 		btnRemoveFromList.setBounds(27, 20, 300, 31);
 		panel_4_usefulbuttons.add(btnRemoveFromList);
 		

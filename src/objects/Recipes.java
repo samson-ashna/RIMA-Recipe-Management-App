@@ -1,7 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-
 /**
  * This class defines a Recipes object
  */

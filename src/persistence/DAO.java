@@ -2,9 +2,6 @@ package persistence;
 
 import java.util.ArrayList;
 
-import objects.Recipes;
-import objects.User;
-
 /**
  * Interface to the Databases containing user and recipe information.
  * @param <T> is a User or Recipes object

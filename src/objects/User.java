@@ -1,10 +1,8 @@
 package objects;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.List;
 
 /**
  * This class represents a User object. 
