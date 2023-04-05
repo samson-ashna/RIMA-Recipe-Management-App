@@ -72,8 +72,10 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 2. Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week.
 
 ## Iteration 3 Developer Tasks
-**Manage Pantry:  As a user, I want to be able to keep track of food expiration dates and be notified accordingly.  Priority: Low. Cost: 9 days**
+**Manage Pantry:  As a user, I want to be able to keep track of food expiration dates and be notified accordingly.  Priority: Low. Cost: 6 days**
+- [x] Display Expired Ingredients: As a user, I want to be able to see the food ingredients in my list that have expired. Priority: Low. Cost: 3 days.
+- [x] Display Soon to Expire Ingredients: As a user, I want to be able to see the food ingredients in my list that are going to expire soon. Priority: Low. Cost: 3 days.
 
-**Add Recipes from Websites:  As a home cook, I want to be able to add recipes I find on the internet to the management system to view later.  Priority: Low. Cost: 2 days**
-
-**Shopping List:  As a home cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list.  Priority: Low. Cost: 3 days**
+**Shopping List:  As a home cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list.  Priority: Low. Cost: 8 days**
+- [x] Display a Shopping List: As a user, I want to be able to see the food ingredients I would need to purchase in order to make certain recipes for the future. Priority: Low. Cost: 4 days.
+- [x] Create a Shopping Cart: As a user, I want to be able to add the ingredients I need to the shopping cart so that would be easier for me to check out later when I am shopping. Priority: Low. Cost: 4 day.
