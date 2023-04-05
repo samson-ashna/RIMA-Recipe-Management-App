@@ -56,7 +56,7 @@ public class UserShoppingList extends JFrame {
 	public UserShoppingList() {
 
 		setResizable(false);
-		setBounds(0, 0, 450, 450);
+		setBounds(0, 0, 1280, 720);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
