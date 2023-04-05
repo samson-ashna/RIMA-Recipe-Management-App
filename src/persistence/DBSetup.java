@@ -8,7 +8,7 @@ public abstract class DBSetup {
     
 	static String url = "jdbc:mysql://localhost:3306/rimaDB";
 	static String user = "root";
-	static String password = "password";//change password
+	static String password = "BLUE1378skr!";//change password
 	static int databaseType = 0;//0 for access to real database, 1 for access to stub database
 	static String query;
 	static Connection con;

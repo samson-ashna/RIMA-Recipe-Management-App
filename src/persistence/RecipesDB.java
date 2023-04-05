@@ -45,8 +45,7 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 	public void changeUserNames(String oldName, String newName) {
 		try {
 			con = DriverManager.getConnection(url, user, password);
-				// create statement
-			//statement = con.createStatement();
+			// create statement
 			for(Recipes r: getAllRecipes()) {
 				if(r.user.equals(oldName)) {
 					r.user = newName;

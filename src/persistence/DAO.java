@@ -12,5 +12,4 @@ public interface DAO<T> {
 	void add(T t);
 	void remove(T t);
 	void edit(T t);
-	//void changeUserNames(User u, String newName);
 }
