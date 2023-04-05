@@ -2,7 +2,6 @@ package persistence;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -10,7 +9,6 @@ import java.util.Locale;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import businessLogic.IngredientActions;
 import businessLogic.UserActivity;
 import objects.Ingredient;
 import objects.Planner;
@@ -416,92 +414,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 		// If user doesn't exist in the database, return false.
 		return false;
-	}
-
-	@Override
-	public boolean addIngredient(User u, Ingredient i) {
-		ArrayList<User> users = getAll();
-
-		for (User usr : users) {
-			// Return user ingredients if user exists in the database.
-			if (usr.getName().equals(u.getName())) {
-				query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
-				try {
-					// create connection
-					con = DriverManager.getConnection(url, user, password);
-					// create statement
-					statement = con.createStatement();
-					query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
-					result = statement.executeQuery(query);
-					if (!result.getString(1).equals("null")) {
-						String path = result.getString(1);
-						path = path.substring(0, path.indexOf("."));
-						statement.close();
-						result.close();
-						query = "UPDATE users SET myIngredients = JSON_SET(myIngredients, '" + path + "', \""
-								+ i.ingredientToJSON() + "\") WHERE `name`='" + u.getName() + "';";
-						statement = con.createStatement();
-						statement.execute(query);
-						u.addIngredientToCollection(i);
-						return true;
-					} else {
-						query = "SELECT JSON_LENGTH('myIngredients') FROM users;";
-						statement.close();
-						result.close();
-						statement = con.createStatement();
-						result = statement.executeQuery(query);
-						query = "UPDATE users SET myIngredients = JSON_INSERT(myIngredients, '"
-								+ Integer.parseInt(result.getString(1)) + 1 + "', \"" + i.ingredientToJSON()
-								+ "\") WHERE `name`='" + u.getName() + "';";
-						statement.close();
-						result.close();
-						statement = con.createStatement();
-						statement.execute(query);
-						u.addIngredientToCollection(i);
-						return true;
-					}
-				} catch (SQLException e) {
-
-				}
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean removeIngredient(User u, Ingredient i) {
-		ArrayList<User> users = getAll();
-
-		for (User usr : users) {
-			// Return user ingredients if user exists in the database.
-			if (usr.getName().equals(u.getName())) {
-
-				try {
-					// create connection
-					con = DriverManager.getConnection(url, user, password);
-					// create statement
-					statement = con.createStatement();
-					query = "SELECT JSON_SEARCH('myIngredients', 'one', '" + i.getName() + "') FROM users;";
-					result = statement.executeQuery(query);
-					if (!result.getString(1).equals("null")) {
-						String path = result.getString(1);
-						path = path.substring(0, path.indexOf("."));
-						query = "UPDATE users SET myIngredients = JSON_REMOVE(myIngredients, '" + path
-								+ "') WHERE `name`='" + u.getName() + "';";
-						statement.close();
-						result.close();
-						statement = con.createStatement();
-						statement.execute(query);
-						u.removeIngredientFromCollection(i);
-						return true;
-					}
-				} catch (SQLException e) {
-
-				}
-			}
-		}
-		return false;
-
 	}
 
 	@Override
