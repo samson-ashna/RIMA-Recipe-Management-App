@@ -42,7 +42,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			statement = con.createStatement();
 			query = "SELECT * FROM users";
 			result = statement.executeQuery(query);
-
 			while (result.next()) {
 				String name = result.getString(1);
 				String password = result.getString(2);
@@ -56,43 +55,8 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				u.setAllergies(allergies);
 				u.setIngredients(ingredients);
 				dbUsers.add(u);
-
-				Hashtable<String, String> recipesLst = new Hashtable<String, String>();
-				if (myRecipes != null) {
-					String[] arrOfStr = myRecipes.split(",");
-					for (String s : arrOfStr) {
-						s = s.replace("{", "");
-						s = s.replace("}", "");
-						String[] values = s.split(":");
-						values[0] = values[0].replace("\"", "");
-						values[0] = values[0].replace("\\s", "");
-						values[0].strip();
-						if (values[0].length() > 0) {
-							recipesLst.put(values[0], values[1]);
-						}
-					}
-				}
-				
-				Hashtable<String, Integer> allergyLst = new Hashtable<String, Integer>();
-				if (allergies != null) {
-					String[] arrOfStr = allergies.split(",");
-					for (String s : arrOfStr) {
-						s = s.replace("{", "");
-						s = s.replace("}", "");
-						String[] values = s.split(":");
-						values[0] = values[0].replace("\"", "");
-						values[0] = values[0].replace("\\s", "");
-						values[0].strip();
-						values[1] = values[1].replace("\"", "");
-						values[1] = values[1].replace("\\s", "");
-						values[1].strip();
-						if (values[0].length() > 0) {
-							allergyLst.put(values[0], Integer.parseInt(values[1].strip()));
-						}
-					}
-				}
-				u.setAllergyInformation(allergyLst);
-				u.setRecipeCollection(recipesLst);
+				u.setAllergyInformation(getAllergyList(allergies));
+				u.setRecipeCollection(getRecipeLst(myRecipes));
 				ArrayList<String> shoppingLst = new ArrayList<String>();
 				if(shoppingList !=null) {
 					String[] arrOfStr = shoppingList.split("-");
@@ -103,46 +67,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 					}
 				}
 				u.setShoppingList(shoppingLst);
-
-				String day = null;
-				String time = null;
-				ArrayList<String> days= new ArrayList<String>();
-				days.add("Monday");
-				days.add("Tuesday");
-				days.add("Wednesday");
-				days.add("Thursday");
-				days.add("Friday");
-				days.add("Saturday");
-				days.add("Sunday");
-				ArrayList<String> times = new ArrayList<String>();
-				times.add("Breakfast");
-				times.add("Lunch");
-				times.add("Dinner");
-				if(plan != null) {
-					String[] arrOfStr = plan.split(",");
-					for (String s : arrOfStr) {
-						s = s.replace("\"", "");
-						s = s.replace("\\s", "");
-						s = s.replace("{", "");
-						s = s.replace("}", "");
-						String[] arr = s.split(":");
-						for(String s2:arr) {
-							s2 = s2.replace("\"", "");
-							s2 = s2.replace("\\s", "");
-							s2 = s2.replace("{", "");
-							s2 = s2.replace("}", "");
-							if(days.contains(s2.strip())) {
-								day= s2.strip();
-							}else if(times.contains(s2.strip())) {
-								time = s2.strip();
-							}else {
-								if(s2.length()>1) {
-									u.editPlan(day.strip(),time.strip(),s2.strip());
-								}
-							}
-						}
-					}
-				}
+				setUpPlanner(plan,u);
 			}			
 			statement.close();
 			result.close();
@@ -151,6 +76,80 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 		return dbUsers;
 	}
+	private Hashtable<String, String> getRecipeLst(String myRecipes){
+		Hashtable<String, String> recipesLst = new Hashtable<String, String>();
+		if (myRecipes != null) {
+			String[] arrOfStr = myRecipes.split(",");
+			for (String s : arrOfStr) {
+				s = s.replace("{", "");
+				s = s.replace("}", "");
+				String[] values = s.split(":");
+				values[0] = values[0].replace("\"", "");
+				values[0] = values[0].replace("\\s", "");
+				values[0].strip();
+				if (values[0].length() > 0) {
+					recipesLst.put(values[0], values[1]);
+				}
+			}
+		}
+		return recipesLst;
+	}
+	private Hashtable<String, Integer> getAllergyList(String allergies){
+		Hashtable<String, Integer> allergyLst = new Hashtable<String, Integer>();
+		if (allergies != null) {
+			String[] arrOfStr = allergies.split(",");
+			for (String s : arrOfStr) {
+				s = s.replace("{", "");
+				s = s.replace("}", "");
+				String[] values = s.split(":");
+				values[0] = values[0].replace("\"", "");
+				values[0] = values[0].replace("\\s", "");
+				values[0].strip();
+				values[1] = values[1].replace("\"", "");
+				values[1] = values[1].replace("\\s", "");
+				values[1].strip();
+				if (values[0].length() > 0) {
+					allergyLst.put(values[0], Integer.parseInt(values[1].strip()));
+				}
+			}
+		}	
+		return allergyLst;
+	}
+	private void setUpPlanner(String plan, User u) {
+		String day = null;
+		String time = null;
+		ArrayList<String> days= new ArrayList<String>();
+		String[] dayOfWeek = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+		for(String d: dayOfWeek) {days.add(d);}
+		ArrayList<String> times = new ArrayList<String>();
+		String[] meal = {"Breakfast","Lunch","Dinner"};
+		for(String m:meal) {times.add(m);}
+		if(plan != null) {
+			String[] arrOfStr = plan.split(",");
+			for (String s : arrOfStr) {
+				s = s.replace("\"", "");
+				s = s.replace("\\s", "");
+				s = s.replace("{", "");
+				s = s.replace("}", "");
+				String[] arr = s.split(":");
+				for(String s2:arr) {
+					s2 = s2.replace("\"", "");
+					s2 = s2.replace("\\s", "");
+					s2 = s2.replace("{", "");
+					s2 = s2.replace("}", "");
+					if(days.contains(s2.strip())) {
+						day= s2.strip();
+					}else if(times.contains(s2.strip())) {
+						time = s2.strip();
+					}else {
+						if(s2.length()>1) {
+							u.editPlan(day.strip(),time.strip(),s2.strip());
+						}
+					}
+				}
+			}
+		}
+}
 
 	@Override
 	public void add(User t) {
@@ -191,7 +190,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -200,9 +198,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			try {
 				RecipesDB dbRecipes = new RecipesDB();
 				dbRecipes.changeUserNames(oldName,name);
-				// create connection
 				con = DriverManager.getConnection(url, user, password);
-				// create statement
 				statement = con.createStatement();
 				query = "UPDATE users SET name=\'" + name + "\' WHERE `name`=\'" + oldName + "\';";
 				statement.execute(query);
@@ -213,9 +209,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			}
 		} else if (password != null) {
 			try {
-				// create connection
 				con = DriverManager.getConnection(url, user, password);
-				// create statement
 				statement = con.createStatement();
 				query = "UPDATE users SET password=\'" + newPass + "\' WHERE `name`=\'" + oldName + "\';";
 				statement.execute(query);
