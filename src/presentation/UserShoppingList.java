@@ -3,14 +3,9 @@ package presentation;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 
 import businessLogic.UserActivity;
 import persistence.DatabaseAccess;
@@ -37,30 +32,31 @@ public class UserShoppingList extends JFrame {
 	 */
 	public UserShoppingList() {
 
+		setTitle("RIMA - Shopping List");
 		setResizable(false);
-		setBounds(0, 0, 1280, 720);
+		setBounds(0, 0, 450, 450);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(143, 188, 143));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel_4_usefulbuttons = new JPanel();
+		panel_4_usefulbuttons.setBackground(new Color(143, 188, 143));
 		panel_4_usefulbuttons.setLayout(null);
-		panel_4_usefulbuttons.setBorder(new LineBorder(new Color(0, 0, 0), 8));
-		panel_4_usefulbuttons.setBounds(10, 568, 1246, 68);
+		panel_4_usefulbuttons.setBounds(20, 350, 400, 58);
 		contentPane.add(panel_4_usefulbuttons);
 		
-		JButton btnHomepage = new JButton("<-- Back to HomePage");
+		JButton btnHomepage = new JButton("Home");
 		btnHomepage.setForeground(new Color(255, 255, 255));
         btnHomepage.setBackground(new Color(59, 89, 182));
-		btnHomepage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnHomepage.setBounds(976, 20, 234, 31);
+		btnHomepage.setBounds(330, 20, 70, 27);
 		panel_4_usefulbuttons.add(btnHomepage);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(31, 35, 873, 499);
+		scrollPane.setBounds(20, 20, 400, 300);
 		contentPane.add(scrollPane);
 		
 		JList<String> list = new JList<String>();
@@ -69,7 +65,13 @@ public class UserShoppingList extends JFrame {
 		for(String n: UserActivity.currentUser.getShoppingList()) {
 			model.addElement(n);
 		}
-		JButton btnRemoveFromList = new JButton("Remove Selected Ingredient");
+
+		JButton btnRemoveFromList = new JButton("Remove");
+		btnRemoveFromList.setForeground(new Color(255, 255, 255));
+        btnRemoveFromList.setBackground(new Color(59, 89, 182));
+		btnRemoveFromList.setBounds(230, 20, 90, 27);
+		panel_4_usefulbuttons.add(btnRemoveFromList);
+
 		btnRemoveFromList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a SaveShoppingListView window
@@ -81,49 +83,44 @@ public class UserShoppingList extends JFrame {
 
 			}
 		});
-		btnRemoveFromList.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnHomepage.setForeground(new Color(255, 255, 255));
-        btnHomepage.setBackground(new Color(59, 89, 182));
-		btnRemoveFromList.setBounds(27, 20, 300, 31);
-		panel_4_usefulbuttons.add(btnRemoveFromList);
-		
-		
-		
-		JLabel lblName = new JLabel("Ingredient & Quantity");
-		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblName.setBounds(947, 181, 258, 59);
-		contentPane.add(lblName);
 		
 		ingredientInfo = new JTextField();
-		ingredientInfo.setBounds(957, 260, 240, 41);
+		ingredientInfo.setBounds(20, 330, 400, 31);
 		contentPane.add(ingredientInfo);
 		
-		JButton btnAddToList = new JButton("Add to List");
-		/**
-		 * Adds the current user's shopping list to the list section to display them.
-		 */
+		JButton btnAddToList = new JButton("Add");
+		btnAddToList.setForeground(new Color(255, 255, 255));
+        btnAddToList.setBackground(new Color(59, 89, 182));
+		btnAddToList.setBounds(150, 20, 70, 27);
+		panel_4_usefulbuttons.add(btnAddToList);
+
 		btnAddToList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = ingredientInfo.getText();
 				if(!name.equals("")) {
+					
 					UserActivity.currentUser.addToShoppingLst(name);
 					db.editShoppingList(UserActivity.currentUser.shoppingItems(),UserActivity.currentUser.getName() );
 					model.addElement(name);
 					HomePage.shoppingLstSetUp();
-				}		
+
+				}
+				
 			}
 		});
-	
-		btnAddToList.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddToList.setBounds(975, 347, 207, 59);
-		contentPane.add(btnAddToList);
-	
+
+
+		
+		
+
+
 		btnHomepage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HomePage.shoppingLstSetUp();
 				dispose();
+		
 			}
 		});
+		
 	}
 }

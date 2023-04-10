@@ -80,8 +80,7 @@ public class ViewProfile extends JFrame {
 		frame.getContentPane().setBackground(new Color(143, 188, 143));
 
 		label = new JLabel();
-		
-		// contentPane = getContentPane();		
+
 		JPanel userPanel = new JPanel();
 
 		//Create a new info pane.
@@ -90,12 +89,9 @@ public class ViewProfile extends JFrame {
 		
 		displayUserInfo();
 
-		
 		//Align labels.
 		displName.setAlignmentX(CENTER_ALIGNMENT);
 		allergyInfo.setAlignmentX(CENTER_ALIGNMENT);		
-		
-
 
 		displName.setBounds(0, 0, 50, 50);
 		allergyInfo.setBounds(0, 20, 50, 50);
