@@ -49,7 +49,7 @@ public class UserShoppingList extends JFrame {
 		panel_4_usefulbuttons.setBounds(20, 350, 400, 58);
 		contentPane.add(panel_4_usefulbuttons);
 		
-		JButton btnHomepage = new JButton("Home");
+		JButton btnHomepage = new JButton("Back");
 		btnHomepage.setForeground(new Color(255, 255, 255));
         btnHomepage.setBackground(new Color(59, 89, 182));
 		btnHomepage.setBounds(330, 20, 70, 27);
@@ -99,6 +99,7 @@ public class UserShoppingList extends JFrame {
 		btnAddToList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = ingredientInfo.getText();
+				ingredientInfo.setText("");
 				if(!name.equals("")) {
 					
 					UserActivity.currentUser.addToShoppingLst(name);
