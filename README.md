@@ -8,7 +8,7 @@
 
 3. Change user and/or password in src/persistence/DBSetup.java
 4. Set databaseType = 0 (access real database) or databaseType = 1 (access stub database)\
-5.Add jcalendar-1.4.jar, mysql-connector-j-8.0.32.jar from lib folder to Build Path.
+5.Add mysql-connector-j-8.0.32.jar from lib folder to Build Path.
 
 **To Run: src/presentation/Main.java**
 ## Team 1 Group Members
