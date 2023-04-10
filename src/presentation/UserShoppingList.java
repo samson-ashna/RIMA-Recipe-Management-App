@@ -66,6 +66,7 @@ public class UserShoppingList extends JFrame {
 			model.addElement(n);
 		}
 
+		// create a "remove" button to remove ingredients from the shopping list
 		JButton btnRemoveFromList = new JButton("Remove");
 		btnRemoveFromList.setForeground(new Color(255, 255, 255));
         btnRemoveFromList.setBackground(new Color(59, 89, 182));
@@ -88,6 +89,7 @@ public class UserShoppingList extends JFrame {
 		ingredientInfo.setBounds(20, 330, 400, 31);
 		contentPane.add(ingredientInfo);
 		
+		// create an "add" button to add ingredients to the shopping list
 		JButton btnAddToList = new JButton("Add");
 		btnAddToList.setForeground(new Color(255, 255, 255));
         btnAddToList.setBackground(new Color(59, 89, 182));
