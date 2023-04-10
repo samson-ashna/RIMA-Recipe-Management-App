@@ -124,11 +124,16 @@ Iteration 3:
 Meeting Minutes
 - First Meeting: Discussed final implementation of project database and UI and assigned tasks(60 minutes).
 - Second Meeting: Continued working on the assigned tasks (120 minutes) 
+-Third Meeting: Tested code.
+-Fourth Meeting: Refractored code and discussed remaining tasks.
 ---------------------------------------------
 
 ---------------------------------------------
 Plan Changes
-
+Time was allocated to complete user stories from iteration 2. 
+The user story of "adding recipes from websites" was removed due to time constraints and low priority of this task.
+Recommendation functionality in meal planner was supposed to take into account the user's answers to a series of survey questions such as favoirte cuisine, but due 
+to time constraints, this was not implemented. The survey was removed and the recipe recommendation only takes into account user's allergies.
 ---------------------------------------------
 
 ---------------------------------------------
