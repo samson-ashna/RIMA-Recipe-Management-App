@@ -123,9 +123,9 @@ Original Allocated Time vs Actual Time Spent
 Iteration 3:
 Meeting Minutes
 - First Meeting: Discussed final implementation of project database and UI and assigned tasks(60 minutes).
-- Second Meeting: Continued working on the assigned tasks (120 minutes) 
--Third Meeting: Tested code.
--Fourth Meeting: Refractored code and discussed remaining tasks.
+- Second Meeting: Continued working on the assigned tasks (120 minutes).
+-Third Meeting: Tested code (60 minutes).
+-Fourth Meeting: Refractored code and discussed remaining tasks (60 minutes).
 ---------------------------------------------
 
 ---------------------------------------------
