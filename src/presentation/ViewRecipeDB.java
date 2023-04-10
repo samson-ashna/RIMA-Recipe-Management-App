@@ -17,8 +17,10 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
+import objects.User;
 import persistence.DAO;
 import persistence.DatabaseAccess;
+import persistence.UsersDAO;
 
 /**
  * 
@@ -95,13 +97,25 @@ public class ViewRecipeDB extends JDialog {
 		JButton btnSave = new JButton("Save To My Collection");
 		btnSave.setBounds(889, 630, 171, 23);
 		getContentPane().add(btnSave);
+		User u =UserActivity.getCurrentUser();
+		UsersDAO dbUser = access.usersDB();
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(UserActivity.getCurrentUser() != null) {
-					
-					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
-					saveRecipe.save(db.get(name));
-					btnSave.setText("Saved to Collection");
+				if(u!= null) {
+					boolean existsInCollection = false;
+					for(Recipes r: dbUser.getRecipes(u)) {
+						if(r.getName().equals(name)) {
+							existsInCollection=true;
+							break;
+						}
+					}
+					if(existsInCollection) {
+						btnSave.setText("Already saved!");
+					}else {
+						SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
+						saveRecipe.save(db.get(name));
+						btnSave.setText("Saved to Collection");
+					}
 				}else {
 					btnSave.setText("Log in to save recipe!");
 				}
