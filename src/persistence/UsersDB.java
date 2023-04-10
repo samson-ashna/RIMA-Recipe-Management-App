@@ -109,7 +109,7 @@ public class UsersDB extends DBSetup implements UsersDAO {
 				values[1] = values[1].replace("\\s", "");
 				values[1].strip();
 				if (values[0].length() > 0) {
-					allergyLst.put(values[0], Integer.parseInt(values[1].strip()));
+					allergyLst.put(values[0].strip(), Integer.parseInt(values[1].strip()));
 				}
 			}
 		}	

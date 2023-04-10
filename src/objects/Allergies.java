@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Allergies
 {
-    Hashtable<String, Integer> allergies=new Hashtable<String, Integer>();
+    public Hashtable<String, Integer> allergies=new Hashtable<String, Integer>();
 
     /**
      * Lists the options of allergies into a hashtable

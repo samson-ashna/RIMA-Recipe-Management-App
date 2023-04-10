@@ -66,7 +66,7 @@ public class UserMealPlanner {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-
+		
 		
 		JPanel panel_recipeplanning = new JPanel();
 		panel_recipeplanning.setBorder(new LineBorder(new Color(0, 0, 0), 8));
@@ -250,6 +250,7 @@ public class UserMealPlanner {
 		
 		textArea.setBounds(58, 255, 220, 30);
 		panel_1_weeklyManager.add(textArea);
+		textArea.setText("");
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter Name of Recipe");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -307,6 +308,7 @@ public class UserMealPlanner {
 				ArrayList<Recipes> recipes = new ArrayList<Recipes>();
 				boolean add = true;
 				User currentUser = UserActivity.currentUser;
+				
 				for(Recipes recipe: db.getRecipes(UserActivity.currentUser)) {
 					if(recipe.mealTime.contains(time)) {
 						if (currentUser.getUserAllergies().getAllergies().get("Eggs") !=null && currentUser.getUserAllergies().getAllergies().get("Eggs")==1 && (recipe.getIngredients().toLowerCase().contains("egg"))){
@@ -321,6 +323,7 @@ public class UserMealPlanner {
 						if (currentUser.getUserAllergies().getAllergies().get("Seafood") !=null && currentUser.getUserAllergies().getAllergies().get("Seafood")==1 && (recipe.getIngredients().contains("fish")|| recipe.getIngredients().contains("shellfish"))){
 							add =false;
 						}
+						
 						if(add == true) {recipes.add(recipe);}
 						add=true;
 					}
