@@ -109,7 +109,7 @@ Original Allocated Time vs Actual Time Spent
 	-Ingredient list and edit ingredient GUIs
 	-Partial completion of ingredient add, remove, and edit functions.
 	
-**Meal Planning** (original: 5 days, actual: 3 days) (Ashna)
+**Meal Planning** (original: 5 days, actual: 3 days(incomplete)) (Ashna)
 	-User Meal Planning Page - itr2
 	-User Meal Planning GUI - itr2
 	-Implemented User Calendar -itr2
@@ -130,10 +130,11 @@ Meeting Minutes
 
 ---------------------------------------------
 Plan Changes
-Time was allocated to complete user stories from iteration 2. 
-The user story of "adding recipes from websites" was removed due to time constraints and low priority of this task.
-Recommendation functionality in meal planner was supposed to take into account the user's answers to a series of survey questions such as favoirte cuisine, but due 
+-Time was allocated to complete user stories from iteration 2. 
+-The user story of "adding recipes from websites" was removed due to low priority of this task. The time allocated to this task was spend on refactoring code and enhancing desing of GUI.
+-Recommendation functionality in meal planner was supposed to take into account the user's answers to a series of survey questions such as favoirte cuisine, but due 
 to time constraints, this was not implemented. The survey was removed and the recipe recommendation only takes into account user's allergies.
+-
 ---------------------------------------------
 
 ---------------------------------------------
@@ -148,4 +149,31 @@ Concerns
 
 ---------------------------------------------
 Original Allocated Time vs Actual Time Spent:
+**Meal Planner** (completed tasks left from iteration 2, original: 5 days,actual: 5 days) (Sheida, Ashna)
+	-Implemented nutritional information calculator
+	-Weekly planner UI and implementaiton in both Meal Planner page and Home Page
+	
+**Mange Pantry** (original: 10 days, actual:1 day) (Natalie)
+	- Created List of expired food ingredients in Home page
+	(Yellow food ingredients expire in 7 days, red colored food ingredients are expired)
+**Manipulate Food Ingredients Inventory** (original: 4 days, actual: 10 days (completed tasks from iteration 2)) (Natalie)
+	-Completion of ingredient add, remove, and edit functions.
+	-Completion of ingredient expiration tracker.
+** Shopping List** ( original: 3 days, actual: 2 days) (Felix, Sheida, Ashna)
+	- Shopping list page UI
+	- Added shopping list to home page
+	- Implemented add/remove functionality 
+	
+**Enhancing Current UI** (original: 5 days, actual: 5 days) (Shaun)
+	- Created consistent design across different pages.
+	- Enhance Home page UI
+	- Enhance Shopping List UI
+	- Enhance Recipe Collection UI
+	- Enhance View Profile page UI
+
+**Refactoring** (original: 3 days, actual: 3 days) (Shaun, Natalie, Sheida)
+	- Removed commented and dead code
+	- Added helper methods to reduce length of long methods.
+	- Remove duplicated code
+	- Merged EditRecipesView and SaveRecipesView as well as RecipeList and UserRecipeCollection beacuse they contained similar code and design.
 	
