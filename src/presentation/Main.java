@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
- * 
+ * Run RIMA Application
  */
 public class Main {
 
