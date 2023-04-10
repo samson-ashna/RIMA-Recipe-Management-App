@@ -35,13 +35,14 @@ public class SaveRecipesView extends JFrame {
 	private JTextField userName;
 	private JTextField proteinInfo;
 	private JTextField carbsInfo;
-	public static int page;// 0 for Saving new recipe and 1 for editing
+	private static int page;// 0 for Saving new recipe and 1 for editing
 	// public static Recipes editRecipe;
 
 	/**
 	 * Create the frame.
 	 */
-	public SaveRecipesView(Recipes editRecipe) {
+	public SaveRecipesView(Recipes editRecipe, int p) {
+		page = p;
 		if (page == 0) {
 			setTitle("RIMA - Save Recipe");
 		} else {

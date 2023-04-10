@@ -120,8 +120,7 @@ public class ViewRecipeUserCollection extends JDialog {
 		getContentPane().add(btnEdit);
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					SaveRecipesView.page =1;
-					SaveRecipesView editview = new SaveRecipesView(r);
+					SaveRecipesView editview = new SaveRecipesView(r,1);
 					editview.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);
