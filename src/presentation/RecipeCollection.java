@@ -192,7 +192,7 @@ public class RecipeCollection extends JFrame {
 		});
 		if(page==1) {favourites.setVisible(false);}
 		searchField = new JTextField();
-		searchField.setBounds(221, 2, 184, 40);
+		searchField.setBounds(221, 11, 184, 31);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
 		//Set up the font and bounds of the add button.
@@ -226,7 +226,7 @@ public class RecipeCollection extends JFrame {
 				
 			}
 		});
-		searchButton.setBounds(415, 3, 89, 35);
+		searchButton.setBounds(415, 11, 89, 31);
 		contentPane.add(searchButton);
 		
 		JButton btnNewButton_1 = new JButton("All Recipes");
@@ -239,11 +239,11 @@ public class RecipeCollection extends JFrame {
 				addUserRecipes();
 			}
 		});
-		btnNewButton_1.setBounds(514, 3, 132, 35);
+		btnNewButton_1.setBounds(515, 11, 132, 31);
 		contentPane.add(btnNewButton_1);
 		
 		JMenuBar searchBar = new JMenuBar();
-		searchBar.setBounds(54, 0, 237, 42);
+		searchBar.setBounds(20, 11, 191, 31);
 		contentPane.add(searchBar);
 		
 		JMenu categories = new JMenu("Search Categories");
