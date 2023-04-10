@@ -1,13 +1,12 @@
-package test.unitTests.objects;
-
-import static org.junit.jupiter.api.Assertions.*;
+package objects; 
+import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import objects.Recipes;
 import persistence.DatabaseAccess;
 import static org.junit.Assert.*;
 
-public class PlannerTest {
+class PlannerTest {
     @Test
     public void getBreakfastTest() {
         Planner planner = new Planner();
@@ -71,4 +70,6 @@ public class PlannerTest {
         Planner planner = new Planner();
         planner.addToPlanner("Tuesday", "Breakfast", "Orange Juice");
         planner.addToPlanner("Friday", "Lunch", "Spring Rolls");
-        planner.addToPlanner("Saturday", "Asparagus",
+        planner.addToPlanner("Saturday", "Dinner","Asparagus");
+    }
+}
