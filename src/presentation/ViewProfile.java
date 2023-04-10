@@ -11,7 +11,6 @@ import businessLogic.UserActivity;
 
 import java.awt.Window;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;

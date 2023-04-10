@@ -23,8 +23,9 @@ public class UserDietaryRestrictionsSurvey {
 			answerformat = JOptionPane.showInputDialog(null, questionformat);
 			if(answerformat == null) {
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to save your progress and continue later?", "Quit", JOptionPane.YES_NO_OPTION);
-				 if (exit == JOptionPane.YES_OPTION) { 
-					 
+				 if (exit == JOptionPane.YES_OPTION) 
+				 { 
+					 JOptionPane.getRootFrame().dispose();
 			        }
 				else
 					continue;

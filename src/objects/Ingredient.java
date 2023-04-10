@@ -18,7 +18,6 @@ public class Ingredient {
 		this.name = name;
 		this.expiration = expiration;
 		
-		//temp
 		setProtein(protein);
 		setCarbs(carbs);
 		setCost(cost);

@@ -17,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.UserActivity;
 import objects.User;
 import persistence.UsersDAO;
-import persistence.UsersStubDB;
 import persistence.DatabaseAccess;
 
 /**
@@ -32,7 +31,6 @@ public class EditProfileView extends JFrame {
 	private JPanel buttonPane;
 	
 	//Objects for displaying user info.
-	private UsersStubDB userDAO;
 	private User currentUser;
 	private Hashtable<String,Integer> userAllergies;
 	private ArrayList<String> allergyNames;

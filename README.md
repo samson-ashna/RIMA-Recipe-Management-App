@@ -44,36 +44,32 @@ The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenie
 - [x] User LogIn: Create a User Login to come back to the app with saved progress each time. Priority: High. Cost: 2 days
 - [x] User SignUp: Create a User Sign Up Page to create new user accounts to save recipies and find new recipies. Priority: High. Cost: 2 days
 
+
 ## Iteration 2 Developer Tasks
 **Search Recipes:  As a cook, I want to be able to search recipes from the database by name, ingredients, and category.  Priority: High. Cost: 6 days**
+- [x] Display a Search Bar: As a user, I want to quickly find a search bar that can aid me in finding recipes with minimal effort. Priority: . Cost: .
+- [x] Display Categories: As a user, I would like to easily search for what type of food I’m willing to make based on the time of day, the ingredients I own, and other categories based on meal time, dietary restrictions and such. Priority: . Cost: .
+- [x] Display Searched Recipes: As a user, I want the specific recipes based on the search result to be filtered and displayed from the database. Priority: . Cost: .
 
 **Manipulate Food Ingredients Inventory:  As a cook, I want to be able to view the list of all available food ingredients, add and remove from the list, and modify information on the quantity, cost, and expiration date.  Priority: Medium. Cost: 4 days**
+- [x] Display the Pantry List: As a user, I want to be able to view a list of personal food ingredients. Priority: . Cost: .
+- [x] Add and Remove Ingredients: As a user, I want to be able to add and remove ingredients to and from my personal food ingredients list. Priority: . Cost: .
+- [x] Manage my Inventory: As a user, I want to be able to add information to the items I have included in my list of food ingredients and edit their information such as the food’s expiration date. Priority: . Cost: .
 
 **Favourite Recipe List:  As an app user, I want to be able to add my favourite recipes to a list for easier access.  Priority: Medium. Cost: 3 days**
+- [x] Add a Favorites Page: As a user, I would want the recipes I “like” or “save” to be displayed on one page under my app account. Priority: . Cost: .
+- [x] Display a Collection: As a user, I want to be able to view a collection of recipes I made and recipes I recently viewed. Priority: . Cost: .
 
 **Meal Planning:  As a home cook, I want to be able to plan my meals for the coming week and I would like to view recipe suggestions based on my favourite recipe list, available food ingredients, and dietary restrictions and preferences.  Priority: Medium. Cost: 5 days**
-#### Detailed User Stories For Iteration 2
-“Search Recipes” - 
-1. Display a Search Bar: As a user, I want to quickly find a search bar that can aid me in finding recipes with minimal effort.
-2. Display Categories: As a user, I would like to easily search for what type of food I’m willing to make based on the time of day, the ingredients I own, and other categories based on meal time, dietary restrictions and such.
-3. Display Searched Recipes - As a user, I want the specific recipes based on the search result to be filtered and displayed from the database.
+- [x] Create a Calendar Page: As a user, I want to be able to view a calendar page for the week where I can select a day and add recipes to that day from my personal recipe collection list. Priority: . Cost: .
+- [x] Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week. Priority: . Cost: .
 
-“Manipulate Food Ingredients” - 
-1. Display the Recipe Ingredients: As a user, I want to be able to view a list of the recipe list before I make the recipe in order to know whether I have the proper required ingredients to make the dish.
-2. Add/Remove ingredients
-3. Manage my Inventory: As a user, I want to be able to add notes to the items I have included in my list of food ingredients and edit their information such as the food’s expiration date.
-
-“Favorite Recipe List” -
-1. Add a Favorites Page: As a user, I would want the recipes I “like” or “save” to be displayed on one page under my app account.
-2. Display a Collection: As a user, I want to be able to view a collection of recipes I made and recipes I recently viewed.
-
-“Meal Planning” -
-1. Create a Calendar Page:  Add a calendar page for the week where the user can select a day and add recipes to that day from the personal collection list
-2. Edit Meals Added: As a user, I want to be able to delete and edit the meals that are added to the page in case I change my mind about want I want to create during the week.
 
 ## Iteration 3 Developer Tasks
-**Manage Pantry:  As a user, I want to be able to keep track of food expiration dates and be notified accordingly.  Priority: Low. Cost: 9 days**
+**Manage Pantry:  As a user, I want to be able to keep track of food expiration dates and be notified accordingly.  Priority: Low. Cost: 6 days**
+- [x] Display Expired Ingredients: As a user, I want to be able to see the food ingredients in my list that have expired. Priority: Low. Cost: 3 days.
+- [x] Display Soon to Expire Ingredients: As a user, I want to be able to see the food ingredients in my list that are going to expire soon. Priority: Low. Cost: 3 days.
 
-**Add Recipes from Websites:  As a home cook, I want to be able to add recipes I find on the internet to the management system to view later.  Priority: Low. Cost: 2 days**
-
-**Shopping List:  As a home cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list.  Priority: Low. Cost: 3 days**
+**Shopping List:  As a home cook, I would like to be able to view a list of food ingredients that I need to purchase and add/remove from the list.  Priority: Low. Cost: 8 days**
+- [x] Display a Shopping List: As a user, I want to be able to see the food ingredients I would need to purchase in order to make certain recipes for the future. Priority: Low. Cost: 4 days.
+- [x] Create a Shopping Cart: As a user, I want to be able to add the ingredients I need to the shopping cart so that would be easier for me to check out later when I am shopping. Priority: Low. Cost: 4 day.

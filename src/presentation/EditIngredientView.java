@@ -362,6 +362,7 @@ public class EditIngredientView extends JFrame{
 					for(Ingredient ingredient:currentUser.getIngredients()) {
 						listModel.addElement(ingredient.getName());
 					}
+					@SuppressWarnings("unchecked")
 					JList<String> list = (JList<String>)componentsToToggle[componentsToToggle.length-1];
 					list.ensureIndexIsVisible(listModel.getSize());
 				}

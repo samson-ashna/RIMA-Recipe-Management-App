@@ -3,7 +3,6 @@ package presentation;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

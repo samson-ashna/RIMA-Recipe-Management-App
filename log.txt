@@ -118,3 +118,29 @@ Original Allocated Time vs Actual Time Spent
 	-itr2 - implemented detailed user stories for developer tasks
 	calendar made using imported library from https://toedter.com/jcalendar/
 	
+	
+---------------------------------------------
+Iteration 3:
+Meeting Minutes
+- First Meeting: Discussed final implementation of project database and UI and assigned tasks(60 minutes).
+- Second Meeting: Continued working on the assigned tasks (120 minutes) 
+---------------------------------------------
+
+---------------------------------------------
+Plan Changes
+
+---------------------------------------------
+
+---------------------------------------------
+Big Design Decisions
+
+---------------------------------------------
+
+---------------------------------------------
+Concerns
+**No concerns**
+---------------------------------------------
+
+---------------------------------------------
+Original Allocated Time vs Actual Time Spent:
+	
