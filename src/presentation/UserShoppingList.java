@@ -3,14 +3,9 @@ package presentation;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.border.LineBorder;
 
 import businessLogic.UserActivity;
 import persistence.DatabaseAccess;
@@ -50,7 +45,6 @@ public class UserShoppingList extends JFrame {
 		JPanel panel_4_usefulbuttons = new JPanel();
 		panel_4_usefulbuttons.setBackground(new Color(143, 188, 143));
 		panel_4_usefulbuttons.setLayout(null);
-		// panel_4_usefulbuttons.setBorder(new LineBorder(new Color(0, 0, 0), 8));
 		panel_4_usefulbuttons.setBounds(20, 350, 400, 58);
 		contentPane.add(panel_4_usefulbuttons);
 		
@@ -59,31 +53,7 @@ public class UserShoppingList extends JFrame {
         btnHomepage.setBackground(new Color(59, 89, 182));
 		btnHomepage.setBounds(330, 20, 70, 27);
 		panel_4_usefulbuttons.add(btnHomepage);
-		
-		/*JButton btnExit = new JButton("Exit");
-		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnExit.setBounds(977, 20, 234, 31);
-		panel_4_usefulbuttons.add(btnExit);*/
-		
-		/**
-		 * Adds the current user's shopping list to the list section to display them.
-		 */
-		/*public void ingredientList() {
-			//Create a new list model for the user's recipes.
-			DefaultListModel<String> model = new DefaultListModel<String>();		
-			//get a new instance of the user database.
-			DatabaseAccess access = new DatabaseAccess();
-			UsersDAO db = access.usersDB();
-			ArrayList<String> ingredients = new ArrayList<String>(); 
-			ingredients = db.getFavoriteList(UserActivity.getCurrentUser());
-			//Add all the user's favourite recipes to the list model.
-			for(Recipes r: recipes) {
-				model.addElement(r.getName());
-			}
-			
-			//Set the model for the list section to be the one that was 
-			list.setModel(model);
-		}*/
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 20, 400, 300);
 		contentPane.add(scrollPane);
