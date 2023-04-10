@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import objects.Ingredient;
 import objects.User;
 import persistence.DatabaseAccess;
+import persistence.UsersDAO;
 import persistence.UsersDB;
 
 public class IngredientActions {
 	private static DatabaseAccess access = new DatabaseAccess();
-	private static UsersDB userDB = (UsersDB) access.usersDB();
-	
+	private static UsersDAO userDB = access.usersDB();
+
 	//Returns an arraylist of the current user's ingredients.
 	public static ArrayList<Ingredient> getIngredients() {
 		//Save the current user.
@@ -49,10 +50,11 @@ public class IngredientActions {
 	public static boolean checkName(String name) {
 		boolean ingredientExists = false;
 		ArrayList<Ingredient> ingredients = getIngredients();
-		
-		for(Ingredient ingredient:ingredients) {
-			if(ingredient.getName().equalsIgnoreCase(name)) {
-				ingredientExists = true;
+		if(ingredients !=null) {
+			for(Ingredient ingredient:ingredients) {
+				if(ingredient.getName().equalsIgnoreCase(name)) {
+					ingredientExists = true;
+				}
 			}
 		}
 		return ingredientExists;

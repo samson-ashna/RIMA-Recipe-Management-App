@@ -159,4 +159,9 @@ public class UsersStubDB implements UsersDAO {
 
 	@Override
 	public void editShoppingList(String ingredient, String name) {}
+	@Override
+	public boolean updateIngredients(User user, ArrayList<Ingredient> ingredients) {
+		UserActivity.getCurrentUser().setIngredients(ingredients);
+		return true;
+	}
 }
