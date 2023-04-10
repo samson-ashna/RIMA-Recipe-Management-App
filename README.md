@@ -22,7 +22,7 @@
 The Recipe and Ingredient Management App (RIMA) facilitates a quick and convenient way to create or follow recipes. RIMA will come with preloaded recipes and the users can additionally add their recipes to the database. RIMA combines the numerous functionalities of similar apps, while also improving upon these features according to user feedback. Its key functionalities include the ability to search for recipes according to the user’s ingredient of choice, or the user can search for the recipe and it will provide the required ingredients.
 
 ## Architecture Sketch
-![archsketch (2)](https://user-images.githubusercontent.com/51792193/224328216-22a2c073-6d05-4ef2-8101-28c49e7bec75.jpg)
+![archsketch](https://user-images.githubusercontent.com/51792193/230984505-26b0df6e-4173-4063-9c2f-e5f2f06cbdf5.jpg)
 
 ## Iteration 1 Developer Tasks
 **View Recipes:  As a cook, I want to be able to view a list of the recipes available in the app that I can save to my own personal recipe collection. Priority: High. Cost: 4 days**
