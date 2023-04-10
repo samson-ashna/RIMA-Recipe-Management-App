@@ -1,0 +1,14 @@
+Code smells found include bloaters(long methods, large classes, long parameter lists), object-oriented abusers(switch statements, temporary fields), dispensables (unnecessary comments, dead code). 
+
+Code Smells & Applied Refactoring Techniques:
+•	Commented codes were removed.
+•	Unused methods in UserShoppingList.java and User.java were removed.
+•	Unused import statements were removed.
+•	jCalendar.jar was removed from lib folder as it is no longer used.
+•	Classes SaveRecipesView and EditRecipeView in presentation  contained similar code and had similar functionality. To remove this duplicated code, they were combined in one class SaveRecipesView.
+•	Classes RecipeList and UserRecipeCollection  in presentation contained similar code and functionality. To remove duplicated code, they were combined in one class RecipeCollection.
+•	Duplicated code in SaveRecipesView.java and HomePage.java were removed using extract methods.
+•	Method calls were simplified using different refactoring techniques including renaming methods. Some methods contained unnecessary parameters; these parameters were removed. In some methods, parameters were added to simplify method calls. For example, parameter p was added to SaveRecipesView() in SaveRecipesView class. The value of p indicates whether the user will be saving a new recipe or editing an existing one. 
+•	Unused variables were removed.
+•	Long methods were broken down with the use of helper methods.
+•	To better organize data, some data values were replaced with objects (example include planner, allergies
