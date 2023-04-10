@@ -98,6 +98,7 @@ public class ViewRecipeDB extends JDialog {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(UserActivity.getCurrentUser() != null) {
+					
 					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
 					saveRecipe.save(db.get(name));
 					btnSave.setText("Saved to Collection");

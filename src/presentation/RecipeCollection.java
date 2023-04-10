@@ -311,7 +311,8 @@ public class RecipeCollection extends JFrame {
 		addRecipeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a SaveRecipesView window
-				SaveRecipesView addRecipePage = new SaveRecipesView();
+				SaveRecipesView.page =0;
+				SaveRecipesView addRecipePage = new SaveRecipesView(null);
 						
 				//Make the SaveRecipesView window visible.
 				addRecipePage.setVisible(true);	

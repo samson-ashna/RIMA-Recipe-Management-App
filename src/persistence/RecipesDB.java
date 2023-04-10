@@ -198,7 +198,7 @@ public class RecipesDB extends DBSetup implements DAO<Recipes> {
 
 		UsersDB dbUser = new UsersDB();
 		for (User u : dbUser.getAll()) {
-			if (dbUser.getRecipe(u, t.getName()).getRecipeID() == t.getRecipeID()) {
+			if (dbUser.getByID(u, t.getRecipeID())){
 				query = "UPDATE users SET myRecipes= JSON_SET(myRecipes, '$.\"" + (t.getRecipeID()) + "\"',\""
 						+ t.getName() + "\") WHERE `name`='" + u.getName() + "\';";
 				try {

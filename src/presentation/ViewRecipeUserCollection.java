@@ -104,7 +104,6 @@ public class ViewRecipeUserCollection extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					db.editFavorites(r,0);
 					HomePage.removeFavourite(r);
-
 					RecipeCollection collection = new RecipeCollection();
 					collection.setVisible(true);
 					contentPanel.setVisible(false);
@@ -121,7 +120,8 @@ public class ViewRecipeUserCollection extends JDialog {
 		getContentPane().add(btnEdit);
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					EditRecipeView editview= new EditRecipeView(r);
+					SaveRecipesView.page =1;
+					SaveRecipesView editview = new SaveRecipesView(r);
 					editview.setVisible(true);
 					contentPanel.setVisible(false);
 					Window win = SwingUtilities.getWindowAncestor(contentPanel);

@@ -303,6 +303,16 @@ public class UsersDB extends DBSetup implements UsersDAO {
 		}
 		return null;
 	}
+	public boolean getByID(User u, int id) {
+		ArrayList<Recipes> lst = new ArrayList<Recipes>();
+		lst = getRecipes(u);
+		for (Recipes r : lst) {
+			if (r.getRecipeID()==id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public ArrayList<Ingredient> getIngredients(User u) {
 		ArrayList<User> users = getAll();
@@ -502,33 +512,6 @@ public class UsersDB extends DBSetup implements UsersDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	// to do 0330
-	/*@Override
-	public ArrayList<Recipes> shoppingIngredients(User u) {
-		ArrayList<Recipes> userRecipes = new ArrayList<Recipes>();
-		ArrayList<Recipes> allRecipes = new ArrayList<Recipes>();
-		RecipesDB db = new RecipesDB();
-		allRecipes = db.getAllRecipes();
-		for (Recipes r : allRecipes) {
-			if (u.getName().equals(r.getUser())) {
-				userRecipes.add(r);
-			}
-		}
-		return userRecipes;
-	}*/
-
-	// to do 0330
-	/*Override
-	public ArrayList<String> getShoppingList(User u) {
-		ArrayList<String> shoppingList = new ArrayList<>();
-		for(Recipes r: getRecipes(u)) {
-			if(r.favourite==1) {
-				shoppingList.add(r);
-			}
-		}
-		return shoppingList;
-	}*/
 	
 	@Override
 	public void editShoppingList(String ingredient, String name)

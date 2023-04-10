@@ -18,6 +18,9 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.SaveRecipe;
 import businessLogic.UserActivity;
 import objects.Recipes;
+import persistence.DAO;
+import persistence.DatabaseAccess;
+
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 
@@ -32,12 +35,19 @@ public class SaveRecipesView extends JFrame {
 	private JTextField userName;
 	private JTextField proteinInfo;
 	private JTextField carbsInfo;
+	public static int page;//0 for Saving new recipe and 1 for editing
+	//public static Recipes editRecipe;
 
 	/**
 	 * Create the frame.
 	 */
-	public SaveRecipesView() {
-		setTitle("RIMA - Save Recipe");
+	public SaveRecipesView(Recipes editRecipe) {
+		if(page==0) {
+			setTitle("RIMA - Save Recipe");
+		}else {
+			setTitle("RIMA - Edit Recipe");
+		}
+		
 		//Set the application to exit when closed
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//Set the size and pop up location of the window.
@@ -146,6 +156,13 @@ public class SaveRecipesView extends JFrame {
 		JTextArea instructionInfo = new JTextArea();
 		scrollPane_1.setViewportView(instructionInfo);
 		instructionInfo.setLineWrap(true);
+		if(page==1) {
+			userName.setText(editRecipe.getName());
+			proteinInfo.setText(Integer.toString(editRecipe.getProtein()));
+			carbsInfo.setText(Integer.toString(editRecipe.getCarbs()));
+			instructionInfo.setText(editRecipe.getInstructions());
+			ingredientInfo.setText(editRecipe.getIngredients());
+		}
 		
 		JLabel errorNoNamelbl = new JLabel("New label");
 		errorNoNamelbl.setVisible(false);
@@ -192,12 +209,24 @@ public class SaveRecipesView extends JFrame {
 					String ingredients=ingredientInfo.getText();
 					String instructions = instructionInfo.getText();
 					Recipes newRecipe = null;
-					newRecipe = new Recipes(name, protein, carbs);
-					newRecipe.setIngredients(ingredients);
-					newRecipe.setInstructions(instructions);
-					newRecipe.setMealTime(comboBox.getSelectedItem().toString());
-					SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
-					saveRecipe.save(newRecipe);
+					if(page==0) {
+						newRecipe = new Recipes(name, protein, carbs);
+						newRecipe.setIngredients(ingredients);
+						newRecipe.setInstructions(instructions);
+						newRecipe.setMealTime(comboBox.getSelectedItem().toString());
+						SaveRecipe saveRecipe = new SaveRecipe(UserActivity.getCurrentUser());
+						saveRecipe.save(newRecipe);
+					}else {
+						editRecipe.setName(userName.getText());
+						editRecipe.setProtein(protein);
+						editRecipe.setCarbs(carbs);
+						editRecipe.setIngredients(ingredients);
+						editRecipe.setInstructions(instructions);
+						editRecipe.setMealTime(comboBox.getSelectedItem().toString());
+						DatabaseAccess access = new DatabaseAccess();
+						DAO<Recipes> db = access.recipesDB();
+						db.edit(editRecipe);
+					}
 					//User is then redirected back to their recipe collection page.
 					RecipeCollection back = new RecipeCollection();
 					back.setVisible(true);
