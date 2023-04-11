@@ -1,4 +1,4 @@
-package test.integrationTests.database;
+package test.integrationTests.persistence;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -22,7 +22,7 @@ class DatabasesTest {
 	static Recipes r;
 	@BeforeAll
 	static void setUp() {
-		//database_setup.sql under database folder must be run first.
+		//database_setup.sql under database folder has to be run first, each time this test file is run.
 		access = new DatabaseAccess();
 		DatabaseAccess.databaseType =0;
 		db = access.recipesDB();
@@ -36,9 +36,7 @@ class DatabasesTest {
 				+ "Stir until the sauce has reduced and evenly glazes the chicken.");
 		recipe2.setID(2);
 		r = new Recipes("Cake",20,30);
-		//r.setID(3);
 		recipe1 = new Recipes("Fish",2,3);
-		//recipe1.setID(4);
 		user = new User("user1","1");
 		user2 = new User("user2","2");
 	}
