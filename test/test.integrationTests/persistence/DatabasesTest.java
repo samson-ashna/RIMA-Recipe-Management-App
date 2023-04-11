@@ -1,25 +1,28 @@
 package test.integrationTests.database;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import objects.Ingredient;
 import objects.Recipes;
 import objects.User;
-import persistence.DAO;
-import persistence.DatabaseAccess;
-import persistence.UsersDAO;
 
 class DatabasesTest {
-	DatabaseAccess access;
-	DAO<Recipes> db;
-	UsersDAO dbUsers;
-	Recipes recipe1;
-	Recipes recipe2;
-	User user;
-	User user2;
-	Recipes r;
-	@BeforeEach
-	void setUp() {
+	static DatabaseAccess access;
+	static DAO<Recipes> db;
+	static UsersDAO dbUsers;
+	static Recipes recipe1;
+	static Recipes recipe2;
+	static User user;
+	static User user2;
+	static Recipes r;
+	@BeforeAll
+	static void setUp() {
+		//database_setup.sql under database folder must be run first.
 		access = new DatabaseAccess();
 		DatabaseAccess.databaseType =0;
 		db = access.recipesDB();
@@ -33,9 +36,9 @@ class DatabasesTest {
 				+ "Stir until the sauce has reduced and evenly glazes the chicken.");
 		recipe2.setID(2);
 		r = new Recipes("Cake",20,30);
-		r.setID(3);
+		//r.setID(3);
 		recipe1 = new Recipes("Fish",2,3);
-		recipe1.setID(4);
+		//recipe1.setID(4);
 		user = new User("user1","1");
 		user2 = new User("user2","2");
 	}
@@ -48,6 +51,7 @@ class DatabasesTest {
 		db.add(r);
 		assertEquals(3,db.getAll().size());
 	}
+	
 	@Test
 	void testRemoveRecipe() {
 		db.remove(r);
@@ -78,6 +82,15 @@ class DatabasesTest {
 		assertEquals(1,dbUsers.getRecipes(user).size());
 	}
 	@Test
+	void editFavouritesTest() {
+		for(Recipes r: dbUsers.getRecipes(user)) {
+			if(r.getName().strip().equals(recipe1.getName())) {
+				dbUsers.editFavorites(r, 1);
+			}
+		}
+		assertTrue(dbUsers.getFavoriteList(user).size()==1);
+	}
+	@Test
 	void testRemoveRecipes() {
 		dbUsers.removeRecipes(user,recipe1);
 		assertEquals(0,dbUsers.getRecipes(user).size());
@@ -86,5 +99,36 @@ class DatabasesTest {
 	void testEditUser() {
 		dbUsers.edit("user1","user2","1");
 		assertNull(dbUsers.get("user1"));
-	}	
+	}
+	@Test
+	void editPlannerTest() {
+		user.getWeekPlanner().get("Monday").addToPlanner("Monday", "Breakfast","Cake");
+		dbUsers.editPlanner(user,"Monday","Breakfast", "Cake"); 
+		assertTrue(dbUsers.get(user.getName()).getWeekPlanner().get("Monday").getBreakfast().contains("Cake"));
+	}
+	@Test
+	void editShoppingListTest() {
+		boolean item = dbUsers.get(user.getName()).getShoppingList().contains("Salt");
+		dbUsers.editShoppingList("Salt", user.getName());
+		assertFalse(dbUsers.get(user.getName()).getShoppingList().contains("Salt")==item);
+	}
+	@Test
+	void editAllergyTest() {
+		dbUsers.editAllergy(user, "Milk", 1);
+		assertTrue(dbUsers.get(user.getName()).getUserAllergies().getAllergies().get("Milk")==1);
+	}
+	@Test
+	void updateIngredientTest() {
+		ArrayList<Ingredient> lst = new ArrayList<Ingredient>();
+		Ingredient i = new Ingredient("pasta", 20.00, LocalDate.now(), 20, 30, user.getName());
+		i.setUser(user);
+		lst.add(i);
+		user.addIngredientToCollection(i);
+		dbUsers.updateIngredients(user, user.getIngredients());
+		boolean found = false;
+		for(Ingredient ingredient: dbUsers.getIngredients(user)) {
+			if(ingredient.getName().strip().equals(i.getName())) {found=true;}
+		}
+		assertTrue(found);
+	}
 }
