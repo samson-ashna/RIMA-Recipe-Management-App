@@ -4,7 +4,6 @@ Code Smells & Applied Refactoring Techniques:
 •	Commented codes were removed.
 •	Unused methods in UserShoppingList.java and User.java were removed.
 •	Unused import statements were removed.
-•	jCalendar.jar was removed from lib folder as it is no longer used.
 •	Classes SaveRecipesView and EditRecipeView in presentation  contained similar code and had similar functionality. To remove this duplicated code, they were combined in one class SaveRecipesView.
 •	Classes RecipeList and UserRecipeCollection  in presentation contained similar code and functionality. To remove duplicated code, they were combined in one class RecipeCollection.
 •	Duplicated code in SaveRecipesView.java and HomePage.java were removed using extract methods.
