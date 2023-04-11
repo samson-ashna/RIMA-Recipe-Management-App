@@ -2,6 +2,7 @@ package test.unitTests.businessLogic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -11,95 +12,50 @@ import org.junit.jupiter.api.Test;
 
 import businessLogic.SaveRecipe;
 import objects.Recipes;
+import objects.User;
 import persistence.DatabaseAccess;
 
 public class SaveRecipeTest {
     
     SaveRecipe recipes;
-
+    ArrayList<String> name=new ArrayList<String>();
     @BeforeEach
     void init() {
     	DatabaseAccess.databaseType =1;
-        String[] name = {"Boiled Egg", "Fish Cakes", "Macaroni & Cheese"};
+    	name.add("Boiled Egg");
+    	name.add("Fish Cakes");
+    	name.add("Macaroni & Cheese");
         int[] protein = {6, 4, 3};
         int[] carbs = {0, 6, 8};
 
         recipes = new SaveRecipe();
 
-        for(int i = 0; i < name.length; i++) {
+        for(int i = 0; i < name.size(); i++) {
 
-            Recipes temp = new Recipes(name[i], protein[i], carbs[i]);
-            recipes.save(temp);
-
+            Recipes temp = new Recipes(name.get(i), protein[i], carbs[i]);
+            recipes.testSave(temp);
         }
 
     }
     
     @Test
-    void testGetRecipe() {
-
-        Recipes temp = new Recipes("Boiled Egg", 6, 0);
-        temp.setIngredients("");
-
-        SaveRecipe test = new SaveRecipe();
-        test.save(temp);
-
-        System.out.println(test.getRecipes());
-
-        assertEquals(test.getRecipe("Boiled Egg").getName(), recipes.getRecipe("Boiled Egg").getName());
+    void testGetRecipes() {
+    	ArrayList<String> names2 = new ArrayList<String>();
+    	for(Recipes r:recipes.getRecipes()) {
+    		names2.add(r.getName());
+    	}
+    	assertIterableEquals(name,names2);
 
     }
 
     @Test
     void testGetRecipes1() {
-
-        SaveRecipe test = new SaveRecipe(recipes);
-
-        ArrayList<Recipes> x = test.getRecipes();
-        ArrayList<Recipes> y = recipes.getRecipes();
-        boolean temp = true;
-
-        for(int i = 0; i < test.getSize(); i++) {
-
-            if(!x.get(i).getName().equals(y.get(i).getName())) {
-                temp = false;
-            }
-
-        }
-
-        assertTrue(temp);
-
+        assertTrue(recipes.getSize()==3);
     }
 
     @Test
-    void testGetRecipes2() {
-
-        String ingredients = "Potatoes, Salt";
-
-        Recipes temp = new Recipes("Boiled Potato", 3, 6);
-        temp.setInstructions("1. Boil water 2. Insert potatoes into boiling water");
-        temp.setIngredients(ingredients);
-        SaveRecipe test = new SaveRecipe();
-        
-        test.save(temp);
-
-        ArrayList<Recipes> x = test.getRecipes();
-        ArrayList<Recipes> y = recipes.getRecipes();
-        boolean condition = true;
-
-        for(int i = 0; i < test.getSize(); i++) {
-
-            if(!x.get(i).getName().equals(y.get(i).getName())) {
-                condition = false;
-            }
-
-        }
-
-//        System.out.println(test);
-//        System.out.println(temp.getInstructions());
-//        System.out.println(temp.getIngredients());
-//        System.out.println(recipes);
-        assertFalse(condition);
+    void testGetRecipe() {
+    	assertTrue(recipes.getRecipe("Boiled Egg") !=null);
     }
-}
 
+}
