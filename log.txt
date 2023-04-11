@@ -159,7 +159,8 @@ Original Allocated Time vs Actual Time Spent:
 **Manipulate Food Ingredients Inventory** (original: 4 days, actual: 10 days (completed tasks from iteration 2)) (Natalie)
 	-Completion of ingredient add, remove, and edit functions.
 	-Completion of ingredient expiration tracker.
-** Shopping List** ( original: 3 days, actual: 2 days) (Felix, Sheida, Ashna)
+
+**Shopping List** ( original: 3 days, actual: 2 days) (Felix, Sheida, Ashna)
 	- Shopping list page UI
 	- Added shopping list to home page
 	- Implemented add/remove functionality 
@@ -176,7 +177,19 @@ Original Allocated Time vs Actual Time Spent:
 	- Added helper methods to reduce length of long methods.
 	- Remove duplicated code
 	- Merged EditRecipesView and SaveRecipesView as well as RecipeList and UserRecipeCollection beacuse they contained similar code and design.
+
 **Favorite Recipes**(original: 3 days, actual: 4 days) (Felix)
 	-Added methods to ensure that information related to favoite recipes can be added to database.
 	-Added list of favorite recipes to home page. 
+	
+**RIMA app itr 3 final touches (original: 8 days, actual: 5 days) (Ashna)
+	-touched up GUI on various pages such as meal planning and homepage - itr 3
+	-itr3 - implemented detailed user stories for developer tasks
+	-implemented test cases for recipe planning classes
+	-aided with shopping list page
+	-fixed bugs
+	-added refactored code
+	-added functionalities within objects/presentation folder
+	-added javadocs/comments
+	
 	
