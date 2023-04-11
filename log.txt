@@ -131,7 +131,7 @@ Meeting Minutes
 ---------------------------------------------
 Plan Changes
 -Time was allocated to complete user stories from iteration 2. 
--The user story of "adding recipes from websites" was removed due to low priority of this task. The time allocated to this task was spend on refactoring code and enhancing desing of GUI.
+-The user story of "adding recipes from websites" was removed due to low priority of this task. The time allocated to this task was spent on refactoring code and improving desing of UI.
 -Recommendation functionality in meal planner was supposed to take into account the user's answers to a series of survey questions such as favoirte cuisine, but due 
 to time constraints, this was not implemented. The survey was removed and the recipe recommendation only takes into account user's allergies.
 - The feature of adding price calculator for each recipe in the meal planner page was removed because we didn't have access to the cost of all ingredients in recipes unless the user entered them. 
