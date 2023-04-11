@@ -17,7 +17,7 @@ public class Ingredient {
 	public Ingredient(String name, double cost, LocalDate expiration, int protein, int carbs, String user) {
 		this.name = name;
 		this.expiration = expiration;
-		
+		this.user = user;
 		setProtein(protein);
 		setCarbs(carbs);
 		setCost(cost);
