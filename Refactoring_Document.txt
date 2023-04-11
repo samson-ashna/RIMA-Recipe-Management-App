@@ -11,4 +11,4 @@ Code Smells & Applied Refactoring Techniques:
 •	Method calls were simplified using different refactoring techniques including renaming methods. Some methods contained unnecessary parameters; these parameters were removed. In some methods, parameters were added to simplify method calls. For example, parameter p was added to SaveRecipesView() in SaveRecipesView class. The value of p indicates whether the user will be saving a new recipe or editing an existing one. 
 •	Unused variables were removed.
 •	Long methods were broken down with the use of helper methods.
-•	To better organize data, some data values were replaced with objects (example include planner, allergies
+•	To better organize data, some data values were replaced with objects (example include planner, allergies)
