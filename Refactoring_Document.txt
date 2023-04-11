@@ -1,4 +1,4 @@
-Code smells found include bloaters(long methods, large classes, long parameter lists), object-oriented abusers(switch statements, temporary fields), dispensables (unnecessary comments, dead code). 
+Code smells found include bloaters(long methods, large classes, long parameter lists), dispensables (unnecessary comments, dead code). 
 
 Code Smells & Applied Refactoring Techniques:
 •	Commented codes were removed.
